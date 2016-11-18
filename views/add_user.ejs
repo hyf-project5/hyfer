@@ -1,0 +1,56 @@
+<form method="post" action="/users/add">
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+      <div class="modal-dialog">
+    <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true" onClick="cancelAdd()"></span></button>
+            <h4 class="modal-title custom_align" id="Heading">Add New User</h4>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                <input class="form-control " type="text" placeholder="First Name" name="fname" required>
+              </div>
+            <div class="form-group">
+                <input class="form-control " type="text" placeholder="Last Name" name="lname">
+            </div>
+            <div class="form-group">
+                <input class="form-control " type="text" placeholder="Address" name="address" required>
+            </div>
+            <div class="form-group">
+                <input class="form-control " type="email" placeholder="Email" name="email" required>
+            </div>
+            <div class="form-group">
+                <input class="form-control " type="password" placeholder="password" name="pass" required>
+            </div>
+            <div class="form-group">
+               <input class="form-control " type="number" placeholder="Mobile Number" name="mob">
+            </div>
+
+            <div class="form-group">
+               <input class="form-control " type="text" placeholder="Role" name="role" required>
+            </div>
+
+            <div class="form-group">
+              <input class="form-control " type="text" placeholder="Group Number" name="group_num" required>
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-inline" for="checkboxes-0">
+                  <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
+                  Send the account details to the User?
+                </label>
+            </div>
+      </div>
+          <div class="modal-footer ">
+            <button type="submit" name="submit" class="btn btn-success btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Add</button>
+          </div>
+        </div>
+    <!-- /.modal-content --> 
+  </div>
+      <!-- /.modal-dialog --> 
+    </div>
+</form>
+
+
+
+

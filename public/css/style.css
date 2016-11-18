@@ -1,0 +1,21 @@
+a.navbar-brand {
+    font-size: 17px;
+    padding-top: 5px !important;
+    text-align: center;
+}
+
+.profile-img{
+  width: 40px;
+}
+
+nav.navbar {
+    border-radius: 0 !important;
+}
+
+button.btn {
+    height: 34px;
+}
+
+.glyphicon {
+    line-height: 1.5;
+}
