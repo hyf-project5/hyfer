@@ -39,9 +39,9 @@ app.use(
         
         host: 'localhost',
         user: 'root',
-        password : 'admin',
+        password : 'yonas',
         //port : 3306, //port mysql
-        database:'sms'
+        database:'dbhyf'
 
     },'pool') //or single
 

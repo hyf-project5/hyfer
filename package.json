@@ -1,9 +1,11 @@
 {
-  "name": "Student Managment System (SMS)",
-  "version": "0.0.1",
-  "private": true,
+  "name": "dbhyf",
+  "version": "1.0.0",
+  "description": "Students Management System (SMS)",
+  "main": "server.js",
   "scripts": {
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "dependencies": {
     "ejs": "^1.0.0",
