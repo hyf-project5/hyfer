@@ -38,10 +38,10 @@ app.use(
     connection(mysql,{
         
         host: 'localhost',
-        user: 'root',
-        password : 'yonas',
+        user: 'smsuser',
+        password : 'uyew65knj098',
         //port : 3306, //port mysql
-        database:'dbhyf'
+        database:'smshyf'
 
     },'pool') //or single
 
