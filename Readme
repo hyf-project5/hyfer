@@ -1,1 +1,44 @@
-Final project :WAEL
+Project proposal
+Introduction
+This project “Student Management System(SMS)” was initiated to manage activities that take place every Sunday at Hack Your Future (HYF). HYF is a group of highly talented volunteers in Amsterdam who teach refugees from all over Holland how to become full stack web developers. A group of students form a “Class” and learn every Sunday for a period of six months. During this time every student is required to attend the sessions and submit assignments on time. As the number of students and mentors grew, it became difficult to follow up on several things identified as the problem in the next section. 
+The problem?
+This is mainly concerned with addressing the following questions:
+1.	Check who was present on a given Sunday? Keep track of the student and mentor attendance.
+2.	Keep track of assignment submission by students?
+3.	An “agenda”, a general overview of the courses and extra events that everyone can access. 
+Purpose of the project
+To manage the training programs and provide an insight of what happens when in a more organized and less time consuming manner.
+Proposed Solution
+We will build an application that will store Student, Mentor and Course’s information so that 
+•	All students, mentors and the courses are registered.
+•	Every Sunday session data is populated in a way so that all classes are automatically populated with the students, the planned course and mentor for the day.
+•	Video recordings, web links and reading materials for each module can be accessed. 
+•	The system admin can of course make all necessary changes. Default module, mentor, student and location is added to the data for each class based on the basic registration information.
+o	Admin can add, edit or delete any or all of the above information.
+o	Mentors and students can access this information and only read it.
+•	Mentors will take attendance by marking absent students.
+•	Mentors or the admin will update system with assignments handed in information.
+•	It should be easy to get statistical reports for a given period of time.
+o	Summarized reports such as number of students registered in six months.
+o	A student’s attendance or assignments completed by date report.
+o	What is the percentage of the registered students graduate?
+
+Time Frame
+Week 1	Build the database. Create connection using nodeJS. Build basic layouts of what the pages will look like.
+Week 2	Build the backend and frontend, do tests.
+Week 3	Build the backend and frontend, do tests.
+Week 4	
+Week 5	
+Week 6	
+		
+Project Team
+Name	Assigned to work on
+Yonas	Database structure and backend connection.
+Mohanad	Backend connection with data.
+Wael	Frontend design and development.
+Mohammad	Frontend developer.
+
+Tools used
+mySql, NodeJS, AngularJS, jQuery and Bootstrap.
+
+ 
