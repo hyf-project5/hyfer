@@ -12,7 +12,7 @@ var connection  = require('express-myconnection');
 var mysql = require('mysql');
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3306);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');     
 //app.use(express.favicon());
@@ -37,7 +37,7 @@ app.use(
     
     connection(mysql,{
         
-        host: 'localhost',
+        host: 'hykrdb.cmsfrokrxjf7.us-west-2.rds.amazonaws.com',
         user: 'smsuser',
         password : 'uyew65knj098',
         //port : 3306, //port mysql
