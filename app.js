@@ -41,7 +41,7 @@ app.use(
 
     host: 'hykrdb.cmsfrokrxjf7.us-west-2.rds.amazonaws.com',
     user: 'smsuser',
-    port: 3002,
+    port: '3002',
     password: 'uyew65knj098',
     database: 'smshyf'
     },'pool') //or single
