@@ -17,7 +17,7 @@ var connection  = require('express-myconnection');
 var mysql = require('mysql');
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3002);
 
 app.use(express.logger('dev'));
 app.use(express.json());
