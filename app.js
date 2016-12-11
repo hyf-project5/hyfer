@@ -39,11 +39,10 @@ app.use(
 
     connection(mysql,{
 
-        host: 'localhost',
-        user: 'root',
-        password : 'root',
-        port : 3306, //port mysql
-        database:'sms_db'
+    host: 'hykrdb.cmsfrokrxjf7.us-west-2.rds.amazonaws.com',
+    user: 'smsuser',
+    password: 'uyew65knj098',
+    database: 'smshyf'
     },'pool') //or single
 
 );
