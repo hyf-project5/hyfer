@@ -106,11 +106,11 @@ http.createServer(app).listen(app.get('port'), function(){
 app.get("/invite",function(req,res){res.render("invite");});
 
 app.post("/invite",function(req,res){
-    var api_key = 'key-055bb9cb0a075b11fe777e200596e62a';
+    var api_key = 'key-80d24d9747e41ec277f4fbaa3fab1098';
     var domain = 'sandboxdc00bc963eec4cccae80c4bae64b4a73.mailgun.org';
     var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
     var data = {
-      from: 'HYF Student System <postmaster@sandboxdc00bc963eec4cccae80c4bae64b4a73.mailgun.org>',
+      from: 'HYF Student System <postmaster@sandbox042f454374f0448f8fcdd171ccb9508b.mailgun.org>',
       to: req.body.useremail,
       subject: "HYF Student System",
       html: 
