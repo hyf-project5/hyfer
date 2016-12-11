@@ -125,7 +125,7 @@ app.controller('mainController', ['$scope', '$http','$route','$routeParams', fun
          $(".modal-backdrop").fadeOut();
          $route.reload();
          console.log('sucsess')
-         window.location.replace("http://localhost:3000/#/");
+         window.location.replace("http://www.smshyf.com");
       }).error(function(error){
          console.log(error);
       })
