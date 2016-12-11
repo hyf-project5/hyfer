@@ -141,7 +141,7 @@ Please follow this link to finish your registration in our system!\
 <tbody>\
 <tr>\
 <td bgcolor="#008CC9" style="padding:6px 16px; color:#FFFFFF; font-weight:500; font-size:16px; border-color:#008CC9; background-color:#008CC9; border-radius:2px; border-width:1px; border-style:\solid;">\
-<a href="http://www.smshyf/register" target="_blank" style="color:#FFFFFF; display:inline-block; text-decoration:none">Register here!</a></td>\
+<a href="http://www.smshyf.com/register" target="_blank" style="color:#FFFFFF; display:inline-block; text-decoration:none">Register here!</a></td>\
 </tr></tbody></table></a></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr>\
 <td style="">\
 <table border="0" cellspacing="0" cellpadding="0" width="100%" bgcolor="#EDF0F3" align="center" style="background-color:#EDF0F3; padding:0 24px; color:#999999; text-align:center">\
