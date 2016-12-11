@@ -1,0 +1,93 @@
+      <!--   Personal profile page for any user: student or mentor until we decide keep one page or divide it to student page and mentor pages     -->
+<!--    this nav should take the user to class page but right now only to home page that contain the names      -->
+<div data-ng-include="'views/header.html'" scope="" onload=""></div>
+<div data-ng-include="'views/sidebar.html'" scope="" onload=""></div>
+
+<!-- Wraappppppppppppppppper -->
+<div id="wrapper"> 
+    <div id="page-wrapper" >
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+<div data-ng-include="'views/announcement/announcement-view.html'"></div>
+<!--      user info and form to edit it         -->
+<ul style="list-style-type:none;" ng-repeat="user in names"> 
+   <h3>Hello  {{user.userFirstName}}</h3><br/> 
+   <li>
+      <p>First name: {{user.userFirstName}}</p>
+      <p> Last name: {{user.userLastName}}</p>
+      <p>Email: {{user.userEmail}}</p>
+      <p> Address: {{user.userAddress}}</p>
+      <p>  Mobile number: {{user.userMobile}}</p>
+      <p>  Role: {{user.userRole}}</p>
+      <p> Class: {{user.userClass}}</p>
+      <p>Registration date: {{user.userRegisterDate| date:'dd/MM/yyyy'}}</p>
+
+      <!-- Edit Button  -->
+       <button  ng-click="editInfo(detail)" class="btn btn-primary btn-xl" data-title="Edit" data-toggle="modal" data-target="#edit">Edit
+          <span class="glyphicon glyphicon-pencil">
+          </span>
+       </button>
+  <div data-ng-include="'views/users/edit-user.html'" scope="" onload=""></div>
+      
+      <!--    css problem but not important for now       -->
+      
+       <!-- Edit From pop-up div -->
+<!--       <form method="post"  ng-submit="UpdateInfo(user)" >
+          <div class="modal fade" tabindex="-1" id="edit"  role="dialog" aria-labelledby="edit" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                     <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
+                 </div>
+
+                  <div class="form-group">
+                     <input type="text" class="form-control" ng-model="user.userFirstName" value="{{user.userFirstName}}"  placeholder="First name">
+                  </div>
+
+                  <div class="form-group">
+                    <input type="text" class="form-control" ng-model="user.userLastName" value="{{user.userLastName}}" placeholder="Last name">
+                  </div>
+
+        
+                 
+               <div class="form-group">
+                      <input class="form-control " type="text" placeholder="Email" name="email" ng-model="user.userEmail" value="{{user.userEmail}}">
+                  </div>
+
+                  <div class="form-group">
+                      <input class="form-control " type="text" placeholder="Address" name="address" ng-model="user.userAddress" value="{{user.userAddress}}">
+                  </div>
+
+
+                 <div class="form-group">
+                      <input class="form-control " type="text" placeholder="Mobile Number" name="mob" ng-model="user.userMobile" value="{{user.userMobile}}">
+                  </div>
+
+                  <div class="form-group">
+                      <input class="form-control " type="text" placeholder="Role" name="role" ng-model="user.userRole" value="{{user.userRole}}">
+                  </div>
+
+                  <div class="form-group">
+                     <input class="form-control " type="text" placeholder="Group Number" name="group_num" ng-model="user.userClass" value="{{user.userClass}}">
+                  </div>
+
+                  <div class="form-group">
+                     <button  class="btn btn-warning">Update</button>
+                  </div>
+               </div>
+            </div>
+          </div>
+      </form> --> 
+   </li>
+</ul>
+
+<!--  end of   wrapppppper -->
+
+                </div>
+            </div>
+            <hr />
+        </div>
+    </div>
+</div> 

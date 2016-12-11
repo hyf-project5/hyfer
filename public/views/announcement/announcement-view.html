@@ -1,0 +1,26 @@
+<div class="att_cont" style="padding:5px;color:#fff;text-align: center;" data-ng-controller="announcementCtr" ng-show="oneAnncouncementData">
+
+  <button type="button" class="close close_box" data-dismiss="modal" aria-hidden="true">
+    <span class="glyphicon glyphicon-remove">
+    </span>
+  </button>
+
+  <h1 >Announcement!</h1>
+<!-- <ul data-ng-repeat="announcement in announcementData">
+  <li><h1>{{announcement.announcementTitle}}</h1></li>
+    <li><h1>{{announcement.announcementDesc}}</h1></li>
+    <li><h3>{{announcement.announcementDate | date:'dd/MM/yyyy'}}</h3></li>
+
+  </ul> 
+-->
+<ul class="list-unstyled announcementClass" >
+  <li><span class="announceTitle">{{oneAnncouncementData.announcementTitle}}</span></li>
+    <li><h2 class="announceDesc">{{oneAnncouncementData.announcementDesc}}</h2></li>
+    <li><span class="announceDate">Date: {{oneAnncouncementData.announcementDate | date:'dd-MM-yyyy'}}</span></li>
+</ul>
+
+
+
+
+
+</div>

@@ -12,10 +12,169 @@ nav.navbar {
     border-radius: 0 !important;
 }
 
-button.btn {
+/*button.btn {
     height: 34px;
-}
+}*/
 
 .glyphicon {
     line-height: 1.5;
+}
+.logo_word {
+    font-size: 16px;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	text-align: center;
+}
+.clickable-th{
+        cursor: pointer;
+}
+.insert_btn_container{
+    display: inline-block;
+}
+dir-pagination-controls.ng-isolate-scope {
+    float: right;
+}
+
+.modal-open {
+    overflow: auto !important;
+     /*temprorry solution*/
+}
+
+
+
+/*||||||||||CHECKBOX-IMG STYLE||||||||||*/
+.item {
+  width: 100px;
+  position:relative; 
+  #zoom:1;
+  display: inline-block;
+  margin:10px;
+
+}
+label {
+  display: inline-block;
+	cursor: pointer;
+	text-align: center;
+}
+.fig-img {
+	font-size: 0;
+	margin-bottom: 6px;
+}
+.fig-img img {
+	width: 100px;
+	border: 0.5px solid #ccc;
+    border-radius: 3px;
+    padding: 2px;
+}
+.figcaption {
+	white-space: nowrap;
+	word-wrap: normal;
+	
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.checked-flag {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	font-size: 0;
+}
+input.sutd_att {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: -1;
+	visibility: hidden;
+}
+.ico-checked {
+	display: inline-block;
+	width: 23px;
+	height: 23px;
+	background: url(http://www.topcss.org/demo/img/selected.32.png) 0 0 no-repeat;
+	display: none;
+}
+
+input:checked + .ico-checked {
+	display: inline-block;
+}
+
+.usersCheckBoxContainer{
+	display: inline-block;
+}
+.attending_students{
+	margin-bottom: 100px;
+}
+/*Announcement box*/
+.att_cont{
+    background: linear-gradient(270deg, #ff2d2d, #00aeff);
+background-size: 400% 400%;
+
+-webkit-animation: AnimationName 5s ease infinite;
+-moz-animation: AnimationName 5s ease infinite;
+-o-animation: AnimationName 5s ease infinite;
+animation: AnimationName 5s ease infinite;
+}
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 73%}
+    50%{background-position:100% 28%}
+    100%{background-position:0% 73%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 73%}
+    50%{background-position:100% 28%}
+    100%{background-position:0% 73%}
+}
+@-o-keyframes AnimationName {
+    0%{background-position:0% 73%}
+    50%{background-position:100% 28%}
+    100%{background-position:0% 73%}
+}
+@keyframes AnimationName { 
+    0%{background-position:0% 73%}
+    50%{background-position:100% 28%}
+    100%{background-position:0% 73%}
+}
+
+.announcementClass .announceTitle{
+    
+    float: left;
+    padding: 0 5px 0 60px;
+    font-size: 25px;
+    display: inline-block;
+}
+
+.announcementClass .announceDesc{
+
+    color: #fff;
+    font-size: 18px;
+    display: inline-block;
+    text-align: left;
+        padding: 0 60px;
+}
+
+.announcementClass .announceDate{
+  font-size: 18px;
+}
+
+.att_cont h1{
+  font-size:30px;
+  text-shadow: 2px 3px 3px #000;
+}
+
+.displayed{
+  display: none;
+}
+
+
+/*scroll style*/
+::-webkit-scrollbar {
+  width:0.5em;
+}
+::-webkit-scrollbar-track{
+      -webkit-box-shadow: inset 0 0 6px rgba(255,255,255,0.3);
+}
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+  background-color:rgb(201, 0, 0);
 }

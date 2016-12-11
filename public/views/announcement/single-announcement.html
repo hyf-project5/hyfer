@@ -1,0 +1,34 @@
+
+<!--    this nav should take the user to class page but right now only to home page that contain the names      -->
+<div data-ng-include="'views/header.html'" scope="" onload=""></div>
+<div data-ng-include="'views/sidebar.html'" scope="" onload=""></div>
+<!-- Wraappppppppppppppppper -->
+<div id="wrapper"> 
+    <div id="page-wrapper" >
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+<div data-ng-include="'views/announcement/announcement-view.html'"></div>
+
+<!--      user info and form to edit it         -->
+  <h1 >Announcement!</h1>
+    <ul  class="list-unstyled" data-ng-repeat="announcement in announcementData">
+      <li><h1>{{announcement.announcementTitle}}</h1></li>
+      <li><h1>{{announcement.announcementDesc}}</h1></li>
+      <li><h3>{{announcement.announcementDate | date:'dd-MM-yyyy'}}</h3></li> 
+ 
+<div data-ng-include="'views/announcement/edit-announcement.html'" scope="" onload=""></div> 
+      <!-- Edit Button  -->
+       <button  ng-click="editInfo(detail)" class="btn btn-primary btn-xl" data-title="Edit" data-toggle="modal" data-target="#edit">Edit
+          <span class="glyphicon glyphicon-pencil">
+          </span>
+       </button>
+              </ul>              <!-- MOVE IT LATER INTO THE LOOOP -->
+                       
+      
+                </div>
+            </div>
+            <hr />
+        </div>
+    </div>
+</div> 
