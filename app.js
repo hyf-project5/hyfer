@@ -107,7 +107,7 @@ app.get("/invite",function(req,res){res.render("invite");});
 
 app.post("/invite",function(req,res){
     var api_key = 'key-80d24d9747e41ec277f4fbaa3fab1098';
-    var domain = 'sandboxdc00bc963eec4cccae80c4bae64b4a73.mailgun.org';
+    var domain = 'sandbox042f454374f0448f8fcdd171ccb9508b';
     var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
     var data = {
       from: 'HYF Student System <postmaster@sandbox042f454374f0448f8fcdd171ccb9508b.mailgun.org>',
