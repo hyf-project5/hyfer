@@ -13,3 +13,6 @@
 
   then create `config.js` file in the database folder, and the paste in it the content of
   the `config.js.txt` file with the corresponding data..
+
+
+  * *now just run `npm start`*
