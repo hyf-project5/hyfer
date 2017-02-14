@@ -1,0 +1,73 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    font-size: 14px;
+    line-height: 1.70857;
+}
+
+a {
+    color: #f4ad42;
+}
+
+.btn {
+    border-radius: 0 !important;
+    text-transform: uppercase;
+    background-color: #e74c3c !important;
+    border-color: #e74c3c !important;
+    color: #ffffff !important;
+    margin-top: 0.3px;
+    height: 48px;
+}
+
+.form-control {
+    border-radius: 0; 
+    display: block;
+    line-height: 2;
+    height: 50px;
+    padding: 0.385rem 0.75rem;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    background-image: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 12px !important;
+    border-width: 1px;
+}
+
+.form-control:focus {
+    border-color: #e74c3c !important;
+}
+
+/*
+.home-logo {
+        width: 320px;
+        display: block;
+        margin: 0;
+        padding: 50px;
+    
+}
+*/
+.login-form {
+    margin-top: 200px;
+}
+
+.background {
+    background-image:url('../images/bg.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
+    padding: 90px 0;
+    position: relative;
+    width: 100%;
+}
+
+.slogan {
+    display: inline-block;
+    font-size: 22px !important;
+    font-weight: 600;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif !important;
+    padding-left: 25px;
+}
