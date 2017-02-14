@@ -8,7 +8,7 @@
   
 
   In your MySQL shell run `mysql -u -p root  DB-name < DIRECTORY/DB_Schema.sql`
-  not that the `DB_Schema.sql` is important to create all the required tables...
+  * notes that the `DB_Schema.sql` is important to create all the required tables...
   
 
   then create `config.js` file in the database folder, and follow the paste the content from
