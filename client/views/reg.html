@@ -1,0 +1,23 @@
+
+<html>
+<head>
+<meta charset="utf-8" />
+<link href='css/reg.css' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+</head>
+	<body id="regBody">
+	<div class="reg">
+	<h1>Student Registration!</h1>
+    <form method="post" data-ng-submit="userRegisteration(userInfo)">
+    	<input type="text" ng-model="userInfo.userFirstName" placeholder="First Name" name="userFirstName" required />
+		<input type="text" ng-model="userInfo.userLastName" placeholder="Last Name" name="userLastName" required />
+		<input type="text" ng-model="userInfo.userAddress" placeholder="Address" name="userAddress" required />
+		<input type="email" ng-model="userInfo.userEmail" placeholder="Email" name="userEmail" required />
+		<input type="tel" ng-model="userInfo.userMobile" placeholder="Mobile Number" name="userMobile" required />
+        <input type="password" ng-model="userInfo.userPassword" placeholder="password" name="userPassword" required />
+        <button type="submit" class="btn btn-primary btn-block btn-large" ng-submit="userRegisteration(userInfo)">Register</button>
+    </form>
+</div>
+	</body>
+</html>

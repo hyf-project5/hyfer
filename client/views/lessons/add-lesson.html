@@ -1,0 +1,105 @@
+<!--   start Add user form    -->
+
+<form  method="post"  data-ng-submit="insertlesson(lessonInfo)">
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+      <div class="modal-dialog">
+    <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></button>
+            <h4 class="modal-title custom_align" id="Heading">Add New Lesson</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+               <input class="form-control " type="date" ng-model="lessonInfo.lessonDate" placeholder="Lesson Date" name="lessonDate">
+            </div>
+              <!-- <div class="form-group">
+                <input class="form-control " type="text" ng-model="lessonInfo.lessonClass" placeholder="Lesson Class" name="lessonClass" required>
+              </div> -->
+
+
+              <div ng-controller="classesController" class="form-group">
+                <!-- <input class="form-control " type="text" ng-model="lessonInfo.lessonMentor1" placeholder="Lesson Mentor1" name="lessonMentor1" > -->
+                <select ng-model="lessonInfo.lessonClass"   class="form-control col-md-4" placeholder="Select Class">
+                <option value="" selected>Select Class</option>
+                  <option 
+                      ng-repeat="class in classesData"
+                      ng-value="{{class.classId}}">
+                       {{class.className}}
+                  </option>
+                </select>
+                </div>
+
+            <div class="form-group">
+                <input class="form-control " type="text" ng-model="lessonInfo.lessonLocation" placeholder="Lesson Location" name="lessonLocation">
+            </div>
+             
+            <!-- <div class="form-group">
+                <input class="form-control" type="text" ng-model="lessonInfo.lessonModule" placeholder="Lesson Module" name="lessonModule" required>
+            </div>
+ <--> 
+        <div ng-controller="modulesController" class="form-group">
+            <select ng-model="lessonInfo.lessonModule"  id="selectbasic" name="selectbasic" class="form-control col-md-4" >
+                  <option value="" selected>Select Module</option>
+                  <option
+                      ng-repeat="module in modulesData"
+                      ng-value="{{module.moduleId}}" 
+                       >
+                       {{module.moduleName}}
+                  </option>
+                </select>
+          </div>
+
+
+            <div ng-controller="mainController" class="form-group">
+                <!-- <input class="form-control " type="text" ng-model="lessonInfo.lessonMentor1" placeholder="Lesson Mentor1" name="lessonMentor1" > -->
+                <select required ng-model="lessonInfo.lessonMentor1"  id="selectbasic" name="selectbasic" class="form-control col-md-4" >
+                  <option value="" selected>Select Mentor</option>
+                  <option  
+                      ng-repeat="name in usersData"
+                      data-ng-if="name.userRole=='Mentor'"
+                      ng-value="{{name.userId}}" 
+                       >
+                       {{name.userFirstName}}
+                  </option>
+                </select>
+                <select ng-model="lessonInfo.lessonMentor2"  id="selectbasic" name="selectbasic" class="form-control col-md-4" >
+                  <option value="" selected>Select Mentor</option>
+                  <option 
+                      ng-repeat="name in usersData"
+                      data-ng-if="name.userRole=='Mentor'"
+                      ng-value="{{name.userId}}" 
+                       >
+                       {{name.userFirstName}}
+                  </option>
+                </select>
+                <select ng-model="lessonInfo.lessonMentor3"  id="selectbasic" name="selectbasic" class="form-control col-md-4" >
+                  <option value="" selected>Select Mentor</option>
+                  <option
+                      ng-repeat="name in usersData"
+                      data-ng-if="name.userRole=='Mentor'"
+                      ng-value="{{name.userId}}" 
+                       >
+                       {{name.userFirstName}}
+                  </option>
+                </select>
+
+            </div>
+            
+
+<!-- 
+            <div class="form-group">
+                <label class="checkbox-inline" for="checkboxes-0">
+                  <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
+                  Send the account details to the User?
+                </label>
+            </div> -->
+
+         </div>
+         <!-- ng-submit="insertInfo(lessonInfo)" -->
+         <div class="modal-footer ">
+            <button  class="btn btn-success btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Add</button>
+         </div>
+        </div>
+      </div>
+   </div>
+</form>

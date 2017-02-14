@@ -31,3 +31,5 @@ logs
 
 # Deps
 node_modules
+
+server/database/config.js
