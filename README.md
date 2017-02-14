@@ -1,10 +1,10 @@
 # **Requirement**
 
 * **Install dependencies**
-  * *Install node&npm* if you haven't yet:[Node.js and NPM](http://nodejs.org/)
-  * *Run following code:* `npm install`
+  * *Install node&npm :* if you haven't yet:[Node.js and NPM](http://nodejs.org/)
+  * *Run following code :* `npm install`
 * **NOTE**
-  * *CREATE DB* first you should create the database(this is currently) to do so do the following:
+  * *CREATE DB :* first you should create the database(this is currently) to do so do the following:
   
 
   In your MySQL shell run `mysql -u -p root  DB-name < DIRECTORY/DB_Schema.sql`
