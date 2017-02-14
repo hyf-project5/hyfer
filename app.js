@@ -41,18 +41,6 @@ if ('development' == app.get('env')) {
 // );
 app.use(require('./server/database'));
 
-// app.use(
-
-//     connection(mysql,{
-
-//     host: 'localhost',
-//     user: 'hasan',
-//     password: 'inshallah3',
-//     database: 'test'
-//     },'pool') //or single
-
-// );
-
 require('./server')(app);
 
 http.createServer(app).listen(app.get('port'), function () {
