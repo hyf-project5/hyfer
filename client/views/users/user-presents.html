@@ -1,0 +1,15 @@
+<form class="attending_students">
+	<legend>Students Attendance</legend>
+	<div ng-repeat="user in usersData" class="usersCheckBoxContainer">
+	<div class="item">
+	  		<label for="frd" class="figure">
+	 			 <div class="fig-img"><img src="https://upload.wikimedia.org/wikipedia/en/e/ee/Unknown-person.gif" alt="" /></div>
+				 <div class="figcaption ellipsis">{{user.userFirstName+' '+user.userLastName}}</div>
+			</label>
+			<div class="checked-flag">
+				<input class="sutd_att" type="checkbox" name="frdsItem" value="" id="frd" />
+				<i class="ico-checked"></i>
+			</div>
+		</div>
+	</div>
+</form>

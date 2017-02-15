@@ -1,0 +1,18 @@
+{
+  "name": "sms",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server/app.js"
+  },
+  "dependencies": {
+    "angular-utils-pagination": "^0.11.1",
+    "dateformat": "^2.0.0",
+    "ejs": "^1.0.0",
+    "express": "3.5.1",
+    "express-myconnection": "1.0.4",
+    "jade": "*",
+    "mailgun-js": "^0.7.14",
+    "mysql": "2.2.0"
+  }
+}

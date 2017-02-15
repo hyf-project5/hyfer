@@ -1,0 +1,45 @@
+<!-- <div ng-show="myvalue" class="hideByDefault">
+        <div class="col-md-12">
+        <div class="table-responsive">
+              <table id="myvalue" class="table table-bordred table-striped table-hover" ng-controller="lessonDetailsController">
+                   <thead>
+                                            
+                       <th class="clickable-th" ng-click="sort('StudentName')">Student Name
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='StudentName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+                            </span>
+                        </th>
+
+                        <th class="clickable-th" ng-click="sort('lessonAttended')">Attendance
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='lessonAttended'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+                            </span>
+                        </th>
+                  </thead>
+              </table>  
+        </div>
+          <tr>
+          <td>{{lessonDetail.StudentName}}</td>
+          <td>{{lessonDetail.lessonAttended}}</td>
+          </tr>
+        </div>
+        </div> -->
+
+<div  class="modal fade" id="lesDe" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+      <div class="modal-dialog">
+    <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+            <h4 class="modal-title custom_align" id="Heading">Lesson Details</h4>
+          </div>
+	         <div class="modal-body">
+	          <table ng-controller="lessonController" border="1">
+	             <tr ng-repeat="student in lessonDetailsData">
+	             	  <td>{{student.StudentName}}</td>
+			          <td>{{student.lessonAttended}}</td>
+	         	 </tr>
+			  </table>
+
+	        </div>
+         </div>
+        </div>
+      </div>
+
