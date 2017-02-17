@@ -7,8 +7,8 @@ module.exports = function(app) {
     app.use(connection(mysql, {
             host: 'localhost',
             user: 'root',
-            password: '2017',
-            database: 'project'
+            password: 'pass',
+            database: 'db_name'
         }, 'pool') //or single
     );
 };
