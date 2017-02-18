@@ -37,3 +37,4 @@ node_modules
 .idea
 
 server/config/credentials.txt
+server/config/db.js

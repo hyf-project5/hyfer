@@ -1,0 +1,24 @@
+@media (max-width: 991px) {
+    .centermessage {
+        max-width: 96%;
+        margin: auto;
+        padding: 50px 20px 20px;
+        background-color: rgba(5, 16, 66, 0.6);
+    }
+    .login-form {
+        margin-top: auto;
+    }
+    .slogan {
+        font-size: 18px !important;
+    }
+    .home-logo {
+        width: 80%;
+    }
+    .footer {
+        padding: 25px;
+        text-align: center;
+    }
+    .background {
+        padding: 10px 0;
+    }
+}
