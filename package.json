@@ -6,13 +6,13 @@
     "start": "node server/app.js"
   },
   "dependencies": {
-    "angular-utils-pagination": "^0.11.1",
+    "angular": "^1.6.2",
+    "angular-ui-router": "^0.4.2",
+    "bootstrap": "^4.0.0-alpha.6",
     "dateformat": "^2.0.0",
     "ejs": "^1.0.0",
     "express": "3.5.1",
     "express-myconnection": "1.0.4",
-    "jade": "*",
-    "mailgun-js": "^0.7.14",
     "mysql": "2.2.0"
   }
 }
