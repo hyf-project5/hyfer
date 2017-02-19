@@ -36,5 +36,4 @@ node_modules
 .tmp
 .idea
 
-server/config/credentials.txt
-server/config/db.js
+server/config/config.js
