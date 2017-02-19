@@ -6,9 +6,6 @@ let path = require('path');
 
 let app = express();
 
-// let connection  = require('express-myconnection');
-// let mysql = require('mysql');
-
 // all environments
 app.set('port', process.env.PORT || 3002);
 
@@ -20,29 +17,11 @@ app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, '..')));
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+    app.use(express.errorHandler());
 }
 
-/*------------------------------------------
- connection peer, register as middleware
- type koneksi : single,pool and request
- -------------------------------------------*/
-
-// app.use(
-//
-//     connection(mysql,{
-//
-//     host: 'hykrdb.cmsfrokrxjf7.us-west-2.rds.amazonaws.com',
-//     user: 'smsuser',
-//     password: 'uyew65knj098',
-//     database: 'smshyf'
-//     },'pool') //or single
-// );
-// app.use(require('./server/database'));
-
 require('./config/db')(app);
-// require('./routes')(app);
 
-http.createServer(app).listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + app.get('port'));
+http.createServer(app).listen(app.get('port'), function() {
+    console.log('Express server listening on port ' + app.get('port'));
 });
