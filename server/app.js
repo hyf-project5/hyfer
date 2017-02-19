@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 
-app.use(express.static(__dirname + '/../client'))
+app.use(express.static(path.join(__dirname, '..')));
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -41,7 +41,7 @@ if ('development' == app.get('env')) {
 // app.use(require('./server/database'));
 
 require('./config/db')(app);
-require('./routes')(app);
+// require('./routes')(app);
 
 http.createServer(app).listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
