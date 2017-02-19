@@ -36,4 +36,3 @@ node_modules
 .tmp
 .idea
 
-server/config/config.js
