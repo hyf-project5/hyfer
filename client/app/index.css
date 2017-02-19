@@ -1,9 +1,9 @@
-html { 
-  background: url(/images/bg.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+html {
+    background: url(/images/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 body {
@@ -27,15 +27,15 @@ a {
 }
 
 .form-control {
-    border-radius: 0; 
+    border-radius: 0;
     display: block;
     line-height: 2;
     height: 50px;
     padding: 0.385rem 0.75rem;
     width: 100%;
-    background-color: rgb(187, 255, 240);
+    background-color: rgba(255, 255, 255, 0.2);
     background-image: none;
-    border: 1px solid rgba(189, 40, 40, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
     font-size: 12px !important;
     border-width: 1px;
@@ -49,7 +49,7 @@ a {
     margin-top: 200px;
 }
 
-.background {   
+.background {
     max-height: 100%;
     padding: 90px 0;
     position: relative;
@@ -64,45 +64,18 @@ a {
     font-family: 'Montserrat', sans-serif !important;
     padding-left: 25px;
 }
+
 .fa-twitter {
-    color: #00aced; 
+    color: #00aced;
     margin: 5px;
 }
+
 .fa-facebook {
-    color: #3b5998; 
+    color: #3b5998;
     margin: 5px;
 }
-.fa-twitter:hover, .fa-facebook:hover {
+
+.fa-twitter:hover,
+.fa-facebook:hover {
     color: #666;
-}
-
-
-
-/*=======================*/
-
-
-
-@media (max-width: 991px) {
-    .centermessage {
-        max-width: 96%;
-        margin: auto;
-        padding: 50px 20px 20px;
-        background-color: rgba(121, 123, 132, 0.6);
-    }
-    .login-form {
-        margin-top: auto;
-    }
-    .slogan {
-        font-size: 18px !important;
-    }
-    .home-logo {
-        width: 80%;
-    }
-    .footer {
-        padding: 25px;
-        text-align: center;
-    }
-    .background {
-        padding: 10px 0;
-    }
 }
