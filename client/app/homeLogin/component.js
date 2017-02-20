@@ -3,7 +3,7 @@
     angular
         .module('myApp')
         .component('homeLogin', {
-            templateUrl: 'client/app/homeLogin/view.html',
+            templateUrl: 'app/homeLogin/view.html',
             controller: controller,
             bindings: {
                 Binding: '=',

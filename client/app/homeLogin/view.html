@@ -1,4 +1,4 @@
-<div class="background">
+<!--<div class="background">
     <div class="container">
         <div class="row centermessage">
             <div class="col-md-7">
@@ -6,33 +6,49 @@
                 <div class="slogan">
                     <p>Interactive Learning Platform</p>
                 </div>
-            </div>
+            </div>-->
 
-            <div class="col-md-5">
-                <form>
-                    <div class="row login-form">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="email" placeholder="E-MAIL ADDRESS">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="PASSWORD" required>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <button ng-click="$ctrl.login()" ui-sref='user' class="btn btn-primary btn-block">Log in!</button>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <p><a href="http://www.hackyourfuture.net/" target="_blank">Not a member? Applay now!</a></p>
-                        </div>
-                    </div>
-                </form>
+<!--<form>
+    <div class="row login-form">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" placeholder="E-MAIL ADDRESS">
             </div>
         </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="PASSWORD" required>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <button ng-click="$ctrl.login()" ui-sref='user' class="btn btn-primary btn-block">Log in!</button>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <p><a href="http://www.hackyourfuture.net/" target="_blank">Not a member? Applay now!</a></p>
+        </div>
+    </div>
+</form>-->
+<div layout='column' class="form-control">
+    <form name="userForm" flex-offset-gt-sm='40' flex-gt-sm='60'>
+
+        <div layout-gt-xs="row" md-theme="default">
+            <md-input-container class="md-block md-primary" flex-gt-xs>
+                <label>Email </label>
+                <input ng-model="$ctrl.email" required>
+            </md-input-container>
+
+            <md-input-container>
+                <label> Password</label>
+                <input ng-model="$ctrl.password" required>
+            </md-input-container>
+            <md-button type="submit" ui-sref='modules'>Submit</md-button>
+        </div>
+
+    </form>
+</div>
+<!--</div>
     </div>
 
     <footer class="footer">
@@ -44,6 +60,4 @@
                 <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
             </a>
         </div>
-    </footer>
-
-</div>
+    </footer>-->
