@@ -1,29 +1,16 @@
-html {
+body {
     background: url(/images/bg.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
-
-body {
     font-size: 14px;
     line-height: 1.70857;
-    background-color: transparent;
+    color: white;
 }
 
 a {
     color: #f4ad42;
-}
-
-.btn {
-    border-radius: 0 !important;
-    text-transform: uppercase;
-    background-color: #e74c3c !important;
-    border-color: #e74c3c !important;
-    color: #ffffff !important;
-    margin-top: 0.3px;
-    height: 48px;
 }
 
 .form-control {
@@ -39,43 +26,4 @@ a {
     color: #ffffff;
     font-size: 12px !important;
     border-width: 1px;
-}
-
-.form-control:focus {
-    border-color: #e74c3c !important;
-}
-
-.login-form {
-    margin-top: 200px;
-}
-
-.background {
-    max-height: 100%;
-    padding: 90px 0;
-    position: relative;
-    width: 100%;
-}
-
-.slogan {
-    display: inline-block;
-    font-size: 22px !important;
-    font-weight: 600;
-    color: #fff;
-    font-family: 'Montserrat', sans-serif !important;
-    padding-left: 25px;
-}
-
-.fa-twitter {
-    color: #00aced;
-    margin: 5px;
-}
-
-.fa-facebook {
-    color: #3b5998;
-    margin: 5px;
-}
-
-.fa-twitter:hover,
-.fa-facebook:hover {
-    color: #666;
 }
