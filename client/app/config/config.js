@@ -4,27 +4,23 @@
     angular
         .module('myApp')
         .config(mainConfig)
-
-    /** @ngInject */
+        /** @ngInject */
     mainConfig.inject = ['$stateProvider', '$urlRouterProvider'];
 
     function mainConfig($stateProvider, $urlRouterProvider) {
 
+        $urlRouterProvider.otherwise('/')
         $stateProvider
             .state('home', {
                 url: '/',
-                template: `<h2> hasan sh </h2>`,
-                controller: function() {
-                    this.name = 'hasan';
-                }
+                template: `<home-login></home-login>`
             })
-            .state('user', {
-                url: '/user',
-                template: `<h2> user hasan SH </h2>`,
-                controller: function() {
-                    this.name = 'user ...';
-                }
+            .state('modules', {
+                url: '/modules',
+                template: `<modules></modules>`
             })
+
     }
+
 
 }());
