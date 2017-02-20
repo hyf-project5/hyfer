@@ -15,6 +15,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 
 app.use(express.static(path.join(__dirname, '..')));
+app.use(express.static(path.join(__dirname, '../client')));
 // development only
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
