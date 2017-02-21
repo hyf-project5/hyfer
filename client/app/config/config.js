@@ -13,11 +13,11 @@
         $stateProvider
             .state('home', {
                 url: '/',
-                template: `<home-login></home-login>`
+                component: 'homeLogin'
             })
             .state('modules', {
                 url: '/modules',
-                template: `<modules></modules>`
+                component: 'modules'
             })
 
     }
