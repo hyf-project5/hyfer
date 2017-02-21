@@ -12,15 +12,5 @@
     function toolbarCtrl() {
         let ctrl = this;
 
-        ////////////////
-
-        ctrl.onInit = function() {
-            alert('HASAN SH..!!')
-        };
-        ctrl.onChanges = function(changesObj) {
-            alert('HASAN SH..!!')
-            console.log(changesObj)
-        };
-        ctrl.onDestory = function() {};
     }
 })();
