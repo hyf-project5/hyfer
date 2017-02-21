@@ -4,19 +4,20 @@
         .module('myApp')
         .component('homeLogin', {
             templateUrl: 'app/homeLogin/view.html',
-            controller: controller,
-            bindings: {
-                Binding: '=',
-            },
+            controller: controller
         });
 
-    controller.inject = [];
+    controller.$inject = ['$state'];
 
-    function controller() {
+    function controller($state) {
         let ctrl = this;
+        ctrl.submit = submit;
 
-        ctrl.onInit = function() {};
-        ctrl.onChanges = function(changesObj) {};
-        ctrl.onDestory = function() {};
+
+        function submit(e) {
+            console.log('the things: ' + ctrl.email + ' ' + ctrl.password)
+            $state.go('modules')
+
+        }
     }
 })();
