@@ -1,63 +1,45 @@
-<!--<div class="background">
-    <div class="container">
-        <div class="row centermessage">
-            <div class="col-md-7">
-                <div><img class="home-logo" src="images/logo.png"></div>
-                <div class="slogan">
-                    <p>Interactive Learning Platform</p>
+<md-content id="homeLogin" style="height:100vh;">
+    <div layout='row' layout-fill flex>
+        <div flex>
+            <img src="./images/logo.png" alt="">
+        </div>
+
+        <div flex layout='row' layout-align='center center'>
+            <form class="homeLogin" layout-padding name="userForm" ng-submit="$ctrl.submit($event)">
+                <div>
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Email </label>
+                        <input name="email" type="email" required ng-model="$ctrl.email">
+                        <div ng-messages="userForm.email.$error">
+                            <div ng-message='required'>The email is required!!</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label> Password</label>
+                        <input name="password" type="password" required ng-model="$ctrl.password">
+                        <div ng-messages="userForm.password.$error">
+                            <div ng-message='required'>The password is required!!</div>
+                        </div>
+                    </md-input-container>
+                    <md-button type="submit" class="md-primary">Submit</md-button>
+                    <md-button class="md-primary">Sign up</md-button>
                 </div>
-            </div>-->
 
-<!--<form>
-    <div class="row login-form">
-        <div class="col-md-12">
-            <div class="form-group">
-                <input type="email" class="form-control" id="email" placeholder="E-MAIL ADDRESS">
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="form-group">
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="PASSWORD" required>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="form-group">
-                <button ng-click="$ctrl.login()" ui-sref='user' class="btn btn-primary btn-block">Log in!</button>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <p><a href="http://www.hackyourfuture.net/" target="_blank">Not a member? Applay now!</a></p>
+            </form>
         </div>
     </div>
-</form>-->
-<div layout='column' class="form-control">
-    <form name="userForm" flex-offset-gt-sm='40' flex-gt-sm='60'>
+</md-content>
 
-        <div layout-gt-xs="row" md-theme="default">
-            <md-input-container class="md-block md-primary" flex-gt-xs>
-                <label>Email </label>
-                <input ng-model="$ctrl.email" required>
-            </md-input-container>
-
-            <md-input-container>
-                <label> Password</label>
-                <input ng-model="$ctrl.password" required>
-            </md-input-container>
-            <md-button type="submit" ui-sref='modules'>Submit</md-button>
-        </div>
-
-    </form>
-</div>
-<!--</div>
-    </div>
-
+<div>
     <footer class="footer">
-        <div class="container">
+        <div>
             <a href="https://www.facebook.com/hackyourfuturenow/" target="_blank">
-                <i class="fa fa-facebook fa-2x" aria-hidden="true"> </i>
+                <i class="" aria-hidden="true">facebook </i>
             </a>
             <a href="https://twitter.com/hackyourfutures" target="_blank">
-                <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                <i class="fa fa-twitter fa-2x" aria-hidden="true">twitter</i>
             </a>
         </div>
-    </footer>-->
+    </footer>
+</div>
