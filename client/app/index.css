@@ -1,29 +1,28 @@
-body {
+#homeLogin {
     background: url(/images/bg.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
     font-size: 14px;
     line-height: 1.70857;
     color: white;
+    overflow: hidden;
 }
 
 a {
     color: #f4ad42;
 }
 
-.form-control {
-    border-radius: 0;
-    display: block;
-    line-height: 2;
-    height: 50px;
-    padding: 0.385rem 0.75rem;
+.homeLogin {
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.2);
-    background-image: none;
+    background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
-    font-size: 12px !important;
-    border-width: 1px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 20px;
+    padding: 10px;
+}
+
+.footer a {
+    text-decoration: none;
 }
