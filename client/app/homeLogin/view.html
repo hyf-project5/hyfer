@@ -1,11 +1,11 @@
 <md-content id="homeLogin" style="height:100vh;">
     <div layout='row' layout-fill flex>
         <div flex>
-            <img src="./images/logo.png" alt="">
+            <img class="hyfLogo" src="./images/logo.png" alt="hyfLogo">
         </div>
 
-        <div flex layout='row' layout-align='center center'>
-            <form class="homeLogin" layout-padding name="userForm" ng-submit="$ctrl.submit($event)">
+        <div flex layout='row' layout-align='center center' layout-padding layout-margin>
+            <form class="homeLogin" name="userForm" ng-submit="$ctrl.submit()">
                 <div>
                     <md-input-container class="md-block" flex-gt-xs>
                         <label>Email </label>
@@ -23,7 +23,6 @@
                         </div>
                     </md-input-container>
                     <md-button type="submit" class="md-primary">Submit</md-button>
-                    <md-button class="md-primary">Sign up</md-button>
                 </div>
 
             </form>
@@ -35,10 +34,13 @@
     <footer class="footer">
         <div>
             <a href="https://www.facebook.com/hackyourfuturenow/" target="_blank">
-                <i class="" aria-hidden="true">facebook </i>
+                <i aria-hidden="true">facebook </i>
             </a>
             <a href="https://twitter.com/hackyourfutures" target="_blank">
-                <i class="fa fa-twitter fa-2x" aria-hidden="true">twitter</i>
+                <i aria-hidden="true">twitter</i>
+            </a>
+            <a href="http://www.hackyourfuture.net/" target="_blank">
+                <i aria-hidden="true">Sign up!</i>
             </a>
         </div>
     </footer>

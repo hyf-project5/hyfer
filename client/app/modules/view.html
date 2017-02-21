@@ -1,10 +1,10 @@
 <toolbar></toolbar>
 <md-list layout='column' flex-offset-gt-sm='10' flex-gt-sm='80'>
-    <md-list-item class="md-2-line" ng-repeat="module in $ctrl.modules" ng-click="null">
+    <md-list-item class="md-3-line" ng-repeat="module in $ctrl.modules" ng-click="null">
         <img ng-src="{{module.module_image}}" class="md-avatar" alt="{{module.module_name}}" />
         <div class="md-list-item-text" layout="column">
             <h2>{{ module.module_name }}</h2>
-            <h2>{{ module.description }}</h2>
+            <h3>{{ module.description }}</h3>
         </div>
     </md-list-item>
 </md-list>
