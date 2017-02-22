@@ -2,7 +2,7 @@
 
 const mysql = require('mysql');
 let connection = require('express-myconnection');
-const config = require('./config.sample');
+const config = require('./config.js');
 module.exports = function(app) {
     app.use(connection(mysql, {
             host: config.host,
@@ -11,4 +11,5 @@ module.exports = function(app) {
             database: config.database
         }, 'pool') //or single
     );
+    console.log('Connected to ' + config.database);
 };

@@ -1,7 +1,9 @@
-module.exports = function (app) {
-  let modules = require('./api/modules'); // Modules Tabels API
+module.exports = function(app) {
+    let module = require('./api/module'); // Modules Tabels API
 
-  app.get('/modules', modules.list);
-  app.get('/modules/:id', modules.module_details);
-  app.post('/modules', modules.add);
+    app.get('/module', module.list);
+    app.get('/module/:id', module.module_details);
+    app.post('/module', module.add);
+    app.delete('/module/:id', module.delete_module);
+    // I changed the route to singular, we should definitely agree for which should we use ;)
 };

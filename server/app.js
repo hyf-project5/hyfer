@@ -1,6 +1,6 @@
 //Module dependencies.
 let express = require('express');
-// let routes = require('./routes');
+let routes = require('./routes');
 let http = require('http');
 let path = require('path');
 
