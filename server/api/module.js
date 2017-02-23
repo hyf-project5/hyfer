@@ -3,6 +3,7 @@ module.exports = {
     list,
     module_details,
     add,
+    update,
     delete_module
 }
 
@@ -49,19 +50,29 @@ function add(req, res) {
 };
 
 
+function update(req, res) {
+    req.getConnection((err, connection) => {
+        connection.query("update module set ? where uuid=?", [req.body, req.params.id], (err, results) => {
+            if (err) return res.send({ status: 400, error: err });
+            if (results.affectedRows > 0) return res.send({ status: 200, result: 'module updated!' })
+            res.send({ status: 404, error: 'NOT FOUND!' })
+        })
+    })
+};
+
 
 function delete_module(req, res) {
     req.getConnection((err, connection) => {
-        connection.query("DELETE FROM module WHERE uuid = ? ", req.params.id, (err, rows) => {
+        connection.query("DELETE FROM module WHERE uuid = ? ", req.params.id, (err, results) => {
             if (err) {
                 console.log("Error Selecting : %s ", err);
                 return res.status(500).json(err);
             } else {
-                if (rows.affectedRows === 0) {
+                if (results.affectedRows === 0) {
                     return res.status(404).json({ status: 404, error: "No such module, nothing changed!" });
                 } else {
                     console.log('success');
-                    res.send({ status: 200, changes: rows })
+                    res.send({ status: 200, changes: results })
                 };
             }
         });
