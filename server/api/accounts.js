@@ -1,22 +1,22 @@
 module.exports = {
     list,
-    module_details,
+    account_details,
     add,
     update,
-    delete_module
+    delete_account
 }
 
 function list(req, res) {
     req.getConnection((err, connection) => {
-        if (!err) connection.query('SELECT * FROM modules', (err, results) => {
+        if (!err) connection.query('SELECT * FROM accounts', (err, results) => {
             res.send({ status: 200, results: results })
         });
     })
 };
 
-function module_details(req, res) {
+function account_details(req, res) {
     req.getConnection((err, connection) => {
-        if (!err) connection.query('SELECT * FROM modules WHERE uuid = ?', [req.params.id], (err, result) => {
+        if (!err) connection.query('SELECT * FROM accounts WHERE id = ?', [req.params.id], (err, result) => {
             if (result[0] === undefined) return res.send({ status: 404, error: 'Not found!' });
             else res.send({ status: 200, result: result });
         });
@@ -25,7 +25,7 @@ function module_details(req, res) {
 
 function add(req, res) {
     req.getConnection((err, connection) => {
-        if (!err) connection.query('INSERT INTO modules SET ?, uuid=?', [req.body, req.id], (err, result) => {
+        if (!err) connection.query('INSERT INTO accounts SET ?', req.body, (err, result) => {
             if (err) res.send({ status: 400, message: err });
             else res.send({ status: 200, result: 'Module created!' });
         });
@@ -34,7 +34,7 @@ function add(req, res) {
 
 function update(req, res) {
     req.getConnection((err, connection) => {
-        connection.query("UPDATE modules SET ? WHERE uuid = ?", [req.body, req.params.id], (err, result) => {
+        connection.query("UPDATE accounts SET ? WHERE id = ?", [req.body, req.params.id], (err, result) => {
             if (err) return res.send({ status: 400, error: err });
             if (result.affectedRows > 0) return res.send({ status: 200, result: 'Module updated!' })
             res.send({ status: 404, error: 'Not found!' })
@@ -42,9 +42,9 @@ function update(req, res) {
     })
 };
 
-function delete_module(req, res) {
+function delete_account(req, res) {
     req.getConnection((err, connection) => {
-        connection.query("DELETE FROM modules WHERE uuid = ? ", req.params.id, (err, result) => {
+        connection.query("DELETE FROM accounts WHERE id = ? ", req.params.id, (err, result) => {
             if (err) return res.send({ status: 500, error: err });
             if (result.affectedRows > 0) return res.send({ status: 200, result: 'Module deleted!' })
             res.send({ status: 404, error: 'Not found!' })

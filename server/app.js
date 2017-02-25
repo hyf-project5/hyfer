@@ -1,10 +1,10 @@
 //Module dependencies.
-let express = require('express');
-// let routes = require('./routes');
-let http = require('http');
-let path = require('path');
-
-let app = express();
+const express = require('express');
+const routes = require('./routes');
+const http = require('http');
+const path = require('path');
+const addRequestId = require('express-request-id')();
+const app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3002);
@@ -13,7 +13,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-
+app.use(addRequestId);
 app.use(express.static(path.join(__dirname, '..')));
 app.use(express.static(path.join(__dirname, '../client')));
 // development only
