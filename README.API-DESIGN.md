@@ -2,11 +2,11 @@
 
 **user story name**
 
-METHOD /route1
+`METHOD /route1`
 * [optional] data : {}
 * [optional] returns : { field1: 'string', field2: 'anotherString'}
     
-METHOD /route2/:id
+`METHOD /route2/:id`
 * [optional] data : { field1: 1, field2: 'string' }
 
 
@@ -14,8 +14,8 @@ METHOD /route2/:id
 
 **user story 1**
 
-GET /classes
+`GET /classes`
 * returns [ { id, name, [module 1, module 2] } ]
 
-GET /classes/:id
+`GET /classes/:id`
 * returns { id, name, [module 1, module 2] }
