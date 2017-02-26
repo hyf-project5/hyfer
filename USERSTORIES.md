@@ -8,23 +8,20 @@
 ### Teachers
 ---
 1. Have a basic login / authentication system im place with a seeded Administrator account, using federated login (GitHub).
-2. As a teacher I want to be able to add a new class. This automagically adds the entire ordered curriculum as we know it.
+2. As a **teacher** I want to be able to add a new **class**. The **running module** list of this class gets populated by all existing **modules** in the order that the **module sequence** defines (i.e. HTML/css = 1001, Js 1 = 2001, Js 2 = 2002 etc.)
 
-3. I want to be able to add a new module.
-4. I want to be able to assign modules to a curriculum.
-5. I want to be able to assign teachers to a module.
-6. I want to be able to edit module duration (week less, week longer)
+3. I want to be able to add a new **module**.
+4. I want to be able to assign **modules** to a list of **running modules**.
+5. I want to be able to assign **teachers** to a **module**.
+6. I want to be able to edit **module** duration (week less, week longer).
 
 ### Definition list
 
 - timeline : a component that shows an overview of all **active classes** and their **running modules**'.
 - active classes : all **classes** that are currently active.
 - class : a group of students that are following a list of **running modules** (sometimes referred to as *curriculum*).
-- curriculum : an *ordered* list of **running** modules.
 - running module : a **module** that is currently active in one or more **curriculum**'.
 - module : aka *a course*. A (by default) 3-week course associated with a GitHub repo containing course material.
-
-
 
 ### DB entities (new and changed)
 ---
