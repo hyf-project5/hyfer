@@ -17,6 +17,11 @@
 
 ### Definition list
 
+- active classes
+- class : a group of students that are following a **curriculum**.
+- curriculum : an *ordered* list of **running** modules.
+- module : aka *a course*. A (by default) 3-week course associated with a GitHub repo containing course material.
+- running module : a module that is currently active in one or more **curriculum**.
 
 
 
