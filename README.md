@@ -6,6 +6,8 @@
 
 ## User stories
 
+(Overview of user stories)[https://github.com/hyf-project5/super-duper-5/blob/master/USERSTORIES.md]
+
 
 ### User
 
