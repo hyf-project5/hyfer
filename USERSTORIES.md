@@ -1,6 +1,6 @@
 ### User
 ---
-1. I should be able to see a timeline of all current **active classes** and their **running modules**.
+1. I should be able to see a timeline of all **active classes** and their **running modules**.
 2. I should be able to select / click a **module** and then see the corresponding GitHub course content README + link.
 3. I should be able to login using my GitHub account.
 
@@ -17,11 +17,12 @@
 
 ### Definition list
 
-- active classes
-- class : a group of students that are following a **curriculum**.
+- timeline : a component that shows an overview of all **active classes** and their **running modules**'.
+- active classes : all **classes** that are currently active.
+- class : a group of students that are following a list of **running modules** (sometimes referred to as *curriculum*).
 - curriculum : an *ordered* list of **running** modules.
+- running module : a **module** that is currently active in one or more **curriculum**'.
 - module : aka *a course*. A (by default) 3-week course associated with a GitHub repo containing course material.
-- running module : a module that is currently active in one or more **curriculum**.
 
 
 
