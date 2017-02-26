@@ -1,3 +1,4 @@
+
 ### User
 ---
 1. I should be able to see a timeline of all **active classes** and their **running modules**.
@@ -15,13 +16,15 @@
 5. I want to be able to assign **teachers** to a **module**.
 6. I want to be able to edit **module** duration (week less, week longer).
 
-### Definition list
 
+### Definition list
+---
 - timeline : a component that shows an overview of all **active classes** and their **running modules**'.
 - active classes : all **classes** that are currently active.
 - class : a group of students that are following a list of **running modules** (sometimes referred to as *curriculum*).
 - running module : a **module** that is currently active in one or more **curriculum**'.
 - module : aka *a course*. A (by default) 3-week course associated with a GitHub repo containing course material.
+- teacher : a type of user that is responsible for providing and updating course content.
 
 ### DB entities (new and changed)
 ---
