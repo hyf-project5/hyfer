@@ -1,7 +1,7 @@
 ### User
 ---
-1. I should be able to see a timeline of all current active curriculums and their groups/classes.
-2. I should be able to select / click a module and then see the corresponding GitHub course content README + link.
+1. I should be able to see a timeline of all current **active classes** and their **running modules**.
+2. I should be able to select / click a **module** and then see the corresponding GitHub course content README + link.
 3. I should be able to login using my GitHub account.
 
 
@@ -15,6 +15,10 @@
 5. I want to be able to assign teachers to a module.
 6. I want to be able to edit module duration (week less, week longer)
 
+### Definition list
+
+
+
 
 ### DB entities (new and changed)
 ---
@@ -27,6 +31,7 @@
 
     - changed entity: module
         - has duration (number of weeks: 3, 6)
+        - has a (default) sequence number: (HTML/css could be 1001, Javascript 1 could be 2001)
         - has title (typescript, vacation, more javascript, hackday)
         
     - changed entity: group
