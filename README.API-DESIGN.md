@@ -1,12 +1,13 @@
 ## format
 
 **user story name**
-  METHOD /route1
-  * [optional] data : {}
-  * [optional] returns : { field1: 'string', field2: 'anotherString'}
+
+METHOD /route1
+* [optional] data : {}
+* [optional] returns : { field1: 'string', field2: 'anotherString'}
     
-  METHOD /route2/:id
-  * [optional] data : { field1: 1, field2: 'string' }
+METHOD /route2/:id
+* [optional] data : { field1: 1, field2: 'string' }
 
 
 ## API routes
