@@ -14,6 +14,7 @@
 **user story 1**
 
 GET /classes
+* returns [ { id, name, [module 1, module 2] } ]
 
 GET /classes/:id
 * returns { id, name, [module 1, module 2] }
