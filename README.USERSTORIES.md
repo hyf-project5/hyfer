@@ -22,8 +22,8 @@
 - *timeline* : a component that shows an overview of all **active classes** and their **running modules**'.
 - *active classes* : all **classes** that are currently active.
 - *class* : a group of students that are following a list of **running modules**.
-- *curriculum* : a <u>default</u> list of **running modules** (used to populate new classes with).
-- *running module* : a **module** that is currently active in one or more **curriculum**'.
+- *running module* : a **module** that is currently actively taught in one or more **classes**.
+- *curriculum* : a *default* list of **running modules** (used to populate new classes with).
 - *module* : aka *a course*. A (by default) 3-week course associated with a GitHub repo containing course material.
 - *teacher* : a type of user that is responsible for providing and updating course content.
 
