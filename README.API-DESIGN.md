@@ -38,7 +38,7 @@
 - **Teacher** 2) ➜ I want to be able to add a new class. This automagically adds the entire ordered curriculum as we know it (from the module sequence numbers).
 
 	- [ ] `POST /classes`    
-	⇧ `{ className: 'class5', [startingDate: 2017-04-12] } // modules = default, not needed.`    
+	⇧ `{ className: 'class5', [startingDate: 2017-04-12] }` // modules = default, not needed.  
 	→  `[ { id, name, [module 1, module 2] } ]`  
 	→  `403 BAD REQUEST` // bad data given  
 	→  `400 FORBIDDEN` // role not teacher
