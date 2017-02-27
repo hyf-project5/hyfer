@@ -10,10 +10,10 @@
 
 1. **User** ➜ I should be able to see a timeline of all current active classes and their running modules
 
-	[ ] `GET /classes`    
+	[] `GET /classes`    
 	→ `[ { id, name, [module 1, module 2] } ]`
 
-	[ ] `GET /classes/:id`    
+	[] `GET /classes/:id`    
 	→ `{ id, name, [module 1, module 2] }`
 
 2. **User** ➜ I should be able to select / click a module and then see the corresponding GitHub course content README + link.
