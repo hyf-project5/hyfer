@@ -6,9 +6,12 @@
 * data : `{ field1: 1, field2: 'string' }` // [optional]
 * returns : `{ field1: 'string', field2: 'anotherString'}` // [optional] 
 
+`METHOD /route1/:param`    
+➕ `{ field1: 1, field2: 'string' } // put, patch, post data`    
+➡  `{ field1: 'string', field2: 'anotherString'} // 200 OK + data`
+
 
 ## User stories
----
 1. User -> I should be able to see a timeline of all current active classes and their running modules
 
 `GET /classes`
