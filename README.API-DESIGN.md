@@ -1,10 +1,15 @@
-## Format
+## info / tools
 
-**user story name**
-- specific user story information, what was discussed in class, etc.
-- [ ] `METHOD /route1/:param`    
-⇧ `{ field1: 1, field2: 'string' } // put, patch, post data`    
-→  `{ field1: 'string', field2: 'anotherString'} // 200 OK + data`
+- [HTTP status codes](http://www.restapitutorial.com/httpstatuscodes.html)
+- [UUID generator](https://www.uuidgenerator.net/) < but when to use them ? not always!
+
+## format
+
+1. user story name
+
+	- [ ] `METHOD /route1/:param`    
+	⇧ `{ field1: 1, field2: 'string' } // put, patch, post data`    
+	→  `{ field1: 'string', field2: 'anotherString'} // return`
 
 ## user stories
 
@@ -34,19 +39,25 @@
 
 	- [ ] `POST /classes`    
 	⇧ `{ className: 'class5', [startingDate: 2017-04-12] } // modules = default, not needed.`    
-	→  `[ { id, name, [module 1, module 2] } ]`
+	→  `[ { id, name, [module 1, module 2] } ]`  
+	→  `403 BAD REQUEST` // bad data given  
+	→  `400 FORBIDDEN` // role not teacher
 	
 3. **Teacher** ➜ I want to be able to add a new module.
 
-	- [ ] `POST /classes`    
-	⇧ `?`    
-	→  `?`
+	- [ ] `POST /classes`  
+	⇧ `?`  
+	→  `200 OK`  
+	→  `403 BAD REQUEST` // bad data given  
+	→  `400 FORBIDDEN` // role not teacher
 
 4. **Teacher** ➜ I want to be able to assign a module to a class (this module will be a running module).
 
-	- [ ] `PATCH /classes/:id`    
+	- [ ] `PUT /classes/:id`    
 	⇧ `{ moduleIds: [1, 3, 4, 5] }`    
-	→  `?`
+	→  `200 OK`    
+	→  `403 BAD REQUEST` // bad data given    
+	→  `400 FORBIDDEN` // role not teacher
 
 5. **Teacher** ➜ I want to be able to edit the list of running modules belonging to a class.
 
@@ -55,22 +66,34 @@
 		   - change the duration of a running module.    			`3 weeks ->   4 weeks`
 	       - change order / sequence of the running modules. `1 -> 2  =>   2 -> 1`
 	
-	- [ ] `?`    
-	⇧ `?`    
-	→  `?`
+	- [ ] `PATCH /classes/:id`    
+	⇧ ` [ { runningModuleId: 143, duration: 4, sequence: 1001 } ] }`    
+	→  `200 OK`    
+	→  `403 BAD REQUEST` // bad data given    
+	→  `400 FORBIDDEN` // role not teacher
 	
 6. **Teacher** ➜ I want to be able to assign teachers to a running module.
 
 	- this is basically editing of the running module list, too, covered by ➜ **teacher** 5.
-
-	- [ ] `?`    
-	⇧ `?`    
-	→  `?`
 
 7. **Teacher** ➜ I want to be able to edit (default) module details (duration, name, etc).
 
 	- `app.patch('/modules/:id', modules.update);`
 
 	- [ ] `PATCH /modules/:id`    
-	⇧ `?`    
-	→  `?`
+	⇧ `{ moduleId: 92, name: 'TypeScript', duration: 6, sequence: 9005 }`    
+	→  `200 OK`    
+	→  `403 BAD REQUEST` // bad data given    
+	→  `400 FORBIDDEN` // role not teacher
+	
+	
+8. **Teacher** ➜ I want to be able to edit a running module (for a class) duration (week less, week longer).
+
+	- this is basically editing of the running module list, too, covered by by ➜ **teacher** 5.
+
+
+
+
+
+
+
