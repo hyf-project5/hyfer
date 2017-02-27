@@ -8,8 +8,8 @@
 1. userstory name ➜ number)
 
 	- [ ] `METHOD /route1/:param`    
-	⇧ `{ field1: 1, field2: 'string' } // put, patch, post data`    
-	→  `{ field1: 'string', field2: 'anotherString'} // return`
+	⇧ `{ field1: 1, field2: 'string' }` // put, patch, post data  
+	→  `{ field1: 'string', field2: 'anotherString'}` // return
 
 ## user stories
 
