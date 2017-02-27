@@ -59,7 +59,9 @@
 	→  `403 BAD REQUEST` // bad data given    
 	→  `400 FORBIDDEN` // role not teacher
 
-- **Teacher** 5) ➜ I want to be able to edit the list of running modules belonging to a class.
+- **Teacher** ➜ 5) I want to be able to edit the list of running modules belonging to a class.
+- **Teacher** ➜ 6) I want to be able to assign teachers to a running module.
+- **Teacher** ➜ 8) I want to be able to edit a running module (for a class) duration (week less, week longer).
 
 	- user story is basically about an intermediate table between class and module.
 		   - intermediate table contains references to class, module AND module specific overrides (duration, switch, etc.)
@@ -71,10 +73,6 @@
 	→  `200 OK`    
 	→  `403 BAD REQUEST` // bad data given    
 	→  `400 FORBIDDEN` // role not teacher
-	
-- **Teacher** ➜ 6) I want to be able to assign teachers to a running module.
-
-	- this is basically editing of the running module list, too, covered by ➜ **teacher** 5.
 
 - **Teacher** ➜ 7) I want to be able to edit (default) module details (duration, name, etc).
 
@@ -86,14 +84,3 @@
 	→  `403 BAD REQUEST` // bad data given    
 	→  `400 FORBIDDEN` // role not teacher
 	
-	
-- **Teacher** ➜ 8) I want to be able to edit a running module (for a class) duration (week less, week longer).
-
-	- this is basically editing of the running module list, too, covered by by ➜ **teacher** 5.
-
-
-
-
-
-
-
