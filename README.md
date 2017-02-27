@@ -4,9 +4,11 @@
 - The front-end is just presentation
 - Admin roles are not currently covered
 
-## User stories
+## Documentation
 
 [Overview of user stories](https://github.com/hyf-project5/super-duper-5/blob/master/README.USERSTORIES.md)
+[API Design](https://github.com/hyf-project5/super-duper-5/blob/master/README.API-DESIGN.md)
+[OAuth](https://github.com/hyf-project5/super-duper-5/blob/master/README.GitHubOAuth.md)
 
 ## Requirements
 
