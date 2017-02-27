@@ -35,7 +35,7 @@
    
    - [x] NA.
    
-- **Teacher** 2) ➜ I want to be able to add a new class. This automagically adds the entire ordered curriculum as we know it (from the module sequence numbers).
+- **Teacher** 2) ➜ I want to be able to add a new class. This automagically adds the entire ordered curriculum as we know it (from the module sequence numbers, i.e. HTML/css = 1001, Js 1 = 2001, Js 2 = 2002 etc.).
 
 	- [ ] `POST /classes`    
 	⇧ `{ className: 'class5', [startingDate: 2017-04-12] }` // modules = default, not needed.  
