@@ -7,7 +7,7 @@
 →  `{ field1: 'string', field2: 'anotherString'} // 200 OK + data`
 
 ## user stories
-1. User ➡ I should be able to see a timeline of all current active classes and their running modules
+1. **User** ➜ I should be able to see a timeline of all current active classes and their running modules
 
 	`GET /classes`    
 	→ `[ { id, name, [module 1, module 2] } ]`
