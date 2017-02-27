@@ -3,6 +3,7 @@ const express = require('express');
 const routes = require('./routes');
 const http = require('http');
 const path = require('path');
+const passport = require('passport');
 const addRequestId = require('express-request-id')();
 const app = express();
 
@@ -13,6 +14,8 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(passport.initialize());
+
 app.use(addRequestId);
 app.use(express.static(path.join(__dirname, '..')));
 app.use(express.static(path.join(__dirname, '../client')));
