@@ -59,9 +59,9 @@
 	→  `403 BAD REQUEST` // bad data given    
 	→  `400 FORBIDDEN` // role not teacher
 
-- **Teacher** ➜ 5) I want to be able to edit the list of running modules belonging to a class.
-- **Teacher** ➜ 6) I want to be able to assign teachers to a running module.
-- **Teacher** ➜ 8) I want to be able to edit a running module (for a class) duration (week less, week longer).
+- **Teacher** ➜ 5) I want to be able to edit the list of running modules belonging to a class.  
+**Teacher** ➜ 6) I want to be able to assign teachers to a running module.  
+**Teacher** ➜ 8) I want to be able to edit a running module (for a class) duration (week less, week longer).
 
 	- user story is basically about an intermediate table between class and module.
 		   - intermediate table contains references to class, module AND module specific overrides (duration, switch, etc.)
