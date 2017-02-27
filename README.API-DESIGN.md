@@ -10,38 +10,41 @@
 
 1. **User** ➜ I should be able to see a timeline of all current active classes and their running modules
 
-	[] `GET /classes`    
+	- [ ] `GET /classes`    
 	→ `[ { id, name, [module 1, module 2] } ]`
 
-	[] `GET /classes/:id`    
+	- [ ] `GET /classes/:id`    
 	→ `{ id, name, [module 1, module 2] }`
 
 2. **User** ➜ I should be able to select / click a module and then see the corresponding GitHub course content README + link.
+   
    - [x] NA.
    
 3. **User** ➜ I should be able to login using my GitHub account.
+	
 	- [x] NA.
 
 ---
 
 1. **Teacher** ➜ I want a basic login / authentication system with a seeded Administrator account using federated login (GitHub).
+   
    - [x] NA.
    
 2. **Teacher** ➜ I want to be able to add a new class. This automagically adds the entire ordered curriculum as we know it (from the module sequence numbers).
 
-	[ ] `POST /classes`    
+	- [ ] `POST /classes`    
 	⇧ `{ className: 'class5', [startingDate: 2017-04-12] } // modules = default, not needed.`    
 	→  `[ { id, name, [module 1, module 2] } ]`
 	
 3. **Teacher** ➜ I want to be able to add a new module.
 
-	[ ] `POST /classes`    
+	- [ ] `POST /classes`    
 	⇧ `?`    
 	→  `?`
 
 4. **Teacher** ➜ I want to be able to assign a module to a class (this module will be a running module).
 
-	[ ] `PATCH /classes/:id`    
+	- [ ] `PATCH /classes/:id`    
 	⇧ `{ moduleIds: [1, 3, 4, 5] }`    
 	→  `?`
 
@@ -52,7 +55,7 @@
 		   - change the duration of a running module.    			`3 weeks ->   4 weeks`
 	       - change order / sequence of the running modules. `1 -> 2  =>   2 -> 1`
 	
-	[ ] `?`    
+	- [ ] `?`    
 	⇧ `?`    
 	→  `?`
 	
@@ -60,7 +63,7 @@
 
 	- this is basically editing of the running module list, too, covered by ➜ **teacher** 5.
 
-	[ ] `?`    
+	- [ ] `?`    
 	⇧ `?`    
 	→  `?`
 
@@ -68,6 +71,6 @@
 
 	- `app.patch('/modules/:id', modules.update);`
 
-	[ ] `PATCH /modules/:id`    
+	- [ ] `PATCH /modules/:id`    
 	⇧ `?`    
 	→  `?`
