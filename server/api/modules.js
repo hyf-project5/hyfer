@@ -1,53 +1,54 @@
-module.exports = {
-    list,
-    module_details,
-    add,
-    update,
-    delete_module
+'use strict';
+const db = require('../database/database');
+
+function getCurriculum(req, res) {
+    getConnection(req, res)
+        .then(con => db.getCurriculum(con))
+        .then(result => res.json(result));
 }
 
-function list(req, res) {
-    req.getConnection((err, connection) => {
-        if (!err) connection.query('SELECT * FROM modules', (err, results) => {
-            res.send({ status: 200, results: results })
+function getModule(req, res) {
+    getConnection(req, res)
+        .then(con => db.getModule(con, req.params.id))
+        .then(result => res.json(result));
+}
+
+function addModule(req, res) {
+    getConnection(req, res)
+        .then(con => db.addModule(con, req.body))
+        .then(() => res.sendStatus(200));
+
+}
+
+function updateModule(req, res) {
+    getConnection(req, res)
+        .then(con => db.updateModule(con, req.body, req.params.id))
+        .then(result => res.sendStatus(result.affectedRows > 0 ? 200 : 404));
+}
+
+function deleteModule(req, res) {
+    getConnection(req, res)
+        .then(con => db.deleteModule(con, req.params.id))
+        .then(result => res.sendStatus(result.affectedRows > 0 ? 200 : 404));
+}
+
+function getConnection(req, res) {
+    return new Promise((resolve, reject) => {
+        req.getConnection((err, con) => {
+            if (err) {
+                res.sendStatus(500);
+                reject(err);
+            } else {
+                resolve(con);
+            }
         });
-    })
-};
+    });
+}
 
-function module_details(req, res) {
-    req.getConnection((err, connection) => {
-        if (!err) connection.query('SELECT * FROM modules WHERE uuid = ?', [req.params.id], (err, result) => {
-            if (result[0] === undefined) return res.send({ status: 404, error: 'Not found!' });
-            else res.send({ status: 200, result: result });
-        });
-    })
-};
-
-function add(req, res) {
-    req.getConnection((err, connection) => {
-        if (!err) connection.query('INSERT INTO modules SET ?, uuid=?', [req.body, req.id], (err, result) => {
-            if (err) res.send({ status: 400, message: err });
-            else res.send({ status: 200, result: 'Module created!' });
-        });
-    })
-};
-
-function update(req, res) {
-    req.getConnection((err, connection) => {
-        connection.query("UPDATE modules SET ? WHERE uuid = ?", [req.body, req.params.id], (err, result) => {
-            if (err) return res.send({ status: 400, error: err });
-            if (result.affectedRows > 0) return res.send({ status: 200, result: 'Module updated!' })
-            res.send({ status: 404, error: 'Not found!' })
-        })
-    })
-};
-
-function delete_module(req, res) {
-    req.getConnection((err, connection) => {
-        connection.query("DELETE FROM modules WHERE uuid = ? ", req.params.id, (err, result) => {
-            if (err) return res.send({ status: 500, error: err });
-            if (result.affectedRows > 0) return res.send({ status: 200, result: 'Module deleted!' })
-            res.send({ status: 404, error: 'Not found!' })
-        })
-    })
-};
+module.exports = {
+    getModule,
+    getCurriculum,
+    addModule,
+    updateModule,
+    deleteModule
+}
