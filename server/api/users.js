@@ -15,7 +15,7 @@ function callback(req, res) {
                     }
 
                     let user = {
-                        git_username: req.user.username,
+                        username: req.user.username,
                         access_token: req.user.accessToken,
                         oauth_provider: 'github'
                     }

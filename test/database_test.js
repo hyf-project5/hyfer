@@ -27,9 +27,13 @@ before(done => {
 
 describe('User stories - User', () => {
 
-    it('should get timeline data for a specific group', done => {
-        db.getTimelineForGroup(con, 1)
-            .then(() => done())
+    it('should get list of module ordered by seq_number', done => {
+        db.getCurriculum(con, 1)
+            .then(result => {
+                expect(result.length).to.equal(8);
+                expect(result[0].seq_number).to.equal(1000);
+                done();
+            })
             .catch(err => done(err));
     });
 

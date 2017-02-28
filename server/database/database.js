@@ -23,7 +23,7 @@ const ADD_MODULE_QUERY = `INSERT INTO modules SET ?`;
 const UPDATE_MODULE_QUERY = `UPDATE modules SET ? WHERE id = ?`;
 const DELETE_MODULE_QUERY = `DELETE FROM modules WHERE id = ?`;
 
-const GET_USER_QUERY = `SELECT * FROM users WHERE git_username=?`;
+const GET_USER_QUERY = `SELECT * FROM users WHERE username=?`;
 const ADD_USER_QUERY = `INSERT INTO users SET ?`;
 
 function getUser(con, username) {
@@ -46,12 +46,7 @@ function getModule(con, id) {
 
 function getCurriculum(con) {
     const sql = GET_MODULE_QUERY + ` ORDER BY seq_number`;
-    return execQuery(con, sql)
-        .then(rows => {
-            let results = [];
-            // convert rows into array of modules
-            return results;
-        });
+    return execQuery(con, sql);
 }
 
 // user story 1
