@@ -23,6 +23,17 @@ const ADD_MODULE_QUERY = `INSERT INTO modules SET ?`;
 const UPDATE_MODULE_QUERY = `UPDATE modules SET ? WHERE id = ?`;
 const DELETE_MODULE_QUERY = `DELETE FROM modules WHERE id = ?`;
 
+const GET_USER_QUERY = `SELECT * FROM users WHERE git_username=?`;
+const ADD_USER_QUERY = `INSERT INTO users SET ?`;
+
+function getUser(con, username) {
+    return execQuery(con, GET_USER_QUERY, username);
+}
+
+function addUser(con, user) {
+    return execQuery(con, ADD_USER_QUERY, user)
+}
+
 function getModule(con, id) {
     const sql = GET_MODULE_QUERY + ` WHERE id=?`;
     return execQuery(con, sql, [id])
@@ -78,6 +89,8 @@ function execQuery(con, sql, args = []) {
 }
 
 module.exports = {
+    getUser,
+    addUser,
     getModule,
     getCurriculum,
     getTimelineForGroup,

@@ -1,7 +1,9 @@
 'use strict';
+const util = require('util');
 const passport = require('passport');
 require('./auth/github-auth');
 const modules = require('./api/modules'); // Modules tabel API
+const users = require('./api/users');
 // const accounts = require('./api/accounts'); // Accounts tabel API
 
 module.exports = function(app) {
@@ -21,13 +23,6 @@ module.exports = function(app) {
     // app.delete('/accounts/:id', accounts.delete_account);
 
     // Github authentication
-    app.get('/auth/github',
-        passport.authenticate('github'));
-
-    app.get('/auth/github/callback',
-        passport.authenticate('github', { failureRedirect: '/login' }),
-        function(req, res) {
-            // Successful authentication, redirect home.
-            res.redirect('/');
-        });
+    app.get('/auth/github', passport.authenticate('github'));
+    app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), users.callback);
 };

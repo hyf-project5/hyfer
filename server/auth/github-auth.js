@@ -9,22 +9,18 @@ passport.use(new GitHubStrategy({
         clientSecret: config.clientSecret,
         callbackURL: config.callbackURL
     },
-    function(accessToken, refreshToken, profile, cb) {
-        console.log('Github accessToken: ' + accessToken);
-        console.log('Github refreshToken: ' + refreshToken);
-        console.log('Github profile: ' + util.inspect(profile));
-        return cb(null, accessToken);
-
-        // User.findOrCreate({ githubId: profile.id }, function(err, user) {
-        //     return cb(err, user);
-        // });
-    }
-));
+    function(accessToken, refreshToken, profile, done) {
+        return done(null, { accessToken, username: profile.username });
+    }));
 
 passport.serializeUser(function(user, done) {
+    // console.log('serializeUser');
+    // console.log(util.inspect(user));
     done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
+    // console.log('deserializeUser');
+    // console.log(util.inspect(user));
     done(null, user);
 });
