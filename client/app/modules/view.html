@@ -1,10 +1,11 @@
 <toolbar></toolbar>
-<md-list layout='column' flex-offset-gt-sm='10' flex-gt-sm='80'>
-    <md-list-item class="md-3-line" ng-repeat="module in $ctrl.modules" ng-click="null">
-        <img ng-src="{{module.module_image}}" class="md-avatar" alt="{{module.module_name}}" />
-        <div class="md-list-item-text" layout="column">
-            <h2>{{ module.module_name }}</h2>
-            <h3>{{ module.description }}</h3>
+
+<md-grid-list md-cols-xs="2" md-cols-sm="3" md-cols-md="4" md-cols-lg="5" md-cols-xl="6" md-row-height="1:1.1">
+    <md-grid-tile ng-repeat="module in $ctrl.modules">
+        <div class="single-module-item">
+            <div class="single-module-item-image" alt="{{module.module_name}}" style="background: url({{module.module_image}}) 50% 50% no-repeat;"></div>
+            <h3 class="single-module-item-name">{{ module.module_name }}</h3>
+            <p class="single-module-item-description">{{ module.description }}</p>
         </div>
-    </md-list-item>
-</md-list>
+    </md-grid-tile>
+</md-grid-list>

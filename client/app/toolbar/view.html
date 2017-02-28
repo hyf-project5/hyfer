@@ -1,12 +1,44 @@
-<md-toolbar layout='row'>
-    <div class="md-toolbar-tools" layout='row' flex-offset-gt-sm='10' flex-gt-sm='80'>
-        <img ng-src="images/logo.png" alt="hyfLogo" style="height:55px; width:70px;">
-        <md-button ui-sref='home'>
-            Home
-        </md-button>
-        <md-button ui-sref='modules' ui-sref-active="active">
-            Modules
-        </md-button>
-        <span flex></span>
-    </div>
+<md-toolbar>
+    <div class="md-toolbar-tools" layout="row" layout-align="end none">
+        <div layout="row" layout-align="space-between center" class="ng-scope layout-row layout-align-space-between-center" style="flex: 1 1 0%;">
+
+            <div><img class="nav-logo" ng-src="images/logo.png" alt="HYF Logo"></div>
+            <span flex=""></span>
+            <div>
+                <h1 class="md-display-3"><b>Student Dashboard</b></h1>
+            </div>
+            <span flex=""></span>
+            <div>
+                <md-menu>
+                    <button class="nav-button" ng-click="$mdMenu.open()">
+              <img class="avatar-image-button" src="images/default_avatar.png"></a>
+            </button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button ng-click="ctrl.sampleAction('share', $event)">
+                                Signed is as <b>Jack Sacali</b>
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <md-button ng-click="ctrl.sampleAction('Open', $event)">
+                                Dashboard
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="ctrl.sampleAction('Open', $event)">
+                                Settings
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <md-button ng-click="ctrl.sampleAction('Print', $event)">
+                                Log out
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+
+        </div>
 </md-toolbar>
