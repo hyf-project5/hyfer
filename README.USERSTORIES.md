@@ -36,8 +36,8 @@
 
     - new entity: running module
         - creating a new class adds an entire list of these: **the curriculum**
-        - has starting date, inherited/calculated by class start date + # previous module * their duration.
-        - has a finish date, inherited/calculated by class start date + # previous module * their duration + this module duration.
+        - has starting date, inherited/calculated by class start date + # previous modules * their duration.
+        - has a finish date, inherited/calculated by class start date + # previous modules * their duration + this module duration.
 
     - changed entity: module
         - has duration (number of weeks: 3, 6)
