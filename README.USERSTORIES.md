@@ -1,20 +1,24 @@
 
 ### User
 ---
-1. I should be able to see a timeline of all **active classes** and their **running modules**.
-2. I should be able to select / click a **module** and then see the corresponding GitHub course content README + link.
-3. I should be able to login using my GitHub account.
+- **User** ➜ 1) I should be able to see a timeline of all **active classes** and their **running modules**.
+- **User** ➜ 2) I should be able to select / click a **module** and then see the corresponding GitHub course content README + link.
+- **User** ➜ 3) I should be able to login using my GitHub account.
 
 
 ### Teachers
 ---
-1. Have a basic login / authentication system im place with a seeded Administrator account, using federated login (GitHub).
-2. As a **teacher** I want to be able to add a new **class**. The **running module** list of this class gets populated by all existing **modules** in the order that the **module sequence** defines (i.e. HTML/css = 1001, Js 1 = 2001, Js 2 = 2002 etc.)
+- **Teacher** ➜ 1) Have a basic login / authentication system im place with a seeded Administrator account, using federated login (GitHub).
+- **Teacher** ➜ 2) I want to be able to add a new class. This automagically adds the entire ordered curriculum as we know it (from the module sequence numbers, i.e. HTML/css = 1001, Js 1 = 2001, Js 2 = 2002 etc.).
 
-3. I want to be able to add a new **module**.
-4. I want to be able to assign **modules** to a list of **running modules**.
-5. I want to be able to assign **teachers** to a **module**.
-6. I want to be able to edit **module** duration (week less, week longer).
+- **Teacher** ➜ 3) I want to be able to add a new module.
+- **Teacher** ➜ 4) I want to be able to assign a module to a class (this module will be a running module).
+
+- **Teacher** ➜ 5) I want to be able to edit the list of running modules belonging to a class.
+- **Teacher** ➜ 6) I want to be able to assign teachers to a module.
+- **Teacher** ➜ 7) I want to be able to edit (default) module details (duration, name, etc).
+- **Teacher** ➜ 8) I want to be able to edit a running module (for a class) duration (week less, week longer).
+
 
 
 ### Definition list
