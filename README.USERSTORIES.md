@@ -34,18 +34,20 @@
 ### DB entities (new and changed)
 ---
 
-    - new entity: curriculum
-        - is ordered (1 - html/css, 2 - js, etc.)
-        - contains modules
-        - new class adds entire curriculum
-        - has starting date
+    - new entity: running module
+        - creating a new class adds an entire list of these: **the curriculum**
+        - has starting date, inherited/calculated by class start date + # previous module * their duration.
+        - has a finish date, inherited/calculated by class start date + # previous module * their duration + this module duration.
 
     - changed entity: module
         - has duration (number of weeks: 3, 6)
         - has a (default) sequence number: (HTML/css could be 1001, Javascript 1 could be 2001)
         - has title (typescript, vacation, more javascript, hackday)
         
-    - changed entity: group
+    - changed entity: class / group
         - has a name (class5 / group5)
         - has a starting date
-        - has a graduated flag (boolean : yes / no)
+        - has a **finished** flag (boolean : yes / no)
+        
+        
+    
