@@ -4,7 +4,7 @@ const passport = require('passport');
 require('./auth/github-auth');
 const modules = require('./api/modules'); // Modules tabel API
 const users = require('./api/users');
-// const accounts = require('./api/accounts'); // Accounts tabel API
+const groups = require('./api/groups'); // Groups 'classes' tabel API
 const jwt = require('jsonwebtoken');
 const config = require('./config/config.js')
 const EXPIRES_IN_SECONDS = 30 * 24 * 60 * 60;
@@ -18,12 +18,12 @@ module.exports = function(app) {
     app.patch('/modules/:id', modules.updateModule);
     app.delete('/modules/:id', modules.deleteModule);
 
-    // accounts HTTP methods
-    // app.get('/accounts', accounts.list);
-    // app.get('/accounts/:id', accounts.account_details);
-    // app.post('/accounts', accounts.add);
-    // app.patch('/accounts/:id', accounts.update);
-    // app.delete('/accounts/:id', accounts.delete_account);
+    // groups HTTP methods
+    app.get('/groups', groups.getTimelineForAllGroups);
+    app.get('/groups/:id', groups.getTimelineForAGroup);
+    app.post('/groups', groups.addGroup);
+    app.patch('/groups/:id', groups.updateGroup);
+    app.delete('/groups/:id', groups.deleteGroup);
 
     // Github authentication
     app.get('/auth/github', passport.authenticate('github'));

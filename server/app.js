@@ -8,7 +8,7 @@ const addRequestId = require('express-request-id')();
 const app = express();
 const cookieParser = require('cookie-parser');
 // all environments
-app.set('port', process.env.PORT || 3002);
+app.set('port', process.env.PORT || 3005);
 
 app.use(express.logger('dev'));
 app.use(express.json());
