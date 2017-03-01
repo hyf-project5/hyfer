@@ -2,6 +2,7 @@
 const db = require('../database/database');
 
 function getCurriculum(req, res) {
+    console.log(req.user);
     getConnection(req, res)
         .then(con => db.getCurriculum(con))
         .then(result => res.json(result));

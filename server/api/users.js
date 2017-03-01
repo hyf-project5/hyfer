@@ -2,9 +2,9 @@
 const util = require('util');
 const db = require('../database/database');
 
-function callback(req, res) {
+function callback(req, res, next) {
 
-    console.log(util.inspect(req.user));
+    console.log('callback: ' + util.inspect(req.user));
     getConnection(req, res)
         .then(con => {
             return db.getUser(con, req.user.username)
@@ -17,18 +17,22 @@ function callback(req, res) {
                     let user = {
                         username: req.user.username,
                         access_token: req.user.accessToken,
-                        oauth_provider: 'github'
+                        oauth_provider: 'github',
+                        role: null
                     }
                     req.user = user;
                     return db.addUser(con, user);
                 })
         })
-        .then(() => console.log(util.inspect(req.user)))
+        .then(() => {
+            console.log(util.inspect(req.user));
+            next();
+        })
         .catch(err => {
             console.log('Error: ' + err);
         })
         // Successful authentication, redirect home.
-    res.redirect('#!/modules');
+        // res.redirect('#!/modules');
 }
 
 

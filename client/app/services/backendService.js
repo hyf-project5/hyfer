@@ -6,17 +6,25 @@
         .service('backendService', backendService)
 
     /** @ngInject */
-    backendService.$inject = ['$http'];
+    backendService.$inject = ['$http', '$cookies'];
 
-    function backendService($http) {
+    function backendService($http, $cookies) {
+        let token = $cookies.get('token').slice(1, -1);
+        let config = {
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        }
         return {
             getModules: getModules
         }
 
+
         function getModules() {
-            return $http.get('/modules')
+            return $http.get('/modules', config)
                 .then(res => res.data);
         }
+
     }
 
 }());

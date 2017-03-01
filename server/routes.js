@@ -27,19 +27,19 @@ module.exports = function(app) {
 
     // Github authentication
     app.get('/auth/github', passport.authenticate('github'));
-    app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), setTokenCookie);
+    app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), users.callback, setTokenCookie);
 
-    function signToken(username) {
-        return jwt.sign({ username }, config.jwtSecret, { expiresIn: EXPIRES_IN_SECONDS })
+    function signToken(username, role) {
+        return jwt.sign({ user: username, role: role || 'guest' }, config.jwtSecret, { expiresIn: EXPIRES_IN_SECONDS })
     }
 
     function setTokenCookie(req, res) {
         if (!req.user) {
             return void res.status(404).json({ message: 'Something went wrong, please try again.' })
         }
-        let token = signToken(req.user.username)
+        let token = signToken(req.user.username, req.user.role);
         res.cookie('token', JSON.stringify(token), { maxAge: EXPIRES_IN_SECONDS * 1000 })
-        console.log(JSON.stringify(token));
+        console.log('cookie: ' + JSON.stringify(token));
         res.redirect('#!/modules');
     }
 };

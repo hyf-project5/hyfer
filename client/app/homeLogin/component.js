@@ -7,12 +7,14 @@
             controller: controller
         });
 
-    controller.$inject = ['$state'];
+    controller.$inject = ['$state', '$cookies'];
 
-    function controller($state) {
+    function controller($state, $cookies) {
         let ctrl = this;
         ctrl.submit = submit;
         ctrl.signin = signin;
+        console.log($cookies.getAll())
+
 
         function submit(e) {
             console.log('the things: ' + ctrl.email + ' ' + ctrl.password)
