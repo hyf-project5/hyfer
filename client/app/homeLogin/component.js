@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular
-        .module('myApp')
+        .module('hyferApp')
         .component('homeLogin', {
             templateUrl: 'app/homeLogin/view.html',
             controller: controller

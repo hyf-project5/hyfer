@@ -3,7 +3,6 @@ const passport = require('passport');
 const util = require('util');
 const GitHubStrategy = require('passport-github').Strategy;
 const config = require('../config/config.js')
-
 passport.use(new GitHubStrategy({
         clientID: config.clientID,
         clientSecret: config.clientSecret,

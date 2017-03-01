@@ -5,27 +5,8 @@
         </div>
 
         <div flex layout='row' layout-align='center center' layout-padding layout-margin>
-            <!--<form class="homeLogin" name="userForm" ng-submit="$ctrl.submit()">
-                <div>
-                    <md-input-container class="md-block" flex-gt-xs>
-                        <label>Email </label>
-                        <input name="email" type="email" required ng-model="$ctrl.email">
-                        <div ng-messages="userForm.email.$error">
-                            <div ng-message='required'>The email is required!!</div>
-                        </div>
-                    </md-input-container>
-
-                    <md-input-container class="md-block">
-                        <label> Password</label>
-                        <input name="password" type="password" required ng-model="$ctrl.password">
-                        <div ng-messages="userForm.password.$error">
-                            <div ng-message='required'>The password is required!!</div>
-                        </div>
-                    </md-input-container>
-                    <md-button type="submit" class="md-primary">Submit</md-button>
-                </div>
-            </form>-->
             <md-button type="button" class="md-primary" ng-click="$ctrl.signin()">Sign in with GitHub</md-button>
+            <md-button type="button" class="md-primary" ui-sref='modules'>Curriculum</md-button>
         </div>
     </div>
 </md-content>

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('myApp')
+        .module('hyferApp')
         .config(mainConfig)
         /** @ngInject */
     mainConfig.inject = ['$stateProvider', '$urlRouterProvider'];

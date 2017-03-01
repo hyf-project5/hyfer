@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular
-        .module('myApp')
+        .module('hyferApp')
         .component('toolbar', {
             templateUrl: 'app/toolbar/view.html',
             controller: toolbarCtrl

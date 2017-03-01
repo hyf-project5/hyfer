@@ -6,7 +6,7 @@ const path = require('path');
 const passport = require('passport');
 const addRequestId = require('express-request-id')();
 const app = express();
-
+const cookieParser = require('cookie-parser');
 // all environments
 app.set('port', process.env.PORT || 3002);
 
@@ -14,6 +14,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(cookieParser());
 app.use(passport.initialize());
 
 app.use(addRequestId);

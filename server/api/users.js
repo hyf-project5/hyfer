@@ -28,8 +28,9 @@ function callback(req, res) {
             console.log('Error: ' + err);
         })
         // Successful authentication, redirect home.
-    res.redirect('/');
+    res.redirect('#!/modules');
 }
+
 
 function getConnection(req, res) {
     return new Promise((resolve, reject) => {
