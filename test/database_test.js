@@ -1,8 +1,10 @@
+/* eslint-env node, mocha */
+
 'use strict';
 const mysql = require('mysql');
 const chai = require('chai');
 const expect = chai.expect;
-const config = require('../server/config/config')
+const config = require('../server/config/config');
 const db = require('../server/database/database');
 
 let con;
@@ -23,7 +25,7 @@ before(done => {
             done();
         }
     });
-})
+});
 
 describe('User stories - User', () => {
 
