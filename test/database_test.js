@@ -27,7 +27,7 @@ before(done => {
 
 describe('User stories - User', () => {
 
-    it('should get list of module ordered by seq_number', done => {
+   it('should get list of module ordered by seq_number', done => {
         db.getCurriculum(con, 1)
             .then(result => {
                 expect(result.length).to.equal(8);

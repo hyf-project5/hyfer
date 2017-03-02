@@ -7,7 +7,7 @@ const passport = require('passport');
 const addRequestId = require('express-request-id')();
 const app = express();
 const cookieParser = require('cookie-parser');
-const jwt = require('express-jwt');
+// const jwt = require('express-jwt');
 
 // all environments
 app.set('port', process.env.PORT || 3002);
