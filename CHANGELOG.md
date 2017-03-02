@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## 2016-02-28
+## 2017-03-02
+
+### Added
+
+- Get the README file as HTML for a specific repository. Use API endpoint: `/github/readme/:owner/:repo` wher owner = `hackyourfuture` and repo = the repo name.
+
+## 2017-02-28
 
 ### Added
 

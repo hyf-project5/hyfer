@@ -4,6 +4,9 @@ const passport = require('passport');
 require('./auth/github-auth');
 const modules = require('./api/modules'); // Modules tabel API
 const users = require('./api/users');
+
+const github = require('./api/github');
+
 // const accounts = require('./api/accounts'); // Accounts tabel API
 const jwt = require('jsonwebtoken');
 const config = require('./config/config.js')
@@ -17,6 +20,8 @@ module.exports = function(app) {
     app.post('/modules', modules.addModule);
     app.patch('/modules/:id', modules.updateModule);
     app.delete('/modules/:id', modules.deleteModule);
+
+    app.get('/github/readme/:owner/:repo', github.getReadMeAsHtml);
 
     // accounts HTTP methods
     // app.get('/accounts', accounts.list);
