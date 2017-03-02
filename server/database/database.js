@@ -1,4 +1,5 @@
 'use strict';
+
 // Modules queries
 const GET_MODULE_QUERY =
     `SELECT id, module_name, description, seq_number, added_on, module_img, default_duration, git_url, git_owner, git_repo
@@ -42,6 +43,7 @@ const TIME_LINE_FOR_GROUP_QUERY =
     ORDER BY running_modules.starting_on`;  
 
 const ADD_GROUP_QUERY = `INSERT INTO groups SET ?`;
+const GET_ADDED_ID = `SELECT LAST_INSERT_ID()`;
 const UPDATE_GROUP_QUERY = `UPDATE groups SET ? WHERE id = ?`;
 const DELETE_GROUP_QUERY = `DELETE FROM groups WHERE id = ?`; 
 
@@ -92,26 +94,13 @@ function deleteModule(con, id) {
 
 // user story / User ➜ 1)
 function getTimelineForAllGroups(con) {
-    return execQuery(con, TIME_LINE_FOR_ALL_GROUPS_QUERY)
-        // .then(rows => {
-        //     let results = [];
-        //     // convert rows into array of data timeline object
-        //     return results;
-        // });
+    return execQuery(con, TIME_LINE_FOR_ALL_GROUPS_QUERY);
 }
 
 function getTimelineForAGroup(con, id) {
-    return execQuery(con, TIME_LINE_FOR_GROUP_QUERY, [id])
-        // .then(rows => {
-        //     let results = [];
-        //     // convert rows into array of data timeline object
-        //     return results;
-        // });        
+    return execQuery(con, TIME_LINE_FOR_GROUP_QUERY, [id]);    
 }
 
-function addGroup(con, module) {
-    return execQuery(con, ADD_GROUP_QUERY, module);
-}
 
 function updateGroup(con, module, id) {
     return execQuery(con, UPDATE_GROUP_QUERY, [module, id]);
@@ -153,7 +142,7 @@ module.exports = {
     deleteModule,
     getTimelineForAllGroups,
     getTimelineForAGroup,
-    addGroup,
+    // addGroup,
     updateGroup,
     deleteGroup,
     addCurriculumToTheNewGroup
