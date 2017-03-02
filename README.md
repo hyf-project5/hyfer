@@ -20,7 +20,7 @@
   * *CREATE DB :* first you should create the database(this is currently) to do so do the following:
 
 
-  In your MySQL shell run `mysql -u -p root  DB-name < DIRECTORY/DB_Schema.sql`
+  In your MySQL shell run `mysql -u[username] -p[password] [DB name] < DIRECTORY/DB_Schema_v3.sql`
   * notes that the `DB_Schema.sql` file is important to create all the required tables...
 
 
