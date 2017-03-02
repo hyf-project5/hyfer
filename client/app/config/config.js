@@ -4,8 +4,9 @@
     angular
         .module('hyferApp')
         .config(mainConfig)
-        /** @ngInject */
-    mainConfig.inject = ['$stateProvider', '$urlRouterProvider'];
+        .run(run)
+
+    mainConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
     function mainConfig($stateProvider, $urlRouterProvider) {
 
@@ -22,5 +23,14 @@
 
     }
 
+    run.$inject = ['$cookies'];
+
+    function run($cookies) {
+        let token = $cookies.get('token')
+        if (token) {
+            let jwt = token.slice(1, -1);
+            window.localStorage.setItem('token', jwt);
+        }
+    }
 
 }());

@@ -5,26 +5,28 @@
         .module('hyferApp')
         .service('backendService', backendService)
 
-    /** @ngInject */
-    backendService.$inject = ['$http', '$cookies'];
+    backendService.$inject = ['$http'];
 
-    function backendService($http, $cookies) {
-        let token = $cookies.get('token').slice(1, -1);
-        let config = {
-            headers: {
-                "Authorization": "Bearer " + token
-            }
-        }
+    function backendService($http) {
+
         return {
             getModules: getModules
         }
 
-
         function getModules() {
-            return $http.get('/modules', config)
+            return $http.get('/modules', getHttpConfig())
                 .then(res => res.data);
         }
 
+    }
+
+    function getHttpConfig() {
+        let config = {};
+        let token = window.localStorage.getItem('token');
+        if (token) {
+            config.headers = { 'Authorization': 'Bearer ' + token };
+        }
+        return config;
     }
 
 }());

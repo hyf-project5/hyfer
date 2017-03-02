@@ -5,5 +5,6 @@ module.exports = {
     database: 'database',
     clientID: 'github client id',
     clientSecret: 'github client secret',
-    callbackURL: 'github callback url'
+    callbackURL: 'github callback url',
+    jwtSecret: 'jwtSecret'
 };
