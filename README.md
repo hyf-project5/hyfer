@@ -19,13 +19,10 @@
 * **NOTE**
   * *CREATE DB :* first you should create the database(this is currently) to do so do the following:
 
-
   In your MySQL shell run `mysql -u[username] -p[password] [DB name] < DIRECTORY/DB_Schema_v3.sql`
   * notes that the `DB_Schema.sql` file is important to create all the required tables...
 
-
-  then create `config.js` file in the database folder, and the paste in it the content of
-  the `config.js.txt` file with the corresponding data..
-
+  then create a `config.js` file in the `server/config` folder and paste in it the contents of
+  the `config.js.txt` file, and modify to reflect your specific database configuration.
 
   * *now just run `npm start`*
