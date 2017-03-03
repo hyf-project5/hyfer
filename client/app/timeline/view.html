@@ -1,0 +1,17 @@
+<hyf-toolbar></hyf-toolbar>
+<div flex-offset-gt-sm='10' flex-gt-sm='80'>
+    <md-content>
+        <md-grid-list md-cols="{{$ctrl.maxLength + 1}}" md-row-height="16:9" ng-repeat="class in $ctrl.classes">
+            <md-grid-tile class="classGridList">
+                <h2>{{class}}</h2>
+            </md-grid-tile>
+            <md-grid-tile class="modulesGridList" ng-repeat="module in $ctrl.timeline[class]" ng-click="$ctrl.showReadme(module.git_repo)">
+                <h3>{{module.module_name}}</h3>
+            </md-grid-tile>
+        </md-grid-list>
+
+        <div ng-bind-html="$ctrl.trustedHtml">
+        </div>
+
+    </md-content>
+</div>

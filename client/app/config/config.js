@@ -22,6 +22,7 @@
             })
             .state('timeline', {
                 url: '/timeline',
+                component: 'hyfTimeline'
             })
 
     }

@@ -16,6 +16,26 @@ a {
     color: #f4ad42;
 }
 
+md-grid-list {
+    margin-bottom: 5px;
+}
+
+.modulesGridList {
+    background: #f544ff;
+    border-radius: 5%;
+    transition: background 300ms ease-in-out;
+}
+
+.modulesGridList:hover {
+    cursor: pointer;
+    background-color: rgba(222, 33, 122, 0.8)
+}
+
+.classGridList {
+    background: #f591f5;
+    border-radius: 5%;
+}
+
 .homeLogin {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.7);

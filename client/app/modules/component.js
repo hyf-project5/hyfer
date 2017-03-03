@@ -13,7 +13,7 @@
             controller: hyfModulesCtrl
         });
 
-    hyfModulesCtrl.inject = ['backendService'];
+    hyfModulesCtrl.$inject = ['backendService'];
 
     function hyfModulesCtrl(backendService) {
         let ctrl = this;
