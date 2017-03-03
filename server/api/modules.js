@@ -1,9 +1,9 @@
 'use strict';
 const db = require('../datalayer/modules');
 
-function getCurriculum(req, res) {
+function getModules(req, res) {
     getConnection(req, res)
-        .then(con => db.getCurriculum(con))
+        .then(con => db.getModules(con))
         .then(result => res.json(result));
 }
 
@@ -16,20 +16,20 @@ function getModule(req, res) {
 function addModule(req, res) {
     getConnection(req, res)
         .then(con => db.addModule(con, req.body))
-        .then(() => res.status(200).send('Moudle added!'));
+        .then(() => res.statusStatus(200));
 
 }
 
 function updateModule(req, res) {
     getConnection(req, res)
         .then(con => db.updateModule(con, req.body, req.params.id))
-        .then(result => res.status(result.affectedRows > 0 ? 200 : 404).send(result.affectedRows > 0 ? 'Module updated!' : 'Nothing found!'));
+        .then(result => res.sendStatus(result.affectedRows > 0 ? 200 : 404));
 }
 
 function deleteModule(req, res) {
     getConnection(req, res)
         .then(con => db.deleteModule(con, req.params.id))
-        .then(result => res.status(result.affectedRows > 0 ? 200 : 404).send(result.affectedRows > 0 ? 'Module deleted!' : 'Nothing found!'));
+        .then(result => res.sendStatus(result.affectedRows > 0 ? 200 : 404));
 }
 
 function getConnection(req, res) {
@@ -47,7 +47,7 @@ function getConnection(req, res) {
 
 module.exports = {
     getModule,
-    getCurriculum,
+    getModules,
     addModule,
     updateModule,
     deleteModule

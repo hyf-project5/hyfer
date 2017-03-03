@@ -24,20 +24,19 @@ function getTimelineForAGroup(req, res) {
 function addGroup(req, res) {
     getConnection(req, res)
         .then(con => db.addGroup(con, req.body))
-        .then(result => res.status(200).send('Group added!'));
-
+        .then(() => res.sendStatus(200));
 }
 
 function updateGroup(req, res) {
     getConnection(req, res)
         .then(con => db.updateGroup(con, req.body, req.params.id))
-        .then(result => res.status(result.affectedRows > 0 ? 200 : 404).send(result.affectedRows > 0 ? 'Group updated!' : 'Nothing found!'));
+        .then(result => res.sendStatus(result.affectedRows > 0 ? 200 : 404));
 }
 
 function deleteGroup(req, res) {
     getConnection(req, res)
         .then(con => db.deleteGroup(con, req.params.id))
-        .then(result => res.status(result.affectedRows > 0 ? 200 : 404).send(result.affectedRows > 0 ? 'Group deleted!' : 'Nothing found!'));
+        .then(result => res.statusStatus(result.affectedRows > 0 ? 200 : 404));
 }
 
 function getConnection(req, res) {

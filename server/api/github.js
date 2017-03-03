@@ -26,7 +26,7 @@ function getReadMeAsHtml(req, res) {
             return res.send(html);
         }
 
-        res.status(404).send('Not found');
+        res.statusStatus(404);
     })
 }
 
