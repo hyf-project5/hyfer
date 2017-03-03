@@ -21,6 +21,9 @@
                 for (let key in ctrl.timeline) {
                     ctrl.maxLength = Math.max(ctrl.maxLength, ctrl.timeline[key].length, 10);
                 }
+                backendService.getReadme(ctrl.timeline[ctrl.classes[0]][0].git_repo)
+                    .then(res => ctrl.readmeFile = $sce.trustAsHtml(res))
+                    .catch(err => console.log(err));
             });
 
         ctrl.showReadme = showReadme;
@@ -28,7 +31,7 @@
         function showReadme(gitRepo) {
             backendService.getReadme(gitRepo)
                 .then(res => {
-                    ctrl.trustedHtml = $sce.trustAsHtml(res);
+                    ctrl.readmeFile = $sce.trustAsHtml(res);
                 })
                 .catch(err => console.log(err))
         }
