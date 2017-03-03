@@ -24,6 +24,6 @@ module.exports = function(app) {
     app.get('/api/github/readme/:owner/:repo', github.getReadMeAsHtml);
 
     app.get('/auth/github', passport.authenticate('github'));
-    app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }),
+    app.get('/api/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }),
         authService.gitHubCallback, authService.setTokenCookie);
 };
