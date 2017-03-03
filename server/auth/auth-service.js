@@ -93,7 +93,7 @@ function setTokenCookie(req, res) {
     }
     let token = signToken(req.user.username);
     res.cookie('token', JSON.stringify(token), { maxAge: EXPIRES_IN_SECONDS * 1000 })
-    res.redirect('#!/modules');
+    res.redirect(config.url + '/#!/modules');
 }
 
 module.exports = {
