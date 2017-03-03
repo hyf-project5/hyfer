@@ -46,10 +46,9 @@ function isAuthenticated() {
                                 req.user = rows[0];
                                 next();
                             } else {
-                                res.status(403).send('Unauthorized');
+                                res.sendStatus(403);
                             }
                         })
-
                 })
                 .catch(err => console.log(err));
         });
@@ -65,7 +64,7 @@ function hasRole(role) {
             if (role === req.user.role) {
                 next();
             } else {
-                res.status(403).send('Unauthorized');
+                res.statusStatus(403);
             }
         })
 }
@@ -89,11 +88,11 @@ function signToken(username) {
 
 function setTokenCookie(req, res) {
     if (!req.user) {
-        return void res.status(404).json({ message: 'Something went wrong, please try again.' })
+        return void res.statusStatus(404);
     }
     let token = signToken(req.user.username);
     res.cookie('token', JSON.stringify(token), { maxAge: EXPIRES_IN_SECONDS * 1000 })
-    res.redirect(config.url + '/#!/modules');
+    res.redirect(config.url + '/#!/timeline');
 }
 
 module.exports = {
