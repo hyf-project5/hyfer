@@ -13,9 +13,11 @@
 
 ## Requirements
 
-* **Install dependencies**
+### Install dependencies
+
   * *Install node&npm :* if you haven't yet : [Node.js and NPM](http://nodejs.org/)
   * *Run the following :* `npm install`
+
 * **NOTE**
   * *CREATE DB :* first you should create the database(this is currently) to do so do the following:
 
@@ -26,3 +28,7 @@
   the `config.js.txt` file, and modify to reflect your specific database configuration.
 
   * *now just run `npm start`*
+
+### Admin functions
+
+Certain admin tasks require a `teacher` role. To initially give yourself this role you need to sign-in with GitHUb and then use the `my-sql` command line or the MySQL Workbench to change your role in the `users` table from `guest` to `teacher`.
