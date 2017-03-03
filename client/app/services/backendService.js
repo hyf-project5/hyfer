@@ -14,7 +14,7 @@
         }
 
         function getModules() {
-            return $http.get('/modules', getHttpConfig())
+            return $http.get('/api/modules', getHttpConfig())
                 .then(res => res.data);
         }
 
