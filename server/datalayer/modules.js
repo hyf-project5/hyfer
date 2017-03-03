@@ -17,7 +17,7 @@ function getModule(con, id) {
     return db.execQuery(con, sql, [id])
 }
 
-function getCurriculum(con) {
+function getModules(con) {
     const sql = GET_MODULE_QUERY + ` ORDER BY seq_number`;
     return db.execQuery(con, sql);
 }
@@ -36,7 +36,7 @@ function deleteModule(con, id) {
 
 module.exports = {
     getModule,
-    getCurriculum,
+    getModules,
     addModule,
     updateModule,
     deleteModule,

@@ -9,7 +9,7 @@ const groups = require('./api/groups');
 
 module.exports = function(app) {
 
-    app.get('/api/modules', modules.getCurriculum);
+    app.get('/api/modules', modules.getModules);
     app.get('/api/modules/:id', modules.getModule);
     app.post('/api/modules', modules.addModule);
     app.patch('/api/modules/:id', modules.updateModule);
