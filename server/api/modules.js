@@ -1,5 +1,5 @@
 'use strict';
-const db = require('../database/database');
+const db = require('../datalayer/modules');
 
 function getCurriculum(req, res) {
     getConnection(req, res)

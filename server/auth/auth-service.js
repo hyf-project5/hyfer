@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt')
 const compose = require('composable-middleware')
 const config = require('../config/config');
-const db = require('../database/database');
+const users = require('../datalayer/users');
 
 const validateJwt = expressJwt({ secret: config.jwtSecret });
 const EXPIRES_IN_SECONDS = 30 * 24 * 60 * 60; // 30 days
@@ -11,7 +11,7 @@ const EXPIRES_IN_SECONDS = 30 * 24 * 60 * 60; // 30 days
 function gitHubCallback(req, res, next) {
     getConnection(req, res)
         .then(con => {
-            return db.getUser(con, req.user.username)
+            return users.getUser(con, req.user.username)
                 .then(rows => {
                     if (rows.length === 0) {
                         let newUser = {
@@ -20,7 +20,7 @@ function gitHubCallback(req, res, next) {
                             oauth_provider: 'github',
                             role: 'guest'
                         }
-                        return db.addUser(con, newUser);
+                        return users.addUser(con, newUser);
                     }
                     return Promise.resolve();
                 })
@@ -40,7 +40,7 @@ function isAuthenticated() {
         .use((req, res, next) => {
             getConnection(req, res)
                 .then(con => {
-                    return db.getUser(con, req.user.username)
+                    return users.getUser(con, req.user.username)
                         .then(rows => {
                             if (rows.length > 0) {
                                 req.user = rows[0];
