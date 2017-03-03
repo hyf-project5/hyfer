@@ -14,11 +14,14 @@
         $stateProvider
             .state('home', {
                 url: '/',
-                component: 'homeLogin'
+                component: 'hyfHomeLogin'
             })
             .state('modules', {
                 url: '/modules',
-                component: 'modules'
+                component: 'hyfModules'
+            })
+            .state('timeline', {
+                url: '/timeline',
             })
 
     }

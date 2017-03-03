@@ -2,14 +2,14 @@
     'use strict';
     angular
         .module('hyferApp')
-        .component('toolbar', {
+        .component('hyfToolbar', {
             templateUrl: 'app/toolbar/view.html',
-            controller: toolbarCtrl
+            controller: hyfToolbarCtrl
         });
 
-    toolbarCtrl.inject = [];
+    hyfToolbarCtrl.inject = [];
 
-    function toolbarCtrl() {
+    function hyfToolbarCtrl() {
         let ctrl = this;
 
     }

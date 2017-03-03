@@ -2,14 +2,14 @@
     'use strict';
     angular
         .module('hyferApp')
-        .component('homeLogin', {
+        .component('hyfHomeLogin', {
             templateUrl: 'app/homeLogin/view.html',
-            controller: controller
+            controller: hyfHomeLoginCtrl
         });
 
-    controller.$inject = ['$state', '$cookies'];
+    hyfHomeLoginCtrl.$inject = ['$state', '$cookies'];
 
-    function controller($state, $cookies) {
+    function hyfHomeLoginCtrl($state, $cookies) {
         let ctrl = this;
         ctrl.submit = submit;
         ctrl.signin = signin;

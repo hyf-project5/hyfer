@@ -8,14 +8,14 @@
 
     angular
         .module('hyferApp')
-        .component('modules', {
+        .component('hyfModules', {
             templateUrl: 'client/app/modules/view.html',
-            controller: modulesCtrl
+            controller: hyfModulesCtrl
         });
 
-    modulesCtrl.inject = ['backendService'];
+    hyfModulesCtrl.inject = ['backendService'];
 
-    function modulesCtrl(backendService) {
+    function hyfModulesCtrl(backendService) {
         let ctrl = this;
         backendService.getModules()
             .then(data => {
