@@ -27,6 +27,7 @@
     "font-awesome": "^4.7.0",
     "jsonwebtoken": "^7.3.0",
     "lodash": "^4.17.4",
+    "lru-cache": "^4.0.2",
     "marked": "^0.3.6",
     "method-override": "^2.3.7",
     "morgan": "^1.8.1",
