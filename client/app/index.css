@@ -10,6 +10,7 @@
     position: absolute;
     top: 30px;
     left: 80px;
+    cursor: pointer;
 }
 
 a {
@@ -36,12 +37,75 @@ md-grid-list {
     border-radius: 5%;
 }
 
+.readmeHeader {
+    margin-top: 70px;
+}
+
+.githubIcon {
+    color: black;
+}
+
+div .readmeHeader {
+    transition: all 2s fade;
+    /*background-color: rgba(222, 33, 122, 0.8);*/
+}
+
 .homeLogin {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.7);
     border: 4px solid rgba(255, 255, 255, 0.2);
     /*border-top-left-radius: 6%;*/
     color: #ffffff;
+}
+
+.button {
+    border: 1px solid #0a3c59;
+    background: #3e779d;
+    background: -webkit-gradient(linear, left top, left bottom, from(#20323d), to(#20323d));
+    background: -webkit-linear-gradient(top, #acc1cf, #3e779d);
+    background: -moz-linear-gradient(top, #acc1cf, #3e779d);
+    background: -ms-linear-gradient(top, #acc1cf, #3e779d);
+    background: -o-linear-gradient(top, #acc1cf, #3e779d);
+    background-image: -ms-linear-gradient(top, #acc1cf 0%, #3e779d 100%);
+    padding: 10.5px 21px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 9px;
+    -webkit-box-shadow: rgba(255, 255, 255, 0.9) 0 10px 0, inset rgba(255, 255, 255, 0.4) 0 4px 0;
+    -moz-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1px 0;
+    box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1px 0;
+    text-shadow: #7ea4bd 0 1px 0;
+    color: #0c1c26;
+    font-size: 14px;
+    font-family: helvetica, serif;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.button:hover {
+    border: 1px solid #0a3c59;
+    text-shadow: #1e4158 0 1px 0;
+    background: #3e779d;
+    background: -webkit-gradient(linear, left top, left bottom, from(#65a9d7), to(#3e779d));
+    background: -webkit-linear-gradient(top, #65a9d7, #3e779d);
+    background: -moz-linear-gradient(top, #65a9d7, #3e779d);
+    background: -ms-linear-gradient(top, #65a9d7, #3e779d);
+    background: -o-linear-gradient(top, #65a9d7, #3e779d);
+    background-image: -ms-linear-gradient(top, #65a9d7 0%, #3e779d 100%);
+    color: #fff;
+}
+
+.button:active {
+    text-shadow: #1e4158 0 1px 0;
+    border: 1px solid #0a3c59;
+    background: #65a9d7;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#3e779d));
+    background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+    background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+    background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+    background: -o-linear-gradient(top, #3e779d, #65a9d7);
+    background-image: -ms-linear-gradient(top, #3e779d 0%, #65a9d7 100%);
+    color: #fff;
 }
 
 .footer {
