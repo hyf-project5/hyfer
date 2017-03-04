@@ -1,28 +1,39 @@
 <md-content id="homeLogin" style="height:100vh;">
     <div layout='row' layout-fill flex>
         <div flex>
-            <img class="hyfLogo" src="./images/logo.png" alt="hyfLogo">
+            <a ng-href="http://www.hackyourfuture.net/" target="_blank">
+                <img class="hyfLogo" ng-src="./images/logo.png " alt="hyfLogo ">
+            </a>
         </div>
 
-        <div flex layout='row' layout-align='center center' layout-padding layout-margin>
-            <md-button type="button" class="md-primary" ng-click="$ctrl.signin()">Sign in with GitHub</md-button>
-            <md-button type="button" class="md-primary" ui-sref='modules'>Curriculum</md-button>
+        <div flex layout='column' layout-align='center center' layout-padding layout-margin>
+            <h2>
+                DESCRIPTION: some description about our project or info of how to use it etc..
+                <hr>
+            </h2>
+            <div layout='row'>
+                <md-button class="button" ng-click="$ctrl.signin()">Signin
+                    <md-icon class="githubIcon " md-svg-src="./images/github.svg"></md-icon>
+                </md-button>
+                <md-button class='button' ui-sref='modules'>Curriculum</md-button>
+            </div>
         </div>
     </div>
 </md-content>
 
 <div>
-    <footer class="footer">
+    <footer class="footer ">
         <div>
-            <a href="https://www.facebook.com/hackyourfuturenow/" target="_blank">
-                <i aria-hidden="true">facebook </i>
-            </a>
-            <a href="https://twitter.com/hackyourfutures" target="_blank">
-                <i aria-hidden="true">twitter</i>
-            </a>
-            <a href="http://www.hackyourfuture.net/" target="_blank">
-                <i aria-hidden="true">Sign up!</i>
-            </a>
+            <md-button class="md-fab">
+                <a ng-href="https://www.facebook.com/hackyourfuturenow/" target="_blank ">
+                    <md-icon md-svg-src="./images/facebook.svg"></md-icon>
+                </a>
+            </md-button>
+            <md-button class="md-fab">
+                <a ng-href="https://twitter.com/hackyourfutures" target="_blank">
+                    <md-icon md-svg-src="./images/twitter.svg"></md-icon>
+                </a>
+            </md-button>
         </div>
     </footer>
 </div>
