@@ -1,29 +1,25 @@
 <hyf-toolbar></hyf-toolbar>
 <div flex-offset-gt-sm='10' flex-gt-sm='80'>
-    <table class="responsive-table">
+    <table class="nice-table">
         <thead>
             <tr>
                 <th data-field="id">Name</th>
-                <th data-field="name">Item Name</th>
-                <th data-field="price">Item Price</th>
+                <th data-field="name">Role</th>
             </tr>
         </thead>
 
-        <tbody>mo
-            <tr>
-                <td>Alvin</td>
-                <td>Eclair</td>
-                <td>$0.87</td>
-            </tr>
-            <tr>
-                <td>Alan</td>
-                <td>Jellybean</td>
-                <td>$3.76</td>
-            </tr>
-            <tr>
-                <td>Jonathan</td>
-                <td>Lollipop</td>
-                <td>$7.00</td>
+        <tbody>
+            <tr ng-repeat="user in $ctrl.users">
+                <td>{{user.username}}</td>
+                <td>
+                    <md-input-container>
+                        <label>{{user.role}}</label>
+                        <md-select ng-change="$ctrl.selectedRole(user.id, role)" aria-label="user role" ng-model="role">
+                            <md-option>Teacher</md-option>
+                            <md-option>Student</md-option>
+                        </md-select>
+                    </md-input-container>
+                </td>
             </tr>
         </tbody>
     </table>
