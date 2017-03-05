@@ -13,6 +13,12 @@ function getUsers(req, res) {
         .then(result => res.json(result));
 }
 
+function updateRole(req, res) {
+    getConnection(req, res)
+        .then(con => db.updateRole(con, req.params.id, req.body.role))
+        .then(result => res.json(result))
+}
+
 function getConnection(req, res) {
     return new Promise((resolve, reject) => {
         req.getConnection((err, con) => {
@@ -28,5 +34,6 @@ function getConnection(req, res) {
 
 module.exports = {
     getUser,
-    getUsers
+    getUsers,
+    updateRole
 }

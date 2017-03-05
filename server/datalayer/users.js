@@ -14,8 +14,13 @@ function addUser(con, user) {
     return db.execQuery(con, `INSERT INTO users SET ?`, user)
 }
 
+function updateRole(con, id, role) {
+    return db.execQuery(con, 'UPDATE users SET role=? WHERE id=?', [role, id])
+}
+
 module.exports = {
     getUser,
     getUsers,
-    addUser
+    addUser,
+    updateRole
 }
