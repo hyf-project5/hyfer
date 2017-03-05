@@ -7,6 +7,12 @@ function getUser(req, res) {
         .then(result => res.json(result));
 }
 
+function getUsers(req, res) {
+    getConnection(req, res)
+        .then(con => db.getUsers(con))
+        .then(result => res.json(result));
+}
+
 function getConnection(req, res) {
     return new Promise((resolve, reject) => {
         req.getConnection((err, con) => {
@@ -21,5 +27,6 @@ function getConnection(req, res) {
 }
 
 module.exports = {
-    getUser
+    getUser,
+    getUsers
 }
