@@ -12,5 +12,9 @@
     function hyfUsersController(backendService) {
         var ctrl = this;
 
+        backendService.getUsersProfile()
+            .then(res => {
+                ctrl.users = res;
+            })
     }
 })();
