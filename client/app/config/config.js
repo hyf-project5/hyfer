@@ -24,6 +24,10 @@
                 url: '/timeline',
                 component: 'hyfTimeline'
             })
+            .state('users', {
+                url: '/users',
+                component: 'hyfUsers'
+            })
 
     }
 
