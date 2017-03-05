@@ -3,6 +3,7 @@ const passport = require('passport');
 require('./auth/github-auth');
 const authService = require('./auth/auth-service');
 const github = require('./api/github');
+const users = require('./api/users');
 
 const modules = require('./api/modules');
 const groups = require('./api/groups');
@@ -22,6 +23,8 @@ module.exports = function(app) {
     app.delete('/api/groups/:id', groups.deleteGroup);
 
     app.get('/api/github/readme/:owner/:repo', github.getReadMeAsHtml);
+
+    app.get('/api/user', authService.isAuthenticated(), users.getUser);
 
     app.get('/auth/github', passport.authenticate('github'));
     app.get('/auth/github/callback', passport.authenticate('github', { session: false, failureRedirect: '/login' }),
