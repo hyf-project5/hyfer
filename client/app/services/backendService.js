@@ -12,7 +12,9 @@
         return {
             getModules: getModules,
             getTimeline: getTimeline,
-            getReadme: getReadme
+            getReadme: getReadme,
+            getUsersProfile: getUsersProfile,
+            updateUserRole: updateUserRole
         }
 
         function getModules() {
@@ -29,6 +31,16 @@
         function getReadme(gitRepo) {
             return $http.get('/api/github/readme/hackyourfuture/' + gitRepo)
                 .then(res => res.data);
+        }
+
+        function getUsersProfile() {
+            return $http.get('/api/users', getHttpConfig())
+                .then(res => res.data);
+        }
+
+        function updateUserRole(userId, role) {
+            return $http.patch('/api/user/' + userId, role)
+                .then(res => res)
         }
 
     }
