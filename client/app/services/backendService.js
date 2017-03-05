@@ -39,7 +39,7 @@
         }
 
         function updateUserRole(userId, role) {
-            return $http.patch('/api/user/' + userId, role)
+            return $http.patch('/api/user/' + userId, { "role": role }, getHttpConfig())
                 .then(res => res)
         }
 
