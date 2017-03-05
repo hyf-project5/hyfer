@@ -64,7 +64,7 @@ function hasRole(role) {
             if (role === req.user.role) {
                 next();
             } else {
-                res.statusStatus(403);
+                res.sendStatus(403);
             }
         })
 }
