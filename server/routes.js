@@ -26,6 +26,7 @@ module.exports = function(app) {
 
     app.get('/api/users', authService.isAuthenticated(), users.getUsers);
     app.get('/api/user', authService.isAuthenticated(), users.getUser);
+    app.patch('/api/user/:id', authService.hasRole('teacher'), users.updateRole);
 
     app.get('/auth/github', passport.authenticate('github'));
     app.get('/auth/github/callback', passport.authenticate('github', { session: false, failureRedirect: '/login' }),
