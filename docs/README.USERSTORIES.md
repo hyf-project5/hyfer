@@ -8,7 +8,7 @@
 
 ### Teachers
 ---
-- **Teacher** ➜ 1) Have a basic login / authentication system im place with a seeded Administrator account, using federated login (GitHub).
+- **Teacher** ➜ 1) Have a login + authentication system using GitHub Oauth.
 
 - **Teacher** ➜ 2) I want to be able to add a new class. This automagically adds the entire ordered curriculum as we know it (from the module sequence numbers, i.e. HTML/css = 1001, Js 1 = 2001, Js 2 = 2002 etc.).
 
