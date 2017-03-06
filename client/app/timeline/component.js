@@ -100,7 +100,7 @@
             return milliseconds;
         }
         function randomColor() {
-            var themeColor = ['red', 'green', '#1f77b4', 'orange', 'coral', '#ff7f0e', 'DarkTurquoise', '#2ca02c', '#d62728', 'salmon', 'SteelBlue', '#9467bd', '#8c564b', 'LimeGreen', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf', '#1f77b4', '#ff7f0e'];
+            var themeColor = ['#5cbae6', '#b6d957', '#fac364', '#8cd3ff', '#d998cb', '#f2d249', '#93b9c6', '#ccc5a8', '#52bacc', '#dbdb46', '#98aafb'];
             var xColor = Math.floor(Math.random() * themeColor.length);
             return themeColor[xColor];
         }
