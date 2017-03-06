@@ -18,11 +18,11 @@
             })
 
         ctrl.selectedRole = function(userId, role) {
-            backendService.updateUserRole(userId, role)
-                .then(res => {
+            backendService.updateUserRole(userId, role.toLowerCase())
+                .then(() => {
                     ctrl.users.forEach(user => {
                         if (user.id == userId) {
-                            user.role = role;
+                            user.role = role.toLowerCase();
                         }
                     })
                 })
