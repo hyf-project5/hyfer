@@ -18,7 +18,7 @@ function getModule(con, id) {
 }
 
 function getModules(con) {
-    const sql = GET_MODULE_QUERY + ` ORDER BY seq_number`;
+    const sql = GET_MODULE_QUERY + ` WHERE seq_number IS NOT NULL ORDER BY seq_number`;
     return db.execQuery(con, sql);
 }
 
