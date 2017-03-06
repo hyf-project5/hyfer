@@ -23,7 +23,6 @@
                 .then(res => res.data);
         }
 
-
         function getTimeline() {
             return $http.get('/api/groups')
                 .then(res => res.data)
