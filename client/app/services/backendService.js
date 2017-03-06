@@ -10,11 +10,12 @@
     function backendService($http) {
 
         return {
-            getModules: getModules,
-            getTimeline: getTimeline,
-            getReadme: getReadme,
-            getUsersProfile: getUsersProfile,
-            updateUserRole: updateUserRole
+            getModules,
+            getTimeline,
+            getReadme,
+            getMyProfile,
+            getUsersProfile,
+            updateUserRole
         }
 
         function getModules() {
@@ -30,6 +31,11 @@
 
         function getReadme(gitRepo) {
             return $http.get('/api/github/readme/hackyourfuture/' + gitRepo)
+                .then(res => res.data);
+        }
+
+        function getMyProfile() {
+            return $http.get('/api/user', getHttpConfig())
                 .then(res => res.data);
         }
 

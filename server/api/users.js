@@ -4,7 +4,7 @@ const db = require('../datalayer/users');
 function getUser(req, res) {
     getConnection(req, res)
         .then(con => db.getUser(con, req.user.username))
-        .then(result => res.json(result));
+        .then(result => res.json(result[0]));
 }
 
 function getUsers(req, res) {
