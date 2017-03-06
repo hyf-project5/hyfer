@@ -17,7 +17,6 @@ function gitHubCallback(req, res, next) {
                         let newUser = {
                             username: req.user.username,
                             access_token: req.user.accessToken,
-                            oauth_provider: 'github',
                             role: 'guest'
                         }
                         return users.addUser(con, newUser);
