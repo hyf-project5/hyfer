@@ -87,9 +87,22 @@ a {
     text-align: center;
     vertical-align: middle;
     line-height: 55px; 
-    /*-webkit-box-shadow:inset 0px 0px 0px 2px #ffffff;
-    -moz-box-shadow:inset 0px 0px 0px 2px #ffffff;
-    box-shadow:inset 0px 0px 0px 2px #ffffff;*/
+}
+
+.timline-top-space {
+    border-radius: .5em;
+    height: 20px;
+    transition: background 300ms ease-in-out;
+    display: inline-block;
+    position: relative;
+    width: 300px;
+    margin-top: 2px;
+    margin-right: 3px;
+    margin-left: 3px;
+    margin-bottom: 2px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 55px; 
 }
 
 .module-block:hover {
@@ -100,7 +113,7 @@ a {
 
 
 .readmeHeader {
-    margin-top: 350px;
+    margin-top: 370px;
 }
 
 .githubIcon {

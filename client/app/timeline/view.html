@@ -19,7 +19,7 @@
                 <div class="timline-date" style="left: {{$ctrl.indicatorDatePosition}}px;">
                     {{$ctrl.currentDate}}
                 </div>
-                 <div class="module-block" style="height: 20px;">
+                 <div class="timline-top-space">
                  </div>
                 <div ng-repeat="class in $ctrl.classes">
                     <div class="module-block" ng-repeat="module in $ctrl.timeline[class]" ng-click="$ctrl.showReadme(module)" style="left: {{module.position}}px; width: {{module.width}}px; background: {{module.bgColor}};">
