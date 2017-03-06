@@ -7,9 +7,11 @@ const WEEKS_TO_MSEC_FACTOR = 7 * 24 * 60 * 60 * 1000;
 const TIME_LINE_FOR_ALL_GROUPS_QUERY =
     `SELECT groups.id,
         groups.group_name,
+        groups.starting_date,
         running_modules.starting_on,
         running_modules.scheduled_end,
         running_modules.finished,
+        running_modules.duration,
         modules.module_name,
         modules.module_img,
         modules.git_url,
