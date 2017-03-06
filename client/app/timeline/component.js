@@ -53,7 +53,7 @@
                     var classBgColor = randomColor();
                     ctrl.timeline[entry].forEach(function (runningModule) {
                         runningModule.classBgColor = classBgColor;
-                        runningModule.width = runningModule.duration * 7 * 15;
+                        runningModule.width = (runningModule.duration * 7 * 15) - 6;
                         runningModule.position = position * 15;
                         runningModule.bgColor = randomColor();
                     });
@@ -108,9 +108,9 @@
             var d = new Date(date);
             d.setHours(0, 0, 0, 0);
             var t = new Date(d);
-  t.setDate(t.getDate() - t.getDay());
+            t.setDate(t.getDate() - t.getDay());
             console.log(t);
-  return t;
+            return t;
         }
     }
 })();
