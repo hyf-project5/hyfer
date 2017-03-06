@@ -23,6 +23,7 @@
                  </div>
                 <div ng-repeat="class in $ctrl.classes">
                     <div class="module-block" ng-repeat="module in $ctrl.timeline[class]" ng-click="$ctrl.showReadme(module)" style="left: {{module.position}}px; width: {{module.width}}px; background: {{module.bgColor}};">
+                        <md-tooltip>Run from {{module.startingDate}} to {{module.endingDate}}</md-tooltip>
                         {{module.module_name}}
                     </div>
                 </div>
