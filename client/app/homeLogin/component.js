@@ -7,12 +7,13 @@
             controller: hyfHomeLoginCtrl
         });
 
-    hyfHomeLoginCtrl.$inject = ['$state', '$cookies'];
+    hyfHomeLoginCtrl.$inject = ['$state', '$cookies', 'me'];
 
-    function hyfHomeLoginCtrl($state, $cookies) {
+    function hyfHomeLoginCtrl($state, $cookies, me) {
         let ctrl = this;
         ctrl.submit = submit;
         ctrl.signin = signin;
+        ctrl.me = me;
         console.log($cookies.getAll())
 
 

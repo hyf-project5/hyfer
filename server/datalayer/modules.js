@@ -4,7 +4,7 @@ const db = require('./database');
 // Modules queries
 
 const GET_MODULE_QUERY =
-    `SELECT id, module_name, description, seq_number, added_on, module_img, default_duration, git_url, git_owner, git_repo
+    `SELECT id, module_name, description, seq_number, added_on, default_duration, git_url, git_owner, git_repo
     FROM modules`;
 const ADD_MODULE_QUERY = `INSERT INTO modules SET ?`;
 const UPDATE_MODULE_QUERY = `UPDATE modules SET ? WHERE id = ?`;
@@ -18,7 +18,7 @@ function getModule(con, id) {
 }
 
 function getModules(con) {
-    const sql = GET_MODULE_QUERY + ` ORDER BY seq_number`;
+    const sql = GET_MODULE_QUERY + ` WHERE seq_number IS NOT NULL ORDER BY seq_number`;
     return db.execQuery(con, sql);
 }
 

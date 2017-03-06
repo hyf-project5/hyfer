@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2017-03-06
+
+### Added
+
+- Injectable value 'me'. An object with two properties from the `users` table: `username` and `role`.
+
 ## 2017-03-02
 
 ### Added
