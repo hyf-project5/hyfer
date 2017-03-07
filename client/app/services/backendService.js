@@ -11,6 +11,7 @@
 
         return {
             getModules,
+            addModule,
             getTimeline,
             getReadme,
             getMyProfile,
@@ -21,6 +22,10 @@
         function getModules() {
             return $http.get('/api/modules', getHttpConfig())
                 .then(res => res.data);
+        }
+
+        function addModule(module) {
+            return $http.post('/api/modules', module, getHttpConfig())
         }
 
         function getTimeline() {
