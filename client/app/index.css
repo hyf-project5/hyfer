@@ -18,6 +18,7 @@ a {
     color: #f4ad42;
 }
 
+
 /*md-grid-list {
     margin-bottom: 5px;
 }*/
@@ -25,17 +26,19 @@ a {
 .timliene {
     margin-top: 15px;
 }
+
 .timline-date {
     position: absolute;
     height: 40px;
     z-index: 3;
 }
+
 .indicator {
-    width:0;
-    border:0;
-    border-left:1px;
-    border-style:dashed;
-    border-color:#0000FF;
+    width: 0;
+    border: 0;
+    border-left: 1px;
+    border-style: dashed;
+    border-color: #0000FF;
     position: absolute;
     z-index: 3;
 }
@@ -52,25 +55,25 @@ a {
 .classes-container {
     vertical-align: middle;
     z-index: 2;
+    margin-top: 20px;
     overflow: hidden;
     position: absolute;
-    background-color: rgb(250,250,250);
+    background-color: rgb(250, 250, 250);
 }
 
 .class-block {
-    display: inline-block;    
+    display: block;
     width: 150px;
     height: 55px;
-    margin-top: 2px;
+    margin-top: 0px;
     margin-right: 0px;
     margin-left: 0px;
-    margin-bottom: 2px;
+    margin-bottom: 6px;
     text-align: center;
-    border-bottom-left-radius: .5em;    
-    border-top-left-radius: .5em;   
+    border-bottom-left-radius: .5em;
+    border-top-left-radius: .5em;
     vertical-align: middle;
-    line-height: 55px; 
-
+    line-height: 55px;
 }
 
 .module-block {
@@ -80,37 +83,23 @@ a {
     position: relative;
     /*width: 300px;*/
     height: 55px;
-    margin-top: 2px;
-    margin-right: 3px;
-    margin-left: 3px;
-    margin-bottom: 2px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 6px;
+    margin-bottom: 6px;
     text-align: center;
     vertical-align: middle;
-    line-height: 55px; 
+    line-height: 55px;
 }
 
-.timline-top-space {
-    border-radius: .5em;
-    height: 20px;
-    transition: background 300ms ease-in-out;
-    display: inline-block;
-    position: relative;
-    width: 300px;
-    margin-top: 2px;
-    margin-right: 3px;
-    margin-left: 3px;
-    margin-bottom: 2px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 55px; 
+.modules-container {
+    margin-top: 20px;
 }
 
 .module-block:hover {
     cursor: pointer;
     background-color: rgba(222, 33, 122, 0.8)
-    
 }
-
 
 .readme-header {
     /*margin-top: 370px;*/
@@ -208,4 +197,3 @@ div .readmeHeader {
 .footer a {
     text-decoration: none;
 }
-
