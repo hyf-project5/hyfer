@@ -6,30 +6,30 @@
                 <div class="class-block" style="height: 20px;">
                  </div>
                 <div ng-repeat="class in $ctrl.classes">
-                    <div class="class-block" style="background: {{$ctrl.timeline[class][0].classBgColor}};">
+                    <div class="class-block" ng-style="{'background': $ctrl.timeline[class][0].classBgColor}">
                         {{class}}
                     </div>
                 </div>
             </div>
 
-            <div id="main-timeline" class="timeline-container">
+            <div id="main-timeline">
                 
-                <div class="indicator" style="left: {{$ctrl.indicatorPosition}}px;">
+                <div class="indicator" ng-style="{'left': $ctrl.indicatorPosition + 'px', 'height':  $ctrl.indicatorHeight + 'px'}"> 
                 </div>
-                <div class="timline-date" style="left: {{$ctrl.indicatorDatePosition}}px;">
+                <div class="timline-date" ng-style="{'left': $ctrl.indicatorDatePosition + 'px'}">
                     {{$ctrl.currentDate}}
                 </div>
                  <div class="timline-top-space">
                  </div>
                 <div ng-repeat="class in $ctrl.classes">
-                    <div class="module-block" ng-repeat="module in $ctrl.timeline[class]" ng-click="$ctrl.showReadme(module)" style="left: {{module.position}}px; width: {{module.width}}px; background: {{module.bgColor}};">
+                    <div ng-repeat="module in $ctrl.timeline[class]" ng-click="$ctrl.showReadme(module)" class="module-block" ng-class="module.blockClass" ng-style="{'left': module.position + 'px', 'background':  module.bgColor}"> 
                         <md-tooltip>Run from {{module.startingDate}} to {{module.endingDate}}</md-tooltip>
                         {{module.module_name}}
                     </div>
                 </div>
             </div>
         </div>
-        <div class="readmeHeader">
+        <div class="readme-header" ng-style="{'margin-top': $ctrl.readmeHeaderTop + 'px'}">
             <h2>
                 {{$ctrl.readme.moduleName}} README.md
                 <md-button ng-href="{{$ctrl.readme.gitUrl}}" target='_blank' class="md-icon-button" aria-label="Github icon">
