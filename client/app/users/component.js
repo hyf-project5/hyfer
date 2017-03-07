@@ -7,22 +7,34 @@
             controller: hyfUsersController
         });
 
-    hyfUsersController.$inject = ['backendService'];
+    hyfUsersController.$inject = ['backendService', '$mdToast', 'me', '$state'];
 
-    function hyfUsersController(backendService) {
-        var ctrl = this;
-
+    function hyfUsersController(backendService, $mdToast, me, $state) {
+        // let this = this;
+        if (me.role !== 'teacher') {
+            alert('access denied!!')
+            return $state.go('timeline')
+        }
         backendService.getUsersProfile()
             .then(res => {
-                ctrl.users = res;
-            })
+                this.users = res;
+            }).catch(err => console.log(err))
 
-        ctrl.selectedRole = function(userId, role) {
+        this.selectedRole = function(userId, role) {
             backendService.updateUserRole(userId, role.toLowerCase())
                 .then(() => {
-                    ctrl.users.forEach(user => {
+                    this.users.forEach(user => {
                         if (user.id == userId) {
                             user.role = role.toLowerCase();
+                            $mdToast.show(
+                                $mdToast.simple()
+                                .textContent(`${user.username}'s role updated to ${role.toLowerCase()}!`)
+                                .position('right')
+                                .hideDelay(3000)
+                                .action('Close')
+                                .highlightAction(true)
+                                .highlightClass('md-warn')
+                            );
                         }
                     })
                 })

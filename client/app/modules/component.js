@@ -1,26 +1,30 @@
 (function() {
     'use strict';
 
-    // Usage:
-    // 
-    // Creates:
-    // 
+    class ModulesController {
 
-    angular
-        .module('hyferApp')
-        .component('hyfModules', {
-            templateUrl: 'client/app/modules/view.html',
-            controller: hyfModulesCtrl
-        });
+        static get $inject() {
+            return ['backendService', 'me', '$state'];
+        }
 
-    hyfModulesCtrl.$inject = ['backendService'];
+        constructor(backendService, me, $state) {
+            if (me.role !== 'teacher') {
+                alert('access denied!!')
+                return $state.go('timeline')
+            }
+            this.backendService = backendService;
+            backendService.getModules()
+                .then(data => {
+                    this.modules = data;
+                })
+                .catch(err => console.log(err));
+        }
 
-    function hyfModulesCtrl(backendService) {
-        let ctrl = this;
-        backendService.getModules()
-            .then(data => {
-                ctrl.modules = data;
-            })
-            .catch(err => console.log(err));
     }
+
+    angular.module('hyferApp')
+        .component('hyfModules', {
+            templateUrl: 'client/app/modules/modules.component.html',
+            controller: ModulesController
+        });
 })();

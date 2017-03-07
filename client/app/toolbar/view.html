@@ -4,13 +4,13 @@
         <md-button ui-sref='home'>
             Home
         </md-button>
-        <md-button ui-sref='modules'>
+        <md-button ui-sref='modules' ng-hide="$ctrl.notTeacher()">
             Modules
         </md-button>
-        <md-button ui-sref='timeline' ui-sref-active="active">
+        <md-button ui-sref='timeline'>
             Timeline
         </md-button>
-        <md-button ui-sref='users' ui-sref-active="active">
+        <md-button ui-sref='users' ng-hide="$ctrl.notTeacher()">
             Users
         </md-button>
         <span flex></span>
