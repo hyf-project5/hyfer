@@ -1,5 +1,8 @@
 <hyf-toolbar></hyf-toolbar>
 <md-list layout='column' flex-offset-gt-sm='10' flex-gt-sm='80'>
+    <md-button ng-click="$ctrl.addModuleModal($event)">
+        Add module
+    </md-button>
     <md-list-item class="md-3-line" ng-repeat="module in $ctrl.modules" ng-click="null">
         <img ng-src="{{module.module_img}}" class="md-avatar" alt="{{module.module_name}}" />
         <div class="md-list-item-text" layout="column">
