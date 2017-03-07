@@ -22,7 +22,7 @@
                  <div class="timline-top-space">
                  </div>
                 <div ng-repeat="class in $ctrl.classes">
-                    <div ng-repeat="module in $ctrl.timeline[class]" ng-click="$ctrl.showReadme(module)" class="module-block" ng-class="module.blockClass" ng-style="{'left': module.position + 'px', 'background':  module.bgColor}"> 
+                    <div ng-repeat="module in $ctrl.timeline[class]" ng-click="$ctrl.showReadme(module)" class="module-block {{module.startingWeekClass}} {{module.blockClass}}" ng-style="{'background':  module.bgColor}"> 
                         <md-tooltip>Run from {{module.startingDate}} to {{module.endingDate}}</md-tooltip>
                         {{module.module_name}}
                     </div>

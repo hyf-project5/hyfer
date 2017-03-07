@@ -31,12 +31,12 @@
                 scrollTimelineToToday(scrollToLeft);
                 ctrl.classes.forEach(function (entry) {
                     let firsModuleStartDateInThisGroup = Math.round(computedMilliseconds(getClosestSundayAndRidOfTime(ctrl.timeline[entry][0].starting_date)) / days);
-                    let position = firsModuleStartDateInThisGroup - zeroPoint + 10;
+                    let position = firsModuleStartDateInThisGroup - zeroPoint + 10;  
                     let classBgColor = randomColor();
                     ctrl.timeline[entry].forEach(function (runningModule) {
                         runningModule.classBgColor = classBgColor;
                         runningModule.blockClass = 'block-no-' + runningModule.duration;
-                        runningModule.width = (runningModule.duration * 7 * 15) - 6;
+                        runningModule.startingWeekClass = 'block-week-' + Math.round(position / 7);              
                         runningModule.position = position * 15;
                         runningModule.bgColor = randomColor();
                         runningModule.startingDate = getInterfaceDate(firsModuleStartDateInThisGroup);

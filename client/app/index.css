@@ -1,3 +1,4 @@
+@import url("calendar.css");
 #homeLogin {
     background: url(/images/bg.jpg) no-repeat center center fixed;
     font-size: 14px;
@@ -208,54 +209,3 @@ div .readmeHeader {
     text-decoration: none;
 }
 
-
-
-/* Timeline blocks */
-.block-no-1 {
-    width: 99px;
-}
-.block-no-2 {
-    width: 204px;
-}
-.block-no-3 {
-    width: 309px;
-}
-.block-no-4 {
-    width: 414px;
-}
-.block-no-5 {
-    width: 519px;
-}
-.block-no-6 {
-    width: 624px;
-}
-
-
-@media (max-width: 550px) {
-
-    .module-block {
-        font-size: .8em;
-    }
-        .block-no-1 {
-        width: 50px;
-    }
-    .block-no-2 {
-        width: 106px;
-    }
-    .block-no-3 {
-        width: 162px;
-        
-    }
-    .block-no-4 {
-        width: 218px;
-    }
-    .block-no-5 {
-        width: 274px;
-    }
-    .block-no-6 {
-        width: 330px;
-    }
-    .class-block {
-        font-size: .8em;
-    }
-}
