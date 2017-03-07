@@ -5,11 +5,13 @@
             <div class="classes-container">
                 <div class="class-block" style="height: 20px;">
                  </div>
-                <div ng-repeat="class in $ctrl.classes">
-                    <div class="class-block" ng-style="{'background': $ctrl.timeline[class][0].classBgColor}">
+                <!--<div ng-repeat="class in $ctrl.classes">-->
+                         <hyf-class-block-item></hyf-class-block-item>
+
+                    <!--<div class="class-block" ng-style="{'background': $ctrl.timeline[class][0].classBgColor}">
                         {{class}}
-                    </div>
-                </div>
+                    </div>-->
+                <!--</div>-->
             </div>
 
             <div id="main-timeline">
