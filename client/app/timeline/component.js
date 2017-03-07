@@ -18,7 +18,6 @@
         const current_date = new Date();
         ctrl.currentDate = day_names[current_date.getDay()] + ", " + current_date.getDate() + " " + month_names[current_date.getMonth()] + " " + current_date.getFullYear();
         ctrl.todayPosition = Math.round(computedMilliseconds(current_date) / days);
-        // Math.round(computedMilliseconds(current_date) / days);
         backendService.getTimeline()
             .then(res => {
                 ctrl.timeline = res;
