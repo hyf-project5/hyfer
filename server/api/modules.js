@@ -16,7 +16,7 @@ function getModule(req, res) {
 function addModule(req, res) {
     getConnection(req, res)
         .then(con => db.addModule(con, req.body))
-        .then(() => res.statusStatus(200));
+        .then(() => res.sendStatus(200));
 
 }
 
