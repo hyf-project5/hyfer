@@ -2,34 +2,29 @@
 <div flex-offset-gt-sm='10' flex-gt-sm='80'>
     <md-content>
         <div id="timeline" class="timliene">
-            <div class="classes-container">
-                <div class="class-block" style="height: 20px;">
-                 </div>
-                <div ng-repeat="class in $ctrl.classes">
-                    <div class="class-block" style="background: {{$ctrl.timeline[class][0].classBgColor}};">
-                        {{class}}
-                    </div>
-                </div>
-            </div>
+            <hyf-class-block></hyf-class-block>
+            <hyf-main-timeline></hyf-main-timeline>
 
-            <div id="main-timeline" class="timeline-container">
-                
-                <div class="indicator" style="left: {{$ctrl.indicatorPosition}}px;">
+            <!--<div id="main-timeline">
+
+                <div class="indicator" ng-style="{'left': $ctrl.indicatorPosition + 'px', 'height':  $ctrl.indicatorHeight + 'px'}">
+                    <md-tooltip>Today is: {{$ctrl.currentDate}}</md-tooltip>
                 </div>
-                <div class="timline-date" style="left: {{$ctrl.indicatorDatePosition}}px;">
+                <div class="timline-date" ng-style="{'left': $ctrl.indicatorDatePosition + 'px'}">
+                    <md-tooltip>Today is: {{$ctrl.currentDate}}</md-tooltip>
                     {{$ctrl.currentDate}}
                 </div>
-                 <div class="timline-top-space">
-                 </div>
-                <div ng-repeat="class in $ctrl.classes">
-                    <div class="module-block" ng-repeat="module in $ctrl.timeline[class]" ng-click="$ctrl.showReadme(module)" style="left: {{module.position}}px; width: {{module.width}}px; background: {{module.bgColor}};">
-                        <md-tooltip>Run from {{module.startingDate}} to {{module.endingDate}}</md-tooltip>
-                        {{module.module_name}}
+                <div class="modules-container">
+                    <div ng-repeat="class in $ctrl.classes">
+                        <div ng-repeat="module in $ctrl.timeline[class]" ng-click="$ctrl.showReadme(module)" class="module-block {{module.startingWeekClass}} {{module.blockClass}}" ng-style="{'background':  module.bgColor}">
+                            <md-tooltip>Run from {{module.startingDate}} to {{module.endingDate}}</md-tooltip>
+                            {{module.module_name}}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
-        <div class="readmeHeader">
+        <div class="readme-header" ng-style="{'margin-top': $ctrl.readmeHeaderTop + 'px'}">
             <h2>
                 {{$ctrl.readme.moduleName}} README.md
                 <md-button ng-href="{{$ctrl.readme.gitUrl}}" target='_blank' class="md-icon-button" aria-label="Github icon">
