@@ -16,7 +16,7 @@
 
     function mainConfig($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise('/')
+        $urlRouterProvider.otherwise('/timeline')
         $stateProvider
             .state('modules', {
                 url: '/modules',
