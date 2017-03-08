@@ -4,10 +4,10 @@
     class ModulesController {
 
         static get $inject() {
-            return ['backendService', 'me', '$state', '$mdDialog', 'toastService'];
+            return ['backendService', '$state', '$mdDialog', 'toastService'];
         }
 
-        constructor(backendService, me, $state, $mdDialog, toastService) {
+        constructor(backendService, $state, $mdDialog, toastService) {
             backendService.getModules()
                 .then(data => {
                     this.modules = data;
