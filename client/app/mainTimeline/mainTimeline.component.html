@@ -1,0 +1,24 @@
+<div id="main-timeline">
+
+    <hyf-timeline-indicator></hyf-timeline-indicator>
+    <!--<hyf-timeline-row ng-repeat="class in $ctrl.classes" item- "class">
+        <hyf-timeline-module ng-repeat="module in $ctrl.timeline[class]" module="module">
+        </hyf-timeline-module>
+    </hyf-timeline-row>-->
+
+
+
+
+
+
+
+
+    <div class="modules-container">
+        <div ng-repeat="class in $ctrl.classes">
+            <div ng-repeat="module in $ctrl.timeline[class]" ng-click="$ctrl.showReadme(module)" class="module-block {{module.startingWeekClass}} {{module.blockClass}}" ng-style="{'background':  module.bgColor}">
+                <md-tooltip>Run from {{module.startingDate}} to {{module.endingDate}}</md-tooltip>
+                {{module.module_name}}
+            </div>
+        </div>
+    </div>
+</div>
