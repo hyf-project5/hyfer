@@ -1,17 +1,6 @@
 <div id="main-timeline">
 
     <hyf-timeline-indicator></hyf-timeline-indicator>
-    <!--<hyf-timeline-row ng-repeat="class in $ctrl.classes" item- "class">
-        <hyf-timeline-module ng-repeat="module in $ctrl.timeline[class]" module="module">
-        </hyf-timeline-module>
-    </hyf-timeline-row>-->
-
-
-
-
-
-
-
 
     <div class="modules-container">
         <div ng-repeat="class in $ctrl.classes">
@@ -22,3 +11,18 @@
         </div>
     </div>
 </div>
+
+<div class="readme-header" ng-style="{'margin-top': $ctrl.readmeHeaderTop + 'px'}">
+    <h2>
+        {{$ctrl.readme.moduleName}} README.md
+        <md-button ng-href="{{$ctrl.readme.gitUrl}}" target='_blank' class="md-icon-button" aria-label="Github icon">
+            <md-icon class="githubIcon" md-svg-src="./images/github.svg"></md-icon>
+        </md-button>
+        <hr>
+    </h2>
+</div>
+
+<md-card>
+    <md-card-content ng-bind-html="$ctrl.readmeFile">
+    </md-card-content>
+</md-card>

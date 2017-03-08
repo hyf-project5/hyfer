@@ -7,7 +7,7 @@
         }
 
         constructor() {
-            console.log('start the footer');
+
         }
     }
 

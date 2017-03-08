@@ -6,10 +6,11 @@
     class MainTimelineController {
 
         static get $inject() {
-            return ['backendService'];
+            return ['backendService', '$sce'];
         }
-        constructor(backendService) {
+        constructor(backendService, $sce) {
             this.backendService = backendService;
+            this.$sce = $sce;
             let ctrl = this;
             const current_date = new Date();
             backendService.getTimeline()
@@ -44,13 +45,23 @@
                             firsModuleStartDateInThisGroup = endDate;
                         });
                     });
+
+                    let gitUrl = this.timeline[this.classes[0]][0].git_url + this.timeline[this.classes[0]][0].git_repo;
+                    this.readme = {
+                        moduleName: this.timeline[this.classes[0]][0].module_name,
+                        gitUrl: gitUrl
+                    }
+                    this.maxLength = 0;
+                    for (let key in this.timeline) {
+                        this.maxLength = Math.max(this.maxLength, this.timeline[key].length, 10);
+                    }
+                    backendService.getReadme(this.timeline[this.classes[0]][0].git_repo)
+                        .then(res => this.readmeFile = $sce.trustAsHtml(res))
+                        .catch(err => console.log(err));
                 })
                 .catch(err => console.log(err));
+
         }
-
-
-
-
 
 
         computedMilliseconds(date) {
@@ -82,6 +93,19 @@
                     document.getElementById("main-timeline").scrollLeft = scrollToLeft;
                 }, 50);
         }
+
+        showReadme(module) {
+            this.backendService.getReadme(module.git_repo)
+                .then(res => {
+                    this.readmeFile = this.$sce.trustAsHtml(res);
+                    this.readme = {
+                        moduleName: module.module_name,
+                        gitUrl: module.git_url + module.git_repo
+                    }
+                })
+                .catch(err => console.log(err))
+        }
+
 
 
 
