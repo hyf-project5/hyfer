@@ -6,15 +6,20 @@ const github = require('./api/github');
 const users = require('./api/users');
 
 const modules = require('./api/modules');
+const runningModules = require('./api/running-modules')
 const groups = require('./api/groups');
 
 module.exports = function(app) {
 
     app.get('/api/modules', authService.hasRole('teacher'), modules.getModules);
-    app.get('/api/modules/:id', authService.hasRole('teacher'), modules.getModule);
     app.post('/api/modules', authService.hasRole('teacher'), modules.addModule);
     app.patch('/api/modules/:id', authService.hasRole('teacher'), modules.updateModule);
     app.delete('/api/modules/:id', authService.hasRole('teacher'), modules.deleteModule);
+
+    app.get('/api/running/:groupId', authService.hasRole('teacher'), runningModules.getRunningModules);
+    app.patch('/api/running/:moduleId/:groupId/:position', authService.hasRole('teacher'), runningModules.addModuleToRunningModules);
+    app.patch('/api/running/:groupId/:position', authService.hasRole('teacher'), runningModules.updateRunningModule);
+    app.delete('/api/running/:groupId/:position', authService.hasRole('teacher'), runningModules.deleteRunningModule);
 
     app.get('/api/groups', groups.getTimelineForAllGroups);
     app.get('/api/groups/:id', groups.getTimelineForAGroup);
@@ -25,7 +30,7 @@ module.exports = function(app) {
     app.get('/api/github/readme/:owner/:repo', github.getReadMeAsHtml);
 
     app.get('/api/user', authService.isAuthenticated(), users.getUser);
-    app.get('/api/users', authService.hasRole('teacher'), users.getUsers);
+    app.get('/api/users', authService.isAuthenticated(), users.getUsers);
     app.patch('/api/user/:id', authService.hasRole('teacher'), users.updateRole);
 
     app.get('/auth/github', passport.authenticate('github'));

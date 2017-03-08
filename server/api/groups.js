@@ -1,6 +1,7 @@
 'use strict';
 const _ = require('lodash');
 const db = require('../datalayer/groups');
+const getConnection = require('./connection').getConnection;
 
 function getTimelineForAllGroups(req, res) {
     getConnection(req, res)
@@ -37,19 +38,6 @@ function deleteGroup(req, res) {
     getConnection(req, res)
         .then(con => db.deleteGroup(con, req.params.id))
         .then(result => res.statusStatus(result.affectedRows > 0 ? 200 : 404));
-}
-
-function getConnection(req, res) {
-    return new Promise((resolve, reject) => {
-        req.getConnection((err, con) => {
-            if (err) {
-                res.sendStatus(500);
-                reject(err);
-            } else {
-                resolve(con);
-            }
-        });
-    });
 }
 
 module.exports = {

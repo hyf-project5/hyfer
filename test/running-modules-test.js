@@ -1,16 +1,19 @@
 /* eslint-env node, mocha */
-
 'use strict';
 const mysql = require('mysql');
 const chai = require('chai');
 const expect = chai.expect;
+const util = require('util');
 const config = require('../server/config/config');
 const db = require('../server/datalayer/database');
+const dbRunningModules = require('../server/datalayer/running-modules');
+
+const targetClass = 'Class 5';
 
 let con;
-let guestUserId;
-let teacherUserId;
-let firstRunningModuleId;
+let groupId;
+let moduleId;
+let runningModulesLength;
 
 before(done => {
     con = mysql.createConnection({
@@ -31,59 +34,107 @@ before(done => {
 });
 
 beforeEach(done => {
-    db.execQuery(con, `UPDATE running_modules SET teacher1_id=NULL, teacher2_id=NULL`)
-        .then(() => {
-            return db.execQuery(con, 'INSERT INTO users SET ?', {
-                    username: 'guest-user',
-                    role: 'guest'
+    db.execQuery(con, `SELECT id FROM groups WHERE group_name = '${targetClass}'`)
+        .then(groups => {
+            groupId = groups[0].id;
+            return db.execQuery(con, `SELECT id FROM modules WHERE module_name='Dummy'`)
+                .then(modules => {
+                    moduleId = modules[0].id;
                 })
-                .then(result => {
-                    guestUserId = result.insertId;
-                    return db.execQuery(con, 'INSERT INTO users SET ?', {
-                            username: 'teacher-user',
-                            role: 'teacher'
-                        })
-                        .then(result => {
-                            teacherUserId = result.insertId;
-                            return db.execQuery(con, `SELECT id FROM groups WHERE group_name = 'Class 5'`)
-                                .then(rows => {
-                                    let groupId = rows[0].id;
-                                    return db.execQuery(con, 'SELECT id FROM running_modules WHERE group_id=?', [groupId])
-                                        .then(runningModules => {
-                                            firstRunningModuleId = runningModules[0].id;
-                                            done();
-                                        });
-                                });
-                        });
-                });
+                .then(() => db.execQuery(con, `SELECT id FROM running_modules WHERE group_id=?`, groupId))
+                .then(rows => {
+                    runningModulesLength = rows.length;
+                    done();
+                })
         })
         .catch(err => done(err));
 });
 
 afterEach(done => {
-    db.execQuery(con, `UPDATE running_modules SET teacher1_id=NULL, teacher2_id=NULL`)
-        .then(() => db.execQuery(con, 'DELETE FROM users WHERE id=?', [guestUserId]))
-        .then(() => db.execQuery(con, 'DELETE FROM users WHERE id=?', [teacherUserId]))
+    db.execQuery(con, `DELETE FROM running_modules WHERE module_id=?`, [moduleId])
         .then(() => done())
         .catch(err => done(err))
 });
 
 describe('running modules', () => {
 
-    it('should reject an attempt to assign a non-teacher to a running module', done => {
-        db.execQuery(con, 'UPDATE running_modules SET teacher1_id=? WHERE id=?', [guestUserId, firstRunningModuleId])
-            .then(() => {
-                done(new Error('update should be rejected'));
+    it('should add a module at the end of the running modules list', done => {
+        dbRunningModules.addModuleToRunningModules(con, moduleId, groupId, -1)
+            .then(runningModules => {
+                let targetModule = runningModules[runningModules.length - 1];
+                expect(targetModule.module_id).to.be.equal(moduleId);
+                expect(targetModule.group_id).to.be.equal(groupId);
+                expect(runningModules.length).to.be.equal(runningModulesLength + 1);
+                done();
             })
             .catch(err => {
-                expect(err).to.not.be.undefined;
-                done();
-            });
+                done(err);
+            })
     });
 
-    it('should accept an attempt to assign a teacher to a running module', done => {
-        db.execQuery(con, 'UPDATE running_modules SET teacher1_id=? WHERE id=?', [teacherUserId, firstRunningModuleId])
-            .then(() => done())
-            .catch(err => done(err));
+    it('should add a module at position 1 of the running modules list', done => {
+        dbRunningModules.addModuleToRunningModules(con, moduleId, groupId, 1)
+            .then(runningModules => {
+                let targetModule = runningModules[1];
+                expect(targetModule.module_id).to.be.equal(moduleId);
+                expect(targetModule.group_id).to.be.equal(groupId);
+                expect(runningModules.length).to.be.equal(runningModulesLength + 1);
+                done();
+            })
+            .catch(err => {
+                done(err);
+            })
     });
+
+    it('should move a running module from position 1 to position 3', done => {
+        let updates = { position: 3 };
+        dbRunningModules.addModuleToRunningModules(con, moduleId, groupId, 1)
+            .then(() => {
+                return dbRunningModules.updateRunningModule(con, updates, groupId, 1)
+                    .then(runningModules => {
+                        let targetModule = runningModules[3];
+                        expect(targetModule.module_id).to.be.equal(moduleId);
+                        expect(targetModule.group_id).to.be.equal(groupId);
+                        expect(runningModules.length).to.be.equal(runningModulesLength + 1);
+                        done();
+                    });
+            })
+            .catch(err => {
+                done(err);
+            })
+    });
+
+    it('should move a running module from position 1 to the end of the list', done => {
+        let updates = { position: -1 };
+        dbRunningModules.addModuleToRunningModules(con, moduleId, groupId, 1)
+            .then(() => {
+                return dbRunningModules.updateRunningModule(con, updates, groupId, 1)
+                    .then(runningModules => {
+                        let targetModule = runningModules[runningModules.length - 1];
+                        expect(targetModule.module_id).to.be.equal(moduleId);
+                        expect(targetModule.group_id).to.be.equal(groupId);
+                        expect(runningModules.length).to.be.equal(runningModulesLength + 1);
+                        done();
+                    });
+            })
+            .catch(err => {
+                done(err);
+            })
+    });
+
+    it('should delete a running module at position 1', done => {
+        dbRunningModules.addModuleToRunningModules(con, moduleId, groupId, 1)
+            .then(() => {
+                return dbRunningModules.deleteRunningModule(con, groupId, 1)
+                    .then(runningModules => {
+                        expect(runningModules[1].module_id).not.to.be.equal(moduleId);
+                        expect(runningModules.length).to.be.equal(runningModulesLength);
+                        done();
+                    });
+            })
+            .catch(err => {
+                done(err);
+            })
+    });
+
 });
