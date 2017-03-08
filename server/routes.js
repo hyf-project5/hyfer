@@ -24,8 +24,8 @@ module.exports = function(app) {
 
     app.get('/api/github/readme/:owner/:repo', github.getReadMeAsHtml);
 
-    app.get('/api/users', authService.isAuthenticated(), users.getUsers);
     app.get('/api/user', authService.isAuthenticated(), users.getUser);
+    app.get('/api/users', authService.hasRole('teacher'), users.getUsers);
     app.patch('/api/user/:id', authService.hasRole('teacher'), users.updateRole);
 
     app.get('/auth/github', passport.authenticate('github'));
