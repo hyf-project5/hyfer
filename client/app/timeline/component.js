@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -8,9 +8,9 @@
             controller: hyfTimelineController
         });
 
-    hyfTimelineController.inject = ['backendService', '$sce'];
+    hyfTimelineController.inject = ['backendService', '$sce', '$mdDialog', 'toastService'];
 
-    function hyfTimelineController(backendService, $sce) {
+    function hyfTimelineController(backendService, $sce, $mdDialog, toastService) {
         let ctrl = this;
         const days = 1000 * 60 * 60 * 24;
         const month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -29,14 +29,14 @@
                 ctrl.indicatorDatePosition = ctrl.indicatorPosition + 5;
                 let scrollToLeft = ctrl.indicatorPosition - 350;
                 scrollTimelineToToday(scrollToLeft);
-                ctrl.classes.forEach(function (entry) {
+                ctrl.classes.forEach(function(entry) {
                     let firsModuleStartDateInThisGroup = Math.round(computedMilliseconds(getClosestSundayAndRidOfTime(ctrl.timeline[entry][0].starting_date)) / days);
-                    let position = firsModuleStartDateInThisGroup - zeroPoint + 10;  
+                    let position = firsModuleStartDateInThisGroup - zeroPoint + 10;
                     let classBgColor = randomColor();
-                    ctrl.timeline[entry].forEach(function (runningModule) {
+                    ctrl.timeline[entry].forEach(function(runningModule) {
                         runningModule.classBgColor = classBgColor;
                         runningModule.blockClass = 'block-no-' + runningModule.duration;
-                        runningModule.startingWeekClass = 'block-week-' + Math.round(position / 7);              
+                        runningModule.startingWeekClass = 'block-week-' + Math.round(position / 7);
                         runningModule.position = position * 15;
                         runningModule.bgColor = randomColor();
                         runningModule.startingDate = getInterfaceDate(firsModuleStartDateInThisGroup);
@@ -75,6 +75,33 @@
                 .catch(err => console.log(err))
         }
 
+
+        // ============ Modal code here ==============
+
+        ctrl.addClassModal = function(ev) {
+            $mdDialog.show({
+                    controller: 'dialogController',
+                    controllerAs: '$ctrl',
+                    templateUrl: 'client/app/timeline/addClassModal.html',
+                    targetEvent: ev,
+                    clickOutsideToClose: true
+                })
+                .then(group => {
+                    backendService.addGroup(group)
+                        .then((res) => {
+                            toastService.displayToast(true, res, group);
+                            location.reload(); //temprerely till I know where jack's code will be(to update the view)
+                        })
+                        .catch(err => console.log(err))
+                })
+                .catch(err => toastService.displayToast(false));
+        };
+
+
+
+
+
+        // =============== ends here ====================
         ctrl.computedMilliseconds = computedMilliseconds;
 
 
@@ -83,11 +110,13 @@
             let milliseconds = getDate.getTime();
             return milliseconds;
         }
+
         function randomColor() {
             let themeColor = ['#5cbae6', '#b6d957', '#fac364', '#8cd3ff', '#d998cb', '#f2d249', '#93b9c6', '#ccc5a8', '#52bacc', '#dbdb46', '#98aafb'];
             let xColor = Math.floor(Math.random() * themeColor.length);
             return themeColor[xColor];
         }
+
         function getClosestSundayAndRidOfTime(date) {
             let d = new Date(date);
             d.setHours(0, 0, 0, 0);
@@ -95,15 +124,17 @@
             t.setDate(t.getDate() - t.getDay());
             return t;
         }
+
         function getInterfaceDate(value) {
             let time = value * days;
             let date = new Date(time);
             return day_names[date.getDay()] + ", " + date.getDate() + " " + month_names[date.getMonth()] + " " + date.getFullYear();
 
         }
+
         function scrollTimelineToToday(scrollToLeft) {
             setTimeout(
-                function () {
+                function() {
                     document.getElementById("main-timeline").scrollLeft = scrollToLeft;
                 }, 50);
         }

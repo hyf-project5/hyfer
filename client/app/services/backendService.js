@@ -24,6 +24,10 @@
                 .then(res => res.data)
         }
 
+        addGroup(group) {
+            return this.$http.post('/api/groups', group)
+        }
+
         getReadme(gitRepo) {
             return this.$http.get('/api/github/readme/hackyourfuture/' + gitRepo)
                 .then(res => res.data);
