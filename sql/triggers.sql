@@ -13,13 +13,13 @@ BEGIN
     select role from users
     where id = NEW.teacher2_id into role2;
 
-    if NEW.teacher1_id is not NULL and role1 is NULL then
+    if NEW.teacher1_id is not NULL and role1 <> 'teacher' then
         SET message = 'Teacher 1 id does not have teacher role in the users table';
         SET lc_messages = message;
         SIGNAL SQLSTATE '45000';
     end if;
     
-    if NEW.teacher2_id is not NULL and role2 is NULL then
+    if NEW.teacher2_id is not NULL and role2 <> 'teacher' then
         SET message = 'Teacher 2 id does not have teacher role in the users table';
         SET lc_messages = message;
         SIGNAL SQLSTATE '45000';
