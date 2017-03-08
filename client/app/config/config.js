@@ -18,10 +18,6 @@
 
         $urlRouterProvider.otherwise('/')
         $stateProvider
-            .state('home', {
-                url: '/',
-                component: 'hyfHomeLogin'
-            })
             .state('modules', {
                 url: '/modules',
                 component: 'hyfModules'
