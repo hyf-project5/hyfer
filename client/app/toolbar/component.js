@@ -13,12 +13,19 @@
             this.$state = $state;
         }
 
-        notTeacher() {
-            if (this.me.role !== 'teacher') {
+        isTeacher() {
+            if (this.me.role == 'teacher') {
                 return true;
             }
-
         }
+
+        isUser() {
+            if (this.me.username == 'anonymous') {
+                return false;
+            };
+            return true;
+        }
+
 
         signin() {
             window.location.href = `/auth/github`

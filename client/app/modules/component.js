@@ -8,13 +8,20 @@
         }
 
         constructor(backendService, me, $state, $mdDialog, toastService) {
-            if (me.role !== 'teacher') {
-                alert('access denied!!')
-                return $state.go('timeline')
-            }
             backendService.getModules()
                 .then(data => {
                     this.modules = data;
+                })
+                .catch(err => {
+                    this.$mdDialog.show(
+                        this.$mdDialog.alert()
+                        .clickOutsideToClose(true)
+                        .title('Access Denied!')
+                        .textContent('Sorry this is private page!')
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('close')
+                    );
+                    return $state.go('timeline')
                 })
 
             this.backendService = backendService;
