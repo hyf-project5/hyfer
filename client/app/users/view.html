@@ -14,9 +14,9 @@
                 <td>
                     <md-input-container>
                         <label>{{user.role}}</label>
-                        <md-select ng-change="$ctrl.selectedRole(user.id, role)" aria-label="user role" ng-model="role">
-                            <md-option ng-disabled="user.role === 'teacher'">Teacher</md-option>
-                            <md-option ng-disabled="user.role === 'student'">Student</md-option>
+                        <md-select ng-change="$ctrl.selectedRole(user.id, role, user.username, $event)" aria-label="user role" ng-model="role">
+                            <md-option ng-disabled="user.role === 'teacher'">teacher</md-option>
+                            <md-option ng-disabled="user.role === 'student'">student</md-option>
                         </md-select>
                     </md-input-container>
                 </td>
