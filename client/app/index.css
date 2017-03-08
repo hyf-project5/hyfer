@@ -8,11 +8,8 @@
     overflow: hidden;
 }
 
-.hyfLogo {
-    position: absolute;
-    top: 30px;
-    left: 80px;
-    cursor: pointer;
+.toolbar-logo {
+    height: 85%;
 }
 
 a {

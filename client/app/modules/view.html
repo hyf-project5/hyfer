@@ -7,10 +7,8 @@
         </md-button>
     </div>
     <md-list-item class="md-3-line" ng-repeat="module in $ctrl.modules" ng-click="null">
-        <img ng-src="{{module.module_img}}" class="md-avatar" alt="{{module.module_name}}" />
         <div class="md-list-item-text" layout="column">
             <h2>{{ module.module_name }}</h2>
-            <h3>{{ module.description }}</h3>
         </div>
     </md-list-item>
 </md-list>
