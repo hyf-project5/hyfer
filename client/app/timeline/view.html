@@ -9,25 +9,9 @@
                     Add Class
                 </md-button>
             </div>
-
             <hyf-class-block></hyf-class-block>
             <hyf-main-timeline></hyf-main-timeline>
-
         </div>
-        <div class="readme-header" ng-style="{'margin-top': $ctrl.readmeHeaderTop + 'px'}">
-            <h2>
-                {{$ctrl.readme.moduleName}} README.md
-                <md-button ng-href="{{$ctrl.readme.gitUrl}}" target='_blank' class="md-icon-button" aria-label="Github icon">
-                    <md-icon class="githubIcon" md-svg-src="./images/github.svg"></md-icon>
-                </md-button>
-                <hr>
-            </h2>
-        </div>
-        <md-card>
-            <md-card-content ng-bind-html="$ctrl.readmeFile">
-            </md-card-content>
-        </md-card>
-
     </md-content>
 </div>
 <hyf-footer></hyf-footer>

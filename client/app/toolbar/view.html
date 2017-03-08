@@ -15,10 +15,10 @@
         <h2>
             {{$ctrl.me.username}}
         </h2>
-        <md-button class="md-accent md-raised md-hue-1" ng-click="$ctrl.signin()" ng-show="!$ctrl.isUser()">
+        <md-button class="md-raised" ng-click="$ctrl.signin()" ng-show="!$ctrl.isUser()">
             signin
         </md-button>
-        <md-button class="md-raised md-warn" ng-click="$ctrl.signout()" ng-show="$ctrl.isUser()">
+        <md-button class="md-accent md-raised" ng-click="$ctrl.signout()" ng-show="$ctrl.isUser()">
             signout
         </md-button>
     </div>

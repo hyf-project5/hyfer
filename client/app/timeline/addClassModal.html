@@ -26,7 +26,7 @@
                 Cancel
             </md-button>
             <span flex></span>
-            <md-button class="md-primary" type='submit' ng-disabled="!group_name" ng-click="$ctrl.add(group={group_name, starting_date})">
+            <md-button class="md-primary" type='submit' ng-disabled="!group_name && !starting_date" ng-click="$ctrl.add(group={group_name, starting_date})">
                 Add
             </md-button>
         </md-dialog-actions>

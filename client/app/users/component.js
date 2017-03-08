@@ -8,7 +8,6 @@
         constructor(backendService, $mdToast, me, $state, $mdDialog) {
             backendService.getUsersProfile()
                 .then(res => {
-                    console.log(me)
                     this.users = res;
                 })
                 .catch(err => {
@@ -22,6 +21,8 @@
                     );
                     return $state.go('timeline')
                 })
+
+
             this.backendService = backendService;
             this.$mdToast = $mdToast;
             this.me = me;
@@ -67,7 +68,6 @@
         selectedRole(userId, role, username, ev) {
             if (this.me.username === username) {
                 if (!this.updateMyRole(username, ev, userId, role)) {
-                    console.log('nooo')
                     return;
                 };
             }
