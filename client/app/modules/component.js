@@ -4,27 +4,57 @@
     class ModulesController {
 
         static get $inject() {
-            return ['backendService', 'me', '$state'];
+            return ['backendService', '$state', '$mdDialog', 'toastService'];
         }
 
-        constructor(backendService, me, $state) {
-            if (me.role !== 'teacher') {
-                alert('access denied!!')
-                return $state.go('timeline')
-            }
-            this.backendService = backendService;
+        constructor(backendService, $state, $mdDialog, toastService) {
             backendService.getModules()
                 .then(data => {
                     this.modules = data;
                 })
-                .catch(err => console.log(err));
+                .catch(err => {
+                    this.$mdDialog.show(
+                        this.$mdDialog.alert()
+                        .clickOutsideToClose(true)
+                        .title('Access Denied!')
+                        .textContent('Sorry this is private page!')
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('close')
+                    );
+                    return $state.go('timeline')
+                })
+
+            this.backendService = backendService;
+            this.$mdDialog = $mdDialog;
+            this.toastService = toastService;
+
         }
+
+        addModuleModal(ev) {
+            this.$mdDialog.show({
+                    controller: 'dialogController',
+                    controllerAs: '$ctrl',
+                    templateUrl: 'client/app/modules/addModuleModal.html',
+                    targetEvent: ev,
+                    clickOutsideToClose: true
+                })
+                .then(res => {
+                    this.backendService.addModule(res)
+                        .then(() => {
+                            let firstLessIndex = this.modules.findIndex(val => val.seq_number > res.seq_number);
+                            this.modules.splice(firstLessIndex, 0, res);
+                            this.toastService.displayToast(true, res);
+                        })
+                        .catch(err => console.log(err))
+                })
+                .catch(err => this.toastService.displayToast(false));
+        };
 
     }
 
     angular.module('hyferApp')
         .component('hyfModules', {
-            templateUrl: 'client/app/modules/modules.component.html',
+            templateUrl: 'client/app/modules/view.html',
             controller: ModulesController
         });
 })();

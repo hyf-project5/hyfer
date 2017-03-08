@@ -16,12 +16,8 @@
 
     function mainConfig($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise('/')
+        $urlRouterProvider.otherwise('/timeline')
         $stateProvider
-            .state('home', {
-                url: '/',
-                component: 'hyfHomeLogin'
-            })
             .state('modules', {
                 url: '/modules',
                 component: 'hyfModules'

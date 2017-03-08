@@ -1,0 +1,43 @@
+<md-dialog aria-label="Adding Module." flex='60'>
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Adding Module..</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
+                    <md-icon md-font-set="material-icons">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content aria-label="Adding Module.">
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <input type="text" ng-model="module_name" placeholder="Module name..">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <input ng-model="git_repo" type="text" placeholder="Repo name..">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <input ng-model="git_url" type="url" placeholder="Repo URL..">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <input ng-model="default_duration" type="number" placeholder="Duration..">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <input ng-model="seq_number" type="number" placeholder="Sequence #..">
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button class="md-raised md-warn" ng-click="$ctrl.cancel()">
+                Cancel
+            </md-button>
+            <span flex></span>
+            <md-button class="md-primary" type='submit' ng-disabled="!module_name || !git_repo || !git_url || !default_duration || !seq_number" ng-click="$ctrl.add(module={module_name, git_repo, git_url, default_duration, seq_number})">
+                Add
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

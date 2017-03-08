@@ -4,19 +4,39 @@
     class hyfToolbarCtrl {
 
         static get $inject() {
-            return ['me'];
+            return ['me', '$cookies', '$state'];
         }
 
-        constructor(me) {
+        constructor(me, $cookies, $state) {
             this.me = me;
+            this.$cookies = $cookies;
+            this.$state = $state;
         }
 
-        notTeacher() {
-            if (this.me.role !== 'teacher') {
+        isTeacher() {
+            if (this.me.role == 'teacher') {
                 return true;
             }
         }
 
+        isUser() {
+            if (this.me.username == 'anonymous') {
+                return false;
+            };
+            return true;
+        }
+
+
+        signin() {
+            window.location.href = `/auth/github`
+        }
+
+        signout() {
+            window.localStorage.removeItem('token');
+            this.$cookies.remove('token');
+            location.reload();
+            this.$state.go('timeline')
+        }
 
     }
 

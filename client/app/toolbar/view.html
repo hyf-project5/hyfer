@@ -1,18 +1,25 @@
 <md-toolbar layout='row'>
     <div class="md-toolbar-tools" layout='row' flex-offset-gt-sm='10' flex-gt-sm='80'>
-        <img ng-src="images/logo.png" alt="hyfLogo" style="height:55px; width:70px;">
-        <md-button ui-sref='home'>
-            Home
-        </md-button>
-        <md-button ui-sref='modules' ng-hide="$ctrl.notTeacher()">
+        <img class="toolbar-logo" ng-src="images/logo.png" alt="hyfLogo">
+        <md-button ui-sref='modules' ng-show="$ctrl.isTeacher()">
             Modules
         </md-button>
         <md-button ui-sref='timeline'>
             Timeline
         </md-button>
-        <md-button ui-sref='users' ng-hide="$ctrl.notTeacher()">
+        <md-button ui-sref='users' ng-show="$ctrl.isTeacher()">
             Users
         </md-button>
         <span flex></span>
+
+        <h2>
+            {{$ctrl.me.username}}
+        </h2>
+        <md-button class="md-raised" ng-click="$ctrl.signin()" ng-show="!$ctrl.isUser()">
+            signin
+        </md-button>
+        <md-button class="md-accent md-raised" ng-click="$ctrl.signout()" ng-show="$ctrl.isUser()">
+            signout
+        </md-button>
     </div>
 </md-toolbar>

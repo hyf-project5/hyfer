@@ -1,33 +1,43 @@
 (function() {
     'use strict';
-    angular
-        .module('hyferApp')
-        .component('hyfUsers', {
-            templateUrl: './client/app/users/view.html',
-            controller: hyfUsersController
-        });
 
-    hyfUsersController.$inject = ['backendService', '$mdToast', 'me', '$state'];
-
-    function hyfUsersController(backendService, $mdToast, me, $state) {
-        // let this = this;
-        if (me.role !== 'teacher') {
-            alert('access denied!!')
-            return $state.go('timeline')
+    class hyfUsersCtrl {
+        static get $inject() {
+            return ['backendService', '$mdToast', 'me', '$state', '$mdDialog'];
         }
-        backendService.getUsersProfile()
-            .then(res => {
-                this.users = res;
-            }).catch(err => console.log(err))
+        constructor(backendService, $mdToast, me, $state, $mdDialog) {
+            backendService.getUsersProfile()
+                .then(res => {
+                    this.users = res;
+                })
+                .catch(err => {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                        .clickOutsideToClose(true)
+                        .title('Access Denied!')
+                        .textContent('Sorry this is private page!')
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('close')
+                    );
+                    return $state.go('timeline')
+                })
 
-        this.selectedRole = function(userId, role) {
-            backendService.updateUserRole(userId, role.toLowerCase())
+
+            this.backendService = backendService;
+            this.$mdToast = $mdToast;
+            this.me = me;
+            this.$mdDialog = $mdDialog;
+            this.$state = $state;
+        }
+
+        updateUserRole(userId, role) {
+            this.backendService.updateUserRole(userId, role.toLowerCase())
                 .then(() => {
                     this.users.forEach(user => {
                         if (user.id == userId) {
                             user.role = role.toLowerCase();
-                            $mdToast.show(
-                                $mdToast.simple()
+                            this.$mdToast.show(
+                                this.$mdToast.simple()
                                 .textContent(`${user.username}'s role updated to ${role.toLowerCase()}!`)
                                 .position('right')
                                 .hideDelay(3000)
@@ -37,7 +47,40 @@
                             );
                         }
                     })
-                })
+                }).catch(err => console.log(err))
         }
+
+        updateMyRole(userName, ev, userId, role) {
+            let confirm = this.$mdDialog.confirm()
+                .title('Would you like to update your role?')
+                .ariaLabel('Update your role!')
+                .targetEvent(ev)
+                .ok('Ok')
+                .cancel('Cancel');
+            this.$mdDialog.show(confirm)
+                .then(() => {
+                    this.updateUserRole(userId, role)
+                    location.reload();
+                    this.$state.go('timeline')
+                })
+                .catch(() => false)
+        }
+        selectedRole(userId, role, username, ev) {
+            if (this.me.username === username) {
+                if (!this.updateMyRole(username, ev, userId, role)) {
+                    return;
+                };
+            }
+            this.updateUserRole(userId, role);
+
+        }
+
     }
+
+    angular
+        .module('hyferApp')
+        .component('hyfUsers', {
+            templateUrl: './client/app/users/view.html',
+            controller: hyfUsersCtrl
+        });
 })();

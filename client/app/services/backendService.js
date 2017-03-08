@@ -1,61 +1,63 @@
 (function() {
     'use strict';
 
-    angular
-        .module('hyferApp')
-        .service('backendService', backendService)
 
-    backendService.$inject = ['$http'];
 
-    function backendService($http) {
-
-        return {
-            getModules,
-            getTimeline,
-            getReadme,
-            getMyProfile,
-            getUsersProfile,
-            updateUserRole
+    class backendService {
+        static get $inject() {
+            return ['$http']
         }
-
-        function getModules() {
-            return $http.get('/api/modules', getHttpConfig())
+        constructor($http) {
+            this.$http = $http;
+        }
+        getModules() {
+            return this.$http.get('/api/modules', this.getHttpConfig())
                 .then(res => res.data);
         }
 
-        function getTimeline() {
-            return $http.get('/api/groups')
+        addModule(module) {
+            return this.$http.post('/api/modules', module, this.getHttpConfig())
+        }
+
+        getTimeline() {
+            return this.$http.get('/api/groups')
                 .then(res => res.data)
         }
 
-        function getReadme(gitRepo) {
-            return $http.get('/api/github/readme/hackyourfuture/' + gitRepo)
+        addGroup(group) {
+            return this.$http.post('/api/groups', group)
+        }
+
+        getReadme(gitRepo) {
+            return this.$http.get('/api/github/readme/hackyourfuture/' + gitRepo)
                 .then(res => res.data);
         }
 
-        function getMyProfile() {
-            return $http.get('/api/user', getHttpConfig())
+        getMyProfile() {
+            return this.$http.get('/api/user', this.getHttpConfig())
                 .then(res => res.data);
         }
 
-        function getUsersProfile() {
-            return $http.get('/api/users', getHttpConfig())
+        getUsersProfile() {
+            return this.$http.get('/api/users', this.getHttpConfig())
                 .then(res => res.data);
         }
 
-        function updateUserRole(userId, role) {
-            return $http.patch('/api/user/' + userId, { "role": role }, getHttpConfig())
+        updateUserRole(userId, role) {
+            return this.$http.patch('/api/user/' + userId, { "role": role }, this.getHttpConfig())
         }
 
+        getHttpConfig() {
+            let config = {};
+            let token = window.localStorage.getItem('token');
+            if (token) {
+                config.headers = { 'Authorization': 'Bearer ' + token };
+            }
+            return config;
+        }
     }
 
-    function getHttpConfig() {
-        let config = {};
-        let token = window.localStorage.getItem('token');
-        if (token) {
-            config.headers = { 'Authorization': 'Bearer ' + token };
-        }
-        return config;
-    }
-
+    angular
+        .module('hyferApp')
+        .service('backendService', backendService)
 }());

@@ -1,3 +1,6 @@
 <div class="class-block" ng-style="{background: $ctrl.bgColor}">
     {{$ctrl.className}}
+    <md-button class="md-secondary md-icon-button hoverBtn" ng-click="$ctrl.updateTodo({event: $event, index: $index})">
+        <md-icon md-font-set="material-icons">mode_edit</md-icon>
+    </md-button>
 </div>

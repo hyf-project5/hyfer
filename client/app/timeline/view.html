@@ -2,41 +2,16 @@
 <div flex-offset-gt-sm='10' flex-gt-sm='80'>
     <md-content>
         <div id="timeline" class="timliene">
+            <div layout='row'>
+                <span flex></span>
+                <md-button class="md-raised md-mini md-primary" ng-click="$ctrl.addClassModal($event)">
+                    <md-icon md-font-set="material-icons">add</md-icon>
+                    Add Class
+                </md-button>
+            </div>
             <hyf-class-block></hyf-class-block>
             <hyf-main-timeline></hyf-main-timeline>
-
-            <!--<div id="main-timeline">
-
-                <div class="indicator" ng-style="{'left': $ctrl.indicatorPosition + 'px', 'height':  $ctrl.indicatorHeight + 'px'}">
-                    <md-tooltip>Today is: {{$ctrl.currentDate}}</md-tooltip>
-                </div>
-                <div class="timline-date" ng-style="{'left': $ctrl.indicatorDatePosition + 'px'}">
-                    <md-tooltip>Today is: {{$ctrl.currentDate}}</md-tooltip>
-                    {{$ctrl.currentDate}}
-                </div>
-                <div class="modules-container">
-                    <div ng-repeat="class in $ctrl.classes">
-                        <div ng-repeat="module in $ctrl.timeline[class]" ng-click="$ctrl.showReadme(module)" class="module-block {{module.startingWeekClass}} {{module.blockClass}}" ng-style="{'background':  module.bgColor}">
-                            <md-tooltip>Run from {{module.startingDate}} to {{module.endingDate}}</md-tooltip>
-                            {{module.module_name}}
-                        </div>
-                    </div>
-                </div>
-            </div>-->
         </div>
-        <div class="readme-header" ng-style="{'margin-top': $ctrl.readmeHeaderTop + 'px'}">
-            <h2>
-                {{$ctrl.readme.moduleName}} README.md
-                <md-button ng-href="{{$ctrl.readme.gitUrl}}" target='_blank' class="md-icon-button" aria-label="Github icon">
-                    <md-icon class="githubIcon" md-svg-src="./images/github.svg"></md-icon>
-                </md-button>
-                <hr>
-            </h2>
-        </div>
-        <md-card>
-            <md-card-content ng-bind-html="$ctrl.readmeFile">
-            </md-card-content>
-        </md-card>
-
     </md-content>
 </div>
+<hyf-footer></hyf-footer>
