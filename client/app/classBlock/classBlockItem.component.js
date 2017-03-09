@@ -3,11 +3,12 @@
     class ClassBlockItemController {
 
         static get $inject() {
-            return [];
+            return ['$mdDialog', 'backendService'];
         }
 
-        constructor() {
+        constructor($mdDialog, backendService) {
             this.bgColor = this.randomColor();
+            this.$mdDialog = $mdDialog;
         }
 
         randomColor() {
@@ -15,6 +16,19 @@
             let xColor = Math.floor(Math.random() * themeColor.length);
             return themeColor[xColor];
         }
+
+        addRunningModule(ev, className) {
+            this.$mdDialog.show({
+                    controller: 'addRunningModuleCtrl',
+                    controllerAs: '$ctrl',
+                    templateUrl: 'client/app/classBlock/addRunningModuleModal.html',
+                    targetEvent: ev,
+                    clickOutsideToClose: true
+                })
+                .then(res => console.log(res))
+                .catch(err => console.log(err));
+        }
+
     }
 
     angular.module('hyferApp')
