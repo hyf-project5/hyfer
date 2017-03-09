@@ -14,7 +14,7 @@ const TIME_LINE_FOR_ALL_GROUPS_QUERY =
     FROM groups
     INNER JOIN running_modules ON running_modules.group_id = groups.id
     INNER JOIN modules ON running_modules.module_id = modules.id
-    ORDER BY running_modules.seq_number`;
+    ORDER BY running_modules.position`;
 
 
 const ADD_GROUP_QUERY = `INSERT INTO groups SET ?`;
@@ -22,7 +22,7 @@ const UPDATE_GROUP_QUERY = `UPDATE groups SET ? WHERE id = ?`;
 const DELETE_GROUP_QUERY = `DELETE FROM groups WHERE id = ?`;
 
 const ADD_RUNNING_MODULES_QUERY =
-    `INSERT INTO running_modules (description, module_id, group_id, duration, seq_number) VALUES`;
+    `INSERT INTO running_modules (description, module_id, group_id, duration, position) VALUES`;
 
 // user story / User ➜ 1)
 function getTimelineForAllGroups(con) {
@@ -55,12 +55,12 @@ function addGroup(con, group) {
 }
 
 function makeRunningModules(groupId, mods) {
-    return mods.map((module, index) => ({
+    return mods.map((module, position) => ({
         description: module.description,
         module_id: module.id,
         group_id: groupId,
         duration: module.default_duration,
-        seq_number: index
+        position: position
     }));
 }
 
@@ -69,7 +69,7 @@ function makeValueList(runningModules) {
         if (str.length > 0) {
             str += ',';
         }
-        return str + `('${mod.description}',${mod.module_id},${mod.group_id},${mod.duration},${mod.seq_number})`
+        return str + `('${mod.description}',${mod.module_id},${mod.group_id},${mod.duration},${mod.position})`
     }, '');
 }
 

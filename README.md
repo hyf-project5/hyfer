@@ -10,6 +10,7 @@
 * [API Design](https://github.com/hyf-project5/super-duper-5/blob/master/docs/README.API-DESIGN.md)
 * [OAuth](https://github.com/hyf-project5/super-duper-5/blob/master/docs/README.GitHubOAuth.md)
 * [Data Layer](https://github.com/hyf-project5/super-duper-5/blob/master/docs/README.datalayer.md)
+* [API end points](https://github.com/hyf-project5/hyfer/blob/master/docs/README.api-endpoints.md)
 
 ## Requirements
 
