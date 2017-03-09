@@ -1,4 +1,5 @@
 @import url("calendar.css");
+@import url("readme.css");
 @import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
 #homeLogin {
     background: url(/images/bg.jpg) no-repeat center center fixed;
@@ -11,15 +12,6 @@
 .toolbar-logo {
     height: 85%;
 }
-
-a {
-    color: #f4ad42;
-}
-
-
-/*md-grid-list {
-    margin-bottom: 5px;
-}*/
 
 .timliene {
     margin-top: 15px;
