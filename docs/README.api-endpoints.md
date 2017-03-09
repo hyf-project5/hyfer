@@ -10,7 +10,14 @@
 | :------ | :----------- |
 | `groupId` | The `id` of the group for the running module list should be retrieved |
 
-**Response:** A JSON object with the current running modules list.
+**Response:** A JSON array of running modules ordered by timeline sequence. Each running module is an object with the following properties:
+
+| property | description |
+| :------- | :---------- |
+| `description` | The description of the runnning module |
+| `duration` | The duration of the runnning module in weeks |
+| `teacher1_id` | An `id` of the user with role `teacher` or `null`|
+| `teacher1_id` | An `id` of the user with role `teacher` or `null`|
 
 ### Add
 
@@ -24,7 +31,7 @@
 
 **Body:** The request body is unused. 
 
-**Response:** A JSON object with the updated running modules list.
+**Response:** A JSON object with the updated running modules list. For detail, see the GET request.
 
 ### Update
 
