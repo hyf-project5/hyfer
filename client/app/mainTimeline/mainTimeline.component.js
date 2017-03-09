@@ -6,11 +6,12 @@
     class MainTimelineController {
 
         static get $inject() {
-            return ['backendService', '$sce'];
+            return ['backendService', '$sce', 'me'];
         }
-        constructor(backendService, $sce) {
+        constructor(backendService, $sce, me) {
             this.backendService = backendService;
             this.$sce = $sce;
+            this.me = me;
             let ctrl = this;
             const current_date = new Date();
             backendService.getTimeline()
@@ -106,8 +107,15 @@
                 .catch(err => console.log(err))
         }
 
+        isTeacher() {
+            if (this.me.role == 'teacher') {
+                return true;
+            }
+        }
 
-
+        editRunningModule(module) {
+            console.log(module)
+        }
 
 
 
