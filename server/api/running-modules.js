@@ -19,7 +19,6 @@ function addModuleToRunningModules(req, res) {
 }
 
 function updateRunningModule(req, res) {
-    console.log('updateRunningModule');
     let groupId = parseInt(req.params.groupId, 10);
     let position = parseInt(req.params.position, 10);
     let updates = req.body;

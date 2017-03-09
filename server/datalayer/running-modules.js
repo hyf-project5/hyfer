@@ -19,8 +19,6 @@ function getAllFromRunningModules(con, groupId) {
 }
 
 function addModuleToRunningModules(con, moduleId, groupId, position) {
-    console.log('position: ' + position)
-
     return modules.getModule(con, moduleId)
         .then(rows => {
             let module = rows[0];
@@ -42,7 +40,6 @@ function addModuleToRunningModules(con, moduleId, groupId, position) {
 }
 
 function updateRunningModule(con, updates, groupId, position) {
-    console.log('datalayer updateRunningModule');
     return getAllFromRunningModules(con, groupId)
         .then(runningMods => {
             let targetMod = runningMods.find(mod => mod.position === position);
