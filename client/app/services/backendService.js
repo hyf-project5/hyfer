@@ -19,6 +19,10 @@
             return this.$http.post('/api/modules', module, this.getHttpConfig())
         }
 
+        addRunningModule(moduleId, groupId, position) {
+            return this.$http.patch('/api/running/' + moduleId + '/' + groupId + '/' + position, {}, this.getHttpConfig())
+        }
+
         getTimeline() {
             return this.$http.get('/api/groups')
                 .then(res => res.data)

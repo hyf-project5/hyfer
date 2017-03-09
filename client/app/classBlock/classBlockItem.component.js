@@ -24,7 +24,7 @@
             return themeColor[xColor];
         }
 
-        addRunningModule(ev, className) {
+        openRunningModuleModal(ev, className) {
             this.$mdDialog.show({
                 locals: {
                     className
