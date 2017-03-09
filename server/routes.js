@@ -17,8 +17,8 @@ module.exports = function(app) {
     app.delete('/api/modules/:id', authService.hasRole('teacher'), modules.deleteModule);
 
     app.get('/api/running/:groupId', authService.hasRole('teacher'), runningModules.getRunningModules);
-    app.patch('/api/running/:moduleId/:groupId/:position', authService.hasRole('teacher'), runningModules.addModuleToRunningModules);
     app.patch('/api/running/:groupId/:position', authService.hasRole('teacher'), runningModules.updateRunningModule);
+    app.patch('/api/running/:moduleId/:groupId/:position', authService.hasRole('teacher'), runningModules.addModuleToRunningModules);
     app.delete('/api/running/:groupId/:position', authService.hasRole('teacher'), runningModules.deleteRunningModule);
 
     app.get('/api/groups', groups.getTimelineForAllGroups);

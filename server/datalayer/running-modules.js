@@ -2,7 +2,8 @@
 const db = require('./database');
 const modules = require('./modules');
 
-const GET_RUNNING_MODULES_QUERY = `SELECT * FROM running_modules`;
+const GET_RUNNING_MODULES_QUERY = `SELECT description, duration, teacher1_id, teacher2_id FROM running_modules`;
+const GET_ALL_FROM_RUNNING_MODULES_QUERY = `SELECT * FROM running_modules`;
 const DELETE_ALL_RUNNING_MODULES_QUERY = `DELETE FROM running_modules WHERE group_id=?`;
 const INSERT_RUNNING_MODULES_QUERY =
     `INSERT INTO running_modules (description, module_id, group_id, duration, position, teacher1_id, teacher2_id) VALUES`;
@@ -12,7 +13,14 @@ function getRunningModules(con, groupId) {
     return db.execQuery(con, sql, [groupId]);
 }
 
+function getAllFromRunningModules(con, groupId) {
+    const sql = GET_ALL_FROM_RUNNING_MODULES_QUERY + ` WHERE group_id=? ORDER BY position`;
+    return db.execQuery(con, sql, [groupId]);
+}
+
 function addModuleToRunningModules(con, moduleId, groupId, position) {
+    console.log('position: ' + position)
+
     return modules.getModule(con, moduleId)
         .then(rows => {
             let module = rows[0];
@@ -24,7 +32,7 @@ function addModuleToRunningModules(con, moduleId, groupId, position) {
                 teacher1_id: 'NULL',
                 teacher2_id: 'NULL'
             }
-            return getRunningModules(con, groupId)
+            return getAllFromRunningModules(con, groupId)
                 .then(runningMods => {
                     insertRunningModuleAtIndex(runningMods, newMod, position);
                     resequenceRunningModules(runningMods);
@@ -34,7 +42,8 @@ function addModuleToRunningModules(con, moduleId, groupId, position) {
 }
 
 function updateRunningModule(con, updates, groupId, position) {
-    return getRunningModules(con, groupId)
+    console.log('datalayer updateRunningModule');
+    return getAllFromRunningModules(con, groupId)
         .then(runningMods => {
             let targetMod = runningMods.find(mod => mod.position === position);
             runningMods = runningMods.filter(mod => mod.position !== position);
@@ -42,14 +51,14 @@ function updateRunningModule(con, updates, groupId, position) {
             targetMod.duration = updates.duration || targetMod.duration;
             targetMod.teacher1_id = updates.teacher1_id || targetMod.teacher1_id;
             targetMod.teacher2_id = updates.teacher2_id || targetMod.teacher2_id;
-            insertRunningModuleAtIndex(runningMods, targetMod, updates.position);
+            insertRunningModuleAtIndex(runningMods, targetMod, updates.position || position);
             resequenceRunningModules(runningMods);
             return replaceRunningModules(con, runningMods, groupId);
         });
 }
 
 function deleteRunningModule(con, groupId, position) {
-    return getRunningModules(con, groupId)
+    return getAllFromRunningModules(con, groupId)
         .then(runningMods => {
             runningMods = runningMods.filter(mod => mod.position !== position);
             resequenceRunningModules(runningMods);
@@ -78,13 +87,13 @@ function replaceRunningModules(con, runningMods, groupId) {
                         })
                     })
                     .catch(err => {
-                        con.rollBack(() => {
+                        con.rollback(() => {
                             reject(err);
                         })
                     })
             })
         })
-        .then(() => getRunningModules(con, groupId));
+        .then(() => getAllFromRunningModules(con, groupId));
 }
 
 function insertRunningModuleAtIndex(runningMods, targetMod, position) {

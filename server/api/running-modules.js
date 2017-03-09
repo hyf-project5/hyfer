@@ -10,21 +10,30 @@ function getRunningModules(req, res) {
 }
 
 function addModuleToRunningModules(req, res) {
+    let moduleId = parseInt(req.params.moduleId, 10);
+    let groupId = parseInt(req.params.groupId, 10);
+    let position = parseInt(req.params.position, 10);
     getConnection(req, res)
-        .then(con => db.addRunningModule(con, req.body))
-        .then(() => res.statusStatus(200));
+        .then(con => db.addModuleToRunningModules(con, moduleId, groupId, position))
+        .then(result => res.json(result));
 }
 
 function updateRunningModule(req, res) {
+    console.log('updateRunningModule');
+    let groupId = parseInt(req.params.groupId, 10);
+    let position = parseInt(req.params.position, 10);
+    let updates = req.body;
     getConnection(req, res)
-        .then(con => db.updateRunningModule(con, req.body, req.params.id))
-        .then(result => res.sendStatus(result.affectedRows > 0 ? 200 : 404));
+        .then(con => db.updateRunningModule(con, updates, groupId, position))
+        .then(result => res.json(result));
 }
 
 function deleteRunningModule(req, res) {
+    let groupId = parseInt(req.params.groupId, 10);
+    let position = parseInt(req.params.position, 10);
     getConnection(req, res)
-        .then(con => db.deleteRunningModule(con, req.params.id))
-        .then(result => res.sendStatus(result.affectedRows > 0 ? 200 : 404));
+        .then(con => db.deleteRunningModule(con, groupId, position))
+        .then(result => res.json(result));
 }
 
 module.exports = {
