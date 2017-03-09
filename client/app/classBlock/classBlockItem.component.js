@@ -3,12 +3,19 @@
     class ClassBlockItemController {
 
         static get $inject() {
-            return ['$mdDialog', 'backendService'];
+            return ['$mdDialog', 'backendService', 'me'];
         }
 
-        constructor($mdDialog, backendService) {
+        constructor($mdDialog, backendService, me) {
             this.bgColor = this.randomColor();
             this.$mdDialog = $mdDialog;
+            this.me = me;
+        }
+
+        isTeacher() {
+            if (this.me.role == 'teacher') {
+                return true;
+            }
         }
 
         randomColor() {
@@ -19,14 +26,15 @@
 
         addRunningModule(ev, className) {
             this.$mdDialog.show({
-                    controller: 'addRunningModuleCtrl',
-                    controllerAs: '$ctrl',
-                    templateUrl: 'client/app/classBlock/addRunningModuleModal.html',
-                    targetEvent: ev,
-                    clickOutsideToClose: true
-                })
-                .then(res => console.log(res))
-                .catch(err => console.log(err));
+                locals: {
+                    className
+                },
+                controller: 'addRunningModuleCtrl',
+                controllerAs: '$ctrl',
+                templateUrl: 'client/app/classBlock/addRunningModuleModal.html',
+                targetEvent: ev,
+                clickOutsideToClose: true
+            })
         }
 
     }
