@@ -1,5 +1,17 @@
 # Hyfer back-end API end-points
 
+## Modules
+
+To be provided
+
+## Users
+
+To be provided
+
+## Groups
+
+To be provided
+
 ## Running modules
 
 ### Read
@@ -16,8 +28,8 @@
 | :------- | :---------- |
 | `description` | The description of the runnning module |
 | `duration` | The duration of the runnning module in weeks |
-| `teacher1_id` | An `id` of the user with role `teacher` or `null`|
-| `teacher1_id` | An `id` of the user with role `teacher` or `null`|
+| `teacher1_id` | An `id` of a user with role `teacher` or `null`|
+| `teacher1_id` | An `id` of a user with role `teacher` or `null`|
 
 ### Add
 
