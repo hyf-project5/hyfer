@@ -1,7 +1,7 @@
 
 ### User
 ---
-- ✅ **User** ➜ 1) I should be able to see a timeline of all **active classes** and their **running modules**.
+- **User** ➜ 1) I should be able to see a timeline of all **active classes** and their **running modules**.
 - ✅ **User** ➜ 2) I should be able to select / click a **module** and then see the corresponding GitHub course content README + link.
 - ✅ **User** ➜ 3) I should be able to login using my GitHub account.
 
