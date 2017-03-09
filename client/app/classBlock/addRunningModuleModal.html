@@ -1,4 +1,4 @@
-<md-dialog aria-label="Adding Module." flex='60'>
+<md-dialog aria-label="Adding Module." flex='60' ng-show="$ctrl.dontShow">
     <form ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -13,33 +13,29 @@
         <md-dialog-content aria-label="Adding Module.">
             <div class="md-dialog-content">
                 <md-input-container class="md-block">
-                    Select Module:
-                    <label>{{module}}</label>
-                    <md-select ng-change="$ctrl.selectedModule(module)" aria-label="user role" ng-model="module">
+                    <label>{{module_name || 'Select Module'}}</label>
+                    <md-select aria-label="user role" ng-model="module_name">
                         <md-option ng-repeat="module in $ctrl.runningModules">{{module.module_name}}</md-option>
                     </md-select>
                 </md-input-container>
 
                 <md-input-container class="md-block">
-                    After Module:
-                    <label>{{afterModule}}</label>
-                    <md-select ng-change="$ctrl.afterModule(afterModule)" aria-label="user role" ng-model="afterModule">
+                    <label>{{afterModule || 'After Module'}}</label>
+                    <md-select aria-label="user role" ng-model="afterModule">
                         <md-option ng-repeat="module in $ctrl.runningModules">{{module.module_name}}</md-option>
                     </md-select>
                 </md-input-container>
 
                 <md-input-container class="md-block">
-                    Teacher 1:
-                    <label>{{teacher1}}</label>
-                    <md-select ng-change="$ctrl.selectedTeacher1(teahcer1)" aria-label="user role" ng-model="teacher1">
+                    <label>{{teacher1 || 'Teacher 1'}}</label>
+                    <md-select aria-label="user role" ng-model="teacher1">
                         <md-option ng-repeat="user in $ctrl.users">{{user.username}}</md-option>
                     </md-select>
                 </md-input-container>
 
                 <md-input-container class="md-block">
-                    Teacher 2:
-                    <label>{{teacher2}}</label>
-                    <md-select ng-change="$ctrl.afterTeacher2(teacher2)" aria-label="user role" ng-model="teacher2">
+                    <label>{{teacher2 || 'Teacher 2'}}</label>
+                    <md-select aria-label="user role" ng-model="teacher2">
                         <md-option ng-repeat="user in $ctrl.users">{{user.username}}</md-option>
                     </md-select>
                 </md-input-container>
@@ -51,7 +47,7 @@
                 Cancel
             </md-button>
             <span flex></span>
-            <md-button class="md-primary" type='submit' ng-click="$ctrl.add()">
+            <md-button class="md-primary" ng-disabled="!module_name && !afterModule" ng-click="$ctrl.add({module_name, afterModule, teacher1, teacher2})">
                 Add
             </md-button>
         </md-dialog-actions>
