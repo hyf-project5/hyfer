@@ -1,0 +1,61 @@
+<md-dialog aria-label="Adding Module." flex='60'>
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Edit {{$ctrl.selectedRunningModule.module_name}}..</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
+                    <md-icon md-font-set="material-icons">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content aria-label="Adding Module.">
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>{{afterModule || 'After Module'}}</label>
+                    <md-select aria-label="after module" ng-model="afterModule">
+                        <md-option ng-repeat="module in $ctrl.runningModules" ng-value="$index">{{module.module_name}}</md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <input ng-model="duration" type="number" placeholder="{{duration || $ctrl.selectedRunningModule.duration}}">
+
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>{{teacher1 || 'Teacher 1'}}</label>
+                    <md-select aria-label="teacher 1" ng-model="teacher1">
+                        <md-option ng-repeat="user in $ctrl.users">{{user.username}}</md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>{{teacher2 || 'Teacher 2'}}</label>
+                    <md-select aria-label="teacher 2" ng-model="teacher2">
+                        <md-option ng-repeat="user in $ctrl.users">{{user.username}}</md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <textarea ng-model="description" placeholder="{{description || $ctrl.selectedRunningModule.description}}" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+                </md-input-container>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button class="md-raised md-warn" ng-click="$ctrl.cancel()">
+                Cancel
+            </md-button>
+            <span flex></span>
+            <md-button class="md-raised md-warn" ng-click="$ctrl.deleteRunningModule()">
+                Delete
+            </md-button>
+            <md-button class="md-primary" ng-disabled="!afterModule" ng-click="$ctrl.updateRunningModule({afterModule, duration, teacher1, teacher2, description})">
+                Update
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -6,9 +6,10 @@
     class MainTimelineController {
 
         static get $inject() {
-            return ['backendService', '$sce', 'me'];
+            return ['backendService', '$sce', 'me', '$mdDialog'];
         }
-        constructor(backendService, $sce, me) {
+        constructor(backendService, $sce, me, $mdDialog) {
+            this.$mdDialog = $mdDialog;
             this.backendService = backendService;
             this.$sce = $sce;
             this.me = me;
@@ -98,8 +99,19 @@
             }
         }
 
-        editRunningModule(module) {
-            console.log(module)
+        editRunningModule(ev, selectedRunningModule, index) {
+            this.$mdDialog.show({
+                locals: {
+                    className: selectedRunningModule.group_name,
+                    selectedRunningModule,
+                    index
+                },
+                controller: 'addRunningModuleCtrl',
+                controllerAs: '$ctrl',
+                templateUrl: 'client/app/mainTimeline/editRunningModuleModal.html',
+                targetEvent: ev,
+                clickOutsideToClose: true
+            })
         }
     }
 
