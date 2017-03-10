@@ -20,19 +20,20 @@
                     this.currentDate = day_names[current_date.getDay()] + ", " + current_date.getDate() + " " + month_names[current_date.getMonth()] + " " + current_date.getFullYear();
                     this.todayPosition = Math.round(this.computedMilliseconds(current_date) / days);
                     this.timeline = data;
-                    this.classes = Object.keys(this.timeline).sort();
+                    this.classes = Object.keys(this.timeline);
                     this.indicatorHeight = (this.classes.length * 60) + 20;
                     this.readmeHeaderTop = this.indicatorHeight + 55;
                     const zeroPoint = Math.round(this.computedMilliseconds(this.getClosestSundayAndRidOfTime(this.timeline[this.classes[0]][0].starting_date)) / days);
                     this.classes.forEach(function(entry) {
                         let firsModuleStartDateInThisGroup = Math.round(ctrl.computedMilliseconds(ctrl.getClosestSundayAndRidOfTime(ctrl.timeline[entry][0].starting_date)) / days);
-                        let position = firsModuleStartDateInThisGroup - zeroPoint + 10;
+                        let leftPosition = firsModuleStartDateInThisGroup - zeroPoint;
                         let classBgColor = ctrl.randomColor();
                         ctrl.timeline[entry].forEach(function(runningModule) {
                             runningModule.classBgColor = classBgColor;
-                            runningModule.blockClass = 'block-no-' + runningModule.duration;
-                            runningModule.startingWeekClass = 'block-week-' + Math.round(position / 7);
-                            // runningModule.position = position * 15;
+                            runningModule.blockWidth = (runningModule.duration * 7 * 9) - 6;
+                            runningModule.leftPosition = (leftPosition * 9) + 125;
+                            // runningModule.blockClass = 'block-no-' + runningModule.duration;
+                            // runningModule.startingWeekClass = 'block-week-' + Math.round(position / 7);
                             runningModule.bgColor = ctrl.randomColor();
                             runningModule.startingDate = ctrl.getInterfaceDate(firsModuleStartDateInThisGroup);
                             let endDate = (firsModuleStartDateInThisGroup) + (runningModule.duration * 7);

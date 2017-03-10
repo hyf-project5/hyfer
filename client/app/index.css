@@ -1,17 +1,16 @@
-@import url("calendar.css");
 @import url("readme.css");
 @import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
-#homeLogin {
-    background: url(/images/bg.jpg) no-repeat center center fixed;
-    font-size: 14px;
-    line-height: 1.70857;
-    color: white;
-    overflow: hidden;
-}
+
+/* Toolbar */
 
 .toolbar-logo {
     height: 85%;
 }
+
+
+/**********************************************
+*                 Timeline                    *
+**********************************************/
 
 .timliene {
     margin-top: 15px;
@@ -43,6 +42,9 @@
     z-index: 1;
 }
 
+
+/* classes */
+
 .classes-container {
     vertical-align: middle;
     z-index: 2;
@@ -54,7 +56,7 @@
 
 .class-block {
     display: block;
-    width: 110px;
+    width: 125px;
     height: 55px;
     margin-top: 0px;
     margin-right: 0px;
@@ -63,9 +65,24 @@
     text-align: center;
     border-bottom-left-radius: .5em;
     border-top-left-radius: .5em;
-    vertical-align: middle;
     line-height: 55px;
+    /*position: relative;*/
 }
+
+.add-class {
+    display: block;
+    position: absolute;
+    left: 100px;
+    z-index: 10;
+}
+
+.class-name {
+    display: inline-block;
+    margin: auto;
+}
+
+
+/*  Modules   */
 
 .module-block {
     border-radius: .5em;
@@ -291,5 +308,11 @@ div .readmeHeader {
 @media (max-width: 541px) {
     .footer-logo img {
         visibility: hidden;
+    }
+    .module-block {
+        font-size: .8em;
+    }
+    .class-block {
+        font-size: .8em;
     }
 }

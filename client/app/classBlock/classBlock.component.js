@@ -11,7 +11,7 @@
             backendService.getTimeline()
                 .then(data => {
                     this.timeline = data;
-                    this.classNames = Object.keys(this.timeline).sort();
+                    this.classNames = Object.keys(this.timeline);
                 })
                 .catch(err => console.log(err));
         }

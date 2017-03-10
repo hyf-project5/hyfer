@@ -14,7 +14,7 @@ const TIME_LINE_FOR_ALL_GROUPS_QUERY =
     FROM groups
     INNER JOIN running_modules ON running_modules.group_id = groups.id
     INNER JOIN modules ON running_modules.module_id = modules.id
-    ORDER BY running_modules.position`;
+    ORDER BY groups.starting_date, running_modules.position`;
 
 
 const ADD_GROUP_QUERY = `INSERT INTO groups SET ?`;
