@@ -1,10 +1,10 @@
 :root {
-    --normal-day: 105px;
-    --small-day: 105px;
-    --normal-week-width: 99px;
-    --small-week-width: 99px;
-    --classes-width: 150px;
-    --small-classes-width: 150px;
+    --normal-day: 63px;
+    /*--small-day: 70px;*/
+    --normal-week-width: 57px;
+    /*--small-week-width: 64px;*/
+    --classes-width: 110px;
+    /*--small-classes-width: 125px;*/
 }
 
 
@@ -255,9 +255,9 @@
     }
     .class-block {
         font-size: .8em;
-        width: var(--small-classes-width) !important;
+        /*width: var(--small-classes-width) !important;*/
     }
-    .block-no-1 {
+    /*.block-no-1 {
         width: calc(var(--small-day) * 0 + var(--small-week-width));
     }
     .block-no-2 {
@@ -433,5 +433,5 @@
     }
     .block-week-53 {
         left: calc(var(--small-day) * 52 + var(--small-classes-width));
-    }
+    }*/
 }
