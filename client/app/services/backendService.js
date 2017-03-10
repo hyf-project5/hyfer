@@ -20,7 +20,16 @@
         }
 
         addRunningModule(moduleId, groupId, position) {
-            return this.$http.patch('/api/running/' + moduleId + '/' + groupId + '/' + position, {}, this.getHttpConfig())
+            return this.$http.patch(`/api/running/${moduleId}/${groupId}/${position}`, {}, this.getHttpConfig())
+        }
+
+        updateRunningModule(groupId, position, newRunningModule) {
+            return this.$http.patch(`/api/running/${groupId}/${position}`, newRunningModule, this.getHttpConfig())
+                .then(res => console.log(res))
+        }
+
+        deleteRunningModule(groupId, position) {
+            return this.$http.delete(`/api/running/${groupId}/${position}`, this.getHttpConfig())
         }
 
         getTimeline() {
