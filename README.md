@@ -12,12 +12,21 @@
 * [Data Layer](https://github.com/hyf-project5/super-duper-5/blob/master/docs/README.datalayer.md)
 * [API end points](https://github.com/hyf-project5/hyfer/blob/master/docs/README.api-endpoints.md)
 
-## Requirements
+## Installation
+
 
 ### Install dependencies
 
-  * *Install node&npm :* if you haven't yet : [Node.js and NPM](http://nodejs.org/)
-  * *Run the following :* `npm install`
+```
+npm install
+```
+
+### Database
+
+This application requires a MySQL database.
+
+- Create an empty database and a MySQL user with rights to the database.
+To be extended.
 
 * **NOTE**
   * *CREATE DB :* first you should create the database(this is currently) to do so do the following:
