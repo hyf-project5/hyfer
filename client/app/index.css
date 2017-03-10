@@ -273,3 +273,9 @@ div .readmeHeader {
 .fa-github {
     color: #000000;
 }
+
+@media (max-width: 541px) {
+    .footer-logo img {
+        visibility: hidden;
+    }
+}

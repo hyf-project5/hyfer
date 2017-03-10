@@ -2,6 +2,12 @@
     padding: 40px 50px;
 }
 
+@media (max-width: 541px) {
+    .markdown-body {
+        padding: 10px 15px;
+    }
+}
+
 .markdown-body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 16px;
