@@ -27,7 +27,9 @@
         openRunningModuleModal(ev, className) {
             this.$mdDialog.show({
                 locals: {
-                    className
+                    className,
+                    selectedRunningModule: null,
+                    index: null
                 },
                 controller: 'addRunningModuleCtrl',
                 controllerAs: '$ctrl',
