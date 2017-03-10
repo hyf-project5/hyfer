@@ -12,6 +12,11 @@ function getModule(con, id) {
 }
 
 function getModules(con) {
+    const sql = GET_MODULE_QUERY + ` WHERE module_name != 'Dummy' ORDER BY module_name`;
+    return db.execQuery(con, sql);
+}
+
+function getCurriculumModules(con) {
     const sql = GET_MODULE_QUERY + ` WHERE seq_number IS NOT NULL ORDER BY seq_number`;
     return db.execQuery(con, sql);
 }
@@ -36,6 +41,7 @@ function deleteModule(con, id) {
 module.exports = {
     getModule,
     getModules,
+    getCurriculumModules,
     getOptionalModules,
     addModule,
     updateModule,

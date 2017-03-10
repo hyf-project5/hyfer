@@ -44,7 +44,7 @@ function addGroup(con, group) {
     return db.execQuery(con, ADD_GROUP_QUERY, group)
         .then(result => {
             let groupId = result.insertId;
-            return modules.getModules(con)
+            return modules.getCurriculumModules(con)
                 .then(mods => {
                     let runningModules = makeRunningModules(groupId, mods);
                     let valueList = makeValueList(runningModules);
