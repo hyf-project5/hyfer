@@ -26,18 +26,20 @@ npm install
 This application requires a MySQL database.
 
 - Create an empty database and a MySQL user with rights to the database.
-To be extended.
 
-* **NOTE**
-  * *CREATE DB :* first you should create the database(this is currently) to do so do the following:
+- Use the command line to load the most recent version of the schema SQL file from the `sql` folder into the database:
+    
+    `mysql -u` _user-name_ `-p` _database-name_ `<` _sql-file_
 
-  In your MySQL shell run `mysql -u[username] -p[password] [DB name] < DIRECTORY/DB_Schema_v3.sql`
-  * notes that the `DB_Schema.sql` file is important to create all the required tables...
+- Next, repeat this command to load the sample data SQL file from the `sql` folder into the datavbase.
 
-  then create a `config.js` file in the `server/config` folder and paste in it the contents of
-  the `config.js.txt` file, and modify to reflect your specific database configuration.
+- create a `config.js` file in the `server/config` folder, paste the contents of the `config.sample.js` file into it, and modify to reflect your specific database configuration.
 
-  * *now just run `npm start`*
+### Run the server
+
+```
+npm start
+```
 
 ### Admin functions
 
