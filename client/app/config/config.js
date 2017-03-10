@@ -2,7 +2,7 @@
     'use strict';
 
     const defaultMe = {
-        username: 'anonymous',
+        username: 'visitor',
         role: 'visitor'
     }
 

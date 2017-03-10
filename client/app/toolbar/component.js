@@ -20,7 +20,7 @@
         }
 
         isUser() {
-            if (this.me.username == 'anonymous') {
+            if (this.me.role == 'visitor') {
                 return false;
             };
             return true;

@@ -12,7 +12,7 @@
         </md-button>
         <span flex></span>
 
-        <h2>
+        <h2 ng-show="$ctrl.isUser()">
             {{$ctrl.me.username}}
         </h2>
         <md-button class="md-raised" ng-click="$ctrl.signin()" ng-show="!$ctrl.isUser()">
