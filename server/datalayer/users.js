@@ -3,11 +3,11 @@ const db = require('./database');
 
 // Users functions
 function getUser(con, username) {
-    return db.execQuery(con, `SELECT * FROM users WHERE username=?`, username);
+    return db.execQuery(con, `SELECT username, role, register_date FROM users WHERE username=?`, username);
 }
 
 function getUsers(con) {
-    return db.execQuery(con, `SELECT * FROM users`);
+    return db.execQuery(con, `SELECT username, role, register_date FROM users`);
 }
 
 function addUser(con, user) {
