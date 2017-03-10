@@ -23,7 +23,7 @@ module.exports = function(app) {
 
     app.get('/api/groups', groups.getTimelineForAllGroups);
     app.get('/api/groups/:id', groups.getTimelineForAGroup);
-    app.post('/api/groups', groups.addGroup);
+    app.post('/api/groups', authService.hasRole('teacher'), groups.addGroup);
     app.patch('/api/groups/:id', authService.hasRole('teacher'), groups.updateGroup);
     app.delete('/api/groups/:id', authService.hasRole('teacher'), groups.deleteGroup);
 
