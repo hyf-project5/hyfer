@@ -3,11 +3,11 @@
 
     class hyfTimelineController {
         static get $inject() {
-            return ['backendService', '$sce', '$mdDialog', 'toastService'];
+            return ['backendService', '$sce', '$mdDialog', 'toastService', 'me'];
         }
 
-        constructor(backendService, $sce, $mdDialog, toastService) {
-
+        constructor(backendService, $sce, $mdDialog, toastService, me) {
+            this.me = me;
             this.$mdDialog = $mdDialog;
             this.backendService = backendService;
             this.toastService = toastService;
@@ -32,6 +32,11 @@
                 .catch(err => this.toastService.displayToast(false));
         };
 
+        isTeacher() {
+            if (this.me.role === 'teacher') {
+                return true;
+            }
+        }
 
     }
 

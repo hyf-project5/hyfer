@@ -4,7 +4,7 @@
         <div id="timeline" class="timliene">
             <div layout='row'>
                 <span flex></span>
-                <md-button class="md-raised md-mini md-primary" ng-click="$ctrl.addClassModal($event)">
+                <md-button ng-show="$ctrl.isTeacher()" class="md-raised md-mini md-primary" ng-click="$ctrl.addClassModal($event)">
                     <md-icon md-font-set="material-icons">add</md-icon>
                     Add Class
                 </md-button>
