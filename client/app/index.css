@@ -18,6 +18,7 @@
 }
 
 .timline-date {
+    margin-left: 5px;
     position: absolute;
     height: 40px;
     z-index: 3;
@@ -277,5 +278,9 @@ div .readmeHeader {
 @media (max-width: 541px) {
     .footer-logo img {
         visibility: hidden;
+    }
+    .classes-container,
+    #main-timeline {
+        margin-left: 5px;
     }
 }

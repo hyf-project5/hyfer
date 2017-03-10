@@ -37,10 +37,8 @@
                     this.timeline = data;
                     this.classes = Object.keys(this.timeline).sort();
                     this.indicatorHeight = (this.classes.length * 60) + 20;
-                    this.readmeHeaderTop = this.indicatorHeight + 55;
                     const zeroPoint = Math.round(this.computedMilliseconds(this.getClosestSundayAndRidOfTime(this.timeline[this.classes[0]][0].starting_date)) / days);
                     this.indicatorPosition = ((this.todayPosition - zeroPoint) * 15) + 150;
-                    this.indicatorDatePosition = this.indicatorPosition + 5;
                     let scrollToLeft = this.indicatorPosition - 350;
                     document.getElementById("main-timeline").scrollLeft = scrollToLeft;
 

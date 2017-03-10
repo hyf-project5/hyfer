@@ -23,13 +23,6 @@
                     this.indicatorHeight = (this.classes.length * 60) + 20;
                     this.readmeHeaderTop = this.indicatorHeight + 55;
                     const zeroPoint = Math.round(this.computedMilliseconds(this.getClosestSundayAndRidOfTime(this.timeline[this.classes[0]][0].starting_date)) / days);
-                    this.indicatorPosition = ((this.todayPosition - zeroPoint) * 15) + 150;
-                    this.indicatorDatePosition = this.indicatorPosition + 5;
-                    let scrollToLeft = this.indicatorPosition - 350;
-                    this.scrollTimelineToToday(scrollToLeft);
-
-
-                    let that = this;
                     this.classes.forEach(function(entry) {
                         let firsModuleStartDateInThisGroup = Math.round(ctrl.computedMilliseconds(ctrl.getClosestSundayAndRidOfTime(ctrl.timeline[entry][0].starting_date)) / days);
                         let position = firsModuleStartDateInThisGroup - zeroPoint + 10;
@@ -38,7 +31,7 @@
                             runningModule.classBgColor = classBgColor;
                             runningModule.blockClass = 'block-no-' + runningModule.duration;
                             runningModule.startingWeekClass = 'block-week-' + Math.round(position / 7);
-                            runningModule.position = position * 15;
+                            // runningModule.position = position * 15;
                             runningModule.bgColor = ctrl.randomColor();
                             runningModule.startingDate = ctrl.getInterfaceDate(firsModuleStartDateInThisGroup);
                             let endDate = (firsModuleStartDateInThisGroup) + (runningModule.duration * 7);
@@ -61,9 +54,7 @@
                         .catch(err => console.log(err));
                 })
                 .catch(err => console.log(err));
-
         }
-
 
         computedMilliseconds(date) {
             let getDate = new Date(date);
@@ -88,12 +79,6 @@
             return day_names[date.getDay()] + ", " + date.getDate() + " " + month_names[date.getMonth()] + " " + date.getFullYear();
 
         }
-        scrollTimelineToToday(scrollToLeft) {
-            setTimeout(
-                function() {
-                    document.getElementById("main-timeline").scrollLeft = scrollToLeft;
-                }, 50);
-        }
 
         showReadme(module) {
             this.backendService.getReadme(module.git_repo)
@@ -116,10 +101,6 @@
         editRunningModule(module) {
             console.log(module)
         }
-
-
-
-
     }
 
     angular.module('hyferApp')
