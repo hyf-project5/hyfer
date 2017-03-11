@@ -232,6 +232,10 @@
         background-color: #2196F3 !important;
     }
     
+    .module-add:hover {
+        background-color: rgba(158, 158, 158, 1) !important;
+    }
+    
     .button {
         border: 1px solid #0a3c59;
         background: #3e779d;
@@ -390,6 +394,17 @@
     
     .fa-github {
         color: #000000;
+    }
+    
+    .users-avatar {
+        width: 90%;
+        border-radius: 5px;
+        margin: 0px;
+    }
+    
+    .users-block {
+        width: 90%;
+        text-align: center
     }
     
     @media (max-width: 541px) {

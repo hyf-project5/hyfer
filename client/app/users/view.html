@@ -1,4 +1,26 @@
 <div flex-offset-gt-sm='10' flex-gt-sm='80'>
+
+    <br>
+    <md-grid-list md-cols-xs="4" md-cols-sm="5" md-cols-md="6" md-cols-lg="7" md-cols-gt-lg="8" md-row-height="1:2">
+        <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="user in $ctrl.users">
+            <md-input-container class="users-block">
+                <img class="users-avatar" src="https://avatars.githubusercontent.com/{{user.username}}">
+                <p>{{user.username}}</p>
+                <label>{{user.role}}</label>
+                <md-select ng-model="role" ng-change="$ctrl.selectedRole(user.id, role, user.username, $event)" aria-label="user role">
+                    <md-option ng-disabled="user.role === 'teacher'">Teacher</md-option>
+                    <md-option ng-disabled="user.role === 'student'">Student</md-option>
+                </md-select>
+            </md-input-container>
+        </md-grid-tile>
+    </md-grid-list>
+
+
+
+
+    <!--
+
+
     <table class="nice-table">
         <thead>
             <tr>
@@ -21,6 +43,6 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+    </table>-->
 </div>
 <hyf-footer></hyf-footer>
