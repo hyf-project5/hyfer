@@ -22,10 +22,10 @@
                     <input ng-model="git_url" type="url" placeholder="Repo URL..">
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <input ng-model="default_duration" type="number" placeholder="Duration..">
+                    <input ng-model="default_duration" type="number" min="1" placeholder="Duration..">
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <input ng-model="seq_number" type="number" placeholder="Sequence #..">
+                    <input ng-model="seq_number" type="number" min="0" placeholder="Sequence #..">
                 </md-input-container>
             </div>
         </md-dialog-content>
