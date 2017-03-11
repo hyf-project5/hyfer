@@ -24,13 +24,23 @@
             })
             .state('timeline', {
                 url: '/timeline',
-                component: 'hyfTimeline'
+                component: 'hyfTimeline',
+                resolve: {
+                    timeline: timelineResolver
+                }
             })
             .state('users', {
                 url: '/users',
                 component: 'hyfUsers'
             })
 
+    }
+
+    timelineResolver.$inject = ['backendService']
+
+    function timelineResolver(backendService) {
+        console.log('timelineResolver')
+        return backendService.getTimeline();
     }
 
     run.$inject = ['$cookies', 'backendService', 'me'];
