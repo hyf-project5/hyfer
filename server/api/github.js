@@ -49,7 +49,7 @@ function getReadMeAsHtml(req, res) {
     }
 
     promise.then(html => res.send(html))
-        .catch(() => res.statusStatus(404));
+        .catch(() => res.sendStatus(404));
 }
 
 module.exports = {
