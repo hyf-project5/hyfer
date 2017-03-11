@@ -1,26 +1,8 @@
 <md-toolbar layout='row'>
     <div class="md-toolbar-tools" layout='row' layout-align='space-between center' flex-offset-gt-sm='10' flex-gt-sm='80'>
         <div>
-            <md-menu class="toolbar-menu-responsive">
-                <img class="avatar-image" src="images/menuicon.svg" ng-click="$mdMenu.open($event)">
-                <md-menu-content>
-                    <md-menu-item>
-                        <md-button ui-sref='timeline'>
-                            Timeline
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item ng-show="$ctrl.isTeacher()">
-                        <md-button ui-sref='modules' ng-show="$ctrl.isTeacher()">
-                            Modules
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item ng-show="$ctrl.isTeacher()">
-                        <md-button ui-sref='users' ng-show="$ctrl.isTeacher()">
-                            Users
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
+
+            <responsive-menu-component></responsive-menu-component>
 
             <div class="toolbar-menu">
                 <img class="toolbar-logo" ng-src="images/logo.png" alt="hyfLogo">
