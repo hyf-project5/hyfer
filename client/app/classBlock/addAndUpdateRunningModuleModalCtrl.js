@@ -43,18 +43,17 @@
             this.modules[0].forEach(module => {
                 if (module.module_name === submit.module_name) {
                     let groupId = this.getGroupId();
-                    this.$mdDialog.hide()
+                    this.$mdDialog.hide(submit)
                         .then(() => {
                             let position = submit.afterModuleIndex || -1;
                             position = position >= this.runningModules.length - 1 ? -1 : position;
                             console.log(position)
                             return this.backendService.addRunningModule(module.id, groupId, position)
-                                .then(res => {
-
-                                    // location.reload();
-                                })
+                                // .then(res => {
+                                //     location.reload();
+                                // })
                         })
-                        .catch(err => console.log(err))
+                        // .catch(err => console.log(err))
                 }
             })
         }
@@ -70,11 +69,11 @@
                             let oldPosition = this.index;
                             submit.position = newPosition;
                             return this.backendService.updateRunningModule(groupId, oldPosition, submit)
-                                .then(res => {
-                                    location.reload()
-                                })
+                                // .then(res => {
+                                //      location.reload()
+                                // })
                         })
-                        .catch(err => console.log(err))
+                        // .catch(err => console.log(err))
                 }
             })
         }
