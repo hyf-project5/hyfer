@@ -11,10 +11,11 @@
         height: 40px;
         border-radius: 50%;
         border: 0px;
+        cursor: pointer;
     }
     
-    .avatar-image:hover {
-        cursor: pointer;
+    ._md-nav-button-text {
+        color: white;
     }
     
     .active {
@@ -33,8 +34,9 @@
         display: none;
     }
     
-    .userName {
+    .user-name {
         margin: 8px 4px 0 0;
+        font-size: .8em;
     }
     
     @media (max-width: 541px) {
@@ -172,12 +174,62 @@
         /*background-color: rgba(222, 33, 122, 0.8);*/
     }
     
-    .homeLogin {
-        width: 100%;
-        background-color: rgba(255, 255, 255, 0.7);
-        border: 4px solid rgba(255, 255, 255, 0.2);
-        /*border-top-left-radius: 6%;*/
-        color: #ffffff;
+    .module-gird-item {
+        width: 80%;
+        height: 80%;
+        border: 1px solid rgba(158, 158, 158, 0.5);
+        border-radius: 20px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .module-gird-item:hover {
+        background-color: rgba(158, 158, 158, 0.2);
+        cursor: pointer;
+        color: #2196F3;
+    }
+    
+    .module-name {
+        position: absolute;
+        border-radius: 20px 20px 0 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 30%;
+        background-color: #2196F3;
+        color: white;
+        line-height: 20%;
+    }
+    
+    .module-gird-item:hover .module-name {
+        background: #0077d6;
+    }
+    
+    .module-description {
+        position: absolute;
+        vertical-align: middle;
+        top: 35%;
+        padding: 10px;
+    }
+    
+    .module-duration {
+        font-size: .65em;
+        position: absolute;
+        bottom: 9px;
+        right: 16px;
+    }
+    
+    figure:focus {
+        outline: 0;
+        outline-color: inherit;
+        outline-style: auto;
+        outline-width: 0px;
+    }
+    
+    .module-add {
+        border-radius: 50% 0;
+        background-color: #2196F3 !important;
     }
     
     .button {
@@ -348,6 +400,9 @@
             font-size: .8em;
         }
         .class-block {
+            font-size: .8em;
+        }
+        .module-description {
             font-size: .8em;
         }
     }
