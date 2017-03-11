@@ -13,14 +13,14 @@
         <md-dialog-content aria-label="Adding Module.">
             <div class="md-dialog-content">
                 <md-input-container class="md-block">
-                    <label>{{afterModule || 'After Module'}}</label>
-                    <md-select aria-label="after module" ng-model="afterModule">
+                    <label>After Module</label>
+                    <md-select aria-label="after module" ng-model="afterModuleIndex">
                         <md-option ng-repeat="module in $ctrl.runningModules" ng-value="$index">{{module.module_name}}</md-option>
                     </md-select>
                 </md-input-container>
 
                 <md-input-container class="md-block">
-                    <input ng-model="duration" type="number" placeholder="{{duration || $ctrl.selectedRunningModule.duration}}">
+                    <input ng-model="duration" type="number" min="1" placeholder="{{duration || $ctrl.selectedRunningModule.duration}}">
 
                 </md-input-container>
 
@@ -53,7 +53,7 @@
             <md-button class="md-raised md-warn" ng-click="$ctrl.deleteRunningModule()">
                 Delete
             </md-button>
-            <md-button class="md-primary" ng-disabled="!afterModule" ng-click="$ctrl.updateRunningModule({afterModule, duration, teacher1, teacher2, description})">
+            <md-button class="md-primary" ng-disabled="!afterModuleIndex" ng-click="$ctrl.updateRunningModule({afterModuleIndex, duration, teacher1, teacher2, description})">
                 Update
             </md-button>
         </md-dialog-actions>

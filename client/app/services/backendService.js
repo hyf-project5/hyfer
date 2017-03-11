@@ -57,6 +57,7 @@
         }
 
         updateUserRole(userId, role) {
+            console.log(userId)
             return this.$http.patch('/api/user/' + userId, { "role": role }, this.getHttpConfig())
         }
 

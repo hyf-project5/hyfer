@@ -9,7 +9,6 @@
             return ['$sce', '$mdDialog', '$state', 'backendService', 'me'];
         }
         constructor($sce, $mdDialog, $state, backendService, me) {
-            console.log('constructor called')
             this.$sce = $sce;
             this.$mdDialog = $mdDialog;
             this.$state = $state;
@@ -18,16 +17,10 @@
         }
 
 
-        // backendService.getTimeline()
-        //     .then(data => {
         $onInit() {
             const current_date = new Date();
             this.currentDate = day_names[current_date.getDay()] + ", " + current_date.getDate() + " " + month_names[current_date.getMonth()] + " " + current_date.getFullYear();
             this.todayPosition = Math.round(this.computedMilliseconds(current_date) / days);
-            // this.timeline = data;
-            // this.classes = Object.keys(this.timeline);
-            console.log(this.classes)
-            console.log(this.timeline)
             this.indicatorHeight = (this.classes.length * 60) + 20;
             this.readmeHeaderTop = this.indicatorHeight + 55;
             const zeroPoint = Math.round(this.computedMilliseconds(this.getClosestSundayAndRidOfTime(this.timeline[this.classes[0]][0].starting_date)) / days);
@@ -61,8 +54,6 @@
             this.backendService.getReadme(this.timeline[this.classes[0]][0].git_repo)
                 .then(res => this.readmeFile = this.$sce.trustAsHtml(res))
                 .catch(err => console.log(err));
-            // })
-            // .catch(err => console.log(err));
         }
 
         computedMilliseconds(date) {
@@ -109,25 +100,17 @@
 
         editRunningModule(ev, selectedRunningModule, index) {
             this.$mdDialog.show({
-                    locals: {
-                        className: selectedRunningModule.group_name,
-                        selectedRunningModule,
-                        index
-                    },
-                    controller: 'addAndUpdateRunningModuleModalCtrl',
-                    controllerAs: '$this',
-                    templateUrl: 'client/app/mainTimeline/editRunningModuleModal.html',
-                    targetEvent: ev,
-                    clickOutsideToClose: true
-                })
-                .then(res => {
-                    this.$state.reload();
-                    // this.backendService.getTimeline()
-                    //     .then(data => {
-                    //         this.timeline = data;
-                    //         this.classes = Object.keys(this.timeline)
-                    //     })
-                })
+                locals: {
+                    className: selectedRunningModule.group_name,
+                    selectedRunningModule,
+                    index
+                },
+                controller: 'addAndUpdateRunningModuleModalCtrl',
+                controllerAs: '$ctrl',
+                templateUrl: 'client/app/mainTimeline/editRunningModuleModal.html',
+                targetEvent: ev,
+                clickOutsideToClose: true
+            })
         }
     }
 
