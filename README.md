@@ -28,7 +28,7 @@ This application requires a MySQL database.
 - Create an empty database and a MySQL user with rights to the database.
 
 - Use the command line to load the most recent version of the schema SQL file from the `sql` folder into the database:
-    
+
     `mysql -u` _user-name_ `-p` _database-name_ `<` _sql-file_
 
 - Next, repeat this command to load the sample data SQL file from the `sql` folder into the datavbase.
@@ -44,3 +44,7 @@ npm start
 ### Admin functions
 
 Certain admin tasks require a `teacher` role. To initially give yourself this role you need to sign-in with GitHUb and then use the `my-sql` command line or the MySQL Workbench to change your role in the `users` table from `guest` to `teacher`.
+
+### Data model
+
+![datamodel](https://cloud.githubusercontent.com/assets/2788771/23826619/3389b8e6-06a0-11e7-9187-9a5ca4f8bf99.png)
