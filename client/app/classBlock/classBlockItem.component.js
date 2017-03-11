@@ -24,19 +24,21 @@
             return themeColor[xColor];
         }
 
-        openRunningModuleModal(ev, className) {
+        addRunningModuleModal(ev, className) {
             this.$mdDialog.show({
                 locals: {
                     className,
                     selectedRunningModule: null,
                     index: null
                 },
-                controller: 'addRunningModuleCtrl',
+                controller: 'addAndUpdateRunningModuleModalCtrl',
                 controllerAs: '$ctrl',
                 templateUrl: 'client/app/classBlock/addRunningModuleModal.html',
                 targetEvent: ev,
                 clickOutsideToClose: true
             })
+            this.className = 'hasan';
+            console.log(this.className)
         }
 
     }

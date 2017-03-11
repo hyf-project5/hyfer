@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    class addRunningModuleCtrl {
+    class addAndUpdateRunningModuleModalCtrl {
 
         static get $inject() {
             return ['$mdDialog', 'backendService', 'className', 'selectedRunningModule', 'index'];
@@ -17,8 +17,8 @@
                     this.timeline = data;
                     this.classNames = Object.keys(this.timeline).sort();
                     this.runningModules = this.timeline[className];
-                    console.log(className)
-                        // console.log(this.selectedRunningModule)
+                    // console.log(this.runningModules)
+                    // console.log(this.selectedRunningModule)
                 })
                 .catch(err => console.log(err));
             this.users = [];
@@ -27,6 +27,9 @@
                 .then(res => {
                     res.forEach(user => user.role == 'teacher' ? this.users.push(user) : null)
                 })
+            this.modules = [];
+            backendService.getModules()
+                .then(module => this.modules.push(module))
         }
 
         hide() {
@@ -37,22 +40,21 @@
         }
 
         add(submit) {
-            this.runningModules.forEach(module => {
+            this.modules[0].forEach(module => {
                 if (module.module_name === submit.module_name) {
-                    let groupId = module.id;
+                    let groupId = this.getGroupId();
                     this.$mdDialog.hide()
                         .then(() => {
-                            this.getModuleId(submit.module_name)
-                                .then(moduleId => {
-                                    let position = submit.index;
-                                    position = position >= this.runningModules.length - 1 ? -1 : position;
-                                    this.backendService.addRunningModule(moduleId, groupId, position)
-                                        .then(res => {
-                                            location.reload()
-                                        })
-                                        .catch(err => console.log(err))
+                            let position = submit.afterModuleIndex || -1;
+                            position = position >= this.runningModules.length - 1 ? -1 : position;
+                            console.log(position)
+                            return this.backendService.addRunningModule(module.id, groupId, position)
+                                .then(res => {
+
+                                    // location.reload();
                                 })
                         })
+                        .catch(err => console.log(err))
                 }
             })
         }
@@ -63,15 +65,12 @@
                     let groupId = module.id;
                     this.$mdDialog.hide(submit)
                         .then(() => {
-                            console.log(submit)
-                            console.log('this the index: ' + this.index)
                             let newPosition = submit.afterModule;
                             newPosition = newPosition >= this.runningModules.length - 1 ? -1 : newPosition;
                             let oldPosition = this.index;
                             submit.position = newPosition;
                             return this.backendService.updateRunningModule(groupId, oldPosition, submit)
                                 .then(res => {
-                                    console.log(res)
                                     location.reload()
                                 })
                         })
@@ -96,17 +95,16 @@
         }
 
 
-        getModuleId(module_name) {
-            return this.backendService.getModules()
-                .then(modules => modules.find(mod => mod.module_name === module_name).id)
+        getGroupId() {
+            return this.runningModules[0].id;
         }
 
         getModulePosition(id) {
-            return this.runningModules.findIndex(mod => mod.id === id);
+            return this.runningModules.findIndex(runningModule => runningModule.id === id);
         }
 
     }
 
     angular.module('hyferApp')
-        .controller('addRunningModuleCtrl', addRunningModuleCtrl);
+        .controller('addAndUpdateRunningModuleModalCtrl', addAndUpdateRunningModuleModalCtrl);
 })();
