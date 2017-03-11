@@ -7,7 +7,7 @@ function getUser(con, username) {
 }
 
 function getUsers(con) {
-    return db.execQuery(con, `SELECT username, role, register_date FROM users`);
+    return db.execQuery(con, `SELECT username, role, id, register_date FROM users`);
 }
 
 function addUser(con, user) {
