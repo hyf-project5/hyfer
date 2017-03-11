@@ -3,19 +3,19 @@
 
     class hyfTimelineController {
         static get $inject() {
-            return ['backendService', '$sce', '$mdDialog', 'toastService', 'me'];
+            return ['$sce', '$mdDialog', '$state', 'toastService', 'me', 'backendService'];
         }
 
-        constructor(backendService, $sce, $mdDialog, toastService, me) {
+        constructor($sce, $mdDialog, $state, toastService, me, backendService) {
             this.me = me;
             this.$mdDialog = $mdDialog;
+            this.$state = $state;
             this.backendService = backendService;
             this.toastService = toastService;
-            this.backendService.getTimeline()
-                .then(data => {
-                    this.timeline = data;
-                    this.classes = Object.keys(this.timeline)
-                })
+        }
+
+        $onInit() {
+            this.classes = Object.keys(this.timeline)
         }
 
         addClassModal(ev) {
@@ -30,16 +30,11 @@
                     this.backendService.addGroup(group)
                         .then((res) => {
                             this.toastService.displayToast(true, res, group);
-                            console.log(res)
-                            this.backendService.getTimeline()
-                                .then(data => {
-                                    this.timeline = data;
-                                    this.classes = Object.keys(this.timeline)
-                                })
+                            this.$state.reload();
                         })
                 })
-                .catch(err => this.toastService.displayToast(false));
-        };
+                .catch(() => this.toastService.displayToast(false));
+        }
 
         isTeacher() {
             if (this.me.role === 'teacher') {
@@ -53,6 +48,9 @@
         .module('hyferApp')
         .component('hyfTimeline', {
             templateUrl: 'app/timeline/view.html',
-            controller: hyfTimelineController
+            controller: hyfTimelineController,
+            bindings: {
+                timeline: '<'
+            }
         });
 })();

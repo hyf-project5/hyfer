@@ -6,58 +6,63 @@
     class MainTimelineController {
 
         static get $inject() {
-            return ['backendService', '$sce', 'me', '$mdDialog'];
+            return ['$sce', '$mdDialog', '$state', 'backendService', 'me'];
         }
-        constructor(backendService, $sce, me, $mdDialog) {
-            this.$mdDialog = $mdDialog;
-            this.backendService = backendService;
+        constructor($sce, $mdDialog, $state, backendService, me) {
+            console.log('constructor called')
             this.$sce = $sce;
+            this.$mdDialog = $mdDialog;
+            this.$state = $state;
+            this.backendService = backendService;
             this.me = me;
-            let ctrl = this;
-            const current_date = new Date();
-            backendService.getTimeline()
-                .then(data => {
-                    this.currentDate = day_names[current_date.getDay()] + ", " + current_date.getDate() + " " + month_names[current_date.getMonth()] + " " + current_date.getFullYear();
-                    this.todayPosition = Math.round(this.computedMilliseconds(current_date) / days);
-                    // this.timeline = data;
-                    // this.classes = Object.keys(this.timeline);
-                    console.log(this.classes)
-                    console.log(this.timeline)
-                    this.indicatorHeight = (this.classes.length * 60) + 20;
-                    this.readmeHeaderTop = this.indicatorHeight + 55;
-                    const zeroPoint = Math.round(this.computedMilliseconds(this.getClosestSundayAndRidOfTime(this.timeline[this.classes[0]][0].starting_date)) / days);
-                    this.classes.forEach(function(entry) {
-                        let firsModuleStartDateInThisGroup = Math.round(ctrl.computedMilliseconds(ctrl.getClosestSundayAndRidOfTime(ctrl.timeline[entry][0].starting_date)) / days);
-                        let leftPosition = firsModuleStartDateInThisGroup - zeroPoint;
-                        let classBgColor = ctrl.randomColor();
-                        ctrl.timeline[entry].forEach(function(runningModule) {
-                            runningModule.classBgColor = classBgColor;
-                            runningModule.blockWidth = (runningModule.duration * 7 * 9) - 6;
-                            runningModule.leftPosition = (leftPosition * 9) + 125;
-                            // runningModule.blockClass = 'block-no-' + runningModule.duration;
-                            // runningModule.startingWeekClass = 'block-week-' + Math.round(position / 7);
-                            runningModule.bgColor = ctrl.randomColor();
-                            runningModule.startingDate = ctrl.getInterfaceDate(firsModuleStartDateInThisGroup);
-                            let endDate = (firsModuleStartDateInThisGroup) + (runningModule.duration * 7);
-                            runningModule.endingDate = ctrl.getInterfaceDate(endDate);
-                            firsModuleStartDateInThisGroup = endDate;
-                        });
-                    });
+        }
 
-                    let gitUrl = this.timeline[this.classes[0]][0].git_url + this.timeline[this.classes[0]][0].git_repo;
-                    this.readme = {
-                        moduleName: this.timeline[this.classes[0]][0].module_name,
-                        gitUrl: gitUrl
-                    }
-                    this.maxLength = 0;
-                    for (let key in this.timeline) {
-                        this.maxLength = Math.max(this.maxLength, this.timeline[key].length, 10);
-                    }
-                    backendService.getReadme(this.timeline[this.classes[0]][0].git_repo)
-                        .then(res => this.readmeFile = $sce.trustAsHtml(res))
-                        .catch(err => console.log(err));
-                })
+
+        // backendService.getTimeline()
+        //     .then(data => {
+        $onInit() {
+            const current_date = new Date();
+            this.currentDate = day_names[current_date.getDay()] + ", " + current_date.getDate() + " " + month_names[current_date.getMonth()] + " " + current_date.getFullYear();
+            this.todayPosition = Math.round(this.computedMilliseconds(current_date) / days);
+            // this.timeline = data;
+            // this.classes = Object.keys(this.timeline);
+            console.log(this.classes)
+            console.log(this.timeline)
+            this.indicatorHeight = (this.classes.length * 60) + 20;
+            this.readmeHeaderTop = this.indicatorHeight + 55;
+            const zeroPoint = Math.round(this.computedMilliseconds(this.getClosestSundayAndRidOfTime(this.timeline[this.classes[0]][0].starting_date)) / days);
+            this.classes.forEach(entry => {
+                let firsModuleStartDateInThisGroup = Math.round(this.computedMilliseconds(this.getClosestSundayAndRidOfTime(this.timeline[entry][0].starting_date)) / days);
+                let leftPosition = firsModuleStartDateInThisGroup - zeroPoint;
+                let classBgColor = this.randomColor();
+                this.timeline[entry].forEach(runningModule => {
+                    runningModule.classBgColor = classBgColor;
+                    runningModule.blockWidth = (runningModule.duration * 7 * 9) - 6;
+                    runningModule.leftPosition = (leftPosition * 9) + 125;
+                    // runningModule.blockClass = 'block-no-' + runningModule.duration;
+                    // runningModule.startingWeekClass = 'block-week-' + Math.round(position / 7);
+                    runningModule.bgColor = this.randomColor();
+                    runningModule.startingDate = this.getInterfaceDate(firsModuleStartDateInThisGroup);
+                    let endDate = (firsModuleStartDateInThisGroup) + (runningModule.duration * 7);
+                    runningModule.endingDate = this.getInterfaceDate(endDate);
+                    firsModuleStartDateInThisGroup = endDate;
+                });
+            });
+
+            let gitUrl = this.timeline[this.classes[0]][0].git_url + this.timeline[this.classes[0]][0].git_repo;
+            this.readme = {
+                moduleName: this.timeline[this.classes[0]][0].module_name,
+                gitUrl: gitUrl
+            }
+            this.maxLength = 0;
+            for (let key in this.timeline) {
+                this.maxLength = Math.max(this.maxLength, this.timeline[key].length, 10);
+            }
+            this.backendService.getReadme(this.timeline[this.classes[0]][0].git_repo)
+                .then(res => this.readmeFile = this.$sce.trustAsHtml(res))
                 .catch(err => console.log(err));
+            // })
+            // .catch(err => console.log(err));
         }
 
         computedMilliseconds(date) {
@@ -110,17 +115,18 @@
                         index
                     },
                     controller: 'addAndUpdateRunningModuleModalCtrl',
-                    controllerAs: '$ctrl',
+                    controllerAs: '$this',
                     templateUrl: 'client/app/mainTimeline/editRunningModuleModal.html',
                     targetEvent: ev,
                     clickOutsideToClose: true
                 })
                 .then(res => {
-                    this.backendService.getTimeline()
-                        .then(data => {
-                            this.timeline = data;
-                            this.classes = Object.keys(this.timeline)
-                        })
+                    this.$state.reload();
+                    // this.backendService.getTimeline()
+                    //     .then(data => {
+                    //         this.timeline = data;
+                    //         this.classes = Object.keys(this.timeline)
+                    //     })
                 })
         }
     }
@@ -129,7 +135,7 @@
         .component('hyfMainTimeline', {
             templateUrl: './app/mainTimeline/mainTimeline.component.html',
             bindings: {
-                timeline: '=',
+                timeline: '<',
                 classes: '<'
             },
             controller: MainTimelineController
