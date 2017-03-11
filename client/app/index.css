@@ -7,6 +7,13 @@
     height: 85%;
 }
 
+.avatar-image {
+    display: block;
+    height: 40px;
+    border-radius: 50%;
+    border: 0px;
+}
+
 
 /**********************************************
 *                 Timeline                    *
