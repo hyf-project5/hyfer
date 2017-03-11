@@ -6,10 +6,14 @@
             Add module
         </md-button>
     </div>
-    <md-list-item class="md-3-line" ng-repeat="module in $ctrl.modules" ng-click="null">
+    <md-list-item ng-repeat="module in $ctrl.modules" ng-click="$ctrl.editModule($event, module, $index)">
         <div class="md-list-item-text" layout="column">
+            <md-tooltip>Click to edit module</md-tooltip>
             <h2>{{ module.module_name }}</h2>
+
+
         </div>
     </md-list-item>
+
 </md-list>
 <hyf-footer></hyf-footer>
