@@ -1,4 +1,3 @@
-<hyf-toolbar></hyf-toolbar>
 <div flex-offset-gt-sm='10' flex-gt-sm='80'>
     <table class="nice-table">
         <thead>
@@ -14,7 +13,7 @@
                 <td>
                     <md-input-container>
                         <label>{{user.role}}</label>
-                        <md-select ng-change="$ctrl.selectedRole(user.id, role, user.username, $event)" aria-label="user role" ng-model="role">
+                        <md-select ng-model="role" ng-change="$ctrl.selectedRole(user.id, role, user.username, $event)" aria-label="user role">
                             <md-option ng-disabled="user.role === 'teacher'">teacher</md-option>
                             <md-option ng-disabled="user.role === 'student'">student</md-option>
                         </md-select>
