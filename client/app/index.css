@@ -4,7 +4,7 @@
 /* Toolbar */
 
 .toolbar-logo {
-    height: 85%;
+    height: 40px;
 }
 
 .avatar-image {
@@ -12,6 +12,24 @@
     height: 40px;
     border-radius: 50%;
     border: 0px;
+}
+
+.toolbar-menu {
+    margin-top: 5px;
+    display: inline-flex;
+}
+
+.toolbar-menu-responsive {
+    display: none;
+}
+
+@media (max-width: 541px) {
+    .toolbar-menu {
+        display: none;
+    }
+    .toolbar-menu-responsive {
+        display: inline-flex;
+    }
 }
 
 

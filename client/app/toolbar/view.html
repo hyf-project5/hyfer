@@ -1,21 +1,45 @@
 <md-toolbar layout='row'>
-    <div class="md-toolbar-tools" layout='row' flex-offset-gt-sm='10' flex-gt-sm='80'>
-        <img class="toolbar-logo" ng-src="images/logo.png" alt="hyfLogo">
-        <md-button ui-sref='modules' ng-show="$ctrl.isTeacher()">
-            Modules
-        </md-button>
-        <md-button ui-sref='timeline'>
-            Timeline
-        </md-button>
-        <md-button ui-sref='users' ng-show="$ctrl.isTeacher()">
-            Users
-        </md-button>
-        <span flex></span>
+    <div class="md-toolbar-tools" layout='row' layout-align='space-between center' flex-offset-gt-sm='10' flex-gt-sm='80'>
+        <div>
+            <md-menu class="toolbar-menu-responsive" ng-show="$ctrl.isUser()">
+                <img class="avatar-image" src="images/menuicon.svg" ng-click="$mdMenu.open($event)" aria-label="Open user's' menu">
+                <md-menu-content>
+                    <md-menu-item>
+                        <md-button ui-sref='modules' ng-show="$ctrl.isTeacher()">
+                            Modules
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ui-sref='timeline'>
+                            Timeline
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ui-sref='users' ng-show="$ctrl.isTeacher()">
+                            Users
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
 
-        <md-button class="md-raised" ng-click="$ctrl.signin()" ng-show="!$ctrl.isUser()">
-            signin
-        </md-button>
+            <div class="toolbar-menu">
+                <img class="toolbar-logo" ng-src="images/logo.png" alt="hyfLogo">
+                <md-button ui-sref='modules' ng-show="$ctrl.isTeacher()">
+                    Modules
+                </md-button>
+                <md-button ui-sref='timeline'>
+                    Timeline
+                </md-button>
+                <md-button ui-sref='users' ng-show="$ctrl.isTeacher()">
+                    Users
+                </md-button>
+                <span flex></span>
 
+                <md-button class="md-raised" ng-click="$ctrl.signin()" ng-show="!$ctrl.isUser()">
+                    Sign in
+                </md-button>
+            </div>
+        </div>
 
         <md-menu ng-show="$ctrl.isUser()">
             <img class="avatar-image" src="https://avatars.githubusercontent.com/{{$ctrl.me.username}}" ng-click="$mdMenu.open($event)" aria-label="Open user's' menu">
