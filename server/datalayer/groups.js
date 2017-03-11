@@ -8,6 +8,7 @@ const TIME_LINE_FOR_ALL_GROUPS_QUERY =
         groups.starting_date,
         running_modules.description,
         running_modules.duration,
+        running_modules.id AS running_module_id,
         modules.module_name,
         modules.git_url,
         modules.git_repo
