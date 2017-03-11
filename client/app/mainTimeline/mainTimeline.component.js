@@ -19,8 +19,10 @@
                 .then(data => {
                     this.currentDate = day_names[current_date.getDay()] + ", " + current_date.getDate() + " " + month_names[current_date.getMonth()] + " " + current_date.getFullYear();
                     this.todayPosition = Math.round(this.computedMilliseconds(current_date) / days);
-                    this.timeline = data;
-                    this.classes = Object.keys(this.timeline);
+                    // this.timeline = data;
+                    // this.classes = Object.keys(this.timeline);
+                    console.log(this.classes)
+                    console.log(this.timeline)
                     this.indicatorHeight = (this.classes.length * 60) + 20;
                     this.readmeHeaderTop = this.indicatorHeight + 55;
                     const zeroPoint = Math.round(this.computedMilliseconds(this.getClosestSundayAndRidOfTime(this.timeline[this.classes[0]][0].starting_date)) / days);
@@ -102,23 +104,34 @@
 
         editRunningModule(ev, selectedRunningModule, index) {
             this.$mdDialog.show({
-                locals: {
-                    className: selectedRunningModule.group_name,
-                    selectedRunningModule,
-                    index
-                },
-                controller: 'addAndUpdateRunningModuleModalCtrl',
-                controllerAs: '$ctrl',
-                templateUrl: 'client/app/mainTimeline/editRunningModuleModal.html',
-                targetEvent: ev,
-                clickOutsideToClose: true
-            })
+                    locals: {
+                        className: selectedRunningModule.group_name,
+                        selectedRunningModule,
+                        index
+                    },
+                    controller: 'addAndUpdateRunningModuleModalCtrl',
+                    controllerAs: '$ctrl',
+                    templateUrl: 'client/app/mainTimeline/editRunningModuleModal.html',
+                    targetEvent: ev,
+                    clickOutsideToClose: true
+                })
+                .then(res => {
+                    this.backendService.getTimeline()
+                        .then(data => {
+                            this.timeline = data;
+                            this.classes = Object.keys(this.timeline)
+                        })
+                })
         }
     }
 
     angular.module('hyferApp')
         .component('hyfMainTimeline', {
             templateUrl: './app/mainTimeline/mainTimeline.component.html',
+            bindings: {
+                timeline: '=',
+                classes: '<'
+            },
             controller: MainTimelineController
         });
 })();
