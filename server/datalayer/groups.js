@@ -14,7 +14,7 @@ const TIME_LINE_FOR_ALL_GROUPS_QUERY =
     FROM groups
     INNER JOIN running_modules ON running_modules.group_id = groups.id
     INNER JOIN modules ON running_modules.module_id = modules.id
-    ORDER BY running_modules.position`;
+    ORDER BY groups.starting_date, running_modules.position`;
 
 
 const ADD_GROUP_QUERY = `INSERT INTO groups SET ?`;
@@ -39,12 +39,16 @@ function deleteGroup(con, id) {
 
 function addGroup(con, group) {
 
-    // TODO: use a SQL transaction
+    let data = {
+            group_name: group.group_name,
+            starting_date: new Date(group.starting_date)
+        }
+        // TODO: use a SQL transaction
 
-    return db.execQuery(con, ADD_GROUP_QUERY, group)
+    return db.execQuery(con, ADD_GROUP_QUERY, data)
         .then(result => {
             let groupId = result.insertId;
-            return modules.getModules(con)
+            return modules.getCurriculumModules(con)
                 .then(mods => {
                     let runningModules = makeRunningModules(groupId, mods);
                     let valueList = makeValueList(runningModules);

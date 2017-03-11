@@ -12,23 +12,34 @@
 * [Data Layer](https://github.com/hyf-project5/super-duper-5/blob/master/docs/README.datalayer.md)
 * [API end points](https://github.com/hyf-project5/hyfer/blob/master/docs/README.api-endpoints.md)
 
-## Requirements
+## Installation
+
 
 ### Install dependencies
 
-  * *Install node&npm :* if you haven't yet : [Node.js and NPM](http://nodejs.org/)
-  * *Run the following :* `npm install`
+```
+npm install
+```
 
-* **NOTE**
-  * *CREATE DB :* first you should create the database(this is currently) to do so do the following:
+### Database
 
-  In your MySQL shell run `mysql -u[username] -p[password] [DB name] < DIRECTORY/DB_Schema_v3.sql`
-  * notes that the `DB_Schema.sql` file is important to create all the required tables...
+This application requires a MySQL database.
 
-  then create a `config.js` file in the `server/config` folder and paste in it the contents of
-  the `config.js.txt` file, and modify to reflect your specific database configuration.
+- Create an empty database and a MySQL user with rights to the database.
 
-  * *now just run `npm start`*
+- Use the command line to load the most recent version of the schema SQL file from the `sql` folder into the database:
+    
+    `mysql -u` _user-name_ `-p` _database-name_ `<` _sql-file_
+
+- Next, repeat this command to load the sample data SQL file from the `sql` folder into the datavbase.
+
+- create a `config.js` file in the `server/config` folder, paste the contents of the `config.sample.js` file into it, and modify to reflect your specific database configuration.
+
+### Run the server
+
+```
+npm start
+```
 
 ### Admin functions
 

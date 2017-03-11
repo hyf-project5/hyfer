@@ -15,7 +15,7 @@
             backendService.getTimeline()
                 .then(data => {
                     this.timeline = data;
-                    this.classNames = Object.keys(this.timeline).sort();
+                    this.classNames = Object.keys(this.timeline);
                     this.runningModules = this.timeline[className];
                     // console.log(this.runningModules)
                     // console.log(this.selectedRunningModule)

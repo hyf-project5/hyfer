@@ -38,7 +38,7 @@
         }
 
         addGroup(group) {
-            return this.$http.post('/api/groups', group)
+            return this.$http.post('/api/groups', group, this.getHttpConfig())
         }
 
         getReadme(gitRepo) {
