@@ -24,22 +24,19 @@
 
             <div class="toolbar-menu">
                 <img class="toolbar-logo" ng-src="images/logo.png" alt="hyfLogo">
-                <md-button ui-sref='timeline'>
-                    Timeline
-                </md-button>
-                <md-button ui-sref='modules' ng-show="$ctrl.isTeacher()">
-                    Modules
-                </md-button>
-                <md-button ui-sref='users' ng-show="$ctrl.isTeacher()">
-                    Users
-                </md-button>
-
-
-
+                <md-nav-bar nav-bar-aria-label="navigation links">
+                    <md-nav-item ui-sref-active='active' ui-sref='timeline' md-nav-click="goto('timeline')" name="timeline">Timeline</md-nav-item>
+                    <md-nav-item ui-sref-active='active' ui-sref='modules' ng-show="$ctrl.isTeacher()" md-nav-click="goto('modules')" name="modules">Modules</md-nav-item>
+                    <md-nav-item ui-sref-active='active' ui-sref='users' md-nav-click="goto('users')" name="users">Users</md-nav-item>
+                </md-nav-bar>
             </div>
         </div>
 
-        <div>
+        <div layout='row'>
+            <div class="userName">
+                {{$ctrl.me.username}}
+
+            </div>
             <md-button class="md-raised" ng-click="$ctrl.signin()" ng-show="!$ctrl.isUser()">
                 Sign in
             </md-button>
