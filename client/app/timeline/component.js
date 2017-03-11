@@ -11,6 +11,11 @@
             this.$mdDialog = $mdDialog;
             this.backendService = backendService;
             this.toastService = toastService;
+            this.backendService.getTimeline()
+                .then(data => {
+                    this.timeline = data;
+                    this.classes = Object.keys(this.timeline)
+                })
         }
 
         addClassModal(ev) {
@@ -25,9 +30,13 @@
                     this.backendService.addGroup(group)
                         .then((res) => {
                             this.toastService.displayToast(true, res, group);
-                            location.reload();
+                            console.log(res)
+                            this.backendService.getTimeline()
+                                .then(data => {
+                                    this.timeline = data;
+                                    this.classes = Object.keys(this.timeline)
+                                })
                         })
-                        .catch(err => console.log(err))
                 })
                 .catch(err => this.toastService.displayToast(false));
         };
