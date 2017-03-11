@@ -340,8 +340,15 @@
         margin-bottom: 10px;
     }
     
+    .footer-about a {
+        color: #B0BEC5;
+        display: inline-block;
+        line-height: 1.8;
+        text-decoration: none;
+    }
+    
     .footer-links a {
-        color: #ffffff;
+        color: #FFFFFF;
         display: inline-block;
         line-height: 1.8;
         text-decoration: none;
@@ -396,15 +403,37 @@
         color: #000000;
     }
     
-    .users-avatar {
-        width: 90%;
-        border-radius: 5px;
-        margin: 0px;
-    }
-    
     .users-block {
         width: 90%;
-        text-align: center
+        text-align: center;
+        position: relative;
+    }
+    
+    .users-link {
+        position: fixed;
+        border-radius: 15px;
+        width: 150px;
+        height: 150px;
+        position: relative;
+        background-size: contain;
+        background-position: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    
+    .users-name {
+        background-color: rgba(5, 5, 5, 0.5);
+        position: absolute;
+        text-decoration: none;
+        bottom: 10px;
+        color: #fff;
+        width: 100%;
+    }
+    
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+        text-decoration: none;
     }
     
     @media (max-width: 541px) {
@@ -419,5 +448,9 @@
         }
         .module-description {
             font-size: .8em;
+        }
+        .users-link {
+            width: 80px;
+            height: 80px;
         }
     }
