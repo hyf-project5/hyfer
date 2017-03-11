@@ -39,9 +39,13 @@ function deleteGroup(con, id) {
 
 function addGroup(con, group) {
 
-    // TODO: use a SQL transaction
+    let data = {
+            group_name: group.group_name,
+            starting_date: new Date(group.starting_date)
+        }
+        // TODO: use a SQL transaction
 
-    return db.execQuery(con, ADD_GROUP_QUERY, group)
+    return db.execQuery(con, ADD_GROUP_QUERY, data)
         .then(result => {
             let groupId = result.insertId;
             return modules.getCurriculumModules(con)
