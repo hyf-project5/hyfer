@@ -37,8 +37,6 @@
                 targetEvent: ev,
                 clickOutsideToClose: true
             })
-            this.className = 'hasan';
-            console.log(this.className)
         }
 
     }
