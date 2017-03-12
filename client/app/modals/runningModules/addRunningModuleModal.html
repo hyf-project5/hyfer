@@ -13,9 +13,9 @@
         <md-dialog-content aria-label="Adding Module.">
             <div class="md-dialog-content">
                 <md-input-container class="md-block">
-                    <label>{{module_name || 'Select Module'}}</label>
-                    <md-select aria-label="module name" ng-model="module_name">
-                        <md-option ng-repeat="module in $ctrl.modules[0]">{{module.module_name}}</md-option>
+                    <label>Select Module</label>
+                    <md-select aria-label="module name" ng-model="id">
+                        <md-option ng-repeat="module in $ctrl.modules[0]" ng-value="module.id">{{module.module_name}}</md-option>
                     </md-select>
                 </md-input-container>
 
@@ -47,7 +47,7 @@
                 Cancel
             </md-button>
             <span flex></span>
-            <md-button class="md-primary" ng-disabled="!module_name && !afterModuleIndex" ng-click="$ctrl.add({module_name, afterModuleIndex, teacher1, teacher2})">
+            <md-button class="md-primary" ng-disabled="!id && !afterModuleIndex" ng-click="$ctrl.add({id, afterModuleIndex, teacher1, teacher2})">
                 Add
             </md-button>
         </md-dialog-actions>

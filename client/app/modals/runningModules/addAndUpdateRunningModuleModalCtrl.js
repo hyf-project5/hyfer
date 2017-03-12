@@ -41,7 +41,7 @@
 
         add(submit) {
             this.modules[0].forEach(module => {
-                if (module.module_name === submit.module_name) {
+                if (module.id === submit.id) {
                     let groupId = this.getGroupId();
                     this.$mdDialog.hide(submit)
                         .then(() => {

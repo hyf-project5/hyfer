@@ -19,6 +19,14 @@
             return this.$http.post('/api/modules', module, this.getHttpConfig())
         }
 
+        updateModule(moduleId, updatedModule) {
+            return this.$http.patch('/api/modules/' + moduleId, updatedModule, this.getHttpConfig())
+        }
+
+        deleteModule(id) {
+            return this.$http.delete('/api/modules/' + id, this.getHttpConfig())
+        }
+
         addRunningModule(moduleId, groupId, position) {
             return this.$http.patch(`/api/running/${moduleId}/${groupId}/${position}`, {}, this.getHttpConfig())
         }

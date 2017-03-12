@@ -35,6 +35,7 @@
                     this.users.forEach(user => {
                         if (user.id == userId) {
                             this.toastService.displayToast(true, `${user.username}'s role updated to ${role.toLowerCase()}!`)
+                            this.$state.reload();
                         }
                     })
                 }).catch(err => console.log(err))
