@@ -12,6 +12,9 @@
             this.$state = $state;
             this.backendService = backendService;
             this.toastService = toastService;
+            setTimeout(() => {
+                this.showFooter = true;
+            }, 60)
         }
 
         $onInit() {
