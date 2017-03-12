@@ -27,12 +27,15 @@
             this.backendService = backendService;
             this.$mdDialog = $mdDialog;
             this.toastService = toastService;
-
+            this.$state = $state;
         }
 
-        addModuleModal(ev) {
+        addModule(ev) {
             this.$mdDialog.show({
-                    controller: 'addModuleModalCtrl',
+                    locals: {
+                        selectedModule: null
+                    },
+                    controller: 'addAndUpdateModuleModalCtrl',
                     controllerAs: '$ctrl',
                     templateUrl: 'client/app/modals/modules/addModuleModal.html',
                     targetEvent: ev,
@@ -43,11 +46,24 @@
                         .then(() => {
                             let firstLessIndex = this.modules.findIndex(val => val.seq_number > res.seq_number);
                             this.modules.splice(firstLessIndex, 0, res);
-                            this.toastService.displayToast(true, res);
+                            this.toastService.displayToast(true, `${res.module_name} has been added`);
                         })
                 })
                 .catch(err => console.log(err))
         };
+
+        updateModule(ev, module) {
+            this.$mdDialog.show({
+                locals: {
+                    selectedModule: module
+                },
+                controller: 'addAndUpdateModuleModalCtrl',
+                controllerAs: '$ctrl',
+                templateUrl: 'client/app/modals/modules/updateModuleModal.html',
+                targetEvent: ev,
+                clickOutsideToClose: true
+            })
+        }
 
     }
 

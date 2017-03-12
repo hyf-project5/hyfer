@@ -22,6 +22,9 @@
     <h2>
         {{$ctrl.readme.moduleName}} README.md
         <md-button ng-href="{{$ctrl.readme.gitUrl}}" target='_blank' class="md-icon-button" aria-label="Github icon">
+            <md-tooltip md-direction="top">
+                Go to Github
+            </md-tooltip>
             <md-icon class="githubIcon" md-svg-src="./images/github.svg"></md-icon>
         </md-button>
         <hr>

@@ -23,7 +23,10 @@
 
         addClassModal(ev) {
             this.$mdDialog.show({
-                    controller: 'addModuleModalCtrl',
+                    locals: {
+                        selectedModule: null
+                    },
+                    controller: 'addAndUpdateModuleModalCtrl',
                     controllerAs: '$ctrl',
                     templateUrl: 'client/app/modals/classes/addClassModal.html',
                     targetEvent: ev,

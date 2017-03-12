@@ -1,10 +1,10 @@
 <div flex-offset-gt-sm='10' flex-gt-sm='80'>
     <br>
     <md-grid-list md-cols-xs="2" md-cols-sm="3" md-cols-md="4" md-cols-lg="5" md-cols-gt-lg="6" md-row-height="1:1">
-        <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="module in $ctrl.modules" ng-click="$ctrl.editModule($event, module, $index)">
+        <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="module in $ctrl.modules" ng-click="$ctrl.updateModule($event, module)">
             <div class="module-gird-item">
-                <md-tooltip md-direction="left">
-                    {{module.module_name}}
+                <md-tooltip>
+                    Edit {{module.module_name}}
                 </md-tooltip>
                 <div class='module-name'>
                     <h4>{{ module.module_name }}</h4>
@@ -13,14 +13,14 @@
                     <i>{{ module.description}}</i>
                 </div>
                 <div class='module-duration'>
-                    Run for: {{ module.default_duration}} month(s).
+                    Run for: {{ module.default_duration}} week(s).
                 </div>
             </div>
         </md-grid-tile>
     </md-grid-list>
     <div layout='row'>
         <span flex></span>
-        <md-button class="module-add md-raised md-mini md-primary" ng-click="$ctrl.addModuleModal($event)">
+        <md-button class="module-add md-raised md-mini md-primary" ng-click="$ctrl.addModule($event)">
             <md-icon md-font-set="material-icons">add</md-icon>
             Add module
         </md-button>
