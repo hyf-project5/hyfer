@@ -233,7 +233,7 @@
     }
     
     .module-add:hover {
-        background-color: rgba(158, 158, 158, 1) !important;
+        background-color: rgba(60, 60, 140, .92) !important;
     }
     
     .button {
