@@ -35,7 +35,7 @@
                 .then(group => {
                     this.backendService.addGroup(group)
                         .then((res) => {
-                            this.toastService.displayToast(true, res, group);
+                            this.toastService.displayToast(true, `${group.group_name} has been added`);
                             this.$state.reload();
                         })
                 })
