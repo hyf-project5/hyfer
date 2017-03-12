@@ -12,7 +12,7 @@ function getModule(con, id) {
 }
 
 function getModules(con) {
-    const sql = GET_MODULE_QUERY + ` WHERE module_name != 'Dummy' ORDER BY module_name`;
+    const sql = GET_MODULE_QUERY + ` WHERE module_name != 'Dummy' ORDER BY seq_number`;
     return db.execQuery(con, sql);
 }
 
