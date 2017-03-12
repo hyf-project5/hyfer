@@ -34,12 +34,12 @@
                 <md-input-container class="md-block">
                     <label>{{teacher2 || 'Teacher 2'}}</label>
                     <md-select aria-label="teacher 2" ng-model="teacher2">
-                        <md-option ng-repeat="user in $ctrl.users">{{user.username}}</md-option>
+                        <md-option ng-repeat="user in $ctrl.users" ng-value="user.id">{{user.username}}</md-option>
                     </md-select>
                 </md-input-container>
 
                 <md-input-container class="md-block">
-                    <textarea ng-model="description" placeholder="{{description || $ctrl.selectedRunningModule.description}}" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+                    <textarea ng-model="description" ng-value="$index" placeholder="{{description || $ctrl.selectedRunningModule.description}}" md-maxlength="150" rows="3" md-select-on-focus></textarea>
                 </md-input-container>
 
             </div>
@@ -53,7 +53,7 @@
             <md-button class="md-raised md-warn" ng-click="$ctrl.deleteRunningModule()">
                 Delete
             </md-button>
-            <md-button class="md-primary" ng-disabled="!afterModuleIndex" ng-click="$ctrl.updateRunningModule({afterModuleIndex, duration, teacher1, teacher2, description})">
+            <md-button class="md-primary" ng-disabled="!afterModuleIndex && !duration && !teacher1 && !teacher2 && !description" ng-click="$ctrl.updateRunningModule({afterModuleIndex, duration, teacher1, teacher2, description})">
                 Update
             </md-button>
         </md-dialog-actions>
