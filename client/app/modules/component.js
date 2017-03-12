@@ -45,9 +45,8 @@
                             this.modules.splice(firstLessIndex, 0, res);
                             this.toastService.displayToast(true, res);
                         })
-                        .catch(err => console.log(err))
                 })
-                .catch(err => this.toastService.displayToast(false));
+                .catch(err => console.log(err))
         };
 
     }

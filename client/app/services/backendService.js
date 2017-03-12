@@ -25,7 +25,6 @@
 
         updateRunningModule(groupId, position, newRunningModule) {
             return this.$http.patch(`/api/running/${groupId}/${position}`, newRunningModule, this.getHttpConfig())
-                .then(res => console.log(res))
         }
 
         deleteRunningModule(groupId, position) {

@@ -23,7 +23,12 @@
                 Sign in
             </md-button>
             <md-menu ng-show="$ctrl.isUser()">
-                <img class="avatar-image" src="https://avatars.githubusercontent.com/{{$ctrl.me.username}}" ng-click="$mdMenu.open($event)" aria-label="Open user's' menu">
+                <md-icon>
+                    <md-tooltip>
+                        User
+                    </md-tooltip>
+                    <img class="avatar-image" src="https://avatars.githubusercontent.com/{{$ctrl.me.username}}" ng-click="$mdMenu.open($event)" aria-label="Open user's' menu">
+                </md-icon>
                 <md-menu-content>
                     <md-menu-item>
                         <md-button>Role {{$ctrl.me.role}}</md-button>

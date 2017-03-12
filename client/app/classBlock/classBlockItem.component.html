@@ -1,6 +1,9 @@
 <div class="class-block" ng-style="{background: $ctrl.bgColor}">
     {{$ctrl.className}}
     <md-button ng-show="$ctrl.isTeacher()" class="md-secondary md-icon-button" ng-click="$ctrl.addRunningModuleModal($event, $ctrl.className)">
+        <md-tooltip md-direction="top">
+            Add Class
+        </md-tooltip>
         <md-icon md-font-set="material-icons">add_circle</md-icon>
     </md-button>
 </div>
