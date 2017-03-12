@@ -39,7 +39,6 @@
     timelineResolver.$inject = ['backendService']
 
     function timelineResolver(backendService) {
-        console.log('timelineResolver')
         return backendService.getTimeline();
     }
 

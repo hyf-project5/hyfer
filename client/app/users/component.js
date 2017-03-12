@@ -3,9 +3,9 @@
 
     class hyfUsersCtrl {
         static get $inject() {
-            return ['backendService', '$mdToast', 'me', '$state', '$mdDialog'];
+            return ['backendService', 'me', '$state', '$mdDialog', 'toastService'];
         }
-        constructor(backendService, $mdToast, me, $state, $mdDialog) {
+        constructor(backendService, me, $state, $mdDialog, toastService) {
             backendService.getUsersProfile()
                 .then(res => {
                     this.users = res;
@@ -22,12 +22,11 @@
                     return $state.go('timeline')
                 })
 
-
             this.backendService = backendService;
-            this.$mdToast = $mdToast;
             this.me = me;
             this.$mdDialog = $mdDialog;
             this.$state = $state;
+            this.toastService = toastService;
         }
 
         updateUserRole(userId, role) {
@@ -35,16 +34,7 @@
                 .then(() => {
                     this.users.forEach(user => {
                         if (user.id == userId) {
-                            user.role = role.toLowerCase();
-                            this.$mdToast.show(
-                                this.$mdToast.simple()
-                                .textContent(`${user.username}'s role updated to ${role.toLowerCase()}!`)
-                                .position('right')
-                                .hideDelay(3000)
-                                .action('Close')
-                                .highlightAction(true)
-                                .highlightClass('md-warn')
-                            );
+                            this.toastService.displayToast(true, `${user.username}'s role updated to ${role.toLowerCase()}!`)
                         }
                     })
                 }).catch(err => console.log(err))

@@ -6,14 +6,15 @@
     class MainTimelineController {
 
         static get $inject() {
-            return ['$sce', '$mdDialog', '$state', 'backendService', 'me'];
+            return ['$sce', '$mdDialog', '$state', 'backendService', 'me', 'toastService'];
         }
-        constructor($sce, $mdDialog, $state, backendService, me) {
+        constructor($sce, $mdDialog, $state, backendService, me, toastService) {
             this.$sce = $sce;
             this.$mdDialog = $mdDialog;
             this.$state = $state;
             this.backendService = backendService;
             this.me = me;
+            this.toastService = toastService;
         }
 
 
@@ -81,6 +82,9 @@
         }
 
         showReadme(module) {
+            if (!module.git_repo) {
+                return this.toastService.displayToast(true, 'This module has no repository available.')
+            };
             this.backendService.getReadme(module.git_repo)
                 .then(res => {
                     this.readmeFile = this.$sce.trustAsHtml(res);
@@ -98,12 +102,11 @@
             }
         }
 
-        editRunningModule(ev, selectedRunningModule, index) {
+        editRunningModule(ev, selectedRunningModule) {
             this.$mdDialog.show({
                 locals: {
                     className: selectedRunningModule.group_name,
-                    selectedRunningModule,
-                    index
+                    selectedRunningModule
                 },
                 controller: 'addAndUpdateRunningModuleModalCtrl',
                 controllerAs: '$ctrl',
