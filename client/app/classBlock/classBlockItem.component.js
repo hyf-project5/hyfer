@@ -33,7 +33,7 @@
                 },
                 controller: 'addAndUpdateRunningModuleModalCtrl',
                 controllerAs: '$ctrl',
-                templateUrl: 'client/app/classBlock/addRunningModuleModal.html',
+                templateUrl: 'client/app/modals/runningModules/addRunningModuleModal.html',
                 targetEvent: ev,
                 clickOutsideToClose: true
             })

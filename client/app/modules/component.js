@@ -32,9 +32,9 @@
 
         addModuleModal(ev) {
             this.$mdDialog.show({
-                    controller: 'dialogController',
+                    controller: 'addModuleModalCtrl',
                     controllerAs: '$ctrl',
-                    templateUrl: 'client/app/modules/addModuleModal.html',
+                    templateUrl: 'client/app/modals/modules/addModuleModal.html',
                     targetEvent: ev,
                     clickOutsideToClose: true
                 })

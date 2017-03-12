@@ -107,7 +107,7 @@
                 },
                 controller: 'addAndUpdateRunningModuleModalCtrl',
                 controllerAs: '$ctrl',
-                templateUrl: 'client/app/mainTimeline/editRunningModuleModal.html',
+                templateUrl: 'client/app/modals/runningModules/editRunningModuleModal.html',
                 targetEvent: ev,
                 clickOutsideToClose: true
             })

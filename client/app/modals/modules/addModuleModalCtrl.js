@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    class dialogController {
+    class addModuleModalCtrl {
 
         static get $inject() {
             return ['$mdDialog'];
@@ -23,5 +23,5 @@
     }
 
     angular.module('hyferApp')
-        .controller('dialogController', dialogController);
+        .controller('addModuleModalCtrl', addModuleModalCtrl);
 })();

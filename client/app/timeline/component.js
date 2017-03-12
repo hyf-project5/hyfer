@@ -20,9 +20,9 @@
 
         addClassModal(ev) {
             this.$mdDialog.show({
-                    controller: 'dialogController',
+                    controller: 'addModuleModalCtrl',
                     controllerAs: '$ctrl',
-                    templateUrl: 'client/app/timeline/addClassModal.html',
+                    templateUrl: 'client/app/modals/classes/addClassModal.html',
                     targetEvent: ev,
                     clickOutsideToClose: true
                 })
