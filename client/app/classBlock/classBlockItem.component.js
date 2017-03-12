@@ -28,8 +28,7 @@
             this.$mdDialog.show({
                 locals: {
                     className,
-                    selectedRunningModule: null,
-                    index: null
+                    selectedRunningModule: null
                 },
                 controller: 'addAndUpdateRunningModuleModalCtrl',
                 controllerAs: '$ctrl',
