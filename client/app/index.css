@@ -100,13 +100,15 @@
         width: 125px;
         height: 55px;
         margin-top: 0px;
-        margin-right: 0px;
+        margin-right: 4px;
         margin-left: 0px;
         margin-bottom: 6px;
         text-align: center;
         border-bottom-left-radius: .5em;
         border-top-left-radius: .5em;
         line-height: 55px;
+        background-color: rgba(158, 158, 158, 0.4);
+        ;
         /*position: relative;*/
     }
     
