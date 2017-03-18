@@ -2,9 +2,8 @@ import angular from 'angular';
 
 import toolbarModule from './toolbar.module';
 import './menu/responsiveMenu.component';
-
-const template = require('./toolbar.component.html');
-const logoIcon = require('../../assets/images/logo.png');
+import template from './toolbar.component.html';
+import logoIcon from '../../assets/images/logo.png';
 
 class ToolbarController {
 

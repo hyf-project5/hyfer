@@ -7,9 +7,8 @@ import '../footer/footer.component';
 import backendService from '../services/backendService';
 import toastService from '../services/toastService';
 import addAndUpdateModuleController from '../modals/modules/addAndUpdateModuleModalCtrl';
-
-const timelineTemplate = require('./timeline.component.html');
-const addClassTemplate = require('../modals/classes/addClassModal.html');
+import timelineTemplate from './timeline.component.html';
+import addClassTemplate from '../modals/classes/addClassModal.html';
 
 class TimelineController {
 

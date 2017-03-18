@@ -2,23 +2,24 @@ import angular from 'angular';
 
 import timelineModule from './timeline.module';
 import './timelineIndicator.component';
+import backendService from '../services/backendService';
 import toastService from '../services/toastService';
 import addAndUpdateRunningModuleModalCtrl from '../modals/runningModules/addAndUpdateRunningModuleModalCtrl';
-
-const mainTimelineTemplate = require('./mainTimeline.component.html');
-const editRunningModuleTemplate = require('../modals/runningModules/editRunningModuleModal.html');
-const githubIcon = require('../../assets/images/github.svg');
+import mainTimelineTemplate from './mainTimeline.component.html';
+import editRunningModuleTemplate from '../modals/runningModules/editRunningModuleModal.html';
+import githubIcon from '../../assets/images/github.svg';
 
 const days = 1000 * 60 * 60 * 24;
-const month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const day_names = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 class MainTimelineController {
 
     static get $inject() {
-        return ['$sce', '$mdDialog', '$state', 'backendService', 'me', toastService];
+        return ['$sce', '$mdDialog', '$state', 'me', backendService, toastService];
     }
-    constructor($sce, $mdDialog, $state, backendService, me, toastService) {
+
+    constructor($sce, $mdDialog, $state, me, backendService, toastService) {
         this.$sce = $sce;
         this.$mdDialog = $mdDialog;
         this.$state = $state;
@@ -28,10 +29,9 @@ class MainTimelineController {
         this.githubIcon = githubIcon;
     }
 
-
     $onInit() {
         const current_date = new Date();
-        this.currentDate = day_names[current_date.getDay()] + ", " + current_date.getDate() + " " + month_names[current_date.getMonth()] + " " + current_date.getFullYear();
+        this.currentDate = dayNames[current_date.getDay()] + ", " + current_date.getDate() + " " + monthNames[current_date.getMonth()] + " " + current_date.getFullYear();
         this.todayPosition = Math.round(this.computedMilliseconds(current_date) / days);
         this.indicatorHeight = (this.classes.length * 60) + 20;
         this.readmeHeaderTop = this.indicatorHeight + 55;
@@ -88,7 +88,7 @@ class MainTimelineController {
     getInterfaceDate(value) {
         let time = value * days;
         let date = new Date(time);
-        return day_names[date.getDay()] + ", " + date.getDate() + " " + month_names[date.getMonth()] + " " + date.getFullYear();
+        return dayNames[date.getDay()] + ", " + date.getDate() + " " + monthNames[date.getMonth()] + " " + date.getFullYear();
 
     }
 
@@ -131,7 +131,7 @@ class MainTimelineController {
 const componentName = 'hyfMainTimeline';
 
 angular.module(timelineModule)
-    .component(componentName, {
+    .component('hyfMainTimeline', {
         template: mainTimelineTemplate,
         bindings: {
             timeline: '<',

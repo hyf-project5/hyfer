@@ -2,10 +2,8 @@ import angular from 'angular';
 
 import timelineModule from '../timeline.module';
 import addAndUpdateRunningModuleController from '../../modals/runningModules/addAndUpdateRunningModuleModalCtrl';
-
-const addRunningModuleModalTemplate = require('../../modals/runningModules/addRunningModuleModal.html');
-
-const template = require('./classBlockItem.component.html');
+import addRunningTemplate from '../../modals/runningModules/addRunningModuleModal.html';
+import template from './classBlockItem.component.html';
 
 class ClassBlockItemController {
 
@@ -39,7 +37,7 @@ class ClassBlockItemController {
             },
             controller: addAndUpdateRunningModuleController,
             controllerAs: '$ctrl',
-            template: addRunningModuleModalTemplate,
+            template: addRunningTemplate,
             targetEvent: ev,
             clickOutsideToClose: true
         })

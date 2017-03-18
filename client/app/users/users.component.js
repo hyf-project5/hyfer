@@ -3,16 +3,15 @@ import angular from 'angular';
 import usersModule from './users.module';
 import backendService from '../services/backendService';
 import toastService from '../services/toastService';
-
-const template = require('./users.component.html');
+import template from './users.component.html';
 
 class UsersController {
 
     static get $inject() {
-        return [backendService, 'me', '$state', '$mdDialog', toastService];
+        return ['$state', '$mdDialog', toastService, backendService, 'me'];
     }
 
-    constructor(backendService, me, $state, $mdDialog, toastService) {
+    constructor($state, $mdDialog, toastService, backendService, me) {
         backendService.getUsersProfile()
             .then(res => {
                 this.users = res;

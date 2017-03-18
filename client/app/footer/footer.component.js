@@ -1,9 +1,8 @@
 import angular from 'angular';
 
 import footerModule from './footer.module';
-
-const template = require('./footer.component.html');
-const logoIcon = require('../../assets/images/logo.png');
+import template from './footer.component.html';
+import logoIcon from '../../assets/images/logo.png';
 
 class FooterController {
 

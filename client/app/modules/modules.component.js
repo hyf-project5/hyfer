@@ -6,10 +6,9 @@ import '../footer/footer.component';
 import backendService from '../services/backendService';
 import toastService from '../services/toastService';
 import addAndUpdateModuleController from '../modals/modules/addAndUpdateModuleModalCtrl';
-
-const template = require('./modules.component.html');
-const addModuleTemplate = require('../modals/modules/addModuleModal.html');
-const updateModuleTemplate = require('../modals/modules/updateModuleModal.html');
+import template from './modules.component.html';
+import addModuleTemplate from '../modals/modules/addModuleModal.html';
+import updateModuleTemplate from '../modals/modules/updateModuleModal.html';
 
 class ModulesController {
 

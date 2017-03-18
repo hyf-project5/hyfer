@@ -5,7 +5,6 @@ import ngCookies from 'angular-cookies';
 import 'angular-material/angular-material.css';
 
 import '../assets/scss/index.scss';
-
 import toolbarModule from './toolbar/toolbar.module';
 import timelineModule from './timeline/timeline.module';
 import modulesModule from './modules/modules.module';

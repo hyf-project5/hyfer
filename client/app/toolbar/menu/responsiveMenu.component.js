@@ -1,7 +1,6 @@
 import angular from 'angular';
 
-const template = require('./responsiveMenu.component.html');
-
+import template from './responsiveMenu.component.html';
 
 class ResponsiveMenuComponent {
 
@@ -12,10 +11,9 @@ class ResponsiveMenuComponent {
     constructor(me) {
         this.me = me;
     }
+
     isTeacher() {
-        if (this.me.role == 'teacher') {
-            return true;
-        }
+        return this.me.role === 'teacher';
     }
 
     isUser() {

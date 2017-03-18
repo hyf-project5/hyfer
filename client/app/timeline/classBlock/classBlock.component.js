@@ -1,10 +1,8 @@
 import angular from 'angular';
 
 import timelineModule from '../timeline.module';
-
 import './classBlockItem.component';
-
-const template = require('./classBlock.component.html');
+import template from './classBlock.component.html';
 
 class ClassBlockController {
 

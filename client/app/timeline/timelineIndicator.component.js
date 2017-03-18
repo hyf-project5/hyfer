@@ -1,8 +1,7 @@
 import angular from 'angular';
 
 import timelineModule from './timeline.module';
-
-const template = require('./timelineIndicator.component.html');
+import template from './timelineIndicator.component.html';
 
 const days = 1000 * 60 * 60 * 24;
 const month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
