@@ -22,12 +22,12 @@
             <md-button class="md-raised" ng-click="$ctrl.signin()" ng-show="!$ctrl.isUser()">
                 Sign in
             </md-button>
-            <md-menu ng-show="$ctrl.isUser()">
+            <md-menu ng-if="$ctrl.isUser()">
                 <md-icon>
                     <md-tooltip>
                         User
                     </md-tooltip>
-                    <img class="avatar-image" src="https://avatars.githubusercontent.com/{{$ctrl.me.username}}" ng-click="$mdMenu.open($event)" aria-label="Open user's' menu">
+                    <img class="avatar-image" ng-src="https://avatars.githubusercontent.com/{{$ctrl.me.username}}" ng-click="$mdMenu.open($event)" aria-label="Open user's' menu">
                 </md-icon>
                 <md-menu-content>
                     <md-menu-item>

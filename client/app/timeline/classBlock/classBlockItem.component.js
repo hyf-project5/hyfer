@@ -1,8 +1,9 @@
 import angular from 'angular';
 
-import addAndUpdateRunningModuleController from '../modals/runningModules/addAndUpdateRunningModuleModalCtrl';
+import timelineModule from '../timeline.module';
+import addAndUpdateRunningModuleController from '../../modals/runningModules/addAndUpdateRunningModuleModalCtrl';
 
-const addRunningModuleModalTemplate = require('../modals/runningModules/addRunningModuleModal.html');
+const addRunningModuleModalTemplate = require('../../modals/runningModules/addRunningModuleModal.html');
 
 const template = require('./classBlockItem.component.html');
 
@@ -48,7 +49,7 @@ class ClassBlockItemController {
 
 const componentName = 'hyfClassBlockItem';
 
-angular.module('hyferApp')
+angular.module(timelineModule)
     .component(componentName, {
         template,
         controller: ClassBlockItemController,

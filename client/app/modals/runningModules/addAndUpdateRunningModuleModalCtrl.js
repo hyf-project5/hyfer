@@ -1,5 +1,6 @@
 import angular from 'angular';
 
+import modalsModules from '../modals.module';
 import backendService from '../../services/backendService';
 import toastService from '../../services/toastService';
 
@@ -51,7 +52,7 @@ class AddAndUpdateRunningModuleModalController {
                         position = position >= this.runningModules.length - 1 ? -1 : position + 1;
                         // Plus 1 because to add after the module the user specified it
                         return this.backendService.addRunningModule(module.id, groupId, position)
-                            .then(res => {
+                            .then(() => {
                                 this.$state.reload();
                                 setTimeout(() => {
                                     this.toastService.displayToast(true, module.module_name + ' has been added.')
@@ -75,7 +76,7 @@ class AddAndUpdateRunningModuleModalController {
                         submit.position = newPosition;
                         submit.teacher2_id = submit.teacher2;
                         return this.backendService.updateRunningModule(groupId, oldPosition, submit)
-                            .then(res => {
+                            .then(() => {
                                 this.$state.reload();
                                 setTimeout(() => {
                                     this.toastService.displayToast(true, module.module_name + ' has been updated.')
@@ -95,7 +96,7 @@ class AddAndUpdateRunningModuleModalController {
                     .then(() => {
                         let position = module.position;
                         this.backendService.deleteRunningModule(groupId, position)
-                            .then(res => {
+                            .then(() => {
                                 this.$state.reload()
                                 setTimeout(() => {
                                     this.toastService.displayToast(true, module.module_name + ' has been deleted.')
@@ -120,7 +121,7 @@ class AddAndUpdateRunningModuleModalController {
 
 const controllerName = 'addAndUpdateRunningModuleModalCtrl';
 
-angular.module('hyferApp')
+angular.module(modalsModules)
     .controller(controllerName, AddAndUpdateRunningModuleModalController);
 
 export default controllerName;

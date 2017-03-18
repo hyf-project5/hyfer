@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+import modulesModule from './modules.module';
+
 import '../footer/footer.component';
 import backendService from '../services/backendService';
 import toastService from '../services/toastService';
@@ -18,7 +20,7 @@ class ModulesController {
             .then(data => {
                 this.modules = data;
             })
-            .catch(err => {
+            .catch(() => {
                 this.$mdDialog.show(
                     this.$mdDialog.alert()
                     .clickOutsideToClose(true)
@@ -75,7 +77,7 @@ class ModulesController {
 
 const componentName = 'hyfModules';
 
-angular.module('hyferApp')
+angular.module(modulesModule)
     .component(componentName, {
         template,
         controller: ModulesController

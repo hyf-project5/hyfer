@@ -1,5 +1,6 @@
 import angular from 'angular';
 
+import timelineModule from './timeline.module';
 import './timelineIndicator.component';
 import toastService from '../services/toastService';
 import addAndUpdateRunningModuleModalCtrl from '../modals/runningModules/addAndUpdateRunningModuleModalCtrl';
@@ -129,7 +130,7 @@ class MainTimelineController {
 
 const componentName = 'hyfMainTimeline';
 
-angular.module('hyferApp')
+angular.module(timelineModule)
     .component(componentName, {
         template: mainTimelineTemplate,
         bindings: {

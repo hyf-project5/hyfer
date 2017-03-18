@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+import servicesModule from './services.module';
+
 class backendService {
     static get $inject() {
         return ['$http']
@@ -78,7 +80,7 @@ class backendService {
 const serviceName = 'backendService';
 
 angular
-    .module('hyferApp')
+    .module(servicesModule)
     .service(serviceName, backendService);
 
 export default serviceName;

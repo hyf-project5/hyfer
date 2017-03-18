@@ -1,5 +1,6 @@
 import angular from 'angular';
 
+import usersModule from './users.module';
 import backendService from '../services/backendService';
 import toastService from '../services/toastService';
 
@@ -16,7 +17,7 @@ class UsersController {
             .then(res => {
                 this.users = res;
             })
-            .catch(err => {
+            .catch(() => {
                 $mdDialog.show(
                     $mdDialog.alert()
                     .clickOutsideToClose(true)
@@ -76,7 +77,7 @@ class UsersController {
 const componentName = 'hyfUsers';
 
 angular
-    .module('hyferApp')
+    .module(usersModule)
     .component(componentName, {
         template,
         controller: UsersController

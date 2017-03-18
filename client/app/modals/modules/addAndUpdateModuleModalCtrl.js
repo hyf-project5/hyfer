@@ -1,8 +1,8 @@
 import angular from 'angular';
 
+import modalsModules from '../modals.module';
 import backendService from '../../services/backendService';
 import toastService from '../../services/toastService';
-
 
 class AddAndUpdateModuleModalController {
 
@@ -39,7 +39,7 @@ class AddAndUpdateModuleModalController {
                     return this.toastService.displayToast(true, 'Nothing Changed');
                 }
                 this.backendService.updateModule(this.selectedModule.id, res)
-                    .then((res) => {
+                    .then(() => {
                         this.$state.reload();
                         setTimeout(() => {
                             this.toastService.displayToast(true, `${this.selectedModule.module_name} has been updated`);
@@ -51,9 +51,9 @@ class AddAndUpdateModuleModalController {
 
     deleteModule() {
         this.$mdDialog.hide()
-            .then(res => {
+            .then(() => {
                 this.backendService.deleteModule(this.selectedModule.id)
-                    .then((res) => {
+                    .then(() => {
                         this.$state.reload();
                         setTimeout(() => {
                             this.toastService.displayToast(true, `${this.selectedModule.module_name} has been deleted`);
@@ -64,9 +64,9 @@ class AddAndUpdateModuleModalController {
     }
 }
 
-const controllerName = 'addAndUpdateModuleModalCtrl'
+const controllerName = 'addAndUpdateModuleModalController';
 
-angular.module('hyferApp')
+angular.module(modalsModules)
     .controller(controllerName, AddAndUpdateModuleModalController);
 
 export default controllerName;

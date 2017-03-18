@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+import timelineModule from '../timeline.module';
+
 import './classBlockItem.component';
 
 const template = require('./classBlock.component.html');
@@ -19,7 +21,7 @@ class ClassBlockController {
 
 const componentName = 'hyfClassBlock';
 
-angular.module('hyferApp')
+angular.module(timelineModule)
     .component(componentName, {
         template,
         controller: ClassBlockController,

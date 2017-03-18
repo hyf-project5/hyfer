@@ -24,13 +24,11 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                loader: 'html-loader'
+                use: 'html-loader'
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract({
-                    loader: 'css-loader'
-                })
+                use: ExtractTextPlugin.extract({ use: 'css-loader' })
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/,

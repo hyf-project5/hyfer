@@ -1,7 +1,8 @@
 import angular from 'angular';
 
-import '../mainTimeline/mainTimeline.component';
-import '../classBlock/classBlock.component';
+import timelineModule from './timeline.module';
+import './mainTimeline.component';
+import './classBlock/classBlock.component';
 import '../footer/footer.component';
 import backendService from '../services/backendService';
 import toastService from '../services/toastService';
@@ -13,10 +14,10 @@ const addClassTemplate = require('../modals/classes/addClassModal.html');
 class TimelineController {
 
     static get $inject() {
-        return ['$sce', '$mdDialog', '$state', toastService, 'me', backendService];
+        return ['$sce', '$mdDialog', '$state', 'me', backendService, toastService];
     }
 
-    constructor($sce, $mdDialog, $state, toastService, me, backendService) {
+    constructor($sce, $mdDialog, $state, me, backendService, toastService) {
         this.me = me;
         this.$mdDialog = $mdDialog;
         this.$state = $state;
@@ -46,7 +47,7 @@ class TimelineController {
                 let classInfo = group.group_name.split('')[0].toUpperCase() + group.group_name.split('').slice(1).join('');
                 classInfo = { group_name: classInfo, starting_date: group.starting_date };
                 this.backendService.addGroup(classInfo)
-                    .then((res) => {
+                    .then(() => {
                         this.toastService.displayToast(true, `${classInfo.group_name} has been added`);
                         this.$state.reload();
                     })
@@ -63,7 +64,7 @@ class TimelineController {
 const componentName = 'hyfTimeline';
 
 angular
-    .module('hyferApp')
+    .module(timelineModule)
     .component(componentName, {
         template: timelineTemplate,
         controller: TimelineController,

@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+import timelineModule from './timeline.module';
+
 const template = require('./timelineIndicator.component.html');
 
 const days = 1000 * 60 * 60 * 24;
@@ -52,7 +54,7 @@ class TimelineIndicatorController {
 
 const componentName = 'hyfTimelineIndicator';
 
-angular.module('hyferApp')
+angular.module(timelineModule)
     .component(componentName, {
         template,
         bindings: {

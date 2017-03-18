@@ -1,5 +1,6 @@
 import angular from 'angular';
 
+import toolbarModule from './toolbar.module';
 import './menu/responsiveMenu.component';
 
 const template = require('./toolbar.component.html');
@@ -16,20 +17,15 @@ class ToolbarController {
         this.$cookies = $cookies;
         this.$state = $state;
         this.logoIcon = logoIcon;
-
-        console.log(logoIcon);
     }
 
     isTeacher() {
-        if (this.me.role == 'teacher') {
-            return true;
-        }
+        return this.me.role === 'teacher';
     }
 
     isUser() {
         return this.me.role !== 'visitor';
     }
-
 
     signin() {
         window.location.href = `/auth/github`
@@ -47,7 +43,7 @@ class ToolbarController {
 const componentName = 'hyfToolbar';
 
 angular
-    .module('hyferApp')
+    .module(toolbarModule)
     .component(componentName, {
         template,
         controller: ToolbarController

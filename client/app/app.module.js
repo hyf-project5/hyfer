@@ -6,4 +6,21 @@ import 'angular-material/angular-material.css';
 
 import '../assets/scss/index.scss';
 
-angular.module('hyferApp', [uiRouter, ngMaterial, ngCookies]);
+import toolbarModule from './toolbar/toolbar.module';
+import timelineModule from './timeline/timeline.module';
+import modulesModule from './modules/modules.module';
+import usersModule from './users/users.module';
+import modalsModule from './modals/modals.module';
+import servicesModule from './services/services.module';
+
+export default angular.module('hyferApp', [
+    uiRouter,
+    ngMaterial,
+    ngCookies,
+    toolbarModule,
+    timelineModule,
+    modulesModule,
+    usersModule,
+    modalsModule,
+    servicesModule
+]).name;

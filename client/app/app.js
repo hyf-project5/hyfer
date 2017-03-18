@@ -1,50 +1,13 @@
 import angular from 'angular';
 
-import './app.module';
+import appModule from './app.module';
+import './app.routing'
 import './toolbar/toolbar.component';
-import modulesComponent from './modules/modules.component';
-import timelineComponent from './timeline/timeline.component';
-import usersComponent from './users/users.component';
 import backendService from './services/backendService';
 
 const defaultMe = {
     username: 'visitor',
     role: 'visitor'
-}
-
-angular.module('hyferApp')
-    .config(mainConfig)
-    .value('me', defaultMe)
-    .run(run)
-
-mainConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
-
-function mainConfig($stateProvider, $urlRouterProvider) {
-
-    $urlRouterProvider.otherwise('/timeline');
-
-    $stateProvider
-        .state('modules', {
-            url: '/modules',
-            component: modulesComponent
-        })
-        .state('timeline', {
-            url: '/timeline',
-            component: timelineComponent,
-            resolve: {
-                timeline: timelineResolver
-            }
-        })
-        .state('users', {
-            url: '/users',
-            component: usersComponent
-        });
-}
-
-timelineResolver.$inject = [backendService]
-
-function timelineResolver(backendService) {
-    return backendService.getTimeline();
 }
 
 run.$inject = ['$cookies', backendService, 'me'];
@@ -69,3 +32,7 @@ function run($cookies, backendService, me) {
             })
     }
 }
+
+angular.module(appModule)
+    .value('me', defaultMe)
+    .run(run)

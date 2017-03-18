@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+import servicesModule from './services.module';
+
 class toastService {
 
     static get $inject() {
@@ -36,7 +38,7 @@ class toastService {
 
 const serviceName = 'toastService';
 
-angular.module('hyferApp')
+angular.module(servicesModule)
     .service(serviceName, toastService);
 
 export default serviceName;
