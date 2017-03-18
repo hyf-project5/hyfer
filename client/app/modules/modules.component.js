@@ -8,6 +8,8 @@ import toastService from '../services/toastService';
 import addAndUpdateModuleController from '../modals/modules/addAndUpdateModuleModalCtrl';
 
 const template = require('./modules.component.html');
+const addModuleTemplate = require('../modals/modules/addModuleModal.html');
+const updateModuleTemplate = require('../modals/modules/updateModuleModal.html');
 
 class ModulesController {
 
@@ -45,7 +47,7 @@ class ModulesController {
                 },
                 controller: addAndUpdateModuleController,
                 controllerAs: '$ctrl',
-                templateUrl: 'client/app/modals/modules/addModuleModal.html',
+                template: addModuleTemplate,
                 targetEvent: ev,
                 clickOutsideToClose: true
             })
@@ -67,7 +69,7 @@ class ModulesController {
             },
             controller: addAndUpdateModuleController,
             controllerAs: '$ctrl',
-            templateUrl: 'client/app/modals/modules/updateModuleModal.html',
+            template: updateModuleTemplate,
             targetEvent: ev,
             clickOutsideToClose: true
         })

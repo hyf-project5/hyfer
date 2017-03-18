@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 import appModule from './app.module';
-import './app.routing'
+import './app.config';
 import './toolbar/toolbar.component';
 import backendService from './services/backendService';
 

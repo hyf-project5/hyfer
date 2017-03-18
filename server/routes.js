@@ -36,4 +36,7 @@ module.exports = function(app) {
     app.get('/auth/github', passport.authenticate('github'));
     app.get('/auth/github/callback', passport.authenticate('github', { session: false, failureRedirect: '/login' }),
         authService.gitHubCallback, authService.setTokenCookie);
+
+    app.route('/*')
+        .get((req, res) => res.sendFile('index.html', { root: app.get('docRoot') }));
 };

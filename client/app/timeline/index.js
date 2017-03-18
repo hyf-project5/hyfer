@@ -1,1 +1,0 @@
-import timelineModule from './timeline.module';

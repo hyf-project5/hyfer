@@ -9,8 +9,7 @@ module.exports = {
     ],
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js',
-        publicPath: 'build/'
+        filename: 'bundle.js'
     },
     devtool: 'source-map',
     module: {

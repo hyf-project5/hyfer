@@ -19,6 +19,11 @@ class ToolbarController {
         this.logoIcon = logoIcon;
     }
 
+    loadModules() {
+        System.import('../modules/modules.routing')
+            .then(() => this.$state.go('modules'));
+    }
+
     isTeacher() {
         return this.me.role === 'teacher';
     }
