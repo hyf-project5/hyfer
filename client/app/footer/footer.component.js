@@ -1,19 +1,24 @@
-(function() {
-    'use strict';
-    class FooterController {
+import angular from 'angular';
 
-        static get $inject() {
-            return [];
-        }
+const template = require('./footer.component.html');
 
-        constructor() {
+class FooterController {
 
-        }
+    static get $inject() {
+        return [];
     }
 
-    angular.module('hyferApp')
-        .component('hyfFooter', {
-            templateUrl: './app/footer/footer.component.html',
-            controller: FooterController
-        });
-})();
+    constructor() {
+
+    }
+}
+
+const componentName = 'hyfFooter';
+
+angular.module('hyferApp')
+    .component(componentName, {
+        template,
+        controller: FooterController
+    });
+
+export default componentName;

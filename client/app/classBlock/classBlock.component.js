@@ -1,24 +1,31 @@
-(function() {
-    'use strict';
-    class ClassBlockController {
+import angular from 'angular';
 
-        static get $inject() {
-            return ['backendService'];
-        }
+import './classBlockItem.component';
 
-        constructor(backendService) {
-            this.backendService = backendService;
+const template = require('./classBlock.component.html');
 
-        }
+class ClassBlockController {
+
+    static get $inject() {
+        return ['backendService'];
+    }
+
+    constructor(backendService) {
+        this.backendService = backendService;
 
     }
 
-    angular.module('hyferApp')
-        .component('hyfClassBlock', {
-            templateUrl: './app/classBlock/classBlock.component.html',
-            controller: ClassBlockController,
-            bindings: {
-                classes: '<'
-            }
-        });
-})();
+}
+
+const componentName = 'hyfClassBlock';
+
+angular.module('hyferApp')
+    .component(componentName, {
+        template,
+        controller: ClassBlockController,
+        bindings: {
+            classes: '<'
+        }
+    });
+
+export default componentName;
