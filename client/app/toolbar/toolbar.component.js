@@ -3,6 +3,7 @@ import angular from 'angular';
 import './menu/responsiveMenu.component';
 
 const template = require('./toolbar.component.html');
+const logoIcon = require('../../assets/images/logo.png');
 
 class ToolbarController {
 
@@ -14,6 +15,9 @@ class ToolbarController {
         this.me = me;
         this.$cookies = $cookies;
         this.$state = $state;
+        this.logoIcon = logoIcon;
+
+        console.log(logoIcon);
     }
 
     isTeacher() {

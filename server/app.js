@@ -23,10 +23,9 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(requestId);
 app.use(express.static(path.resolve(__dirname, '../build')));
-// app.use(serveStatic(path.join(__dirname, '..')));
-app.use(serveStatic(path.join(__dirname, '../client')));
 
 if ('development' == app.get('env')) {
+    app.use(serveStatic(path.join(__dirname, '../client')));
     app.use(errorHandler());
 }
 

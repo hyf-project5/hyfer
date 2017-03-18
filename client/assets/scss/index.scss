@@ -1,4 +1,4 @@
-@import url("readme.css");
+@import 'readme.scss';
 @import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
 
 /* Toolbar */
@@ -58,7 +58,7 @@
 *                 Timeline                    *
 **********************************************/
 
-.timliene {
+.timeline {
     margin-top: 15px;
 }
 

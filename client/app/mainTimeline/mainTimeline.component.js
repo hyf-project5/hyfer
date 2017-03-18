@@ -6,6 +6,7 @@ import addAndUpdateRunningModuleModalCtrl from '../modals/runningModules/addAndU
 
 const mainTimelineTemplate = require('./mainTimeline.component.html');
 const editRunningModuleTemplate = require('../modals/runningModules/editRunningModuleModal.html');
+const githubIcon = require('../../assets/images/github.svg');
 
 const days = 1000 * 60 * 60 * 24;
 const month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -23,6 +24,7 @@ class MainTimelineController {
         this.backendService = backendService;
         this.me = me;
         this.toastService = toastService;
+        this.githubIcon = githubIcon;
     }
 
 

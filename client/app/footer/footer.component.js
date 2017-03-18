@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 const template = require('./footer.component.html');
+const logoIcon = require('../../assets/images/logo.png');
 
 class FooterController {
 
@@ -9,7 +10,7 @@ class FooterController {
     }
 
     constructor() {
-
+        this.logoIcon = logoIcon;
     }
 }
 
