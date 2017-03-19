@@ -35,11 +35,15 @@ This application requires a MySQL database.
 
 - create a `config.js` file in the `server/config` folder, paste the contents of the `config.sample.js` file into it, and modify to reflect your specific database configuration.
 
-### Run the server
+### Run the server and webpack in watch mode
 
 ```
 npm start
 ```
+
+Webpack will initially take some time to transpile the client source files. The first time it is run it will create a `build` folder in the project folder. Please copy the `index.hmtl` file from the `client` folder to the `build` folder. This needs to be done only once. You can now acces the app at `http://localhost:3002`.
+
+Because Webpack runs in watch mode, there is no need to rerun `npm start` when making changes to the client code. Webpack will retranspile the changes. Just refresh the browser.
 
 ### Admin functions
 
