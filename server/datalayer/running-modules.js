@@ -6,7 +6,7 @@ const GET_RUNNING_MODULES_QUERY = `SELECT description, duration, teacher1_id, te
 const GET_ALL_FROM_RUNNING_MODULES_QUERY = `SELECT * FROM running_modules`;
 const DELETE_ALL_RUNNING_MODULES_QUERY = `DELETE FROM running_modules WHERE group_id=?`;
 const INSERT_RUNNING_MODULES_QUERY =
-    `INSERT INTO running_modules (description, module_id, group_id, duration, position, teacher1_id, teacher2_id) VALUES`;
+    `INSERT INTO running_modules (description, module_id, group_id, duration, position, teacher1_id, teacher2_id) VALUES ?`;
 
 function getRunningModules(con, groupId) {
     const sql = GET_RUNNING_MODULES_QUERY + ` WHERE group_id=? ORDER BY position`;
@@ -27,8 +27,8 @@ function addModuleToRunningModules(con, moduleId, groupId, position) {
                 module_id: moduleId,
                 group_id: groupId,
                 duration: module.default_duration,
-                teacher1_id: 'NULL',
-                teacher2_id: 'NULL'
+                teacher1_id: null,
+                teacher2_id: null
             }
             return getAllFromRunningModules(con, groupId)
                 .then(runningMods => {
@@ -71,9 +71,8 @@ function replaceRunningModules(con, runningMods, groupId) {
                 }
                 db.execQuery(con, DELETE_ALL_RUNNING_MODULES_QUERY, groupId)
                     .then(() => {
-                        let valueList = makeValueList(runningMods);
-                        let sql = INSERT_RUNNING_MODULES_QUERY + valueList;
-                        return db.execQuery(con, sql);
+                        let values = makeValueList(runningMods);
+                        return db.execQuery(con, INSERT_RUNNING_MODULES_QUERY, [values]);
                     })
                     .then(() => {
                         con.commit(err => {
@@ -110,12 +109,10 @@ function resequenceRunningModules(runningMods) {
 }
 
 function makeValueList(runningModules) {
-    return runningModules.reduce((str, mod) => {
-        if (str.length > 0) {
-            str += ',';
-        }
-        return str + `('${mod.description}',${mod.module_id},${mod.group_id},${mod.duration},${mod.position},${mod.teacher1_id},${mod.teacher2_id})`
-    }, '');
+    return runningModules.reduce((values, mod) => {
+        values.push([mod.description, mod.module_id, mod.group_id, mod.duration, mod.position, mod.teacher1_id, mod.teacher2_id]);
+        return values;
+    }, []);
 }
 
 module.exports = {
