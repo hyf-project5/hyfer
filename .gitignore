@@ -40,3 +40,5 @@ build
 .idea
 
 server/config/config.js
+
+.vscode

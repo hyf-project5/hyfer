@@ -3,6 +3,7 @@ import uiRouter from 'angular-ui-router';
 import ngMaterial from 'angular-material';
 import ngCookies from 'angular-cookies';
 import 'angular-material/angular-material.css';
+import dndLists from 'angular-drag-and-drop-lists';
 
 import '../assets/scss/index.scss';
 import toolbarModule from './toolbar/toolbar.module';
@@ -16,6 +17,7 @@ export default angular.module('hyferApp', [
     uiRouter,
     ngMaterial,
     ngCookies,
+    'dndLists',
     toolbarModule,
     timelineModule,
     modulesModule,

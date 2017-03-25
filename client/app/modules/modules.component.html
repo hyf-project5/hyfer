@@ -1,28 +1,34 @@
 <div flex-offset-gt-sm='10' flex-gt-sm='80'>
     <br>
-    <md-grid-list md-cols-xs="2" md-cols-sm="3" md-cols-md="4" md-cols-lg="5" md-cols-gt-lg="6" md-row-height="1:1">
-        <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="module in $ctrl.modules" ng-click="$ctrl.updateModule($event, module)">
-            <div class="module-grid-item">
-                <md-tooltip>
-                    Edit {{module.module_name}}
-                </md-tooltip>
-                <div class='module-name'>
-                    <h4>{{ module.module_name }}</h4>
-                </div>
-                <div class='module-description'>
-                    <i>{{ module.description}}</i>
-                </div>
-                <div class='module-duration'>
+    <ul dnd-list="$ctrl.modules" class="modules-list">
+        <li
+            ng-repeat="module in $ctrl.modules"
+            dnd-draggable="module"
+            dnd-effect-allowed="move"
+            dnd-moved="$ctrl.modules.splice($index, 1)"
+            dnd-selected="models.selected = module"
+            class="modules-list-item"
+            >
+                <md-button class="edit-module" ng-click="$ctrl.updateModule($event, module)">
+                    <md-tooltip md-direction='top'>Edit {{module.module_name}}</md-tooltip>
+                    <md-icon md-font-set="material-icons">edit</md-icon>
+                </md-button>
+                <span>
+                    {{module.module_name}} :
+                <i>{{ module.description}}
+                  <md-tooltip md-direction='right'>
                     Run for: {{ module.default_duration}} week(s).
-                </div>
-            </div>
-        </md-grid-tile>
-    </md-grid-list>
+                  <md-tooltip>
+                </i>
+              </span>
+	      </li>
+    </ul>
+    
     <div layout='row'>
         <span flex></span>
-        <md-button class="module-add md-raised md-mini md-primary" ng-click="$ctrl.addModule($event)">
+        <md-button class="module-add md-raised md-fab md-primary" ng-click="$ctrl.addModule($event)">
             <md-icon md-font-set="material-icons">add</md-icon>
-            Add module
+            <md-tooltip md-direction='top'>Add module<md-tooltip>
         </md-button>
     </div>
     <br>
