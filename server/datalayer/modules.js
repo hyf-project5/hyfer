@@ -27,15 +27,45 @@ function getOptionalModules(con) {
 }
 
 function addModule(con, module) {
+    delete module.id;
+    delete module.added_on;
     return db.execQuery(con, ADD_MODULE_QUERY, module);
 }
 
 function updateModule(con, module, id) {
+    delete module.added_on;
     return db.execQuery(con, UPDATE_MODULE_QUERY, [module, id]);
 }
 
 function deleteModule(con, id) {
     return db.execQuery(con, DELETE_MODULE_QUERY, [id]);
+}
+
+function updateModules(con, batchUpdate) {
+    return new Promise((resolve, reject) => {
+        con.beginTransaction(err => {
+            if (err) {
+                return reject(err);
+            }
+            let promises = batchUpdate.updates.map(module => this.updateModule(con, module, module.id))
+                .concat(batchUpdate.additions.map(module => this.addModule(con, module)))
+                .concat(batchUpdate.deletions.map(module => this.deleteModule(con, module.id)));
+            Promise.all(promises)
+                .then(() => {
+                    con.commit(err => {
+                        if (err) {
+                            throw err;
+                        }
+                        resolve();
+                    })
+                })
+                .catch(err => {
+                    con.rollback(() => {
+                        reject(err);
+                    })
+                });
+        });
+    });
 }
 
 module.exports = {
@@ -46,4 +76,5 @@ module.exports = {
     addModule,
     updateModule,
     deleteModule,
+    updateModules
 }

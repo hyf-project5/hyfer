@@ -11,8 +11,11 @@ const groups = require('./api/groups');
 
 module.exports = function(app) {
 
-    app.get('/api/modules', authService.hasRole('teacher'), modules.getModules);
+    // app.get('/api/modules', authService.hasRole('teacher'), modules.getModules);
+    app.get('/api/modules', modules.getModules);
     app.post('/api/modules', authService.hasRole('teacher'), modules.addModule);
+    // app.patch('/api/modules', authService.hasRole('teacher'), modules.updateModules);
+    app.patch('/api/modules', modules.updateModules);
     app.patch('/api/modules/:id', authService.hasRole('teacher'), modules.updateModule);
     app.delete('/api/modules/:id', authService.hasRole('teacher'), modules.deleteModule);
 
