@@ -63,6 +63,22 @@ function deleteRunningModule(con, groupId, position) {
         });
 }
 
+function splitRunningModule(con, groupId, position) {
+    return getAllFromRunningModules(con, groupId)
+        .then(runningMods => {
+            let newMod = Object.assign({}, runningMods[position]);
+            if (newMod.duration === 1) {
+                return Promise.resolve();
+            }
+            newMod.duration = Math.floor(newMod.duration / 2);
+            runningMods[position].duration = runningMods[position].duration - newMod.duration;
+            runningMods.splice(position, 0, newMod);
+            resequenceRunningModules(runningMods);
+            return replaceRunningModules(con, runningMods, groupId);
+        });
+}
+
+
 function replaceRunningModules(con, runningMods, groupId) {
     return new Promise((resolve, reject) => {
             con.beginTransaction(err => {
@@ -120,4 +136,5 @@ module.exports = {
     addModuleToRunningModules,
     updateRunningModule,
     deleteRunningModule,
+    splitRunningModule
 }

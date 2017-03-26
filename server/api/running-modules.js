@@ -39,9 +39,19 @@ function deleteRunningModule(req, res) {
         .catch(err => res.status(500).json(err));
 }
 
+function splitRunningModule(req, res) {
+    let groupId = parseInt(req.params.groupId, 10);
+    let position = parseInt(req.params.position, 10);
+    getConnection(req, res)
+        .then(con => db.splitRunningModule(con, groupId, position))
+        .then(result => res.json(result))
+        .catch(err => res.status(500).json(err));
+}
+
 module.exports = {
     getRunningModules,
     addModuleToRunningModules,
     updateRunningModule,
-    deleteRunningModule
+    deleteRunningModule,
+    splitRunningModule
 }
