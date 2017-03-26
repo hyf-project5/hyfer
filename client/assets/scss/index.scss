@@ -450,3 +450,22 @@ a:active {
         height: 80px;
     }
 }
+.modules-list{
+    margin: 0;
+    padding: 0;
+    li{
+        padding: 0.2em 1em;    
+        margin: 1vh;
+        border-radius: .3em;
+        font-family: helvetica, serif;
+        font-size: 1.2em;
+        color: white;
+        background-color: #0077d6;
+        i{
+            font-size: .8em;
+            i{
+                float: right;
+                font-size: 0.7em;}
+        }
+    }
+}

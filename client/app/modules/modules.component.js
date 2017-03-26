@@ -1,5 +1,4 @@
 import angular from 'angular';
-
 import modulesModule from './modules.module';
 
 import '../footer/footer.component';
