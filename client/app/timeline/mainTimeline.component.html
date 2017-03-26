@@ -7,12 +7,33 @@
             <div ng-repeat="module in $ctrl.timeline[class]" ng-click="$ctrl.showReadme(module)" class="module-block {{module.startingWeekClass}} {{module.blockClass}}" ng-style="{'left': module.leftPosition + 'px', 'width': module.blockWidth + 'px', 'background':  module.bgColor}">
                 <md-tooltip>Run from {{module.startingDate}} to {{module.endingDate}}</md-tooltip>
                 {{module.module_name}}
-                <md-button class="edit-module" ng-show="$ctrl.isTeacher()" ng-click="$ctrl.editRunningModule($event, module)">
+                <!--<md-button class="edit-module" ng-show="$ctrl.isTeacher()" ng-click="$ctrl.editRunningModule($event, module)">
                     <md-tooltip md-direction='right'>
                         Edit {{module.module_name}}
                     </md-tooltip>
                     <md-icon md-font-set="material-icons">edit</md-icon>
-                </md-button>
+                </md-button>-->
+
+                <md-menu ng-if="$ctrl.isTeacher()">
+                    <md-button class="edit-module" ng-click="$mdMenu.open($event)" aria-label="Open user's' menu">
+                        <md-tooltip md-direction='right'>
+                            Edit {{module.module_name}}
+                        </md-tooltip>
+                        <md-icon md-font-set="material-icons">edit</md-icon>
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button ng-click="$ctrl.editRunningModule($event, module)">Edit</md-button>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+
+                        <md-menu-item>
+                            <md-button ng-disabled="module.duration === 1" ng-click="$ctrl.splitRunningModule(module)">Split</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+
+
             </div>
         </div>
     </div>

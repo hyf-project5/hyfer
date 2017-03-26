@@ -126,6 +126,15 @@ class MainTimelineController {
             clickOutsideToClose: true
         })
     }
+
+    splitRunningModule(module) {
+        this.backendService.splitRunningModule(module.id, module.position)
+            .then(data => {
+                this.$state.reload();
+            })
+            .catch(err => console.log(err))
+    }
+
 }
 
 const componentName = 'hyfMainTimeline';

@@ -27,11 +27,15 @@ class backendService {
     }
 
     addRunningModule(moduleId, groupId, position) {
-        return this.$http.patch(`/api/running/${moduleId}/${groupId}/${position}`, {}, this.getHttpConfig())
+        return this.$http.patch(`/api/running/add/${moduleId}/${groupId}/${position}`, {}, this.getHttpConfig())
     }
 
     updateRunningModule(groupId, position, newRunningModule) {
-        return this.$http.patch(`/api/running/${groupId}/${position}`, newRunningModule, this.getHttpConfig())
+        return this.$http.patch(`/api/running/update/${groupId}/${position}`, newRunningModule, this.getHttpConfig())
+    }
+
+    splitRunningModule(groupId, position) {
+        return this.$http.patch(`/api/running/split/${groupId}/${position}`, {}, this.getHttpConfig())
     }
 
     deleteRunningModule(groupId, position) {
