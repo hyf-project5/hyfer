@@ -12,22 +12,6 @@ class UsersController {
     }
 
     constructor($state, $mdDialog, toastService, backendService, me) {
-        backendService.getUsersProfile()
-            .then(res => {
-                this.users = res;
-            })
-            .catch(() => {
-                $mdDialog.show(
-                    $mdDialog.alert()
-                    .clickOutsideToClose(true)
-                    .title('Access Denied!')
-                    .textContent('Sorry this is private page!')
-                    .ariaLabel('Alert Dialog Demo')
-                    .ok('close')
-                );
-                return $state.go('timeline')
-            })
-
         this.backendService = backendService;
         this.me = me;
         this.$mdDialog = $mdDialog;
@@ -40,11 +24,11 @@ class UsersController {
             .then(() => {
                 this.users.forEach(user => {
                     if (user.id == userId) {
-                        this.toastService.displayToast(true, `${user.username}'s role updated to ${role.toLowerCase()}!`)
+                        this.toastService.displayToast(true, `${user.username}'s role updated to ${role.toLowerCase()}!`);
                         this.$state.reload();
                     }
-                })
-            }).catch(err => console.log(err))
+                });
+            }).catch(err => console.log(err));
     }
 
     updateMyRole(userName, ev, userId, role) {
@@ -56,11 +40,11 @@ class UsersController {
             .cancel('Cancel');
         this.$mdDialog.show(confirm)
             .then(() => {
-                this.updateUserRole(userId, role)
+                this.updateUserRole(userId, role);
                 location.reload();
-                this.$state.go('timeline')
+                this.$state.go('timeline');
             })
-            .catch(() => false)
+            .catch(() => false);
     }
     selectedRole(userId, role, username, ev) {
         if (this.me.username === username) {
@@ -79,7 +63,10 @@ angular
     .module(usersModule)
     .component(componentName, {
         template,
-        controller: UsersController
+        controller: UsersController,
+        bindings: {
+            users: '<'
+        }
     });
 
 export default componentName;
