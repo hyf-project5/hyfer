@@ -16,7 +16,6 @@ Note: all end-points for `modules` require the `teacher` role.
 | `module_name: string` | The short descriptive name of the module |
 | `description: string` | A longer description for the  module |
 | `default_duration: number` | The default duration for the module in weeks |
-| `seq_number: number | null` | A number used to establish an ordering of modules in the standard curriculum. If the value is `null` this module is not part of the standard curriculum (e.g. Holiday, Hackathon) but could be added ad-hoc to the list of running modules for a particular group. |
 | `git_url: string` | The url to the git repository excluding the actual repository name |
 | `git_owner: string` | The GitHub username of the repository owner. Usually this this `HackYourFuture` |
 | `git_repo: string` | The repository name of the repository where the module materials (README etc) are maintained. |
