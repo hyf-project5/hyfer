@@ -11,8 +11,10 @@ const TIME_LINE_FOR_ALL_GROUPS_QUERY =
         running_modules.id AS running_module_id,
         running_modules.position,
         modules.module_name,
+        modules.color,
         modules.git_url,
-        modules.git_repo
+        modules.git_repo,
+        modules.optional
     FROM groups
     INNER JOIN running_modules ON running_modules.group_id = groups.id
     INNER JOIN modules ON running_modules.module_id = modules.id
@@ -44,7 +46,7 @@ function addGroup(con, group) {
     let data = {
             group_name: group.group_name,
             starting_date: new Date(group.starting_date)
-        }
+        };
         // TODO: use a SQL transaction
 
     return db.execQuery(con, ADD_GROUP_QUERY, data)
@@ -75,7 +77,7 @@ function makeValueList(runningModules) {
         if (str.length > 0) {
             str += ',';
         }
-        return str + `('${mod.description}',${mod.module_id},${mod.group_id},${mod.duration},${mod.position})`
+        return str + `('${mod.description}',${mod.module_id},${mod.group_id},${mod.duration},${mod.position})`;
     }, '');
 }
 
@@ -84,4 +86,4 @@ module.exports = {
     addGroup,
     updateGroup,
     deleteGroup
-}
+};
