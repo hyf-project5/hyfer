@@ -12,26 +12,10 @@ import updateModuleTemplate from '../modals/modules/updateModuleModal.html';
 class ModulesController {
 
     static get $inject() {
-        return [backendService, '$state', '$mdDialog', toastService];
+        return ['$state', '$mdDialog', backendService, toastService];
     }
 
-    constructor(backendService, $state, $mdDialog, toastService) {
-        backendService.getModules()
-            .then(data => {
-                this.modules = data;
-            })
-            .catch(() => {
-                this.$mdDialog.show(
-                    this.$mdDialog.alert()
-                    .clickOutsideToClose(true)
-                    .title('Access Denied!')
-                    .textContent('Sorry this is private page!')
-                    .ariaLabel('Alert Dialog Demo')
-                    .ok('close')
-                );
-                return $state.go('timeline')
-            })
-
+    constructor($state, $mdDialog, backendService, toastService) {
         this.backendService = backendService;
         this.$mdDialog = $mdDialog;
         this.toastService = toastService;
@@ -55,9 +39,9 @@ class ModulesController {
                         let firstLessIndex = this.modules.findIndex(val => val.seq_number > res.seq_number);
                         this.modules.splice(firstLessIndex, 0, res);
                         this.toastService.displayToast(true, `${res.module_name} has been added`);
-                    })
+                    });
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
     }
 
     updateModule(ev, module) {
@@ -70,7 +54,7 @@ class ModulesController {
             template: updateModuleTemplate,
             targetEvent: ev,
             clickOutsideToClose: true
-        })
+        });
     }
 
 }
@@ -80,7 +64,10 @@ const componentName = 'hyfModules';
 angular.module(modulesModule)
     .component(componentName, {
         template,
-        controller: ModulesController
+        controller: ModulesController,
+        bindings: {
+            modules: '<'
+        }
     });
 
 export default componentName;

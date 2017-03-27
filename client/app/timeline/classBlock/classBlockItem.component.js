@@ -12,7 +12,6 @@ class ClassBlockItemController {
     }
 
     constructor($mdDialog, backendService, me) {
-        this.bgColor = this.randomColor();
         this.$mdDialog = $mdDialog;
         this.me = me;
     }
@@ -21,12 +20,6 @@ class ClassBlockItemController {
         if (this.me.role == 'teacher') {
             return true;
         }
-    }
-
-    randomColor() {
-        let themeColor = ['#5cbae6', '#b6d957', '#fac364', '#8cd3ff', '#d998cb', '#f2d249', '#93b9c6', '#ccc5a8', '#52bacc', '#dbdb46', '#98aafb'];
-        let xColor = Math.floor(Math.random() * themeColor.length);
-        return themeColor[xColor];
     }
 
     addRunningModuleModal(ev, className) {
@@ -40,7 +33,7 @@ class ClassBlockItemController {
             template: addRunningTemplate,
             targetEvent: ev,
             clickOutsideToClose: true
-        })
+        });
     }
 
 }

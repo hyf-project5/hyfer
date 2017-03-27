@@ -1,19 +1,13 @@
 <div flex-offset-gt-sm='10' flex-gt-sm='80'>
     <br>
     <ul dnd-list="$ctrl.modules" class="modules-list">
-        <li
-            ng-repeat="module in $ctrl.modules"
-            dnd-draggable="module"
-            dnd-effect-allowed="move"
-            dnd-moved="$ctrl.modules.splice($index, 1)"
-            dnd-selected="models.selected = module"
-            class="modules-list-item"
-            >
-                <md-button class="edit-module" ng-click="$ctrl.updateModule($event, module)">
-                    <md-tooltip md-direction='top'>Edit {{module.module_name}}</md-tooltip>
-                    <md-icon md-font-set="material-icons">edit</md-icon>
-                </md-button>
-                <span>
+        <li ng-repeat="module in $ctrl.modules" dnd-draggable="module" dnd-effect-allowed="move" dnd-moved="$ctrl.modules.splice($index, 1)"
+            dnd-selected="models.selected = module" class="modules-list-item" ng-style="{'background-color': module.color}">
+            <md-button class="edit-module" ng-click="$ctrl.updateModule($event, module)">
+                <md-tooltip md-direction='top'>Edit {{module.module_name}}</md-tooltip>
+                <md-icon md-font-set="material-icons">edit</md-icon>
+            </md-button>
+            <span>
                     {{module.module_name}} :
                 <i>{{ module.description}}
                   <md-tooltip md-direction='right'>
@@ -21,14 +15,15 @@
                   <md-tooltip>
                 </i>
               </span>
-	      </li>
+        </li>
     </ul>
-    
+
     <div layout='row'>
         <span flex></span>
         <md-button class="module-add md-raised md-fab md-primary" ng-click="$ctrl.addModule($event)">
             <md-icon md-font-set="material-icons">add</md-icon>
-            <md-tooltip md-direction='top'>Add module<md-tooltip>
+            <md-tooltip md-direction='top'>Add module
+                <md-tooltip>
         </md-button>
     </div>
     <br>

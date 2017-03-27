@@ -8,7 +8,7 @@ Note: all end-points for `modules` require the `teacher` role.
 
 #### Request: `GET /api/modules`
 
-**Response:** A JSON array of modules ordered by `seq_number`. Each module is an object with the following properties:
+**Response:** A JSON array of modules ordered by curriculum order. Each module is an object with the following properties:
 
 | property | description |
 | :------- | :---------- |
@@ -20,37 +20,23 @@ Note: all end-points for `modules` require the `teacher` role.
 | `git_url: string` | The url to the git repository excluding the actual repository name |
 | `git_owner: string` | The GitHub username of the repository owner. Usually this this `HackYourFuture` |
 | `git_repo: string` | The repository name of the repository where the module materials (README etc) are maintained. |
-
-### Create
-
-Create a new module.
-
-#### Request: `POST /api/modules`
-
-The data for the new module should be sent as JSON in the request body. The JSON object should have the properties described above for the `GET` method, however the `id` property should not be included.
+| `color: string` | The background color for this module as a hex string (`#nnnnnn`) |
+| `optional: number` | • `0` if this module is part of the standard curriculum<br>• `1` if this module is optional (e.g. _Holiday_, _Hackathon_) |
+| `ref_count: number` | The number of references to this module from the list of running modules |
 
 ### Update
 
 Update an existing module.
 
-#### Request: `PATCH /api/modules/:id`
-
-| param | description |
-| :------ | :----------- |
-| `id: number` | The `id` of the module to be updated |
+#### Request: `PATCH /api/modules`
 
 **Body**
 
-The properties to be modified should be sent as JSON in the request body. See the `GET` method for the properties available.
+The complete list of modules obtained from a GET request, with any updates, additions and deletions should be passed in the request body, in the desired order. The backend will apply updates as required.
 
-### Delete
+The backend will reject the request if any module for which `ref_count !== 0` is deleted from the list.
 
-#### Request: `DELETE /api/modules/:id`
-
-| param | description |
-| :------ | :----------- |
-| `id: number` | The `id` of the module to be deleted |
-
+**Response**: As listed under `GET`, reflecting the updates.
 
 ## Users
 

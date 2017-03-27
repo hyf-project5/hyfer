@@ -43,7 +43,7 @@ function updateModules(req, res) {
                     let batchUpdate = createBatchUpdate(currentModules, receivedModules);
                     return db.updateModules(con, batchUpdate);
                 })
-                .then(() => db.getModules(con))
+                .then(() => db.getModules(con));
         })
         .then(result => res.json(result))
         .catch(err => res.status(500).json(err));
@@ -54,9 +54,15 @@ function createBatchUpdate(currentModules, receivedModules) {
     let updates = [];
     let additions = [];
 
-    receivedModules.forEach((receivedModule, index) => {
-        receivedModule.seq_number = index;
-    });
+    receivedModules.filter(module => module.optional === 0)
+        .forEach((module, index) => {
+            module.sort_order = index;
+        });
+
+    receivedModules.filter(module => module.optional !== 0)
+        .forEach(module => {
+            module.sort_order = 1000;
+        });
 
     currentModules.forEach(currentModule => {
         currentModule.visited = false;
@@ -85,7 +91,7 @@ function compareModules(mod1, mod2) {
         mod1.module_name === mod2.module_name &&
         mod1.description === mod2.description &&
         mod1.default_duration === mod2.default_duration &&
-        mod1.seq_number === mod2.seq_number &&
+        mod1.sort_order === mod2.sort_order &&
         mod1.git_url === mod2.git_url &&
         mod1.git_owner === mod2.git_owner &&
         mod1.git_repo === mod2.git_repo;
@@ -98,4 +104,4 @@ module.exports = {
     deleteModule,
     updateModules,
     createBatchUpdate
-}
+};
