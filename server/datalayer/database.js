@@ -17,4 +17,4 @@ function execQuery(con, sql, args = []) {
 
 module.exports = {
     execQuery
-}
+};

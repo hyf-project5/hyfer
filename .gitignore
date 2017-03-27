@@ -32,9 +32,6 @@ logs
 # Deps
 node_modules
 
-# build
-build
-
 # ide
 .tmp
 .idea
