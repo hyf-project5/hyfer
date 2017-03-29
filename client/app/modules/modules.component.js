@@ -61,6 +61,7 @@ class ModulesController {
             })
             .then(module => {
                 this.modules.push(module);
+                this.toastService.displayToast(true, `${module.module_name} has been added`);
                 this.isDirty = true;
             })
             .catch(err => console.log(err));

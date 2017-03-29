@@ -30,7 +30,6 @@ class AddAndUpdateModuleModalController {
         }, 10);
     }
     add() {
-
         this.$mdDialog.hide(this.newModule);
     }
 
