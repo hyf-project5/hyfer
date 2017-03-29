@@ -201,7 +201,7 @@
         margin: 1vh;
         border-radius: .3em;
         font-family: helvetica, serif;
-        font-size: 1.2em;
+        font-size: 1.1em;
         color: white;
         background-color: lightgray;
         md-icon {
@@ -211,7 +211,9 @@
         }
     }
 }
+
 md-grid-tile {
+    font-size: 1.1em;;
     border: thin solid #888;
 }
 
@@ -437,5 +439,9 @@ a:active {
     .users-link {
         width: 80px;
         height: 80px;
+    }
+    .modules-list{ li{
+        font-size: .8em;
+        }
     }
 }
