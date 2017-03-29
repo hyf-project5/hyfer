@@ -36,6 +36,9 @@ class AddAndUpdateModuleModalController {
 
     update() {
         this.$mdDialog.hide(this.currentModule);
+        setTimeout(() => {
+            this.toastService.displayToast(true, `${this.selectedModule.module_name} has been updated`);
+        }, 10);
     }
 
 

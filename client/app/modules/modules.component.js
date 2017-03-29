@@ -27,14 +27,26 @@ class ModulesController {
     save(){
         this.backendService.saveModules(this.modules)
         .then(modules => {
+            this.isDirty= false;
             this.modules = modules;
             this.toastService.displayToast(true, 'Changes have been saved');
         });
     }
 
-    delete(index){
+    delete(index,name){
+        this.toastService.displayToast(true, `${name} have been deleted`);
         this.modules.splice(index, 1);
         this.isDirty = true;
+        
+   
+}
+    undoChanges() {
+        this.$state.reload();
+        this.isDirty= false;
+        setTimeout(()=>{
+            this.toastService.displayToast(true, 'Changes have been rolled back');
+        },10)
+
     }
     addModule(ev) {
         this.$mdDialog.show({

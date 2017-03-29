@@ -22,10 +22,13 @@
                     <input ng-model="$ctrl.newModule.git_url" type="url" placeholder="Repo URL..">
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <input ng-model="$ctrl.newModule.default_duration" type="number" min="1" placeholder="Duration..">
+                    <input ng-model="$ctrl.newModule.default_duration" type="number" min="1" max="6" placeholder="Duration..">
                 </md-input-container>
                 <md-input-container class="md-block">
                     <input colorpicker="hex" type="text" ng-model="$ctrl.newModule.color" placeholder="Color.." />
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <md-checkbox ng-model="$ctrl.newModule.optional" aria-label="Optional">Optional {{$ctrl.newModule.optional}}</md-checkbox>
                 </md-input-container>
             </div>
         </md-dialog-content>
@@ -35,7 +38,7 @@
                 Cancel
             </md-button>
             <span flex></span>
-            <md-button class="md-primary" type='submit' ng-click="$ctrl.add()">
+            <md-button class="md-primary" type='submit' ng-disabled="!$ctrl.newModule.module_name || !$ctrl.newModule.default_duration" ng-click="$ctrl.add()">
                 Add
             </md-button>
         </md-dialog-actions>
