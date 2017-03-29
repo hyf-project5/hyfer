@@ -2,11 +2,11 @@
     <md-grid-list md-cols="6" md-row-height="3vw" md-row-width="12vw" md-gutter="0px">
         <md-grid-tile ng-repeat="week in $ctrl.weeksGrid">{{week}}</md-grid-tile>
     </md-grid-list>
-    
+
     <ul dnd-list="$ctrl.modules" class="modules-list">
         <li ng-repeat="module in $ctrl.modules" dnd-draggable="module" dnd-effect-allowed="move" dnd-moved="$ctrl.modules.splice($index, 1);$ctrl.isDirty=true"
-            dnd-selected="models.selected = module" ng-style="{'background-color': module.color,'width': '{{module.default_duration*16+'%'}}'}">
-            
+            dnd-selected="models.selected = module" ng-style="{'background-color': module.color,'width': module.default_duration*16+'%'}">
+
                 <md-menu>
                     <md-icon md-font-set="material-icons" ng-click="$mdMenu.open($event)">more_vert</md-icon>
                 <md-menu-content>
@@ -46,7 +46,7 @@
         <md-button class="module-add md-raised md-fab md-primary" ng-click="$ctrl.addModule($event)">
             <md-icon md-font-set="material-icons">add<md-icon>
             <md-tooltip md-direction='top'>Add module<md-tooltip>
-        </md-button>        
+        </md-button>
     </div>
     <br>
 </div>
