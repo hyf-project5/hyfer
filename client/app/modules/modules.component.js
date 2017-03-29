@@ -20,10 +20,10 @@ class ModulesController {
         this.$mdDialog = $mdDialog;
         this.toastService = toastService;
         this.$state = $state;
-        this.weeksGrid = ["1 week","2 weeks","3 weeks","4 weeks","5 weeks","6 weeks"]
+        this.weeksGrid = ["1 week","2 weeks","3 weeks","4 weeks","5 weeks","6 weeks"];
         this.isDirty = false;
     }
-        
+
     save(){
         this.backendService.saveModules(this.modules)
         .then(modules => {
