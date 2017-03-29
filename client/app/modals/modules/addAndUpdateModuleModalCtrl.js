@@ -3,7 +3,7 @@ import angular from 'angular';
 import modalsModules from '../modals.module';
 import backendService from '../../services/backendService';
 import toastService from '../../services/toastService';
-import './colorPickerStyles.scss';
+import 'angular-bootstrap-colorpicker/css/colorpicker.css';
 
 class AddAndUpdateModuleModalController {
 
@@ -14,7 +14,7 @@ class AddAndUpdateModuleModalController {
     constructor($mdDialog, toastService, selectedModule, backendService, $state) {
         this.$mdDialog = $mdDialog;
         this.toastService = toastService;
-        this.selectedModule = selectedModule;       
+        this.selectedModule = selectedModule;
         this.backendService = backendService;
         this.$state = $state;
         this.currentModule = Object.assign({}, selectedModule);
@@ -30,14 +30,14 @@ class AddAndUpdateModuleModalController {
         }, 10)
     }
     add() {
-        
+
         this.$mdDialog.hide(this.newModule)
     }
 
     update() {
         this.$mdDialog.hide(this.currentModule)
     }
-           
+
 
     deleteModule() {
         this.$mdDialog.hide()
