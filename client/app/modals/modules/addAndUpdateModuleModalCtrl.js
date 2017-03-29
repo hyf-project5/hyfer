@@ -3,6 +3,7 @@ import angular from 'angular';
 import modalsModules from '../modals.module';
 import backendService from '../../services/backendService';
 import toastService from '../../services/toastService';
+import './colorPickerStyles.scss';
 
 class AddAndUpdateModuleModalController {
 
@@ -13,9 +14,11 @@ class AddAndUpdateModuleModalController {
     constructor($mdDialog, toastService, selectedModule, backendService, $state) {
         this.$mdDialog = $mdDialog;
         this.toastService = toastService;
-        this.selectedModule = selectedModule;
+        this.selectedModule = selectedModule;       
         this.backendService = backendService;
         this.$state = $state;
+        this.currentModule = Object.assign({}, selectedModule);
+        this.newModule = {};
     }
     hide() {
         this.$mdDialog.hide()
@@ -26,28 +29,15 @@ class AddAndUpdateModuleModalController {
             this.toastService.displayToast(false)
         }, 10)
     }
-    add(submit) {
-        this.$mdDialog.hide(submit)
+    add() {
+        
+        this.$mdDialog.hide(this.newModule)
     }
 
-    update(submit) {
-        this.$mdDialog.hide(submit)
-            .then(res => {
-                console.log(res)
-                let correct = Object.values(res).filter(val => val !== undefined)
-                if (correct.length < 1) {
-                    return this.toastService.displayToast(true, 'Nothing Changed');
-                }
-                this.backendService.updateModule(this.selectedModule.id, res)
-                    .then(() => {
-                        this.$state.reload();
-                        setTimeout(() => {
-                            this.toastService.displayToast(true, `${this.selectedModule.module_name} has been updated`);
-                        }, 10)
-                    })
-            })
-            .catch(err => console.log(err))
+    update() {
+        this.$mdDialog.hide(this.currentModule)
     }
+           
 
     deleteModule() {
         this.$mdDialog.hide()

@@ -7,7 +7,7 @@ function getModules(req, res) {
         .then(con => db.getModules(con))
         .then(result => res.json(result))
         .catch(err => res.status(500).json(err));
-
+        
 }
 
 function addModule(req, res) {

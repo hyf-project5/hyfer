@@ -2,7 +2,7 @@
     <form ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Update Module {{$ctrl.selectedModule.module_name}}..</h2>
+                <h2>Update Module {{$ctrl.currentModule.module_name}}..</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
                     <md-icon md-font-set="material-icons">close</md-icon>
@@ -13,30 +13,30 @@
         <md-dialog-content aria-label="Adding Module.">
             <div class="md-dialog-content">
                 <md-input-container class="md-block">
-                    <label>{{ module_name || $ctrl.selectedModule.module_name}}</label>
-                    <input type="text" ng-model="module_name">
+                    <label>Module name</label>
+                    <input type="text" ng-model="$ctrl.currentModule.module_name">
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <label>{{ git_repo || $ctrl.selectedModule.git_repo}}</label>
-                    <input ng-model="git_repo" type="text">
+                    <label>Repository name</label>
+                    <input ng-model="$ctrl.currentModule.git_repo" type="text">
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <label>{{ git_url || $ctrl.selectedModule.git_url}}</label>
-                    <input ng-model="git_url" type="url">
+                    <label>Github URL</label>
+                    <input ng-model="$ctrl.currentModule.git_url" type="url">
                 </md-input-container>
                 <md-input-container class="md-block">
 
-                    <label>{{ default_duration || $ctrl.selectedModule.default_duration}}</label>
-                    <input ng-model="default_duration" type="number" min="1">
+                    <label>Duration</label>
+                    <input ng-model="$ctrl.currentModule.default_duration" type="number" min="1">
                 </md-input-container>
-                <md-input-container class="md-block">
-                    <label>{{ seq_number || $ctrl.selectedModule.seq_number}}</label>
-                    <input ng-model="seq_number" type="number" min="0">
+                <md-input-container class="md-block" ng-style="{'color': module.color}">
+                    <label>Color</label>
+                    <input colorpicker="hex" type="text" ng-model="$ctrl.currentModule.color" />
                 </md-input-container>
 
                 <md-input-container class="md-block">
-                    <label>{{description || $ctrl.selectedModule.description}}</label>
-                    <textarea ng-model="description" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+                    <label>Description</label>
+                    <textarea ng-model="$ctrl.currentModule.description" md-maxlength="150" maxlength="150" rows="3" md-select-on-focus></textarea>
                 </md-input-container>
             </div>
         </md-dialog-content>
@@ -46,10 +46,8 @@
                 Cancel
             </md-button>
             <span flex></span>
-            <md-button class="md-raised md-warn" ng-click="$ctrl.deleteModule()">
-                Delete
-            </md-button>
-            <md-button class="md-primary" type='submit' ng-click="$ctrl.update(module={module_name, git_repo, git_url, default_duration, seq_number, description})">
+
+            <md-button class="md-primary" type='submit' ng-click="$ctrl.update()">
                 Update
             </md-button>
         </md-dialog-actions>

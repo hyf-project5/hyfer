@@ -192,39 +192,62 @@
     }
 }
 
-.module-name {
-    position: absolute;
-    border-radius: 20px 20px 0 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 30%;
-    background-color: #2196F3;
-    color: white;
-    line-height: 20%;
+.modules-list{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    li{
+        padding: 0.5em 0em;    
+        margin: 1vh;
+        border-radius: .3em;
+        font-family: helvetica, serif;
+        font-size: 1.2em;
+        color: white;
+        background-color: lightgray;
+        md-icon {
+            min-width: 10px;
+            color: white;
+            &:hover {opacity: 0.5;}
+        }
+    }
+}
+md-grid-tile {
+    border: thin solid #888;
 }
 
-.module-description {
-    position: absolute;
-    vertical-align: middle;
-    top: 35%;
-    padding: 10px;
-}
+// .module-name {
+//     position: absolute;
+//     border-radius: 20px 20px 0 0;
+//     top: 0;
+//     right: 0;
+//     bottom: 0;
+//     left: 0;
+//     height: 30%;
+//     background-color: #2196F3;
+//     color: white;
+//     line-height: 20%;
+// }
 
-.module-duration {
-    font-size: .65em;
-    position: absolute;
-    bottom: 9px;
-    right: 16px;
-}
+// .module-description {
+//     position: absolute;
+//     vertical-align: middle;
+//     top: 35%;
+//     padding: 10px;
+// }
 
-figure:focus {
-    outline: 0;
-    outline-color: inherit;
-    outline-style: auto;
-    outline-width: 0px;
-}
+// .module-duration {
+//     font-size: .65em;
+//     position: absolute;
+//     bottom: 9px;
+//     right: 16px;
+// }
+
+// figure:focus {
+//     outline: 0;
+//     outline-color: inherit;
+//     outline-style: auto;
+//     outline-width: 0px;
+// }
 
 .module-add {
     border-radius: 50% 0;
@@ -448,24 +471,5 @@ a:active {
     .users-link {
         width: 80px;
         height: 80px;
-    }
-}
-.modules-list{
-    margin: 0;
-    padding: 0;
-    li{
-        padding: 0.2em 1em;    
-        margin: 1vh;
-        border-radius: .3em;
-        font-family: helvetica, serif;
-        font-size: 1.2em;
-        color: white;
-        background-color: #0077d6;
-        i{
-            font-size: .8em;
-            i{
-                float: right;
-                font-size: 0.7em;}
-        }
     }
 }

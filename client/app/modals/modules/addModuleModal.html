@@ -13,19 +13,19 @@
         <md-dialog-content aria-label="Adding Module.">
             <div class="md-dialog-content">
                 <md-input-container class="md-block">
-                    <input type="text" ng-model="module_name" placeholder="Module name..">
+                    <input type="text" ng-model="$ctrl.newModule.module_name" placeholder="Module name..">
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <input ng-model="git_repo" type="text" placeholder="Repo name..">
+                    <input ng-model="$ctrl.newModule.git_repo" type="text" placeholder="Repo name..">
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <input ng-model="git_url" type="url" placeholder="Repo URL..">
+                    <input ng-model="$ctrl.newModule.git_url" type="url" placeholder="Repo URL..">
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <input ng-model="default_duration" type="number" min="1" placeholder="Duration..">
+                    <input ng-model="$ctrl.newModule.default_duration" type="number" min="1" placeholder="Duration..">
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <input ng-model="seq_number" type="number" min="0" placeholder="Sequence #..">
+                    <input colorpicker="hex" type="text" ng-model="$ctrl.newModule.color" placeholder="Color.." />
                 </md-input-container>
             </div>
         </md-dialog-content>
@@ -35,7 +35,7 @@
                 Cancel
             </md-button>
             <span flex></span>
-            <md-button class="md-primary" type='submit' ng-disabled="!module_name || !git_repo || !git_url || !default_duration || !seq_number" ng-click="$ctrl.add(module={module_name, git_repo, git_url, default_duration, seq_number})">
+            <md-button class="md-primary" type='submit' ng-click="$ctrl.add()">
                 Add
             </md-button>
         </md-dialog-actions>

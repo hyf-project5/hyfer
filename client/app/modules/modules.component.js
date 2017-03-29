@@ -20,8 +20,22 @@ class ModulesController {
         this.$mdDialog = $mdDialog;
         this.toastService = toastService;
         this.$state = $state;
+        this.weeksGrid = ["1 week","2 weeks","3 weeks","4 weeks","5 weeks","6 weeks"]
+        this.isDirty = false;
+    }
+        
+    save(){
+        this.backendService.saveModules(this.modules)
+        .then(modules => {
+            this.modules = modules;
+            this.toastService.displayToast(true, 'Changes have been saved');
+        });
     }
 
+    delete(index){
+        this.modules.splice(index, 1);
+        this.isDirty = true;
+    }
     addModule(ev) {
         this.$mdDialog.show({
                 locals: {
@@ -33,28 +47,26 @@ class ModulesController {
                 targetEvent: ev,
                 clickOutsideToClose: true
             })
-            .then(res => {
-                this.backendService.addModule(res)
-                    .then(() => {
-                        let firstLessIndex = this.modules.findIndex(val => val.seq_number > res.seq_number);
-                        this.modules.splice(firstLessIndex, 0, res);
-                        this.toastService.displayToast(true, `${res.module_name} has been added`);
-                    });
+            .then(module => {
+                this.modules.push(module);
+                this.isDirty = true;
             })
             .catch(err => console.log(err));
     }
 
-    updateModule(ev, module) {
+    updateModule(ev, selectedModule) {
         this.$mdDialog.show({
-            locals: {
-                selectedModule: module
-            },
+            locals: {  selectedModule  },
             controller: addAndUpdateModuleController,
             controllerAs: '$ctrl',
             template: updateModuleTemplate,
             targetEvent: ev,
             clickOutsideToClose: true
-        });
+        })
+        .then(module => {
+            Object.assign(selectedModule, module);
+            this.isDirty = true;
+         });
     }
 
 }

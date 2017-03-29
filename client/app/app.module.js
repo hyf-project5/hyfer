@@ -4,6 +4,7 @@ import ngMaterial from 'angular-material';
 import ngCookies from 'angular-cookies';
 import 'angular-material/angular-material.css';
 import dndLists from 'angular-drag-and-drop-lists';
+import colorpicker from 'angular-bootstrap-colorpicker';
 
 import '../assets/scss/index.scss';
 import toolbarModule from './toolbar/toolbar.module';
@@ -18,6 +19,7 @@ export default angular.module('hyferApp', [
     ngMaterial,
     ngCookies,
     'dndLists',
+    'colorpicker.module',
     toolbarModule,
     timelineModule,
     modulesModule,

@@ -13,7 +13,10 @@ class backendService {
         return this.$http.get('/api/modules', this.getHttpConfig())
             .then(res => res.data);
     }
-
+    saveModules(modules) {
+        return this.$http.patch('/api/modules',modules,this.getHttpConfig())
+        .then(res => res.data);
+    }
     addModule(module) {
         return this.$http.post('/api/modules', module, this.getHttpConfig());
     }

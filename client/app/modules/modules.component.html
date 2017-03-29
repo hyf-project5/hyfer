@@ -1,30 +1,48 @@
 <div flex-offset-gt-sm='10' flex-gt-sm='80'>
-    <br>
+    <md-grid-list md-cols="6" md-row-height="3vw" md-row-width="12vw" md-gutter="0px">
+        <md-grid-tile ng-repeat="week in $ctrl.weeksGrid">{{week}}</md-grid-tile>
+    </md-grid-list>
+    
     <ul dnd-list="$ctrl.modules" class="modules-list">
-        <li ng-repeat="module in $ctrl.modules" dnd-draggable="module" dnd-effect-allowed="move" dnd-moved="$ctrl.modules.splice($index, 1)"
-            dnd-selected="models.selected = module" class="modules-list-item" ng-style="{'background-color': module.color}">
-            <md-button class="edit-module" ng-click="$ctrl.updateModule($event, module)">
-                <md-tooltip md-direction='top'>Edit {{module.module_name}}</md-tooltip>
-                <md-icon md-font-set="material-icons">edit</md-icon>
-            </md-button>
+        <li ng-repeat="module in $ctrl.modules" dnd-draggable="module" dnd-effect-allowed="move" dnd-moved="$ctrl.modules.splice($index, 1);$ctrl.isDirty=true"
+            dnd-selected="models.selected = module" ng-style="{'background-color': module.color,'width': '{{module.default_duration*12+'vw'}}'}">
+            
+                <md-menu>
+                    <md-icon md-font-set="material-icons" ng-click="$mdMenu.open($event)">more_vert</md-icon>
+                <md-menu-content>
+                    <md-menu-item>
+                        <md-button class="md-button" ng-click="$ctrl.updateModule($event, module)">
+                            <md-icon md-font-set="material-icons">edit</md-icon>Edit {{module.module_name}}
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-disabled="$ctrl.modules[$index].ref_count !== 0"class="md-warn" ng-click="$ctrl.delete($index)">
+                            <md-icon md-font-set="material-icons">delete</md-icon>Delete {{module.module_name}}
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+
             <span>
-                    {{module.module_name}} :
-                <i>{{ module.description}}
-                  <md-tooltip md-direction='right'>
-                    Run for: {{ module.default_duration}} week(s).
-                  <md-tooltip>
-                </i>
-              </span>
+                {{module.module_name}}
+                <md-tooltip md-direction='right'>
+                    {{ module.description}} Run for: {{ module.default_duration}} week(s).
+                <md-tooltip>
+            </span>
         </li>
     </ul>
 
     <div layout='row'>
         <span flex></span>
-        <md-button class="module-add md-raised md-fab md-primary" ng-click="$ctrl.addModule($event)">
-            <md-icon md-font-set="material-icons">add</md-icon>
-            <md-tooltip md-direction='top'>Add module
-                <md-tooltip>
+        <md-button ng-disabled="!$ctrl.isDirty" class="module-add md-raised md-fab md-primary" ng-click="$ctrl.save()">
+            <md-icon md-font-set="material-icons">save</md-icon>
+            <md-tooltip md-direction='top'>save</md-tooltip>
         </md-button>
+        <md-button class="module-add md-raised md-fab md-primary" ng-click="$ctrl.addModule($event)">
+            <md-icon md-font-set="material-icons">add<md-icon>
+            <md-tooltip md-direction='top'>Add module<md-tooltip>
+        </md-button>        
     </div>
     <br>
 </div>
