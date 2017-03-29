@@ -40,21 +40,6 @@ class AddAndUpdateModuleModalController {
             this.toastService.displayToast(true, `${this.selectedModule.module_name} has been updated`);
         }, 10);
     }
-
-
-    deleteModule() {
-        this.$mdDialog.hide()
-            .then(() => {
-                this.backendService.deleteModule(this.selectedModule.id)
-                    .then(() => {
-                        this.$state.reload();
-                        setTimeout(() => {
-                            this.toastService.displayToast(true, `${this.selectedModule.module_name} has been deleted`);
-                        }, 10);
-                    });
-            })
-            .catch(err => console.log(err));
-    }
 }
 
 const controllerName = 'addAndUpdateModuleModalController';

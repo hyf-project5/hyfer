@@ -34,7 +34,7 @@ class ModulesController {
     }
 
     delete(index,name){
-        this.toastService.displayToast(true, `${name} have been deleted`);
+        this.toastService.displayToast(false, `${name} have been deleted`);
         this.modules.splice(index, 1);
         this.isDirty = true;
         
