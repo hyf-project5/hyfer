@@ -21,21 +21,21 @@ class AddAndUpdateModuleModalController {
         this.newModule = {};
     }
     hide() {
-        this.$mdDialog.hide()
+        this.$mdDialog.hide();
     }
     cancel() {
-        this.$mdDialog.cancel()
+        this.$mdDialog.cancel();
         setTimeout(() => {
-            this.toastService.displayToast(false)
-        }, 10)
+            this.toastService.displayToast(false);
+        }, 10);
     }
     add() {
 
-        this.$mdDialog.hide(this.newModule)
+        this.$mdDialog.hide(this.newModule);
     }
 
     update() {
-        this.$mdDialog.hide(this.currentModule)
+        this.$mdDialog.hide(this.currentModule);
     }
 
 
@@ -47,10 +47,10 @@ class AddAndUpdateModuleModalController {
                         this.$state.reload();
                         setTimeout(() => {
                             this.toastService.displayToast(true, `${this.selectedModule.module_name} has been deleted`);
-                        }, 10)
-                    })
+                        }, 10);
+                    });
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
     }
 }
 
