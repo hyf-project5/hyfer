@@ -45,7 +45,6 @@ class ModulesController {
         setTimeout(() => {
             this.toastService.displayToast(true, 'Changes have been rolled back');
         }, 10);
-
     }
     addModule(ev) {
         this.$mdDialog.show({

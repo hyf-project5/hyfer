@@ -8,7 +8,7 @@
 
 .avatar-image {
     display: block;
-    height: 40px;
+    height: 50px;
     border-radius: 50%;
     border: 0px;
     cursor: pointer;
@@ -35,7 +35,7 @@
 }
 
 .user-name {
-    margin: 8px 4px 0 0;
+    margin:auto 0;
     font-size: .8em;
 }
 
@@ -214,7 +214,8 @@
 
 md-grid-tile {
     font-size: 1.1em;;
-    border: thin solid #888;
+    border-left: thin solid #b0b0b0;
+    border-right: thin solid #b0b0b0;
 }
 
 .module-add {

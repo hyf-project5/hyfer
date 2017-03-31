@@ -14,7 +14,7 @@ const componentName = 'hyfModulesHeader';
 angular.module(modulesModule)
     .component(componentName, {
         template:
-            `<md-grid-list md-cols="6" md-row-height="3vw" md-row-width="12vw" md-gutter="0px">
+            `<md-grid-list md-cols="6" md-row-height="45px" md-row-width="12vw" md-gutter="0px">
                 <md-grid-tile ng-repeat="week in $ctrl.weeksGrid">{{week}}</md-grid-tile>
             </md-grid-list>`,
         controller: ModulesHeaderController
