@@ -4,6 +4,7 @@ import modulesModule from './modules.module';
 import '../footer/footer.component';
 import './modules-header.component';
 import './modules-list.component';
+import './modules-buttons.component';
 
 import backendService from '../services/backendService';
 import toastService from '../services/toastService';

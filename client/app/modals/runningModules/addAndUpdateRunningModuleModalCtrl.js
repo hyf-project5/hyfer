@@ -25,7 +25,7 @@ class AddAndUpdateRunningModuleModalController {
             .catch(err => console.log(err));
         this.users = [];
 
-        backendService.getUsersProfile()
+        backendService.getUsers()
             .then(res => {
                 res.forEach(user => user.role == 'teacher' ? this.users.push(user) : null)
             })

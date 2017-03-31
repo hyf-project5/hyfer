@@ -38,6 +38,9 @@
                     <label>Description</label>
                     <textarea ng-model="$ctrl.currentModule.description" md-maxlength="150" maxlength="150" rows="3" md-select-on-focus></textarea>
                 </md-input-container>
+                <md-input-container class="md-block">
+                    <md-checkbox disabled ng-true-value="1" ng-model="$ctrl.currentModule.optional" aria-label="Optional">Optional</md-checkbox>
+                </md-input-container>
             </div>
         </md-dialog-content>
 

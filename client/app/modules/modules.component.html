@@ -1,23 +1,11 @@
 <div flex-offset-gt-sm='10' flex-gt-sm='80'>
+
     <hyf-modules-header></hyf-modules-header>
 
     <hyf-modules-list modules="$ctrl.modules" on-changed="$ctrl.onChanged(modules)"></hyf-modules-list>
 
-    <div layout='row'>
-        <md-button ng-disabled="!$ctrl.isDirty" class="module-add md-raised md-fab" ng-click="$ctrl.undoChanges()">
-            <md-icon md-font-set="material-icons">undo</md-icon>
-            <md-tooltip md-direction='top'>Undo Changes</md-tooltip>
-        </md-button>
-        <span flex></span>
-        <md-button ng-disabled="!$ctrl.isDirty" class="module-add md-raised md-fab md-primary" ng-click="$ctrl.save()">
-            <md-icon md-font-set="material-icons">save</md-icon>
-            <md-tooltip md-direction='top'>save</md-tooltip>
-        </md-button>
-        <md-button class="module-add md-raised md-fab md-primary" ng-click="$ctrl.addModule($event)">
-            <md-icon md-font-set="material-icons">add<md-icon>
-            <md-tooltip md-direction='top'>Add module<md-tooltip>
-        </md-button>
-    </div>
-    <br>
+    <hyf-modules-buttons is-dirty="$ctrl.isDirty" on-save="$ctrl.save()" on-undo-changes="$ctrl.undoChanges()" on-add-module="$ctrl.addModule(event)"></hyf-modules-buttons>
+
 </div>
+
 <hyf-footer></hyf-footer>
