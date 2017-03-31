@@ -45,7 +45,7 @@ class ModulesController {
         this.isDirty= false;
         setTimeout(()=>{
             this.toastService.displayToast(true, 'Changes have been rolled back');
-        },10)
+        },10);
 
     }
     addModule(ev) {
