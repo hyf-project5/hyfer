@@ -4,7 +4,7 @@
 
     <div class="modules-container">
         <div ng-repeat="class in $ctrl.classes">
-            <div ng-repeat="module in $ctrl.timeline[class]" ng-click="$ctrl.showReadme(module)" class="module-block {{module.startingWeekClass}} {{module.blockClass}}" ng-style="{'left': module.leftPosition + 'px', 'width': module.blockWidth + 'px', 'background':  module.bgColor}">
+            <div ng-repeat="module in $ctrl.timeline[class]" ng-click="$ctrl.showReadme(module)" class="module-block {{module.startingWeekClass}} {{module.blockClass}}" ng-style="{'left': module.leftPosition + 'px', 'width': module.blockWidth + 'px', 'background':  module.color}">
                 <md-tooltip>Run from {{module.startingDate}} to {{module.endingDate}}</md-tooltip>
                 {{module.module_name}}
                 <!--<md-button class="edit-module" ng-show="$ctrl.isTeacher()" ng-click="$ctrl.editRunningModule($event, module)">

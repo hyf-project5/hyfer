@@ -4,7 +4,7 @@ import servicesModule from './services.module';
 
 class backendService {
     static get $inject() {
-        return ['$http']
+        return ['$http'];
     }
     constructor($http) {
         this.$http = $http;
@@ -13,21 +13,13 @@ class backendService {
         return this.$http.get('/api/modules', this.getHttpConfig())
             .then(res => res.data);
     }
-
-    addModule(module) {
-        return this.$http.post('/api/modules', module, this.getHttpConfig())
-    }
-
-    updateModule(moduleId, updatedModule) {
-        return this.$http.patch('/api/modules/' + moduleId, updatedModule, this.getHttpConfig())
-    }
-
-    deleteModule(id) {
-        return this.$http.delete('/api/modules/' + id, this.getHttpConfig())
+    saveModules(modules) {
+        return this.$http.patch('/api/modules', modules, this.getHttpConfig())
+            .then(res => res.data);
     }
 
     addRunningModule(moduleId, groupId, position) {
-        return this.$http.patch(`/api/running/add/${moduleId}/${groupId}/${position}`, {}, this.getHttpConfig())
+        return this.$http.patch(`/api/running/add/${moduleId}/${groupId}/${position}`, {}, this.getHttpConfig());
     }
 
     updateRunningModule(groupId, position, newRunningModule) {
@@ -35,20 +27,24 @@ class backendService {
     }
 
     splitRunningModule(groupId, position) {
-        return this.$http.patch(`/api/running/split/${groupId}/${position}`, {}, this.getHttpConfig())
+        return this.$http.patch(`/api/running/split/${groupId}/${position}`, {}, this.getHttpConfig());
+    }
+
+    updateRunningModule(groupId, position, newRunningModule) {
+        return this.$http.patch(`/api/running/${groupId}/${position}`, newRunningModule, this.getHttpConfig());
     }
 
     deleteRunningModule(groupId, position) {
-        return this.$http.delete(`/api/running/${groupId}/${position}`, this.getHttpConfig())
+        return this.$http.delete(`/api/running/${groupId}/${position}`, this.getHttpConfig());
     }
 
     getTimeline() {
         return this.$http.get('/api/groups')
-            .then(res => res.data)
+            .then(res => res.data);
     }
 
     addGroup(group) {
-        return this.$http.post('/api/groups', group, this.getHttpConfig())
+        return this.$http.post('/api/groups', group, this.getHttpConfig());
     }
 
     getReadme(gitRepo) {
@@ -61,14 +57,14 @@ class backendService {
             .then(res => res.data);
     }
 
-    getUsersProfile() {
+    getUsers() {
         return this.$http.get('/api/users', this.getHttpConfig())
             .then(res => res.data);
     }
 
     updateUserRole(userId, role) {
-        console.log(userId)
-        return this.$http.patch('/api/user/' + userId, { "role": role }, this.getHttpConfig())
+        console.log(userId);
+        return this.$http.patch('/api/user/' + userId, { "role": role }, this.getHttpConfig());
     }
 
     getHttpConfig() {

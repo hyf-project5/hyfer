@@ -39,14 +39,11 @@ class MainTimelineController {
         this.classes.forEach(entry => {
             let firsModuleStartDateInThisGroup = Math.round(this.computedMilliseconds(this.getClosestSundayAndRidOfTime(this.timeline[entry][0].starting_date)) / days);
             let leftPosition = firsModuleStartDateInThisGroup - zeroPoint;
-            let classBgColor = this.randomColor();
             this.timeline[entry].forEach(runningModule => {
-                runningModule.classBgColor = classBgColor;
                 runningModule.blockWidth = (runningModule.duration * 7 * 9) - 6;
                 runningModule.leftPosition = (leftPosition * 9) + 125;
                 // runningModule.blockClass = 'block-no-' + runningModule.duration;
                 // runningModule.startingWeekClass = 'block-week-' + Math.round(position / 7);
-                runningModule.bgColor = this.randomColor();
                 runningModule.startingDate = this.getInterfaceDate(firsModuleStartDateInThisGroup);
                 let endDate = (firsModuleStartDateInThisGroup) + (runningModule.duration * 7);
                 runningModule.endingDate = this.getInterfaceDate(endDate);
@@ -58,7 +55,8 @@ class MainTimelineController {
         this.readme = {
             moduleName: this.timeline[this.classes[0]][0].module_name,
             gitUrl: gitUrl
-        }
+        };
+
         this.maxLength = 0;
         for (let key in this.timeline) {
             this.maxLength = Math.max(this.maxLength, this.timeline[key].length, 10);
@@ -73,11 +71,7 @@ class MainTimelineController {
         let milliseconds = getDate.getTime();
         return milliseconds;
     }
-    randomColor() {
-        let themeColor = ['#5cbae6', '#b6d957', '#fac364', '#8cd3ff', '#d998cb', '#f2d249', '#93b9c6', '#ccc5a8', '#52bacc', '#dbdb46', '#98aafb'];
-        let xColor = Math.floor(Math.random() * themeColor.length);
-        return themeColor[xColor];
-    }
+
     getClosestSundayAndRidOfTime(date) {
         let d = new Date(date);
         d.setHours(0, 0, 0, 0);
@@ -85,6 +79,7 @@ class MainTimelineController {
         t.setDate(t.getDate() - t.getDay());
         return t;
     }
+
     getInterfaceDate(value) {
         let time = value * days;
         let date = new Date(time);
@@ -94,7 +89,7 @@ class MainTimelineController {
 
     showReadme(module) {
         if (!module.git_repo) {
-            return this.toastService.displayToast(true, 'This module has no repository available.')
+            return this.toastService.displayToast(true, 'This module has no repository available.');
         }
         this.backendService.getReadme(module.git_repo)
             .then(res => {
@@ -102,9 +97,9 @@ class MainTimelineController {
                 this.readme = {
                     moduleName: module.module_name,
                     gitUrl: module.git_url + module.git_repo
-                }
+                };
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
     }
 
     isTeacher() {
@@ -124,7 +119,7 @@ class MainTimelineController {
             template: editRunningModuleTemplate,
             targetEvent: ev,
             clickOutsideToClose: true
-        })
+        });
     }
 
     splitRunningModule(module) {

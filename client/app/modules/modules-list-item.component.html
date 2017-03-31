@@ -1,0 +1,12 @@
+<li dnd-draggable="$ctrl.module" dnd-effect-allowed="move" dnd-moved="$ctrl.move()" dnd-selected="models.selected = $ctrl.module"
+    ng-style="{'background-color': $ctrl.module.color,'width': $ctrl.module.default_duration*16+'%'}">
+
+    <hyf-modules-list-item-menu module="$ctrl.module" on-changed="$ctrl.onChanged()" on-delete="$ctrl.onDelete(module)"></hyf-modules-list-item-menu>
+
+    <span>
+        {{$ctrl.module.module_name}}
+        <md-tooltip md-direction='right'>
+            {{ $ctrl.module.description}} Run for: {{ $ctrl.module.default_duration}} week(s).
+        <md-tooltip>
+    </span>
+</li>

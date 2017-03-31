@@ -32,11 +32,10 @@ logs
 # Deps
 node_modules
 
-# build
-build
-
 # ide
 .tmp
 .idea
 
 server/config/config.js
+
+.vscode

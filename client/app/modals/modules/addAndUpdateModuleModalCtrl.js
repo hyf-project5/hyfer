@@ -3,6 +3,7 @@ import angular from 'angular';
 import modalsModules from '../modals.module';
 import backendService from '../../services/backendService';
 import toastService from '../../services/toastService';
+import 'angular-bootstrap-colorpicker/css/colorpicker.css';
 
 class AddAndUpdateModuleModalController {
 
@@ -16,51 +17,27 @@ class AddAndUpdateModuleModalController {
         this.selectedModule = selectedModule;
         this.backendService = backendService;
         this.$state = $state;
+        this.currentModule = Object.assign({}, selectedModule);
+        this.newModule = {};
     }
     hide() {
-        this.$mdDialog.hide()
+        this.$mdDialog.hide();
     }
     cancel() {
-        this.$mdDialog.cancel()
+        this.$mdDialog.cancel();
         setTimeout(() => {
-            this.toastService.displayToast(false)
-        }, 10)
+            this.toastService.displayToast(false);
+        }, 10);
     }
-    add(submit) {
-        this.$mdDialog.hide(submit)
-    }
-
-    update(submit) {
-        this.$mdDialog.hide(submit)
-            .then(res => {
-                console.log(res)
-                let correct = Object.values(res).filter(val => val !== undefined)
-                if (correct.length < 1) {
-                    return this.toastService.displayToast(true, 'Nothing Changed');
-                }
-                this.backendService.updateModule(this.selectedModule.id, res)
-                    .then(() => {
-                        this.$state.reload();
-                        setTimeout(() => {
-                            this.toastService.displayToast(true, `${this.selectedModule.module_name} has been updated`);
-                        }, 10)
-                    })
-            })
-            .catch(err => console.log(err))
+    add() {
+        this.$mdDialog.hide(this.newModule);
     }
 
-    deleteModule() {
-        this.$mdDialog.hide()
-            .then(() => {
-                this.backendService.deleteModule(this.selectedModule.id)
-                    .then(() => {
-                        this.$state.reload();
-                        setTimeout(() => {
-                            this.toastService.displayToast(true, `${this.selectedModule.module_name} has been deleted`);
-                        }, 10)
-                    })
-            })
-            .catch(err => console.log(err))
+    update() {
+        this.$mdDialog.hide(this.currentModule);
+        setTimeout(() => {
+            this.toastService.displayToast(true, `${this.selectedModule.module_name} has been updated`);
+        }, 10);
     }
 }
 

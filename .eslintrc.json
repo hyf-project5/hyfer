@@ -25,6 +25,7 @@
         "no-unused-vars": "warn",
         "constructor-super": "warn",
         "valid-typeof": "warn",
-        "no-console": "off"
+        "no-console": "off",
+        "semi": "warn"
     }
 }
