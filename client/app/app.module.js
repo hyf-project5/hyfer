@@ -13,6 +13,7 @@ import modulesModule from './modules/modules.module';
 import usersModule from './users/users.module';
 import modalsModule from './modals/modals.module';
 import servicesModule from './services/services.module';
+import directiveModules from './directives/directives.module';
 
 export default angular.module('hyferApp', [
     uiRouter,
@@ -25,5 +26,6 @@ export default angular.module('hyferApp', [
     modulesModule,
     usersModule,
     modalsModule,
-    servicesModule
+    servicesModule,
+    directiveModules
 ]).name;

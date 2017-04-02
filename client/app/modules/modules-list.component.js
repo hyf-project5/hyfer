@@ -4,9 +4,7 @@ import modulesModule from './modules.module';
 import './modules-list-item.component';
 
 import toastService from '../services/toastService';
-import addAndUpdateModuleController from '../modals/modules/addAndUpdateModuleModalCtrl';
 import template from './modules-list.component.html';
-import updateModuleTemplate from '../modals/modules/updateModuleModal.html';
 
 class ModulesListController {
 
@@ -31,7 +29,11 @@ class ModulesListController {
         this.changed();
     }
 
-    changed() {
+    changed(module) {
+        if (module) {
+            let targetModule = this.modules.find(m => m.id === module.id);
+            Object.assign(targetModule, module);
+        }
         this.onChanged({modules: this.modules});
     }
 }

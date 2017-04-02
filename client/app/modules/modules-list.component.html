@@ -1,4 +1,4 @@
 <ul dnd-list="$ctrl.modules" class="modules-list">
-    <hyf-modules-list-item ng-repeat="module in $ctrl.modules" module="module" index="$index" on-changed="$ctrl.changed()"
+    <hyf-modules-list-item ng-repeat="module in $ctrl.modules" module="module" index="$index" on-changed="$ctrl.changed(module)"
         on-delete="$ctrl.delete(module)" on-move="$ctrl.move(index)"></hyf-modules-list-item>
 </ul>
