@@ -26,6 +26,8 @@
         "constructor-super": "warn",
         "valid-typeof": "warn",
         "no-console": "off",
-        "semi": "warn"
+        "semi": "warn",
+        "no-var": "warn",
+        "prefer-const": "warn"
     }
 }
