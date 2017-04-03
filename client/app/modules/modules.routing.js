@@ -3,7 +3,6 @@ import angular from 'angular';
 import modulesModule from './modules.module';
 import modulesComponent from './modules.component';
 import backendService from '../services/backendService';
-import './modules.scss';
 
 routing.$inject = ['$stateProvider'];
 

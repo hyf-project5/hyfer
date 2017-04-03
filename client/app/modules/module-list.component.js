@@ -1,10 +1,10 @@
 import angular from 'angular';
 import modulesModule from './modules.module';
 
-import './modules-list-item.component';
+import './module-list-item.component';
 
 import toastService from '../services/toastService';
-import template from './modules-list.component.html';
+import template from './module-list.component.html';
 
 class ModulesListController {
 
@@ -18,7 +18,7 @@ class ModulesListController {
     }
 
 
-    delete(module) {
+    deleteModule(module) {
         this.modules = this.modules.filter(m => m.id !== module.id);
         this.toastService.displayToast(true, `${module.module_name} have been deleted`);
         this.changed();
@@ -31,14 +31,14 @@ class ModulesListController {
 
     changed(module) {
         if (module) {
-            let targetModule = this.modules.find(m => m.id === module.id);
+            const targetModule = this.modules.find(m => m.id === module.id);
             Object.assign(targetModule, module);
         }
         this.onChanged({modules: this.modules});
     }
 }
 
-const componentName = 'hyfModulesList';
+const componentName = 'hyfModuleList';
 
 angular.module(modulesModule)
     .component(componentName, {
@@ -46,6 +46,7 @@ angular.module(modulesModule)
         controller: ModulesListController,
         bindings: {
             modules: '<',
+            weekWidth: '<',
             onChanged: '&'
         }
     });

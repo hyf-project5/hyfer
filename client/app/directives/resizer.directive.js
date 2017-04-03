@@ -8,6 +8,7 @@ function resizer($document, $rootScope) {
 
     return {
         scope: {
+            unitWidth: '<',
             onResized: '&'
         },
         link: function (scope, element, attrs) {
@@ -22,7 +23,7 @@ function resizer($document, $rootScope) {
 
             function mousemove(event) {
                 const parentLeft = getOffset(parentElem[0]).left;
-                let x = event.pageX - parentLeft;
+                const x = event.pageX - parentLeft;
                 parentElem.css({
                     width: `${x}px`
                 });
@@ -31,20 +32,22 @@ function resizer($document, $rootScope) {
             function mouseup() {
                 $document.unbind('mousemove', mousemove);
                 $document.unbind('mouseup', mouseup);
-                let width = parseInt(parentElem.css('width'), 10);
+                const draggedWidth = parseInt(parentElem.css('width'), 10);
+                const width = Math.round(draggedWidth / scope.unitWidth) * scope.unitWidth;
+                parentElem.css('width', `${width}px`);
                 scope.onResized({ width });
-                setTimeout(() => $rootScope.$digest(), 100);
+                $rootScope.$digest();
             }
 
-            function getOffset(el) {
-                var _x = 0;
-                var _y = 0;
-                while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
-                    _x += el.offsetLeft - el.scrollLeft;
-                    _y += el.offsetTop - el.scrollTop;
-                    el = el.offsetParent;
+            function getOffset(elem) {
+                let left = 0;
+                let top = 0;
+                while (elem && !isNaN(elem.offsetLeft) && !isNaN(elem.offsetTop)) {
+                    left += elem.offsetLeft - elem.scrollLeft;
+                    top += elem.offsetTop - elem.scrollTop;
+                    elem = elem.offsetParent;
                 }
-                return { top: _y, left: _x };
+                return { top, left };
             }
         }
     };

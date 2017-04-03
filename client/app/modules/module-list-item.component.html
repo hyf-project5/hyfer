@@ -1,0 +1,17 @@
+<li style="display: flex"
+    dnd-draggable="$ctrl.module"
+    dnd-effect-allowed="move"
+    dnd-moved="$ctrl.move()"
+    dnd-selected="models.selected = $ctrl.module"
+    ng-style="{'background-color': $ctrl.module.color, width: $ctrl.getWidth()}">
+
+    <div>
+        <hyf-module-list-item-menu module="$ctrl.module" on-changed="$ctrl.onChanged(module)" on-delete="$ctrl.onDelete(module)"></hyf-module-list-item-menu>
+        {{$ctrl.module.module_name}}
+        <!--<md-tooltip md-direction='right'>
+            {{ $ctrl.module.description}}
+        <md-tooltip>-->
+    </div>
+    <div style="flex: 1"></div>
+    <hyf-resizer unit-width="$ctrl.weekWidth" on-resized="$ctrl.onResized(width)"></hyf-resize>
+</li>

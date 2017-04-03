@@ -2,7 +2,7 @@ import angular from 'angular';
 import modulesModule from './modules.module';
 
 import addAndUpdateModuleController from '../modals/modules/addAndUpdateModuleModalCtrl';
-import template from './modules-list-item-menu.component.html';
+import template from './module-list-item-menu.component.html';
 import updateModuleTemplate from '../modals/modules/updateModuleModal.html';
 
 class ModulesListItemMenuController {
@@ -15,7 +15,7 @@ class ModulesListItemMenuController {
         this.$mdDialog = $mdDialog;
     }
 
-    delete() {
+    deleteModule() {
         this.onDelete({ module: this.module });
     }
 
@@ -34,7 +34,7 @@ class ModulesListItemMenuController {
     }
 }
 
-const componentName = 'hyfModulesListItemMenu';
+const componentName = 'hyfModuleListItemMenu';
 
 angular.module(modulesModule)
     .component(componentName, {
