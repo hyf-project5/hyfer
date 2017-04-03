@@ -1,22 +1,14 @@
-@import 'readme.scss';
+@import 'variables';
+@import 'readme';
+@import 'timeline';
+@import 'classes';
+@import 'modules';
+@import 'users';
+@import 'toolbar';
+@import 'footer';
 
 /* Toolbar */
 
-.toolbar-logo {
-    height: 40px;
-}
-
-.avatar-image {
-    display: block;
-    height: 50px;
-    border-radius: 50%;
-    border: 0px;
-    cursor: pointer;
-}
-
-._md-nav-button-text {
-    color: white;
-}
 
 .active {
     cursor: pointer;
@@ -25,205 +17,11 @@
     color: white;
 }
 
-.toolbar-menu {
-    margin-top: 5px;
-    display: inline-flex;
-}
-
-.toolbar-menu-responsive {
-    display: none;
-}
-
-.user-name {
-    margin:auto 0;
-    font-size: .8em;
-}
-
-@media (max-width: 541px) {
-    .toolbar-menu {
-        display: none;
-    }
-    .toolbar-menu-responsive {
-        display: inline-flex;
-    }
-    .userName {
-        font-size: .8em;
-        margin: 9px 4px 0 0;
-    }
-}
-
-
-/**********************************************
-*                 Timeline                    *
-**********************************************/
-
-.timeline {
-    margin-top: 15px;
-}
-
-.timline-date {
-    margin-left: 5px;
-    position: absolute;
-    height: 40px;
-    z-index: 3;
-}
-
-.indicator {
-    width: 0;
-    border: 0;
-    border-left: 1px;
-    border-style: dashed;
-    border-color: #0000FF;
-    position: absolute;
-    z-index: 3;
-}
-
-#main-timeline {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    position: absolute;
-    z-index: 1;
-}
-
-
-/* classes */
-
-.classes-container {
-    vertical-align: middle;
-    z-index: 2;
-    margin-top: 20px;
-    overflow: hidden;
-    position: absolute;
-    background-color: rgb(250, 250, 250);
-}
-
-.class-block {
-    display: block;
-    width: 125px;
-    height: 55px;
-    margin-top: 0px;
-    margin-right: 4px;
-    margin-left: 0px;
-    margin-bottom: 6px;
-    text-align: center;
-    border-bottom-left-radius: .5em;
-    border-top-left-radius: .5em;
-    line-height: 55px;
-    background-color: rgba(158, 158, 158, 0.4);
-    ;
-    /*position: relative;*/
-}
-
-.add-class {
-    display: block;
-    position: absolute;
-    left: 100px;
-    z-index: 10;
-}
-
-.class-name {
-    display: inline-block;
-    margin: auto;
-}
-
-
-/*  Modules   */
-
-.module-block {
-    border-radius: .5em;
-    transition: background 300ms ease-in-out;
-    display: inline-block;
-    position: relative;
-    height: 55px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-left: 6px;
-    margin-bottom: 6px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 55px;
-    &:hover {
-        cursor: pointer;
-        background-color: rgba(222, 33, 122, 0.8);
-        .edit-module {
-            transition: opacity 0.3s ease-in;
-            opacity: 1;
-        }
-    }
-}
-
-.edit-module {
-    opacity: 0;
-    min-width: 10px;
-    &:hover {
-        opacity: 0.5;
-    }
-}
-
-.modules-container {
-    margin-top: 20px;
-}
-
-.githubIcon {
-    color: black;
-}
-
-.readmeHeader {
-    transition: all 2s fade;
-    /*background-color: rgba(222, 33, 122, 0.8);*/
-}
-
-.module-grid-item {
-    width: 80%;
-    height: 80%;
-    border: 1px solid rgba(158, 158, 158, 0.5);
-    border-radius: 20px;
-    text-align: center;
-    position: relative;
-    &:hover {
-        background-color: rgba(158, 158, 158, 0.2);
-        cursor: pointer;
-        color: #2196F3;
-        .module-name {
-            background: #0077d6;
-        }
-    }
-}
-
-.modules-list{
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    li{
-        padding: 0.5em 0em;    
-        margin: 1vh;
-        border-radius: .3em;
-        font-family: helvetica, serif;
-        font-size: 1.1em;
-        color: white;
-        background-color: lightgray;
-        md-icon {
-            min-width: 10px;
-            color: white;
-            &:hover {opacity: 0.5;}
-        }
-    }
-}
-
 md-grid-tile {
-    font-size: 1.1em;;
+    font-size: 1.1em;
+    ;
     border-left: thin solid #b0b0b0;
     border-right: thin solid #b0b0b0;
-}
-
-.module-add {
-    border-radius: 50% 0;
-    background-color: #2196F3 !important;
-    &:hover {
-        background-color: rgba(60, 60, 140, .92) !important;
-    }
 }
 
 .button {
@@ -289,74 +87,6 @@ md-grid-tile {
 }
 
 
-/* footer */
-
-.footer-distributed {
-    background-color: #292c2f;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-    box-sizing: border-box;
-    width: 100%;
-    text-align: left;
-    font: bold 16px sans-serif;
-    margin-top: 0px;
-    padding: 45px;
-    display: flex;
-    display: -webkit-flex;
-}
-
-.footer-logo,
-.footer-about,
-.footer-icons,
-.footer-links {
-    display: inline-block;
-    vertical-align: top;
-}
-
-.footer-logo {
-    flex-grow: 1;
-}
-
-.footer-about {
-    flex-grow: 3;
-}
-
-.footer-logo img {
-    width: 60%;
-}
-
-.footer-links {
-    margin-bottom: 10px;
-}
-
-.footer-about a {
-    color: #B0BEC5;
-    display: inline-block;
-    line-height: 1.8;
-    text-decoration: none;
-}
-
-.footer-links a {
-    color: #FFFFFF;
-    display: inline-block;
-    line-height: 1.8;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.footer-about {
-    line-height: 20px;
-    color: #92999f;
-    font-size: 13px;
-    font-weight: normal;
-    margin: 0;
-}
-
-.footer-about span {
-    display: block;
-    color: #ffffff;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
 
 .fa {
     display: inline-block;
@@ -391,31 +121,6 @@ md-grid-tile {
     color: #000000;
 }
 
-.users-block {
-    width: 90%;
-    text-align: center;
-    position: relative;
-}
-
-.users-link {
-    position: fixed;
-    border-radius: 15px;
-    width: 150px;
-    height: 150px;
-    position: relative;
-    background-size: contain;
-    background-position: 100% 100%;
-    background-repeat: no-repeat;
-}
-
-.users-name {
-    background-color: rgba(5, 5, 5, 0.5);
-    position: absolute;
-    text-decoration: none;
-    bottom: 10px;
-    color: #fff;
-    width: 100%;
-}
 
 a:link,
 a:visited,
@@ -424,7 +129,7 @@ a:active {
     text-decoration: none;
 }
 
-@media (max-width: 541px) {
+@media (max-width: $breakpoint-width) {
     .footer-logo img {
         visibility: hidden;
     }
@@ -440,9 +145,5 @@ a:active {
     .users-link {
         width: 80px;
         height: 80px;
-    }
-    .modules-list{ li{
-        font-size: .8em;
-        }
     }
 }

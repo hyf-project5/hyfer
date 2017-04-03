@@ -1,0 +1,48 @@
+hyf-resizer {
+    display: block;
+    background-color: gray;
+    width: 4px;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    cursor: ew-resize;
+    border-radius: 2px;
+}
+
+.container {
+    margin: 8px;
+}
+
+.module-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    li {
+        padding: 0.5em 0;
+        margin: 1vh 0;
+        border-radius: .3em;
+        font-family: helvetica, serif;
+        font-size: 1.1em;
+        color: white;
+        background-color: lightgray;
+        md-icon {
+            min-width: 10px;
+            color: white;
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+    }
+    @media (max-width: $breakpoint-width) {
+        li {
+            font-size: .8em;
+        }
+    }
+}
+
+.module-add {
+    border-radius: 50% 0;
+    background-color: #2196F3 !important;
+    &:hover {
+        background-color: rgba(60, 60, 140, .92) !important;
+    }
+}

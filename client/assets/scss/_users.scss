@@ -1,0 +1,24 @@
+.users-block {
+    width: 90%;
+    text-align: center;
+    position: relative;
+}
+
+.users-link {
+    position: fixed;
+    border-radius: 15px;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    background-size: contain;
+  background: no-repeat 100% 100%;
+}
+
+.users-name {
+    background-color: rgba(5, 5, 5, 0.5);
+    position: absolute;
+    text-decoration: none;
+    bottom: 10px;
+    color: #fff;
+    width: 100%;
+}

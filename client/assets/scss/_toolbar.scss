@@ -1,0 +1,40 @@
+.toolbar-logo {
+    height: 40px;
+}
+
+.toolbar-menu {
+    margin-top: 5px;
+    display: inline-flex;
+    @media (max-width: $breakpoint-width) {
+        display: none;
+    }
+}
+
+.toolbar-menu-responsive {
+    display: none;
+    @media (max-width: $breakpoint-width) {
+        display: inline-flex;
+    }
+}
+
+.avatar-image {
+    display: block;
+    height: 50px;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+}
+
+.user-name {
+    margin: auto 0;
+    font-size: .8em;
+    @media (max-width: $breakpoint-width) {
+        font-size: .8em;
+        margin: 9px 4px 0 0;
+    }
+}
+
+._md-nav-button-text {
+    color: white;
+}
+
