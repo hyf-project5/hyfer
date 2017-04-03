@@ -23,15 +23,11 @@ class backendService {
     }
 
     updateRunningModule(groupId, position, newRunningModule) {
-        return this.$http.patch(`/api/running/update/${groupId}/${position}`, newRunningModule, this.getHttpConfig())
+        return this.$http.patch(`/api/running/update/${groupId}/${position}`, newRunningModule, this.getHttpConfig());
     }
 
     splitRunningModule(groupId, position) {
         return this.$http.patch(`/api/running/split/${groupId}/${position}`, {}, this.getHttpConfig());
-    }
-
-    updateRunningModule(groupId, position, newRunningModule) {
-        return this.$http.patch(`/api/running/${groupId}/${position}`, newRunningModule, this.getHttpConfig());
     }
 
     deleteRunningModule(groupId, position) {
@@ -68,8 +64,8 @@ class backendService {
     }
 
     getHttpConfig() {
-        let config = {};
-        let token = window.localStorage.getItem('token');
+        const config = {};
+        const token = window.localStorage.getItem('token');
         if (token) {
             config.headers = { 'Authorization': 'Bearer ' + token };
         }

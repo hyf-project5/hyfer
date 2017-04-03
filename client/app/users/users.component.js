@@ -23,7 +23,7 @@ class UsersController {
         this.backendService.updateUserRole(userId, role.toLowerCase())
             .then(() => {
                 this.users.forEach(user => {
-                    if (user.id == userId) {
+                    if (user.id === userId) {
                         this.toastService.displayToast(true, `${user.username}'s role updated to ${role.toLowerCase()}!`);
                         this.$state.reload();
                     }
@@ -32,7 +32,7 @@ class UsersController {
     }
 
     updateMyRole(userName, ev, userId, role) {
-        let confirm = this.$mdDialog.confirm()
+        const confirm = this.$mdDialog.confirm()
             .title('Would you like to update your role?')
             .ariaLabel('Update your role!')
             .targetEvent(ev)

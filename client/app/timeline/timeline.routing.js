@@ -18,11 +18,11 @@ function routing($stateProvider) {
         });
 }
 
-timelineResolver.$inject = [backendService]
+timelineResolver.$inject = [backendService];
 
 function timelineResolver(backendService) {
     return backendService.getTimeline();
 }
 
 angular.module(timelineModule)
-    .config(routing)
+    .config(routing);

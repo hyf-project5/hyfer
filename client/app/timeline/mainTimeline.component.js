@@ -38,20 +38,20 @@ class MainTimelineController {
         const zeroPoint = Math.round(this.computedMilliseconds(this.getClosestSundayAndRidOfTime(this.timeline[this.classes[0]][0].starting_date)) / days);
         this.classes.forEach(entry => {
             let firsModuleStartDateInThisGroup = Math.round(this.computedMilliseconds(this.getClosestSundayAndRidOfTime(this.timeline[entry][0].starting_date)) / days);
-            let leftPosition = firsModuleStartDateInThisGroup - zeroPoint;
+            const leftPosition = firsModuleStartDateInThisGroup - zeroPoint;
             this.timeline[entry].forEach(runningModule => {
                 runningModule.blockWidth = (runningModule.duration * 7 * 9) - 6;
                 runningModule.leftPosition = (leftPosition * 9) + 125;
                 // runningModule.blockClass = 'block-no-' + runningModule.duration;
                 // runningModule.startingWeekClass = 'block-week-' + Math.round(position / 7);
                 runningModule.startingDate = this.getInterfaceDate(firsModuleStartDateInThisGroup);
-                let endDate = (firsModuleStartDateInThisGroup) + (runningModule.duration * 7);
+                const endDate = (firsModuleStartDateInThisGroup) + (runningModule.duration * 7);
                 runningModule.endingDate = this.getInterfaceDate(endDate);
                 firsModuleStartDateInThisGroup = endDate;
             });
         });
 
-        let gitUrl = this.timeline[this.classes[0]][0].git_url + this.timeline[this.classes[0]][0].git_repo;
+        const gitUrl = this.timeline[this.classes[0]][0].git_url + this.timeline[this.classes[0]][0].git_repo;
         this.readme = {
             moduleName: this.timeline[this.classes[0]][0].module_name,
             gitUrl: gitUrl
@@ -67,22 +67,22 @@ class MainTimelineController {
     }
 
     computedMilliseconds(date) {
-        let getDate = new Date(date);
-        let milliseconds = getDate.getTime();
+        const getDate = new Date(date);
+        const milliseconds = getDate.getTime();
         return milliseconds;
     }
 
     getClosestSundayAndRidOfTime(date) {
-        let d = new Date(date);
+        const d = new Date(date);
         d.setHours(0, 0, 0, 0);
-        let t = new Date(d);
+        const t = new Date(d);
         t.setDate(t.getDate() - t.getDay());
         return t;
     }
 
     getInterfaceDate(value) {
-        let time = value * days;
-        let date = new Date(time);
+        const time = value * days;
+        const date = new Date(time);
         return dayNames[date.getDay()] + ", " + date.getDate() + " " + monthNames[date.getMonth()] + " " + date.getFullYear();
 
     }
@@ -103,7 +103,7 @@ class MainTimelineController {
     }
 
     isTeacher() {
-        if (this.me.role == 'teacher') {
+        if (this.me.role === 'teacher') {
             return true;
         }
     }
@@ -124,10 +124,10 @@ class MainTimelineController {
 
     splitRunningModule(module) {
         this.backendService.splitRunningModule(module.id, module.position)
-            .then(data => {
+            .then(() => {
                 this.$state.reload();
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
     }
 
 }

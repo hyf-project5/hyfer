@@ -24,11 +24,11 @@ class TimelineController {
         this.toastService = toastService;
         setTimeout(() => {
             this.showFooter = true;
-        }, 60)
+        }, 60);
     }
 
     $onInit() {
-        this.classes = Object.keys(this.timeline)
+        this.classes = Object.keys(this.timeline);
     }
 
     addClassModal(ev) {
@@ -49,7 +49,7 @@ class TimelineController {
                     .then(() => {
                         this.toastService.displayToast(true, `${classInfo.group_name} has been added`);
                         this.$state.reload();
-                    })
+                    });
             })
             .catch(() => this.toastService.displayToast(false));
     }

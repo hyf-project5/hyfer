@@ -27,25 +27,25 @@ class AddAndUpdateRunningModuleModalController {
 
         backendService.getUsers()
             .then(res => {
-                res.forEach(user => user.role == 'teacher' ? this.users.push(user) : null)
-            })
+                res.forEach(user => user.role === 'teacher' ? this.users.push(user) : null);
+            });
         this.modules = [];
         backendService.getModules()
-            .then(module => this.modules.push(module))
+            .then(module => this.modules.push(module));
     }
 
     hide() {
-        this.$mdDialog.hide()
+        this.$mdDialog.hide();
     }
     cancel() {
-        this.$mdDialog.cancel()
+        this.$mdDialog.cancel();
         this.toastService.displayToast(false);
     }
 
     add(submit) {
         this.modules[0].forEach(module => {
             if (module.id === submit.id) {
-                let groupId = this.getGroupId();
+                const groupId = this.getGroupId();
                 this.$mdDialog.hide(submit)
                     .then(() => {
                         let position = submit.afterModuleIndex || -1;
@@ -55,57 +55,57 @@ class AddAndUpdateRunningModuleModalController {
                             .then(() => {
                                 this.$state.reload();
                                 setTimeout(() => {
-                                    this.toastService.displayToast(true, module.module_name + ' has been added.')
-                                }, 10)
-                            })
+                                    this.toastService.displayToast(true, module.module_name + ' has been added.');
+                                }, 10);
+                            });
                     })
-                    .catch(err => console.log(err))
+                    .catch(err => console.log(err));
             }
-        })
+        });
     }
 
     updateRunningModule(submit) {
         this.runningModules.forEach(module => {
             if (module.running_module_id === this.selectedRunningModule.running_module_id) {
-                let groupId = module.id;
+                const groupId = module.id;
                 this.$mdDialog.hide(submit)
                     .then(() => {
                         let newPosition = submit.afterModuleIndex || module.position;
                         newPosition = newPosition >= this.runningModules.length - 1 ? -1 : newPosition;
-                        let oldPosition = module.position;
+                        const oldPosition = module.position;
                         submit.position = newPosition;
                         submit.teacher2_id = submit.teacher2;
                         return this.backendService.updateRunningModule(groupId, oldPosition, submit)
                             .then(() => {
                                 this.$state.reload();
                                 setTimeout(() => {
-                                    this.toastService.displayToast(true, module.module_name + ' has been updated.')
-                                }, 10)
-                            })
+                                    this.toastService.displayToast(true, module.module_name + ' has been updated.');
+                                }, 10);
+                            });
                     })
-                    .catch(err => console.log(err))
+                    .catch(err => console.log(err));
             }
-        })
+        });
     }
 
     deleteRunningModule() {
         this.runningModules.forEach(module => {
             if (module.running_module_id === this.selectedRunningModule.running_module_id) {
-                let groupId = module.id;
+                const groupId = module.id;
                 this.$mdDialog.hide()
                     .then(() => {
-                        let position = module.position;
+                        const position = module.position;
                         this.backendService.deleteRunningModule(groupId, position)
                             .then(() => {
-                                this.$state.reload()
+                                this.$state.reload();
                                 setTimeout(() => {
-                                    this.toastService.displayToast(true, module.module_name + ' has been deleted.')
-                                }, 10)
-                            })
+                                    this.toastService.displayToast(true, module.module_name + ' has been deleted.');
+                                }, 10);
+                            });
                     })
-                    .catch(err => console.log(err))
+                    .catch(err => console.log(err));
             }
-        })
+        });
     }
 
 

@@ -32,14 +32,14 @@ class ToolbarController {
     }
 
     signin() {
-        window.location.href = `/auth/github`
+        window.location.href = `/auth/github`;
     }
 
     signout() {
         window.localStorage.removeItem('token');
         this.$cookies.remove('token');
         location.reload();
-        this.$state.go('timeline')
+        this.$state.go('timeline');
     }
 
 }

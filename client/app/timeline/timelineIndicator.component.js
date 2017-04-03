@@ -5,7 +5,7 @@ import template from './timelineIndicator.component.html';
 
 const days = 1000 * 60 * 60 * 24;
 const month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const day_names = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+const day_names = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 class TimelineIndicatorController {
 
@@ -18,15 +18,15 @@ class TimelineIndicatorController {
     }
 
     computedMilliseconds(date) {
-        let getDate = new Date(date);
-        let milliseconds = getDate.getTime();
+        const getDate = new Date(date);
+        const milliseconds = getDate.getTime();
         return milliseconds;
     }
 
     getClosestSundayAndRidOfTime(date) {
-        let d = new Date(date);
+        const d = new Date(date);
         d.setHours(0, 0, 0, 0);
-        let t = new Date(d);
+        const t = new Date(d);
         t.setDate(t.getDate() - t.getDay());
         return t;
     }
@@ -42,7 +42,7 @@ class TimelineIndicatorController {
         this.indicatorHeight = (this.classes.length * 60) + 20;
         const zeroPoint = Math.round(this.computedMilliseconds(this.getClosestSundayAndRidOfTime(this.timeline[this.classes[0]][0].starting_date)) / days);
         this.indicatorPosition = ((this.todayPosition - zeroPoint) * 9) + 125;
-        let scrollToLeft = this.indicatorPosition - 350;
+        const scrollToLeft = this.indicatorPosition - 350;
         setTimeout(() => {
             document.getElementById("main-timeline").scrollLeft = scrollToLeft;
         }, 100);

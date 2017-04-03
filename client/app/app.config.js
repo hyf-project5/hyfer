@@ -17,4 +17,4 @@ function config($urlRouterProvider, $locationProvider) {
 }
 
 angular.module(appModule)
-    .config(config)
+    .config(config);

@@ -17,7 +17,7 @@ class ClassBlockItemController {
     }
 
     isTeacher() {
-        if (this.me.role == 'teacher') {
+        if (this.me.role === 'teacher') {
             return true;
         }
     }
