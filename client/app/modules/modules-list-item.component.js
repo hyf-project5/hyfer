@@ -12,9 +12,12 @@ class ModulesListItemController {
 
     onResized(width) {
         let listElem = document.querySelector('hyf-modules-list>ul');
-        let listWidth = listElem.scrollWidth;
-        this.module.default_duration = Math.round(width / listWidth * 6);
-        this.onChanged({module: this.module});
+        let listWidth = listElem.clientWidth;
+        let duration = Math.round(width / listWidth * 6);
+        if (duration > 0) {
+            this.module.default_duration = Math.round(width / listWidth * 6);
+            this.onChanged({ module: this.module });
+        }
     }
 }
 
