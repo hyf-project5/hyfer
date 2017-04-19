@@ -44,7 +44,6 @@ class RunningModuleController {
     }
 
     clicked(ev, module) {
-        console.log(ev);
         this.onClick({module});
     }
 }
