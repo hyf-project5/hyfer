@@ -43,9 +43,6 @@ class RunningModuleController {
         return this.me.role === 'teacher';
     }
 
-    clicked(ev, module) {
-        this.onClick({module});
-    }
 }
 
 const componentName = 'hyfRunningModule';

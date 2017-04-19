@@ -1,4 +1,4 @@
-<div ng-click="$ctrl.clicked($event, module)" class="module-block"
+<div ng-click="$ctrl.onClick($ctrl.module)" class="module-block"
     ng-style="{'left': $ctrl.module.leftPosition + 'px', 'width': $ctrl.module.blockWidth + 'px', 'background':  $ctrl.module.color}">
     <md-tooltip>Run from {{$ctrl.module.startingDate}} to {{$ctrl.module.endingDate}}</md-tooltip>
     {{$ctrl.module.module_name}}
