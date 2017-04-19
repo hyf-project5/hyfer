@@ -21,15 +21,15 @@ function getAllFromRunningModules(con, groupId) {
 function addModuleToRunningModules(con, moduleId, groupId, position) {
     return modules.getModule(con, moduleId)
         .then(rows => {
-            let module = rows[0];
-            let newMod = {
+            const module = rows[0];
+            const newMod = {
                 description: module.description,
                 module_id: moduleId,
                 group_id: groupId,
                 duration: module.default_duration,
                 teacher1_id: null,
                 teacher2_id: null
-            }
+            };
             return getAllFromRunningModules(con, groupId)
                 .then(runningMods => {
                     insertRunningModuleAtIndex(runningMods, newMod, position);
@@ -42,7 +42,7 @@ function addModuleToRunningModules(con, moduleId, groupId, position) {
 function updateRunningModule(con, updates, groupId, position) {
     return getAllFromRunningModules(con, groupId)
         .then(runningMods => {
-            let targetMod = runningMods.find(mod => mod.position === position);
+            const targetMod = runningMods.find(mod => mod.position === position);
             runningMods = runningMods.filter(mod => mod.position !== position);
             targetMod.description = updates.description || targetMod.description;
             targetMod.duration = updates.duration || targetMod.duration;
@@ -66,7 +66,7 @@ function deleteRunningModule(con, groupId, position) {
 function splitRunningModule(con, groupId, position) {
     return getAllFromRunningModules(con, groupId)
         .then(runningMods => {
-            let newMod = Object.assign({}, runningMods[position]);
+            const newMod = Object.assign({}, runningMods[position]);
             if (newMod.duration === 1) {
                 return Promise.resolve();
             }
@@ -81,30 +81,30 @@ function splitRunningModule(con, groupId, position) {
 
 function replaceRunningModules(con, runningMods, groupId) {
     return new Promise((resolve, reject) => {
-            con.beginTransaction(err => {
-                if (err) {
-                    return reject(err);
-                }
-                db.execQuery(con, DELETE_ALL_RUNNING_MODULES_QUERY, groupId)
-                    .then(() => {
-                        let values = makeValueList(runningMods);
-                        return db.execQuery(con, INSERT_RUNNING_MODULES_QUERY, [values]);
-                    })
-                    .then(() => {
-                        con.commit(err => {
-                            if (err) {
-                                throw err;
-                            }
-                            resolve();
-                        })
-                    })
-                    .catch(err => {
-                        con.rollback(() => {
-                            reject(err);
-                        })
-                    })
-            })
-        })
+        con.beginTransaction(err => {
+            if (err) {
+                return reject(err);
+            }
+            db.execQuery(con, DELETE_ALL_RUNNING_MODULES_QUERY, groupId)
+                .then(() => {
+                    const values = makeValueList(runningMods);
+                    return db.execQuery(con, INSERT_RUNNING_MODULES_QUERY, [values]);
+                })
+                .then(() => {
+                    con.commit(err => {
+                        if (err) {
+                            throw err;
+                        }
+                        resolve();
+                    });
+                })
+                .catch(err => {
+                    con.rollback(() => {
+                        reject(err);
+                    });
+                });
+        });
+    })
         .then(() => getAllFromRunningModules(con, groupId));
 }
 
@@ -112,7 +112,7 @@ function insertRunningModuleAtIndex(runningMods, targetMod, position) {
     if (position === -1) {
         runningMods.push(targetMod);
     } else if (position >= 0 && position < runningMods.length) {
-        runningMods.splice(position, 0, targetMod)
+        runningMods.splice(position, 0, targetMod);
     } else {
         throw new Error('invalid position: ' + position);
     }
@@ -137,4 +137,4 @@ module.exports = {
     updateRunningModule,
     deleteRunningModule,
     splitRunningModule
-}
+};

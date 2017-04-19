@@ -20,7 +20,6 @@ const TIME_LINE_FOR_ALL_GROUPS_QUERY =
     INNER JOIN modules ON running_modules.module_id = modules.id
     ORDER BY groups.starting_date, running_modules.position`;
 
-
 const ADD_GROUP_QUERY = `INSERT INTO groups SET ?`;
 const UPDATE_GROUP_QUERY = `UPDATE groups SET ? WHERE id = ?`;
 const DELETE_GROUP_QUERY = `DELETE FROM groups WHERE id = ?`;
@@ -43,23 +42,42 @@ function deleteGroup(con, id) {
 
 function addGroup(con, group) {
 
-    let data = {
-            group_name: group.group_name,
-            starting_date: new Date(group.starting_date)
-        };
-        // TODO: use a SQL transaction
+    const data = {
+        group_name: group.group_name,
+        starting_date: new Date(group.starting_date)
+    };
 
-    return db.execQuery(con, ADD_GROUP_QUERY, data)
-        .then(result => {
-            let groupId = result.insertId;
-            return modules.getCurriculumModules(con)
-                .then(mods => {
-                    let runningModules = makeRunningModules(groupId, mods);
-                    let valueList = makeValueList(runningModules);
-                    let sql = ADD_RUNNING_MODULES_QUERY + valueList;
-                    return db.execQuery(con, sql);
-                });
+    return new Promise((resolve, reject) => {
+        con.beginTransaction(err => {
+            if (err) {
+                return reject(err);
+            }
         });
+        db.execQuery(con, ADD_GROUP_QUERY, data)
+            .then(result => {
+                const groupId = result.insertId;
+                return modules.getCurriculumModules(con)
+                    .then(mods => {
+                        const runningModules = makeRunningModules(groupId, mods);
+                        const valueList = makeValueList(runningModules);
+                        const sql = ADD_RUNNING_MODULES_QUERY + valueList;
+                        return db.execQuery(con, sql);
+                    });
+            })
+            .then(() => {
+                con.commit(err => {
+                    if (err) {
+                        throw err;
+                    }
+                    resolve();
+                });
+            })
+            .catch(err => {
+                con.rollback(() => {
+                    reject(err);
+                });
+            });
+    });
 }
 
 function makeRunningModules(groupId, mods) {

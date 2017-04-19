@@ -15,17 +15,17 @@ function getModule(con, id) {
 }
 
 function getModules(con) {
-    const sql = GET_MODULE_QUERY + ` WHERE module_name != 'Dummy' ORDER BY sort_order, module_name`;
+    const sql = GET_MODULE_QUERY + ` ORDER BY sort_order, module_name`;
     return db.execQuery(con, sql);
 }
 
 function getCurriculumModules(con) {
-    const sql = GET_MODULE_QUERY + ` WHERE optional IS NOT 0 ORDER BY sort_order`;
+    const sql = GET_MODULE_QUERY + ` WHERE optional=0 ORDER BY sort_order`;
     return db.execQuery(con, sql);
 }
 
 function getOptionalModules(con) {
-    const sql = GET_MODULE_QUERY + ` WHERE optional IS 0 ORDER BY module_name`;
+    const sql = GET_MODULE_QUERY + ` WHERE optional!=0 ORDER BY module_name`;
     return db.execQuery(con, sql);
 }
 
@@ -53,7 +53,7 @@ function updateModules(con, batchUpdate) {
             if (err) {
                 return reject(err);
             }
-            let promises = batchUpdate.updates.map(module => this.updateModule(con, module, module.id))
+            const promises = batchUpdate.updates.map(module => this.updateModule(con, module, module.id))
                 .concat(batchUpdate.additions.map(module => this.addModule(con, module)))
                 .concat(batchUpdate.deletions.map(module => this.deleteModule(con, module.id)));
             Promise.all(promises)
