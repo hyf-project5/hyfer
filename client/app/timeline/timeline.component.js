@@ -33,9 +33,6 @@ class TimelineController {
 
     addClassModal(ev) {
         this.$mdDialog.show({
-                locals: {
-                    selectedModule: null
-                },
                 controller: AddClassModalController,
                 controllerAs: '$ctrl',
                 template: addClassTemplate,
@@ -43,7 +40,9 @@ class TimelineController {
                 clickOutsideToClose: true
             })
             .then(group => {
-                console.log('group: ', group);
+                if(!group.starting_date){
+                    return this.toastService.displayToast(true, `Please supply starting date`);
+                }
                 let classInfo = group.group_name.split('')[0].toUpperCase() + group.group_name.split('').slice(1).join('');
                 classInfo = { group_name: classInfo, starting_date: group.starting_date };
                 this.backendService.addGroup(classInfo)
