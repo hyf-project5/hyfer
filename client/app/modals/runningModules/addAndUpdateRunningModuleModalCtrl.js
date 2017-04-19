@@ -71,7 +71,13 @@ class AddAndUpdateRunningModuleModalController {
                 this.$mdDialog.hide(submit)
                     .then(() => {
                         let newPosition = submit.afterModuleIndex || module.position;
-                        newPosition = newPosition >= this.runningModules.length - 1 ? -1 : newPosition;
+                        if(newPosition >= this.runningModules.length - 1 ){
+                            newPosition = -1;
+                        }else if(newPosition >= this.runningModules.length - 2){
+                            newPosition;
+                        }else{
+                            newPosition = newPosition +1;
+                        }
                         const oldPosition = module.position;
                         submit.position = newPosition;
                         submit.teacher2_id = submit.teacher2;
