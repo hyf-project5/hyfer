@@ -1,0 +1,16 @@
+<h2>
+    {{$ctrl.readme.moduleName}} README.md
+    <md-button ng-href="{{$ctrl.gitUrl}}" target='_blank' class="md-icon-button" aria-label="Github icon">
+        <md-tooltip md-direction="top">
+            Go to Github Module repository
+        </md-tooltip>
+        <md-icon class="githubIcon" md-svg-src="{{$ctrl.githubIcon}}"></md-icon>
+    </md-button>
+    <hr>
+</h2>
+
+<div layout="row"layout-margin>
+    <div class="md-whiteframe-2dp" style="width: 100%">
+        <div class="markdown-body" ng-bind-html="$ctrl.content"></div>
+    </div>
+</div>

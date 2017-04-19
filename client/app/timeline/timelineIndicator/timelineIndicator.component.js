@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import timelineModule from './timeline.module';
+import timelineModule from '../timeline.module';
 import template from './timelineIndicator.component.html';
 
 const days = 1000 * 60 * 60 * 24;
@@ -23,7 +23,7 @@ class TimelineIndicatorController {
         return milliseconds;
     }
 
-    getClosestSundayAndRidOfTime(date) {
+    getClosestSunday(date) {
         const d = new Date(date);
         d.setHours(0, 0, 0, 0);
         const t = new Date(d);
@@ -37,10 +37,9 @@ class TimelineIndicatorController {
         //     .then(data => {
         this.currentDate = day_names[current_date.getDay()] + ", " + current_date.getDate() + " " + month_names[current_date.getMonth()] + " " + current_date.getFullYear();
         this.todayPosition = Math.round(this.computedMilliseconds(current_date) / days);
-        // this.timeline = data;
-        // this.classes = Object.keys(this.timeline);
-        this.indicatorHeight = (this.classes.length * 60) + 20;
-        const zeroPoint = Math.round(this.computedMilliseconds(this.getClosestSundayAndRidOfTime(this.timeline[this.classes[0]][0].starting_date)) / days);
+        const classNames = Object.keys(this.timeline);
+        this.indicatorHeight = (classNames.length * 60) + 20;
+        const zeroPoint = Math.round(this.computedMilliseconds(this.getClosestSunday(this.timeline[classNames[0]][0].starting_date)) / days);
         this.indicatorPosition = ((this.todayPosition - zeroPoint) * 9) + 125;
         const scrollToLeft = this.indicatorPosition - 350;
         setTimeout(() => {
@@ -57,8 +56,7 @@ angular.module(timelineModule)
     .component(componentName, {
         template,
         bindings: {
-            timeline: '<',
-            classes: '<'
+            timeline: '<'
         },
         controller: TimelineIndicatorController
     });

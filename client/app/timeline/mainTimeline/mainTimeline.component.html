@@ -1,0 +1,15 @@
+<div id="main-timeline">
+
+    <hyf-timeline-indicator timeline='$ctrl.timeline'></hyf-timeline-indicator>
+
+    <div class="modules-container">
+        <div ng-repeat="className in $ctrl.classNames">
+            <hyf-running-module ng-repeat="module in $ctrl.timeline[className]" module="module" on-click="$ctrl.showReadme(module)"></hyf-running-module>
+        </div>
+    </div>
+
+</div>
+
+<div ng-style="{'margin-top': $ctrl.readmeHeaderTop + 'px'}">
+    <hyf-readme selected-module="$ctrl.selectedModule"></hyf-readme>
+</div>

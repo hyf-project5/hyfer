@@ -1,15 +1,15 @@
-<div flex-offset-gt-sm='10' flex-gt-sm='80'>
+<div flex-offset-gt-sm="10" flex-gt-sm="80">
     <md-content>
         <div id="timeline" class="timeline">
-            <div layout='row'>
+            <div layout="row">
                 <span flex></span>
                 <md-button ng-show="$ctrl.isTeacher()" class="module-add md-raised md-mini md-primary" ng-click="$ctrl.addClassModal($event)">
                     <md-icon md-font-set="material-icons">add</md-icon>
                     Add Class
                 </md-button>
             </div>
-            <hyf-class-block classes='$ctrl.classes'></hyf-class-block>
-            <hyf-main-timeline classes='$ctrl.classes' timeline='$ctrl.timeline'></hyf-main-timeline>
+            <hyf-class-block classes="$ctrl.classes"></hyf-class-block>
+            <hyf-main-timeline timeline="$ctrl.timeline"></hyf-main-timeline>
         </div>
     </md-content>
 </div>

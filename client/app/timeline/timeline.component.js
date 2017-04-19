@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 import timelineModule from './timeline.module';
-import './mainTimeline.component';
+import './mainTimeline/mainTimeline.component';
 import './classBlock/classBlock.component';
 import '../footer/footer.component';
 import backendService from '../services/backendService';
