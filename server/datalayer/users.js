@@ -3,19 +3,19 @@ const db = require('./database');
 
 // Users functions
 function getUser(con, username) {
-    return db.execQuery(con, `SELECT username, role, register_date FROM users WHERE username=?`, username);
+    return db.execQuery(con, `SELECT username, role, register_date, github_username FROM users WHERE username=?`, username);
 }
 
 function getUsers(con) {
-    return db.execQuery(con, `SELECT username, role, id, register_date FROM users`);
+    return db.execQuery(con, `SELECT username, role, id, register_date, github_username FROM users`);
 }
 
 function addUser(con, user) {
-    return db.execQuery(con, `INSERT INTO users SET ?`, user)
+    return db.execQuery(con, `INSERT INTO users SET ?`, user);
 }
 
 function updateRole(con, id, role) {
-    return db.execQuery(con, 'UPDATE users SET role=? WHERE id=?', [role, id])
+    return db.execQuery(con, 'UPDATE users SET role=? WHERE id=?', [role, id]);
 }
 
 module.exports = {
@@ -23,4 +23,4 @@ module.exports = {
     getUsers,
     addUser,
     updateRole
-}
+};
