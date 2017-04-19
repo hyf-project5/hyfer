@@ -19,6 +19,14 @@ class UsersController {
         this.toastService = toastService;
     }
 
+    $onInit(){
+        for(const val of this.users){
+            if(!val.github_username){
+                val.github_username = "random";
+            }
+        }
+    }
+
     updateUserRole(userId, role) {
         this.backendService.updateUserRole(userId, role.toLowerCase())
             .then(() => {

@@ -3,8 +3,8 @@
     <md-grid-list md-cols-xs="3" md-cols-sm="4" md-cols-md="5" md-cols-lg="6" md-cols-gt-lg="7" md-row-height="1:1.3">
         <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="user in $ctrl.users">
             <md-input-container class="users-block">
-                <a href="https://github.com/{{user.username}}" target="_blank">
-                    <div class="users-link" style="background-image: url(https://avatars.githubusercontent.com/{{user.username}})">
+                <a href="https://github.com/{{user.github_username}}" target="_blank">
+                    <div class="users-link" style="background-image: url(https://avatars.githubusercontent.com/{{user.github_username}}); background-repeat: no-repeat; background-position:center; background-size: 150px; " >
                         <div class="users-name">
                             {{user.username}}
                         </div>
