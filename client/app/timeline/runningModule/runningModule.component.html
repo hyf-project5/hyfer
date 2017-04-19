@@ -1,13 +1,7 @@
-<div ng-click="$ctrl.onClick({module: $ctrl.module})" class="module-block {{$ctrl.module.startingWeekClass}} {{$ctrl.module.blockClass}}"
+<div ng-click="$ctrl.clicked($event, module)" class="module-block"
     ng-style="{'left': $ctrl.module.leftPosition + 'px', 'width': $ctrl.module.blockWidth + 'px', 'background':  $ctrl.module.color}">
     <md-tooltip>Run from {{$ctrl.module.startingDate}} to {{$ctrl.module.endingDate}}</md-tooltip>
     {{$ctrl.module.module_name}}
-    <!--<md-button class="edit-module" ng-show="$ctrl.isTeacher()" ng-click="$ctrl.editRunningModule($event, module)">
-                    <md-tooltip md-direction='right'>
-                        Edit {{module.module_name}}
-                    </md-tooltip>
-                    <md-icon md-font-set="material-icons">edit</md-icon>
-                </md-button>-->
 
     <md-menu ng-if="$ctrl.isTeacher()">
         <md-button class="edit-module" ng-click="$mdMenu.open($event)" aria-label="Open user's' menu">
@@ -27,6 +21,5 @@
             </md-menu-item>
         </md-menu-content>
     </md-menu>
-
 
 </div>
