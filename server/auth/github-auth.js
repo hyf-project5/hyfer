@@ -8,5 +8,15 @@ passport.use(new GitHubStrategy({
     clientSecret: config.clientSecret,
     callbackURL: config.callbackURL
 }, (accessToken, refreshToken, profile, done) => {
-    return done(null, { accessToken, username: profile.username });
+    const userInfo = {
+        accessToken,
+        username: profile.username,
+        full_name: profile.displayName
+    };
+
+    if (profile.emails.length > 0) {
+        userInfo.email = profile.emails[0].value;
+    }
+
+    return done(null, userInfo);
 }));

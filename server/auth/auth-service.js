@@ -14,15 +14,17 @@ function gitHubCallback(req, res, next) {
             return users.getUser(con, req.user.username)
                 .then(rows => {
                     if (rows.length === 0) {
-                        let newUser = {
+                        const newUser = {
                             username: req.user.username,
                             access_token: req.user.accessToken,
+                            full_name: req.user.full_name,
+                            email: req.user.email,
                             role: 'guest'
-                        }
+                        };
                         return users.addUser(con, newUser);
                     }
                     return Promise.resolve();
-                })
+                });
         })
         .then(() => next())
         .catch(err => console.log('Error from gitHubCallback: ' + err))
