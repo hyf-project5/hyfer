@@ -31,6 +31,10 @@ class ToolbarController {
         return this.me.role !== 'visitor';
     }
 
+    goto(state) {
+        this.$state.go(state);
+    }
+
     signin() {
         window.location.href = `/auth/github`;
     }
