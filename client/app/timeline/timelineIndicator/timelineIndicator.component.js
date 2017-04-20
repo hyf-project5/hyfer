@@ -4,6 +4,7 @@ import timelineModule from '../timeline.module';
 import timelineService from '../timeline.service';
 import backendService from '../../services/backendService';
 import template from './timelineIndicator.component.html';
+import './timelineIndicator.scss';
 
 const MSECS_PER_DAY = 1000 * 60 * 60 * 24;
 const INDICATOR_OFFSET = 250;
@@ -36,7 +37,7 @@ class TimelineIndicatorController {
         const scrollToLeft = this.indicatorPosition - INDICATOR_OFFSET;
 
         setTimeout(() => {
-            document.getElementById('main-timeline').scrollLeft = scrollToLeft;
+            document.getElementById('timeline-slider').scrollLeft = scrollToLeft;
         }, 100);
     }
 }

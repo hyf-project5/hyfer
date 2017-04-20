@@ -5,6 +5,7 @@ import timelineModule from '../timeline.module';
 import template from './readme.component.html';
 import backendService from '../../services/backendService';
 import githubIcon from '../../../assets/images/github.svg';
+import './readme.scss';
 
 class ReadmeController {
 

@@ -1,0 +1,12 @@
+<div id="timeline-slider">
+
+    <hyf-timeline-indicator timeline="$ctrl.timeline"></hyf-timeline-indicator>
+
+    <div class="modules-container">
+        <div ng-repeat="className in $ctrl.classNames">
+            <hyf-running-module ng-repeat="module in $ctrl.timeline[className]" module="module" on-click="$ctrl.onModuleClick({module})"></hyf-running-module>
+        </div>
+    </div>
+
+</div>
+

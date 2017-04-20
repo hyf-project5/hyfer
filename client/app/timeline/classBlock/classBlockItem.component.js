@@ -17,9 +17,7 @@ class ClassBlockItemController {
     }
 
     isTeacher() {
-        if (this.me.role === 'teacher') {
-            return true;
-        }
+        return this.me.role === 'teacher';
     }
 
     addRunningModuleModal(ev, className) {

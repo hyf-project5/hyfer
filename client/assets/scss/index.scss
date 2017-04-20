@@ -1,14 +1,13 @@
 @import 'variables';
-@import 'readme';
-@import 'timeline';
+// @import 'readme';
+// @import 'timeline';
 @import 'classes';
 @import 'modules';
 @import 'users';
 @import 'toolbar';
-@import 'footer';
+// @import 'footer';
 
 /* Toolbar */
-
 
 .active {
     cursor: pointer;
@@ -88,40 +87,6 @@ md-grid-tile {
 
 
 
-.fa {
-    display: inline-block;
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-    border-radius: 50%;
-    font-size: 20px;
-    background-color: #33383b;
-    text-align: center;
-    line-height: 35px;
-    margin-right: 3px;
-}
-
-.fa:hover {
-    background-color: #585d60;
-}
-
-.fa-facebook {
-    color: #3b5998;
-}
-
-.fa-twitter {
-    color: #55acee;
-}
-
-.fa-linkedin {
-    color: #007bb5;
-}
-
-.fa-github {
-    color: #000000;
-}
-
-
 a:link,
 a:visited,
 a:hover,
@@ -133,9 +98,6 @@ a:active {
 @media (max-width: $breakpoint-width) {
     .footer-logo img {
         visibility: hidden;
-    }
-    .module-block {
-        font-size: .8em;
     }
     .class-block {
         font-size: .8em;

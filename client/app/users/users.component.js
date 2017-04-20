@@ -4,6 +4,7 @@ import usersModule from './users.module';
 import backendService from '../services/backendService';
 import toastService from '../services/toastService';
 import template from './users.component.html';
+import './users.scss';
 
 class UsersController {
 

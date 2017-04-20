@@ -2,20 +2,17 @@ import angular from 'angular';
 
 import timelineModule from '../timeline.module';
 import timelineService from '../timeline.service';
-import '../timelineIndicator/timelineIndicator.component';
-import '../readme/readme.component';
-import '../runningModule/runningModule.component';
-
 import backendService from '../../services/backendService';
 import toastService from '../../services/toastService';
-import mainTimelineTemplate from './mainTimeline.component.html';
+import template from './timelineSlider.component.html';
 import githubIcon from '../../../assets/images/github.svg';
+import './timelineSlider.scss';
 
 const RUNNING_MODULE_HEIGHT = 55;
 const DAYS_PER_WEEK = 7;
 const MSECS_PER_DAY = 1000 * 60 * 60 * 24;
 
-class MainTimelineController {
+class TimelineSliderController {
 
     static get $inject() {
         return ['$state', 'me', timelineService, backendService, toastService];
@@ -66,21 +63,23 @@ class MainTimelineController {
         });
     }
 
-    showReadme(module) {
-        this.selectedModule = module;
-    }
+    // showReadme(module) {
+
+    //     this.selectedModule = module;
+    // }
 
 }
 
-const componentName = 'hyfMainTimeline';
+const componentName = 'hyfTimelineSlider';
 
 angular.module(timelineModule)
-    .component('hyfMainTimeline', {
-        template: mainTimelineTemplate,
+    .component(componentName, {
+        template: template,
         bindings: {
-            timeline: '<'
+            timeline: '<',
+            onModuleClick: '&'
         },
-        controller: MainTimelineController
+        controller: TimelineSliderController
     });
 
 export default componentName;

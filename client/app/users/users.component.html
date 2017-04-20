@@ -21,17 +21,17 @@
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">{{user.full_name}}</span>
-                <span class="md-subhead"><i class="fa fa-graduation-cap"></i>{{user.role}}</span>
+                <span class="md-subhead"><i class="hyf-dimmed fa fa-fw fa-graduation-cap"></i> {{user.role}}</span>
                 <span class="md-subhead" ng-if="user.email">
                     <a href="mailto:{{user.email}}" target="_blank" title="E-mail {{user.full_name}}">
-                        <i class="fa fa-envelope"></i>{{user.email}}</a>
+                        <i class="hyf-dimmed fa fa-fw fa-envelope"></i> {{user.email}}</a>
                 </span>
                 <span class="md-subhead" ng-if="user.slack_username">
                     <a href="https://hackyourfuture.slack.com/messages/{{user.slack_username}}/" target="_blank" title="Direct message {{user.full_name}}">
-                        <i class="fa fa-slack"></i>{{user.slack_username}}</a>
+                        <i class="hyf-dimmed fa fa-fw fa-slack"></i> {{user.slack_username}}</a>
                 </span>
                 <span class="md-subhead" ng-if="user.mobile">
-                        <i class="fa fa-mobile"></i>{{user.mobile}}
+                        <i class="hyf-dimmed fa fa-fw fa-mobile"></i> {{user.mobile}}
                 </span>
             </md-card-title-text>
 

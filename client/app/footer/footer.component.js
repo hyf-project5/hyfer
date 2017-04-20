@@ -3,6 +3,7 @@ import angular from 'angular';
 import footerModule from './footer.module';
 import template from './footer.component.html';
 import logoIcon from '../../assets/images/logo.png';
+import './footer.scss';
 
 class FooterController {
 
