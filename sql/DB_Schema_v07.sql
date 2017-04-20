@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.7.16)
 # Database: hyfer
-# Generation Time: 2017-03-27 12:07:28 +0000
+# Generation Time: 2017-04-20 11:58:10 +0000
 # ************************************************************
 
 
@@ -28,14 +28,16 @@ DROP TABLE IF EXISTS `group_students`;
 CREATE TABLE `group_students` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `group_id` int(8) NOT NULL,
+  `running_module_id` int(8) NOT NULL,
   `user_id` int(8) NOT NULL,
-  `current_status` varchar(145) NOT NULL DEFAULT 'Active',
-  `hired` tinyint(1) NOT NULL DEFAULT '0',
+  `dates` varchar(145) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user_id` (`user_id`),
   KEY `fk_group_id` (`group_id`),
-  CONSTRAINT `fk_group_id` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `fk_running_module_id` (`running_module_id`),
+  CONSTRAINT `fk_group_id` FOREIGN KEY (`group_id`) REFERENCES `students_history` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_running_module_id` FOREIGN KEY (`running_module_id`) REFERENCES `students_history` (`running_module_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `students_history` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -103,6 +105,28 @@ CREATE TABLE `running_modules` (
 
 
 
+# Dump of table students_history
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `students_history`;
+
+CREATE TABLE `students_history` (
+  `group_id` int(8) NOT NULL,
+  `running_module_id` int(8) NOT NULL,
+  `user_id` int(8) NOT NULL,
+  `date` date NOT NULL,
+  `attendance` tinyint(1) NOT NULL DEFAULT '0',
+  `homework` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`user_id`,`group_id`,`date`,`running_module_id`),
+  KEY `idx_running_module_id` (`running_module_id`),
+  KEY `sh_fk_group_id` (`group_id`),
+  CONSTRAINT `sh_fk_group_id` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `sh_fk_running_module_id` FOREIGN KEY (`running_module_id`) REFERENCES `running_modules` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `sh_fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
 # Dump of table users
 # ------------------------------------------------------------
 
@@ -110,10 +134,15 @@ DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
-  `username` varchar(145) NOT NULL DEFAULT '',
+  `username` varchar(32) DEFAULT '',
+  `full_name` varchar(145) NOT NULL DEFAULT '',
   `access_token` varchar(64) DEFAULT NULL,
   `role` varchar(32) DEFAULT NULL,
   `register_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `slack_username` varchar(32) DEFAULT NULL,
+  `freecodecamp_username` varchar(32) DEFAULT NULL,
+  `email` varchar(32) DEFAULT NULL,
+  `mobile` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
