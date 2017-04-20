@@ -92,6 +92,7 @@ a:visited,
 a:hover,
 a:active {
     text-decoration: none;
+     color:inherit;
 }
 
 @media (max-width: $breakpoint-width) {
@@ -103,9 +104,5 @@ a:active {
     }
     .module-description {
         font-size: .8em;
-    }
-    .users-link {
-        width: 80px;
-        height: 80px;
     }
 }
