@@ -7,6 +7,7 @@ import backendService from './services/backendService';
 
 const defaultMe = {
     username: 'visitor',
+    full_name: 'Visitor',
     role: 'visitor'
 };
 
@@ -24,6 +25,7 @@ function run($cookies, backendService, me) {
         backendService.getMyProfile()
             .then(profile => {
                 me.username = profile.username;
+                me.full_name = profile.full_name,
                 me.role = profile.role;
             })
             .catch(err => {
