@@ -1,0 +1,17 @@
+<div flex-offset-gt-sm="10" flex-gt-sm="80">
+    <md-content>
+        <div class="timeline-buttons" layout="row">
+            <span flex></span>
+            <md-button ng-show="$ctrl.isTeacher()" class="module-add md-raised md-mini md-primary" ng-click="$ctrl.addClassModal($event)">
+                <md-icon md-font-set="material-icons">add</md-icon>
+                Add Class
+            </md-button>
+        </div>
+        <div class="timeline-scroll-container" ng-style="{height: $ctrl.height + 'px'}">
+            <hyf-class-block class-names="$ctrl.classNames"></hyf-class-block>
+            <hyf-timeline-slider timeline="$ctrl.timeline" on-module-click="$ctrl.onModuleClick(module)"></hyf-timeline-slider>
+        </div>
+        <hyf-readme selected-module="$ctrl.selectedModule"></hyf-readme>
+    </md-content>
+</div>
+<hyf-footer ng-show="$ctrl.showFooter"></hyf-footer>

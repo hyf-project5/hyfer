@@ -5,6 +5,7 @@ import template from './runningModule.component.html';
 import backendService from '../../services/backendService';
 import addAndUpdateRunningModuleModalCtrl from '../../modals/runningModules/addAndUpdateRunningModuleModalCtrl';
 import editRunningModuleTemplate from '../../modals/runningModules/editRunningModuleModal.html';
+import './runningModule.scss';
 
 class RunningModuleController {
 

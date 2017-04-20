@@ -1,0 +1,12 @@
+#timeline-slider {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    position: absolute;
+    z-index: 1;
+}
+
+.modules-container {
+    margin-top: 20px;
+}

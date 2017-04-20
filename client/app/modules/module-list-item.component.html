@@ -5,7 +5,7 @@
     dnd-selected="models.selected = $ctrl.module"
     ng-style="{'background-color': $ctrl.module.color, width: $ctrl.getWidth()}">
 
-    <div>
+    <div class="module-item">
         <hyf-module-list-item-menu module="$ctrl.module" on-changed="$ctrl.onChanged(module)" on-delete="$ctrl.onDelete(module)"></hyf-module-list-item-menu>
         {{$ctrl.module.module_name}}
         <!--<md-tooltip md-direction='right'>

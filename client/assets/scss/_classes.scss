@@ -1,28 +1,8 @@
 
 /* classes */
 
-.classes-container {
-    vertical-align: middle;
-    z-index: 2;
-    margin-top: 20px;
-    overflow: hidden;
-    position: absolute;
-    background-color: rgb(250, 250, 250);
-}
 
-.class-block {
-    display: block;
-    width: 125px;
-    height: 55px;
-    margin: 0 4px 6px 0;
-    text-align: center;
-    border-bottom-left-radius: .5em;
-    border-top-left-radius: .5em;
-    line-height: 55px;
-    background-color: rgba(158, 158, 158, 0.4);
-    ;
-    /*position: relative;*/
-}
+
 
 .add-class {
     display: block;

@@ -1,8 +1,16 @@
 import angular from 'angular';
 
 import timelineModule from './timeline.module';
-import timelineComponent from './timeline.component';
+import timelineComponent from './timeline/timeline.component';
 import backendService from '../services/backendService';
+import './timelineSlider/timelineSlider.component';
+import './classBlock/classBlock.component';
+import './classBlock/classBlockItem.component';
+import './readme/readme.component';
+import './timelineIndicator/timelineIndicator.component';
+import './readme/readme.component';
+import './runningModule/runningModule.component';
+import '../footer/footer.component';
 
 routing.$inject = ['$stateProvider'];
 

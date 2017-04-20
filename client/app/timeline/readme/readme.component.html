@@ -1,4 +1,4 @@
-<h2>
+<h2 layout="row">
     {{$ctrl.readme.moduleName}} README.md
     <md-button ng-href="{{$ctrl.gitUrl}}" target='_blank' class="md-icon-button" aria-label="Github icon">
         <md-tooltip md-direction="top">
@@ -6,10 +6,13 @@
         </md-tooltip>
         <md-icon class="githubIcon" md-svg-src="{{$ctrl.githubIcon}}"></md-icon>
     </md-button>
-    <hr>
+    <span flex></span>
+    {{$ctrl.selectedModule.startingDate}} — {{$ctrl.selectedModule.endingDate}}
 </h2>
 
-<div layout="row"layout-margin>
+<hr>
+
+<div layout="row" layout-margin>
     <div class="md-whiteframe-2dp" style="width: 100%">
         <div class="markdown-body" ng-bind-html="$ctrl.content"></div>
     </div>

@@ -1,25 +1,30 @@
-<div ng-click="$ctrl.onClick($ctrl.module)" class="module-block"
-    ng-style="{'left': $ctrl.module.leftPosition + 'px', 'width': $ctrl.module.blockWidth + 'px', 'background':  $ctrl.module.color}">
-    <md-tooltip>Run from {{$ctrl.module.startingDate}} to {{$ctrl.module.endingDate}}</md-tooltip>
-    {{$ctrl.module.module_name}}
+<div ng-click="$ctrl.onClick($ctrl.module)" class="running-module-block" ng-style="{left: $ctrl.module.leftPosition + 'px', width: $ctrl.module.blockWidth + 'px', background:  $ctrl.module.color}">
 
-    <md-menu ng-if="$ctrl.isTeacher()">
-        <md-button class="edit-module" ng-click="$mdMenu.open($event)" aria-label="Open user's' menu">
-            <md-tooltip md-direction='right'>
-                Edit {{$ctrl.module.module_name}}
-            </md-tooltip>
-            <md-icon md-font-set="material-icons">edit</md-icon>
-        </md-button>
-        <md-menu-content>
-            <md-menu-item>
-                <md-button ng-click="$ctrl.editRunningModule($event, $ctrl.module)">Edit</md-button>
-            </md-menu-item>
-            <md-menu-divider></md-menu-divider>
+    <!--<md-tooltip md-delay="1000">{{$ctrl.module.startingDate}} — {{$ctrl.module.endingDate}}</md-tooltip>-->
 
-            <md-menu-item>
-                <md-button ng-disabled="$ctrl.module.duration === 1" ng-click="$ctrl.splitRunningModule($ctrl.module)">Split</md-button>
-            </md-menu-item>
-        </md-menu-content>
-    </md-menu>
+    <div layout="row" layout-align="space-between center">
+        <div></div>
 
+        <div flex layout="row" layout-align="center center"><span style="text-overflow: ellipsis">{{$ctrl.module.module_name}}</span></div>
+
+        <md-menu ng-if="$ctrl.isTeacher()">
+            <md-button class="md-icon-button" ng-click="$mdMenu.open($event)" aria-label="Open user's' menu">
+                <md-icon md-font-set="material-icons">more_vert</md-icon>
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item>
+                    <md-button ng-click="$ctrl.editRunningModule($event, $ctrl.module)">
+                        <i class="fa fa-fw fa-pencil"></i> Edit
+                    </md-button>
+                </md-menu-item>
+                <md-menu-divider></md-menu-divider>
+
+                <md-menu-item>
+                    <md-button ng-disabled="$ctrl.module.duration === 1" ng-click="$ctrl.splitRunningModule($ctrl.module)">
+                        <i class="fa fa-fw fa-columns"></i> Split
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </div>
 </div>

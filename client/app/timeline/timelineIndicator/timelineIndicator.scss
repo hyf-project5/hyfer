@@ -1,0 +1,15 @@
+.timeline-indicator {
+    width: 0;
+    border: 0 dashed #0000FF;
+    border-left-width: 1px;
+    position: absolute;
+    z-index: 3;
+}
+
+.timeline-date {
+    margin-left: 5px;
+    position: absolute;
+    height: 40px;
+    z-index: 3;
+}
+
