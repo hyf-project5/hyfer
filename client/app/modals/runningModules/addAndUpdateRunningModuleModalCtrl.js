@@ -2,16 +2,18 @@ import angular from 'angular';
 
 import modalsModules from '../modals.module';
 import backendService from '../../services/backendService';
+import timelineService from '../../timeline/timeline.service';
 import toastService from '../../services/toastService';
 
 class AddAndUpdateRunningModuleModalController {
 
     static get $inject() {
-        return ['$mdDialog', backendService, 'className', 'selectedRunningModule', '$state', toastService];
+        return ['$mdDialog', timelineService, backendService, 'className', 'selectedRunningModule', '$state', toastService];
     }
 
-    constructor($mdDialog, backendService, className, selectedRunningModule, $state, toastService) {
+    constructor($mdDialog, timelineService, backendService, className, selectedRunningModule, $state, toastService) {
         this.$mdDialog = $mdDialog;
+        this.timelineService = timelineService;
         this.backendService = backendService;
         this.selectedRunningModule = selectedRunningModule;
         this.$state = $state;
@@ -53,7 +55,10 @@ class AddAndUpdateRunningModuleModalController {
                         // Plus 1 because to add after the module the user specified it
                         return this.backendService.addRunningModule(module.id, groupId, position)
                             .then(() => {
-                                this.$state.reload();
+
+                                // this.$state.reload();
+                                this.timelineService.notifyTimelineChanged();
+
                                 setTimeout(() => {
                                     this.toastService.displayToast(true, module.module_name + ' has been added.');
                                 }, 10);
@@ -71,12 +76,12 @@ class AddAndUpdateRunningModuleModalController {
                 this.$mdDialog.hide(submit)
                     .then(() => {
                         let newPosition = submit.afterModuleIndex || module.position;
-                        if(newPosition >= this.runningModules.length - 1 ){
+                        if (newPosition >= this.runningModules.length - 1) {
                             newPosition = -1;
-                        }else if(newPosition >= this.runningModules.length - 2){
+                        } else if (newPosition >= this.runningModules.length - 2) {
                             newPosition;
-                        }else{
-                            newPosition = newPosition +1;
+                        } else {
+                            newPosition = newPosition + 1;
                         }
                         const oldPosition = module.position;
                         submit.position = newPosition;
