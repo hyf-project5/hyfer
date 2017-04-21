@@ -14,14 +14,32 @@
             <md-menu-content width="4">
                 <md-menu-item>
                     <md-button ng-click="$ctrl.editRunningModule($event, $ctrl.module)">
-                        <md-icon md-font-set="material-icons">edit</md-icon> Edit
+                        <i class="hyf-dimmed fa fa-fw fa-pencil"></i> <span class="fa-menu-text">Edit</span>
                     </md-button>
                 </md-menu-item>
-                <md-menu-divider></md-menu-divider>
-
                 <md-menu-item>
-                    <md-button ng-disabled="$ctrl.module.duration === 1" ng-click="$ctrl.splitRunningModule($ctrl.module)">
-                        <md-icon md-font-set="material-icons">pause</md-icon> Split
+                    <md-button ng-disabled="$ctrl.module.duration <= 1" ng-click="$ctrl.splitRunningModule($ctrl.module)">
+                        <i class="hyf-dimmed fa fa-fw fa-scissors"></i> <span class="fa-menu-text">Split</span>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-disabled="$ctrl.module.position === 0" ng-click="$ctrl.moveLeft()">
+                        <i class="hyf-dimmed fa fa-fw fa-arrow-left"></i> <span class="fa-menu-text">Move left</span>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="$ctrl.moveRight()">
+                        <i class="hyf-dimmed fa fa-fw fa-arrow-right"></i> <span class="fa-menu-text">Move right</span>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="$ctrl.weekLonger()">
+                        <i class="hyf-dimmed fa fa-fw fa-fast-forward"></i> <span class="fa-menu-text">Week longer</span>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-disabled="$ctrl.module.duration <= 1" ng-click="$ctrl.weekShorter()">
+                        <i class="hyf-dimmed fa fa-fw fa-fast-backward"></i> <span class="fa-menu-text">Week shorter</span>
                     </md-button>
                 </md-menu-item>
             </md-menu-content>

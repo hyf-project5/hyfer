@@ -42,12 +42,9 @@ function addModuleToRunningModules(con, moduleId, groupId, position) {
 function updateRunningModule(con, updates, groupId, position) {
     return getAllFromRunningModules(con, groupId)
         .then(runningMods => {
-            const targetMod = runningMods.find(mod => mod.position === position);
-            runningMods = runningMods.filter(mod => mod.position !== position);
-            targetMod.description = updates.description || targetMod.description;
-            targetMod.duration = updates.duration || targetMod.duration;
-            targetMod.teacher1_id = updates.teacher1_id || targetMod.teacher1_id;
-            targetMod.teacher2_id = updates.teacher2_id || targetMod.teacher2_id;
+            const targetMod = runningMods[position];
+            runningMods.splice(position, 1);
+            Object.assign(targetMod, updates);
             insertRunningModuleAtIndex(runningMods, targetMod, updates.position || position);
             resequenceRunningModules(runningMods);
             return replaceRunningModules(con, runningMods, groupId);

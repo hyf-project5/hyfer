@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import timelineModule from '../timeline.module';
+import timelineService from '../timeline.service';
 import backendService from '../../services/backendService';
 import toastService from '../../services/toastService';
 import AddClassModalController from '../../modals/classes/addClass.controller';
@@ -11,15 +12,25 @@ import './timeline.scss';
 class TimelineController {
 
     static get $inject() {
-        return ['$sce', '$mdDialog', '$state', 'me', backendService, toastService];
+        return ['$sce', '$mdDialog', '$state', 'me', timelineService, backendService, toastService];
     }
 
-    constructor($sce, $mdDialog, $state, me, backendService, toastService) {
+    constructor($sce, $mdDialog, $state, me, timelineService, backendService, toastService) {
         this.me = me;
         this.$mdDialog = $mdDialog;
         this.$state = $state;
+        this.timelineService = timelineService;
         this.backendService = backendService;
         this.toastService = toastService;
+
+        this.timelineService.setTimelineChangedCallback(() => {
+            this.backendService.getTimeline()
+            .then(timeline => {
+                this.timeline = timeline;
+                this.composeTimeline();
+            })
+            .catch(err => console.log(err));
+        });
 
         setTimeout(() => {
             this.showFooter = true;
@@ -28,6 +39,10 @@ class TimelineController {
 
     $onInit() {
         document.getElementById('content').scrollTop = 0;
+        this.composeTimeline()
+    }
+
+    composeTimeline() {
         this.classNames = Object.keys(this.timeline);
         this.selectedModule = this.timeline[this.classNames[0]][0];
         this.height = (this.classNames.length * 60) + 40;
@@ -53,9 +68,12 @@ class TimelineController {
             this.backendService.addGroup(classInfo)
                 .then(() => {
                     this.toastService.displayToast(true, `${classInfo.group_name} has been added`);
-                    this.$state.reload();
+                    this.timelineService.notifyTimelineChanged();
                 });
-        }).catch(() => this.toastService.displayToast(false));
+        }).catch(err => {
+            console.log(err);
+            this.toastService.displayToast(false);
+        });
     }
 
     isTeacher() {

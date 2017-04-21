@@ -25,22 +25,16 @@ class TimelineSliderController {
         this.backendService = backendService;
         this.toastService = toastService;
         this.githubIcon = githubIcon;
-        this.timelineService.setTimelineChangedCallback(this.onTimelineChanged.bind(this));
     }
 
-    onTimelineChanged() {
-        return backendService.getTimeline()
-            .then(timeline => {
-                this.timeline = timeline;
-                this.composeTimeline();
-            });
+    $onChanges(changes) {
+        if (changes.timeline) {
+            this.timeline = changes.timeline.currentValue;
+            this.composeTimelineSlider();
+        }
     }
 
-    $onInit() {
-        this.composeTimeline();
-    }
-
-    composeTimeline() {
+    composeTimelineSlider() {
         this.classNames = Object.keys(this.timeline);
         this.selectedModule = this.timeline[this.classNames[0]][0];
 
@@ -75,12 +69,6 @@ class TimelineSliderController {
             });
         });
     }
-
-    // showReadme(module) {
-
-    //     this.selectedModule = module;
-    // }
-
 }
 
 const componentName = 'hyfTimelineSlider';

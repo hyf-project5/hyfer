@@ -55,10 +55,7 @@ class AddAndUpdateRunningModuleModalController {
                         // Plus 1 because to add after the module the user specified it
                         return this.backendService.addRunningModule(module.id, groupId, position)
                             .then(() => {
-
-                                // this.$state.reload();
                                 this.timelineService.notifyTimelineChanged();
-
                                 setTimeout(() => {
                                     this.toastService.displayToast(true, module.module_name + ' has been added.');
                                 }, 10);
@@ -88,7 +85,7 @@ class AddAndUpdateRunningModuleModalController {
                         submit.teacher2_id = submit.teacher2;
                         return this.backendService.updateRunningModule(groupId, oldPosition, submit)
                             .then(() => {
-                                this.$state.reload();
+                                this.timelineService.notifyTimelineChanged();
                                 setTimeout(() => {
                                     this.toastService.displayToast(true, module.module_name + ' has been updated.');
                                 }, 10);
@@ -108,7 +105,7 @@ class AddAndUpdateRunningModuleModalController {
                         const position = module.position;
                         this.backendService.deleteRunningModule(groupId, position)
                             .then(() => {
-                                this.$state.reload();
+                                this.timelineService.notifyTimelineChanged();
                                 setTimeout(() => {
                                     this.toastService.displayToast(true, module.module_name + ' has been deleted.');
                                 }, 10);

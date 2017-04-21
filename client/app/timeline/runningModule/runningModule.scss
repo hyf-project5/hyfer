@@ -1,12 +1,10 @@
 @import '../../../assets/scss/variables';
-
 .running-module-block {
     display: inline-block;
     position: relative;
     margin: 0 0 6px 6px;
     height: $module-height;
-    line-height: $module-height;
-    // text-align: center;
+    line-height: $module-height; // text-align: center;
     vertical-align: middle;
     color: white;
     text-shadow: 1px 1px 2px black;
@@ -29,6 +27,11 @@
     }
 }
 
+.fa-menu-text {
+    display: inline-block;
+    margin-left: 10px;
+}
+
 .edit-module {
     opacity: 0;
     min-width: 10px;
@@ -36,5 +39,3 @@
         opacity: 0.5;
     }
 }
-
-

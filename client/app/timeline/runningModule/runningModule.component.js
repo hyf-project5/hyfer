@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import timelineModule from '../timeline.module';
+import timelineService from '../timeline.service';
 import template from './runningModule.component.html';
 import backendService from '../../services/backendService';
 import addAndUpdateRunningModuleModalCtrl from '../../modals/runningModules/addAndUpdateRunningModuleModalCtrl';
@@ -10,13 +11,14 @@ import './runningModule.scss';
 class RunningModuleController {
 
     static get $inject() {
-        return ['$state', '$mdDialog', 'me', backendService];
+        return ['$state', '$mdDialog', 'me', timelineService, backendService];
     }
 
-    constructor($state, $mdDialog, me, backendService) {
+    constructor($state, $mdDialog, me, timelineService, backendService) {
         this.$state = $state;
         this.$mdDialog = $mdDialog;
         this.me = me;
+        this.timelineService = timelineService;
         this.backendService = backendService;
     }
 
@@ -36,7 +38,7 @@ class RunningModuleController {
 
     splitRunningModule(module) {
         this.backendService.splitRunningModule(module.id, module.position)
-            .then(() => this.$state.reload())
+            .then(() => this.timelineService.notifyTimelineChanged())
             .catch(err => console.log(err));
     }
 
@@ -44,6 +46,36 @@ class RunningModuleController {
         return this.me.role === 'teacher';
     }
 
+    moveLeft() {
+        const position = this.module.position - 1;
+        this.backendService.updateRunningModule(this.module.id, this.module.position, { position })
+            .then(() => {
+                this.timelineService.notifyTimelineChanged();
+            })
+            .catch(err => console.log(err));
+    }
+
+    moveRight() {
+        const position = this.module.position + 1;
+        this.backendService.updateRunningModule(this.module.id, this.module.position, { position })
+            .then(() => {
+                this.timelineService.notifyTimelineChanged();
+            })
+            .catch(err => console.log(err));
+    }
+
+    weekShorter() {
+        const duration = this.module.duration - 1;
+        this.backendService.updateRunningModule(this.module.id, this.module.position, { duration })
+            .then(() => {
+                this.timelineService.notifyTimelineChanged();
+            })
+            .catch(err => console.log(err));
+    }
+
+    weekLonger() {
+        console.log('weekLonger');
+    }
 }
 
 const componentName = 'hyfRunningModule';

@@ -14,7 +14,7 @@ passport.use(new GitHubStrategy({
         full_name: profile.displayName
     };
 
-    if (profile.emails.length > 0) {
+    if (profile.emails && profile.emails.length > 0) {
         userInfo.email = profile.emails[0].value;
     }
 
