@@ -9,19 +9,19 @@
 
         <md-menu ng-if="$ctrl.isTeacher()">
             <md-button class="md-icon-button" ng-click="$mdMenu.open($event)" aria-label="Open user's' menu">
-                <md-icon md-font-set="material-icons">more_vert</md-icon>
+                <md-icon md-font-set="material-icons" style="color: white">more_vert</md-icon>
             </md-button>
             <md-menu-content width="4">
                 <md-menu-item>
                     <md-button ng-click="$ctrl.editRunningModule($event, $ctrl.module)">
-                        <i class="fa fa-fw fa-pencil"></i> Edit
+                        <md-icon md-font-set="material-icons">edit</md-icon> Edit
                     </md-button>
                 </md-menu-item>
                 <md-menu-divider></md-menu-divider>
 
                 <md-menu-item>
                     <md-button ng-disabled="$ctrl.module.duration === 1" ng-click="$ctrl.splitRunningModule($ctrl.module)">
-                        <i class="fa fa-fw fa-columns"></i> Split
+                        <md-icon md-font-set="material-icons">pause</md-icon> Split
                     </md-button>
                 </md-menu-item>
             </md-menu-content>
