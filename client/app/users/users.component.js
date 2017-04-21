@@ -20,9 +20,10 @@ class UsersController {
         this.toastService = toastService;
     }
 
-    $onInit(){
-        for(const val of this.users){
-            if(!val.github_username){
+    $onInit() {
+        document.getElementById('content').scrollTop = 0;
+        for (const val of this.users) {
+            if (!val.github_username) {
                 val.github_username = "random";
             }
         }
