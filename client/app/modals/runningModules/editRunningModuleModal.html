@@ -34,7 +34,7 @@
                 <md-input-container class="md-block">
                     <label>{{teacher2 || 'Teacher 2'}}</label>
                     <md-select aria-label="teacher 2" ng-model="teacher2">
-                        <md-option ng-repeat="user in $ctrl.users" ng-value="user.id">{{user.username}}</md-option>
+                        <md-option ng-repeat="user in $ctrl.users">{{user.username}}</md-option>
                     </md-select>
                 </md-input-container>
 
