@@ -38,6 +38,7 @@ class ModulesController {
     }
 
     $onInit() {
+        document.getElementById('content').scrollTop = 0;
         const durations = this.modules.map(module => module.default_duration);
         this.maxDuration = Math.max(...durations);
     }

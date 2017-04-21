@@ -6,6 +6,10 @@ const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 class TimeLineService {
 
+    constructor() {
+        this._notificationCallback = null;
+    }
+
     getDateOfPastSunday(date) {
         const newDate = new Date(date);
         newDate.setHours(0, 0, 0, 0);
@@ -17,6 +21,16 @@ class TimeLineService {
 
     getFormattedDateString(date) {
         return `${DAY_NAMES[date.getDay()]}, ${date.getDate()} ${MONTH_NAMES[date.getMonth()]} ${date.getFullYear()}`;
+    }
+
+   setTimelineChangedCallback(notificationCallback) {
+        this._notificationCallback = notificationCallback;
+    }
+
+    notifyTimelineChanged() {
+        if (this._notificationCallback) {
+            this._notificationCallback();
+        }
     }
 }
 

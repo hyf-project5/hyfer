@@ -11,9 +11,11 @@
     <link href="./assets/images/favicon.ico" rel="icon" type="image/x-icon" />
 </head>
 
-<body ng-app="hyferApp" ng-cloak>
+<body ng-app="hyferApp" layout="column" ng-cloak>
     <hyf-toolbar></hyf-toolbar>
-    <div ui-view></div>
+    <md-content id="content" layout="column" layout-padding flex>
+        <div ui-view></div>
+    </md-content>
     <script src="./bundle.js"></script>
 </body>
 
