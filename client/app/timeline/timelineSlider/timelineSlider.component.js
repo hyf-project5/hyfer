@@ -25,9 +25,22 @@ class TimelineSliderController {
         this.backendService = backendService;
         this.toastService = toastService;
         this.githubIcon = githubIcon;
+        this.timelineService.setTimelineChangedCallback(this.onTimelineChanged.bind(this));
+    }
+
+    onTimelineChanged() {
+        return backendService.getTimeline()
+            .then(timeline => {
+                this.timeline = timeline;
+                this.composeTimeline();
+            });
     }
 
     $onInit() {
+        this.composeTimeline();
+    }
+
+    composeTimeline() {
         this.classNames = Object.keys(this.timeline);
         this.selectedModule = this.timeline[this.classNames[0]][0];
 

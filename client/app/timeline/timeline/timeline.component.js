@@ -20,17 +20,17 @@ class TimelineController {
         this.$state = $state;
         this.backendService = backendService;
         this.toastService = toastService;
+
         setTimeout(() => {
             this.showFooter = true;
         }, 60);
     }
 
     $onInit() {
+        document.getElementById('content').scrollTop = 0;
         this.classNames = Object.keys(this.timeline);
         this.selectedModule = this.timeline[this.classNames[0]][0];
-
         this.height = (this.classNames.length * 60) + 40;
-
     }
 
     onModuleClick(module) {
