@@ -24,8 +24,7 @@
             <md-card-title-text>
                 <span class="md-headline">{{user.full_name}}</span>
                 <span class="md-subhead"><i class="hyf-dimmed fa fa-fw fa-graduation-cap"></i> {{user.role}}</span>
-                <span class="md-subhead"><i class="fa fa-clock-o"></i>{{user.register_date}}</span>
-                <span class="md-subhead"><i class="fa fa-graduation-cap"></i>{{user.role}}</span>
+                <span class="md-subhead"><i class="fa fa-fw fa-clock-o"></i> {{user.register_date | date : 'mediumDate'}}</span>
                 <span class="md-subhead" ng-if="user.email">
                     <a href="mailto:{{user.email}}" target="_blank" title="E-mail {{user.full_name}}">
                         <i class="hyf-dimmed fa fa-fw fa-envelope"></i> {{user.email}}</a>
