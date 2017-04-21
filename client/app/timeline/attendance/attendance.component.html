@@ -1,0 +1,51 @@
+<div>
+    <h2>Attendance in {{$ctrl.historyobj.classname}} of {{$ctrl.historyobj.rmName}}</h2>
+    <hr>
+    <md-card>
+        <md-card-content layout="row">
+            <div>
+                <div class="weeks-block">Student:</div>
+                <md-divider></md-divider>
+                <p class="student-block" ng-repeat="attendant in $ctrl.attendants">
+                    {{attendant[0].username}}
+                </p>
+            </div>
+            <span flex></span>
+
+            <div class="check-box-block">
+                <div layout="row" class "weeks-block">
+                    <div class="week" ng-repeat="date in $ctrl.moduleSundays">sun, {{date}}</div>
+                </div>
+                <md-divider></md-divider>
+                <div ng-repeat="attendant in $ctrl.attendants" layout="row">
+                    <div ng-repeat="student in attendant">
+                        <div class="check-box" layout="row">
+                            <md-input-container>
+                                <md-checkbox ng-true-value="1" ng-false-value="0" ng-model="student.homework" aria-label="homework" ng-change="$ctrl.changeInStudentsHistory()">homework</md-checkbox>
+                            </md-input-container>
+
+                            <md-input-container>
+                                <md-checkbox ng-true-value="1" ng-false-value="0" ng-model="student.attendance" aria-label="attendance" ng-change="$ctrl.changeInStudentsHistory()">attendance</md-checkbox>
+                            </md-input-container>
+                            <md-divider class="vert-divider" ng-if="!$last"></md-divider>
+                            <md-tooltip style="font-size: 1em;" ng-if="$ctrl.dummyData" md-direction='top'>
+                                Nothing will changes, it's dummy data
+                            </md-tooltip>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </md-card-content>
+        <div layout="row">
+            <span flex="" class="flex"></span>
+            <md-button ng-disabled="!$ctrl.toggleCancel" class="module-add md-raised md-fab" ng-click="$ctrl.cancelChanges()">
+                <md-icon md-font-set="material-icons">undo</md-icon>
+                <md-tooltip md-direction='top'>Undo Changes</md-tooltip>
+            </md-button>
+            <md-button ng-disabled="!$ctrl.toggleSave" ng-click="$ctrl.saveHistory()" class="module-add md-raised md-fab" type='submit'>
+                <md-icon md-font-set="material-icons">save</md-icon>
+                <md-tooltip md-direction='top'>save Changes</md-tooltip>
+            </md-button>
+        </div>
+    </md-card>
+</div>

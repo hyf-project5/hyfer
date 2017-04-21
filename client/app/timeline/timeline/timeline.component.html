@@ -10,6 +10,7 @@
         <hyf-class-block class-names="$ctrl.classNames"></hyf-class-block>
         <hyf-timeline-slider timeline="$ctrl.timeline" on-module-click="$ctrl.onModuleClick(module)"></hyf-timeline-slider>
     </div>
+    <hyf-attendance ng-if="$ctrl.isTeacher()" selected-module="$ctrl.selectedModule"></hyf-attendance>
     <hyf-readme selected-module="$ctrl.selectedModule"></hyf-readme>
 </div>
 <hyf-footer ng-show="$ctrl.showFooter"></hyf-footer>

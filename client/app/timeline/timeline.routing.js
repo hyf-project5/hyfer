@@ -11,6 +11,7 @@ import './timelineIndicator/timelineIndicator.component';
 import './readme/readme.component';
 import './runningModule/runningModule.component';
 import '../footer/footer.component';
+import './attendance/attendance.component';
 
 routing.$inject = ['$stateProvider'];
 
