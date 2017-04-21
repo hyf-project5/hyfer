@@ -37,8 +37,10 @@ class TimelineIndicatorController {
         const scrollToLeft = this.indicatorPosition - INDICATOR_OFFSET;
 
         setTimeout(() => {
-            document.getElementById('timeline-slider').scrollLeft = scrollToLeft;
-        }, 100);
+            const slider = document.getElementById('timeline-slider');
+            slider.scrollLeft = scrollToLeft;
+            slider.classList.remove('slider-hide');
+        });
     }
 }
 

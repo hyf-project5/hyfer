@@ -10,3 +10,12 @@
 .modules-container {
     margin-top: 20px;
 }
+
+.slider-fade-in {
+    opacity: 1;
+    transition: opacity 250ms;
+    &.slider-hide {
+        visibility: hidden;
+        opacity: 0;
+    }
+}

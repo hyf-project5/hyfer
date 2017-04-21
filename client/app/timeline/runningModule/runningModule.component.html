@@ -28,18 +28,18 @@
                     </md-button>
                 </md-menu-item>
                 <md-menu-item>
-                    <md-button ng-click="$ctrl.moveRight()">
+                    <md-button ng-disabled="$ctrl.module.position >= $ctrl.modules.length - 1" ng-click="$ctrl.moveRight()">
                         <i class="hyf-dimmed fa fa-fw fa-arrow-right"></i> <span class="fa-menu-text">Move right</span>
                     </md-button>
                 </md-menu-item>
                 <md-menu-item>
                     <md-button ng-click="$ctrl.weekLonger()">
-                        <i class="hyf-dimmed fa fa-fw fa-fast-forward"></i> <span class="fa-menu-text">Week longer</span>
+                        <i class="hyf-dimmed fa fa-fw fa-plus-circle"></i> <span class="fa-menu-text">Week longer</span>
                     </md-button>
                 </md-menu-item>
                 <md-menu-item>
                     <md-button ng-disabled="$ctrl.module.duration <= 1" ng-click="$ctrl.weekShorter()">
-                        <i class="hyf-dimmed fa fa-fw fa-fast-backward"></i> <span class="fa-menu-text">Week shorter</span>
+                        <i class="hyf-dimmed fa fa-fw fa-minus-circle"></i> <span class="fa-menu-text">Week shorter</span>
                     </md-button>
                 </md-menu-item>
             </md-menu-content>

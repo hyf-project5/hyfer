@@ -74,7 +74,12 @@ class RunningModuleController {
     }
 
     weekLonger() {
-        console.log('weekLonger');
+        const duration = this.module.duration + 1;
+        this.backendService.updateRunningModule(this.module.id, this.module.position, { duration })
+            .then(() => {
+                this.timelineService.notifyTimelineChanged();
+            })
+            .catch(err => console.log(err));
     }
 }
 
@@ -85,6 +90,7 @@ angular.module(timelineModule)
         template,
         bindings: {
             module: '<',
+            modules: '<',
             onClick: '&'
         },
         controller: RunningModuleController
