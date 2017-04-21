@@ -14,10 +14,10 @@ function getHistory(req, res) {
                 data.push(...generateStudents(sundays, data));
             }
             const result = data.reduce((acc, cur) => {
-                if (acc.hasOwnProperty(cur.username)) {
-                    acc[cur.username].push(cur);
+                if (acc.hasOwnProperty(cur.full_name)) {
+                    acc[cur.full_name].push(cur);
                 } else {
-                    acc[cur.username] = [cur];
+                    acc[cur.full_name] = [cur];
                 }
                 return acc;
             }, {});

@@ -17,24 +17,24 @@ class AttendanceCardController {
         this.backendService = backendService;
         this.me = me;
         this.attendances = {
-            Malek: [{ username: "malek kanaan", date: "2017-04-9", user_id: 12, attendance: 1, homework: 1 },
-            { username: "malek", date: "2017-04-16", user_id: 12, attendance: 1, homework: 1 },
-            { username: "malek", date: "2017-04-23", user_id: 12, attendance: 0, homework: 0 }],
-            Hasan: [{ username: "hasan", date: "2017-04-9", user_id: 12, attendance: 0, homework: 0 },
-            { username: "hasan", date: "2017-04-16", user_id: 12, attendance: 0, homework: 0 },
-            { username: "hasan", date: "2017-04-23", user_id: 12, attendance: 0, homework: 0 }],
-            jack: [{ username: "jack", date: "2017-04-9", user_id: 12, attendance: 1, homework: 0 },
-            { username: "jack", date: "2017-04-16", user_id: 12, attendance: 1, homework: 0 },
-            { username: "jack", date: "2017-04-23", user_id: 12, attendance: 1, homework: 0 }],
-            ahmed: [{ username: "ahmed", date: "2017-04-9", user_id: 12, attendance: 1, homework: 1 },
-            { username: "ahmed", date: "2017-04-16", user_id: 12, attendance: 1, homework: 1 },
-            { username: "ahmed", date: "2017-04-23", user_id: 12, attendance: 1, homework: 1 }],
-            jim: [{ username: "jim", date: "2017-04-9", user_id: 12, attendance: 0, homework: 0 },
-            { username: "jim", date: "2017-04-16", user_id: 12, attendance: 0, homework: 0 },
-            { username: "jim", date: "2017-04-23", user_id: 12, attendance: 0, homework: 0 }],
-            Sam: [{ username: "Sam", date: "2017-04-9", user_id: 12, attendance: 1, homework: 0 },
-            { username: "Sam", date: "2017-04-16", user_id: 12, attendance: 1, homework: 0 },
-            { username: "Sam", date: "2017-04-23", user_id: 12, attendance: 1, homework: 0 }]
+            Malek: [{ full_name: "malek kanaan", date: "2017-04-9", user_id: 12, attendance: 1, homework: 1 },
+            { full_name: "malek", date: "2017-04-16", user_id: 12, attendance: 1, homework: 1 },
+            { full_name: "malek", date: "2017-04-23", user_id: 12, attendance: 0, homework: 0 }],
+            Hasan: [{ full_name: "hasan", date: "2017-04-9", user_id: 12, attendance: 0, homework: 0 },
+            { full_name: "hasan", date: "2017-04-16", user_id: 12, attendance: 0, homework: 0 },
+            { full_name: "hasan", date: "2017-04-23", user_id: 12, attendance: 0, homework: 0 }],
+            jack: [{ full_name: "jack", date: "2017-04-9", user_id: 12, attendance: 1, homework: 0 },
+            { full_name: "jack", date: "2017-04-16", user_id: 12, attendance: 1, homework: 0 },
+            { full_name: "jack", date: "2017-04-23", user_id: 12, attendance: 1, homework: 0 }],
+            ahmed: [{ full_name: "ahmed", date: "2017-04-9", user_id: 12, attendance: 1, homework: 1 },
+            { full_name: "ahmed", date: "2017-04-16", user_id: 12, attendance: 1, homework: 1 },
+            { full_name: "ahmed", date: "2017-04-23", user_id: 12, attendance: 1, homework: 1 }],
+            jim: [{ full_name: "jim", date: "2017-04-9", user_id: 12, attendance: 0, homework: 0 },
+            { full_name: "jim", date: "2017-04-16", user_id: 12, attendance: 0, homework: 0 },
+            { full_name: "jim", date: "2017-04-23", user_id: 12, attendance: 0, homework: 0 }],
+            Sam: [{ full_name: "Sam", date: "2017-04-9", user_id: 12, attendance: 1, homework: 0 },
+            { full_name: "Sam", date: "2017-04-16", user_id: 12, attendance: 1, homework: 0 },
+            { full_name: "Sam", date: "2017-04-23", user_id: 12, attendance: 1, homework: 0 }]
         };
     }
 
