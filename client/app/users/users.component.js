@@ -5,6 +5,7 @@ import backendService from '../services/backendService';
 import toastService from '../services/toastService';
 import template from './users.component.html';
 import './users.scss';
+import avatar from '../../assets/images/avatar.png';
 
 class UsersController {
 
@@ -18,6 +19,7 @@ class UsersController {
         this.$mdDialog = $mdDialog;
         this.$state = $state;
         this.toastService = toastService;
+        this.avatar = avatar;
     }
 
     $onInit() {
