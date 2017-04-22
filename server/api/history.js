@@ -12,6 +12,14 @@ function getHistory(req, res) {
             if (data.length < 1) return res.status(204).json(data);
             if (sundays) {
                 data.push(...generateStudents(sundays, data));
+                const attendances=[];
+                for (let attendance of data) {
+                    let datesAreInModules = sundays.some(date => date === attendance.date);
+                    if(datesAreInModules){
+                        attendances.push(attendance);
+                    }
+                }
+                data = attendances;
             }
             const result = data.reduce((acc, cur) => {
                 if (acc.hasOwnProperty(cur.full_name)) {
