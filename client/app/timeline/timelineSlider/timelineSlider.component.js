@@ -8,7 +8,6 @@ import template from './timelineSlider.component.html';
 import githubIcon from '../../../assets/images/github.svg';
 import './timelineSlider.scss';
 
-const RUNNING_MODULE_HEIGHT = 55;
 const DAYS_PER_WEEK = 7;
 const MSECS_PER_DAY = 1000 * 60 * 60 * 24;
 
@@ -37,9 +36,6 @@ class TimelineSliderController {
     composeTimelineSlider() {
         this.classNames = Object.keys(this.timeline);
         this.selectedModule = this.timeline[this.classNames[0]][0];
-
-        this.indicatorHeight = (this.classNames.length * 60) + 20;
-        this.readmeHeaderTop = this.indicatorHeight + RUNNING_MODULE_HEIGHT;
 
         const firstClassName = this.classNames[0];
         const firstClassRunningModules = this.timeline[firstClassName];

@@ -26,7 +26,7 @@ class ReadmeController {
             this.gitUrl = this.selectedModule.git_url + this.selectedModule.git_repo;
 
             if (!this.selectedModule.git_repo) {
-                this.toastService.displayToast(true, 'This selectedModule has no repository available.');
+                this.toastService.displayToast(true, 'This selected module has no repository available.');
                 return;
             }
 
