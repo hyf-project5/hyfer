@@ -4,7 +4,7 @@
     position: relative;
     margin: 0 0 6px 6px;
     height: $module-height;
-    line-height: $module-height; // text-align: center;
+    line-height: $module-height;
     vertical-align: middle;
     color: white;
     text-shadow: 1px 1px 2px black;
@@ -25,6 +25,12 @@
         width: 30px;
         margin: 0 6px 0 0;
     }
+}
+
+.selected-module {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: yellow;
 }
 
 .fa-menu-text {

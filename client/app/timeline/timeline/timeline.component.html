@@ -8,9 +8,23 @@
     </div>
     <div class="timeline-scroll-container" ng-style="{height: $ctrl.height + 'px'}">
         <hyf-class-block class-names="$ctrl.classNames"></hyf-class-block>
-        <hyf-timeline-slider timeline="$ctrl.timeline" on-module-click="$ctrl.onModuleClick(module)"></hyf-timeline-slider>
+        <hyf-timeline-slider timeline="$ctrl.timeline" selected-module="$ctrl.selectedModule" on-click="$ctrl.onClick(module)"></hyf-timeline-slider>
     </div>
-    <hyf-attendance ng-if="$ctrl.isTeacher()" selected-module="$ctrl.selectedModule"></hyf-attendance>
-    <hyf-readme selected-module="$ctrl.selectedModule"></hyf-readme>
+
+    <hyf-readme ng-if="!$ctrl.isTeacher()" selected-module="$ctrl.selectedModule"></hyf-readme>
+
+    <md-tabs ng-if="$ctrl.isTeacher()" md-dynamic-height>
+        <md-tab label="readme">
+            <md-content>
+                <hyf-readme selected-module="$ctrl.selectedModule"></hyf-readme>
+            </md-content>
+        </md-tab>
+        <md-tab label="attendance">
+            <md-content>
+                <hyf-attendance ng-if="$ctrl.isTeacher()" selected-module="$ctrl.selectedModule"></hyf-attendance>
+            </md-content>
+        </md-tab>
+    </md-tabs>
 </div>
+
 <hyf-footer ng-show="$ctrl.showFooter"></hyf-footer>

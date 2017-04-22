@@ -9,6 +9,7 @@ import './classBlock/classBlockItem.component';
 import './readme/readme.component';
 import './timelineIndicator/timelineIndicator.component';
 import './readme/readme.component';
+import './timelineRow/timelineRow.component';
 import './runningModule/runningModule.component';
 import '../footer/footer.component';
 import './attendance/attendance.component';

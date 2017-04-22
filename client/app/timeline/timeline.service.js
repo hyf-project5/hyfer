@@ -1,4 +1,5 @@
 import angular from 'angular';
+
 import timelineModule from './timeline.module';
 import backendService from '../services/backendService';
 

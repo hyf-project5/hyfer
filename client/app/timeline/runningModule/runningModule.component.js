@@ -4,14 +4,24 @@ import timelineModule from '../timeline.module';
 import timelineService from '../timeline.service';
 import template from './runningModule.component.html';
 import backendService from '../../services/backendService';
-import addAndUpdateRunningModuleModalCtrl from '../../modals/runningModules/addAndUpdateRunningModuleModalCtrl';
-import editRunningModuleTemplate from '../../modals/runningModules/editRunningModuleModal.html';
+import ModuleEditDialogController from './moduleEditDialog.controller';
+import moduleEditDialogTemplate from './moduleEditDialog.template.html';
+import ModuleTeachersDialogController from './moduleTeachersDialog.controller';
+import moduleTeachersDialogTemplate from './moduleTeachersDialog.template.html';
 import './runningModule.scss';
 
 class RunningModuleController {
 
     static get $inject() {
         return ['$state', '$mdDialog', 'me', timelineService, backendService];
+    }
+
+    get style() {
+        return {
+            left: this.module.leftPosition + 'px',
+            width: this.module.blockWidth + 'px',
+            background: this.module.color
+        };
     }
 
     constructor($state, $mdDialog, me, timelineService, backendService) {
@@ -22,24 +32,26 @@ class RunningModuleController {
         this.backendService = backendService;
     }
 
-    editRunningModule(ev, module) {
+    editModule(ev) {
         this.$mdDialog.show({
-            locals: {
-                className: module.group_name,
-                selectedRunningModule: module
-            },
-            controller: addAndUpdateRunningModuleModalCtrl,
+            locals: { module: this.module },
+            controller: ModuleEditDialogController,
             controllerAs: '$ctrl',
-            template: editRunningModuleTemplate,
+            template: moduleEditDialogTemplate,
             targetEvent: ev,
             clickOutsideToClose: true
         });
     }
 
-    splitRunningModule(module) {
-        this.backendService.splitRunningModule(module.id, module.position)
-            .then(() => this.timelineService.notifyChanged())
-            .catch(err => console.log(err));
+    editTeachers(ev) {
+        this.$mdDialog.show({
+            locals: { module: this.module },
+            controller: ModuleTeachersDialogController,
+            controllerAs: '$ctrl',
+            template: moduleTeachersDialogTemplate,
+            targetEvent: ev,
+            clickOutsideToClose: true
+        });
     }
 
     isTeacher() {
@@ -90,8 +102,8 @@ angular.module(timelineModule)
         template,
         bindings: {
             module: '<',
-            modules: '<',
-            onClick: '&'
+            selectedModule: '<',
+            modules: '<'
         },
         controller: RunningModuleController
     });

@@ -44,7 +44,7 @@ class TimelineController {
         this.height = (this.classNames.length * 60) + 40;
     }
 
-    onModuleClick(module) {
+    onClick(module) {
         this.selectedModule = module;
     }
 

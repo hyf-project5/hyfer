@@ -1,6 +1,5 @@
 @import 'variables';
-// @import 'readme';
-// @import 'timeline';
+@import 'font-awesome';
 @import 'classes';
 @import 'modules';
 @import 'users';
@@ -111,8 +110,4 @@ a:active {
     .module-description {
         font-size: .8em;
     }
-}
-
-.hyf-dimmed {
-    color: gray;
 }

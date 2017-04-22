@@ -69,6 +69,10 @@ class TimelineSliderController {
             });
         });
     }
+
+    clicked(module) {
+        this.onClick({ module });
+    }
 }
 
 const componentName = 'hyfTimelineSlider';
@@ -78,7 +82,8 @@ angular.module(timelineModule)
         template: template,
         bindings: {
             timeline: '<',
-            onModuleClick: '&'
+            selectedModule: '<',
+            onClick: '&'
         },
         controller: TimelineSliderController
     });

@@ -4,7 +4,7 @@
 
     <div class="modules-container">
         <div ng-repeat="className in $ctrl.classNames">
-            <hyf-running-module ng-repeat="module in $ctrl.timeline[className]" module="module" modules="$ctrl.timeline[className]" on-click="$ctrl.onModuleClick({module})"></hyf-running-module>
+            <hyf-timeline-row modules="$ctrl.timeline[className]" selected-module="$ctrl.selectedModule" on-click="$ctrl.clicked(module)"></hyf-timeline-row>
         </div>
     </div>
 
