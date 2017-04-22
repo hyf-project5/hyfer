@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 const jwt = require('jsonwebtoken');
-const expressJwt = require('express-jwt')
-const compose = require('composable-middleware')
+const expressJwt = require('express-jwt');
+const compose = require('composable-middleware');
 const config = require('../config/config');
 const users = require('../datalayer/users');
 
@@ -27,7 +27,7 @@ function gitHubCallback(req, res, next) {
                 });
         })
         .then(() => next())
-        .catch(err => console.log('Error from gitHubCallback: ' + err))
+        .catch(err => console.log('Error from gitHubCallback: ' + err));
 }
 
 
@@ -49,7 +49,7 @@ function isAuthenticated() {
                             } else {
                                 res.sendStatus(403);
                             }
-                        })
+                        });
                 })
                 .catch(err => console.log(err));
         });
@@ -67,7 +67,7 @@ function hasRole(role) {
             } else {
                 res.sendStatus(403);
             }
-        })
+        });
 }
 
 function getConnection(req, res) {
@@ -84,15 +84,15 @@ function getConnection(req, res) {
 }
 
 function signToken(username) {
-    return jwt.sign({ username }, config.jwtSecret, { expiresIn: EXPIRES_IN_SECONDS })
+    return jwt.sign({ username }, config.jwtSecret, { expiresIn: EXPIRES_IN_SECONDS });
 }
 
 function setTokenCookie(req, res) {
     if (!req.user) {
         return void res.statusStatus(404);
     }
-    let token = signToken(req.user.username);
-    res.cookie('token', JSON.stringify(token), { maxAge: EXPIRES_IN_SECONDS * 1000 })
+    const token = signToken(req.user.username);
+    res.cookie('token', JSON.stringify(token), { maxAge: EXPIRES_IN_SECONDS * 1000 });
     res.redirect(config.url + '/#!/timeline');
 }
 
@@ -101,4 +101,4 @@ module.exports = {
     setTokenCookie,
     isAuthenticated,
     hasRole
-}
+};

@@ -1,12 +1,18 @@
 import angular from 'angular';
 import timelineModule from './timeline.module';
+import backendService from '../services/backendService';
 
 const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 class TimeLineService {
 
-    constructor() {
+    static get $inject() {
+        return [backendService];
+    }
+
+    constructor(backendService) {
+        this.backendService = backendService;
         this._notificationCallback = null;
     }
 
@@ -23,13 +29,15 @@ class TimeLineService {
         return `${DAY_NAMES[date.getDay()]}, ${date.getDate()} ${MONTH_NAMES[date.getMonth()]} ${date.getFullYear()}`;
     }
 
-   setTimelineChangedCallback(notificationCallback) {
+    setCallback(notificationCallback) {
         this._notificationCallback = notificationCallback;
     }
 
-    notifyTimelineChanged() {
+    notifyChanged() {
         if (this._notificationCallback) {
-            this._notificationCallback();
+            this.backendService.getTimeline()
+                .then(timeline => this._notificationCallback(timeline))
+                .catch(err => console.log(err));
         }
     }
 }

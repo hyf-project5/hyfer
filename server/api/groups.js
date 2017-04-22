@@ -7,7 +7,7 @@ function getTimelineForAllGroups(req, res) {
     getConnection(req, res)
         .then(con => db.getTimelineForAllGroups(con))
         .then(result => {
-            let groupedModules = _.groupBy(result, module => module.group_name);
+            const groupedModules = _.groupBy(result, module => module.group_name);
             res.json(groupedModules);
         });
     // .then(result => {res.json(result); console.log(result);});
@@ -17,7 +17,7 @@ function getTimelineForAGroup(req, res) {
     getConnection(req, res)
         .then(con => db.getTimelineForAGroup(con, req.params.id))
         .then(result => {
-            let groupedModules = _.groupBy(result, module => module.group_name);
+            const groupedModules = _.groupBy(result, module => module.group_name);
             res.json(groupedModules);
         });
 }
@@ -46,4 +46,4 @@ module.exports = {
     addGroup,
     updateGroup,
     deleteGroup
-}
+};

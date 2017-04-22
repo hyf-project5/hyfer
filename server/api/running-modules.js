@@ -3,7 +3,7 @@ const db = require('../datalayer/running-modules');
 const getConnection = require('./connection').getConnection;
 
 function getRunningModules(req, res) {
-    let groupId = parseInt(req.params.groupId, 10);
+    const groupId = +req.params.groupId;
     getConnection(req, res)
         .then(con => db.getRunningModules(con, groupId))
         .then(result => res.json(result))
@@ -11,9 +11,9 @@ function getRunningModules(req, res) {
 }
 
 function addModuleToRunningModules(req, res) {
-    let moduleId = parseInt(req.params.moduleId, 10);
-    let groupId = parseInt(req.params.groupId, 10);
-    let position = parseInt(req.params.position, 10);
+    const moduleId = +req.params.moduleId;
+    const groupId = +req.params.groupId;
+    const position = +req.params.position;
     getConnection(req, res)
         .then(con => db.addModuleToRunningModules(con, moduleId, groupId, position))
         .then(result => res.json(result))
@@ -21,9 +21,9 @@ function addModuleToRunningModules(req, res) {
 }
 
 function updateRunningModule(req, res) {
-    let groupId = parseInt(req.params.groupId, 10);
-    let position = parseInt(req.params.position, 10);
-    let updates = req.body;
+    const groupId = +req.params.groupId;
+    const position = +req.params.position;
+    const updates = req.body;
     getConnection(req, res)
         .then(con => db.updateRunningModule(con, updates, groupId, position))
         .then(result => res.json(result))
@@ -31,8 +31,8 @@ function updateRunningModule(req, res) {
 }
 
 function deleteRunningModule(req, res) {
-    let groupId = parseInt(req.params.groupId, 10);
-    let position = parseInt(req.params.position, 10);
+    const groupId = +req.params.groupId;
+    const position = +req.params.position;
     getConnection(req, res)
         .then(con => db.deleteRunningModule(con, groupId, position))
         .then(result => res.json(result))
@@ -40,8 +40,8 @@ function deleteRunningModule(req, res) {
 }
 
 function splitRunningModule(req, res) {
-    let groupId = parseInt(req.params.groupId, 10);
-    let position = parseInt(req.params.position, 10);
+    const groupId = +req.params.groupId;
+    const position = +req.params.position;
     getConnection(req, res)
         .then(con => db.splitRunningModule(con, groupId, position))
         .then(result => res.json(result))
@@ -54,4 +54,4 @@ module.exports = {
     updateRunningModule,
     deleteRunningModule,
     splitRunningModule
-}
+};

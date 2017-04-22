@@ -23,13 +23,9 @@ class TimelineController {
         this.backendService = backendService;
         this.toastService = toastService;
 
-        this.timelineService.setTimelineChangedCallback(() => {
-            this.backendService.getTimeline()
-            .then(timeline => {
-                this.timeline = timeline;
-                this.composeTimeline();
-            })
-            .catch(err => console.log(err));
+        this.timelineService.setCallback(timeline => {
+            this.timeline = timeline;
+            this.composeTimeline();
         });
 
         setTimeout(() => {
@@ -39,7 +35,7 @@ class TimelineController {
 
     $onInit() {
         document.getElementById('content').scrollTop = 0;
-        this.composeTimeline()
+        this.composeTimeline();
     }
 
     composeTimeline() {
@@ -68,7 +64,7 @@ class TimelineController {
             this.backendService.addGroup(classInfo)
                 .then(() => {
                     this.toastService.displayToast(true, `${classInfo.group_name} has been added`);
-                    this.timelineService.notifyTimelineChanged();
+                    this.timelineService.notifyChanged();
                 });
         }).catch(err => {
             console.log(err);

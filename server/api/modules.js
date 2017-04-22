@@ -7,7 +7,7 @@ function getModules(req, res) {
         .then(con => db.getModules(con))
         .then(result => res.json(result))
         .catch(err => res.status(500).json(err));
-        
+
 }
 
 function addModule(req, res) {
@@ -37,10 +37,10 @@ function deleteModule(req, res) {
 function updateModules(req, res) {
     getConnection(req, res)
         .then(con => {
-            let receivedModules = req.body;
+            const receivedModules = req.body;
             return db.getModules(con)
                 .then(currentModules => {
-                    let batchUpdate = createBatchUpdate(currentModules, receivedModules);
+                    const batchUpdate = createBatchUpdate(currentModules, receivedModules);
                     return db.updateModules(con, batchUpdate);
                 })
                 .then(() => db.getModules(con));
@@ -51,8 +51,8 @@ function updateModules(req, res) {
 
 
 function createBatchUpdate(currentModules, receivedModules) {
-    let updates = [];
-    let additions = [];
+    const updates = [];
+    const additions = [];
 
     receivedModules.filter(module => module.optional === 0)
         .forEach((module, index) => {
@@ -69,7 +69,7 @@ function createBatchUpdate(currentModules, receivedModules) {
     });
 
     receivedModules.forEach(receivedModule => {
-        let currentModule = currentModules.find(module => module.id === receivedModule.id);
+        const currentModule = currentModules.find(module => module.id === receivedModule.id);
         if (!currentModule) {
             delete receivedModule.id;
             additions.push(receivedModule);
@@ -81,7 +81,7 @@ function createBatchUpdate(currentModules, receivedModules) {
         }
     });
 
-    let deletions = currentModules.filter(currentModule => !currentModule.visited);
+    const deletions = currentModules.filter(currentModule => !currentModule.visited);
 
     return { updates, additions, deletions };
 }

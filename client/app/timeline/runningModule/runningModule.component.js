@@ -38,7 +38,7 @@ class RunningModuleController {
 
     splitRunningModule(module) {
         this.backendService.splitRunningModule(module.id, module.position)
-            .then(() => this.timelineService.notifyTimelineChanged())
+            .then(() => this.timelineService.notifyChanged())
             .catch(err => console.log(err));
     }
 
@@ -50,7 +50,7 @@ class RunningModuleController {
         const position = this.module.position - 1;
         this.backendService.updateRunningModule(this.module.id, this.module.position, { position })
             .then(() => {
-                this.timelineService.notifyTimelineChanged();
+                this.timelineService.notifyChanged();
             })
             .catch(err => console.log(err));
     }
@@ -59,7 +59,7 @@ class RunningModuleController {
         const position = this.module.position + 1;
         this.backendService.updateRunningModule(this.module.id, this.module.position, { position })
             .then(() => {
-                this.timelineService.notifyTimelineChanged();
+                this.timelineService.notifyChanged();
             })
             .catch(err => console.log(err));
     }
@@ -68,7 +68,7 @@ class RunningModuleController {
         const duration = this.module.duration - 1;
         this.backendService.updateRunningModule(this.module.id, this.module.position, { duration })
             .then(() => {
-                this.timelineService.notifyTimelineChanged();
+                this.timelineService.notifyChanged();
             })
             .catch(err => console.log(err));
     }
@@ -77,7 +77,7 @@ class RunningModuleController {
         const duration = this.module.duration + 1;
         this.backendService.updateRunningModule(this.module.id, this.module.position, { duration })
             .then(() => {
-                this.timelineService.notifyTimelineChanged();
+                this.timelineService.notifyChanged();
             })
             .catch(err => console.log(err));
     }

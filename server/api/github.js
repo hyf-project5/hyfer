@@ -12,39 +12,39 @@ const cache = LRU({
 });
 
 function getReadMeAsHtml(req, res) {
-    let owner = req.params.owner;
-    let repo = req.params.repo;
-    let ownerAndRepo = `${owner}/${repo}`;
+    const owner = req.params.owner;
+    const repo = req.params.repo;
+    const ownerAndRepo = `${owner}/${repo}`;
 
     let promise;
-    let html = cache.get(ownerAndRepo);
+    const html = cache.get(ownerAndRepo);
     if (html) {
-        console.log('README cache hit for: ' + ownerAndRepo)
+        console.log('README cache hit for: ' + ownerAndRepo);
         promise = Promise.resolve(html);
     } else {
-        console.log('README cache miss for: ' + ownerAndRepo)
+        console.log('README cache miss for: ' + ownerAndRepo);
         promise = new Promise((resolve, reject) => {
-            let request = {
+            const request = {
                 url: `${API_END_POINT}/${ownerAndRepo}/readme`,
                 json: true,
                 headers: {
                     'User-Agent': 'hackyourfuture'
                 }
-            }
+            };
             httpRequest.get(request, (error, response, body) => {
                 if (!error && response.statusCode === 200) {
                     console.log('README received from GitHub');
-                    let md = Buffer.from(body.content, 'base64').toString();
-                    let html = marked(md, {
+                    const md = Buffer.from(body.content, 'base64').toString();
+                    const html = marked(md, {
                         breaks: true,
                         smartypants: true
                     });
-                    cache.set(ownerAndRepo, html)
+                    cache.set(ownerAndRepo, html);
                     resolve(html);
                 } else {
                     reject(error);
                 }
-            })
+            });
         });
     }
 
@@ -54,4 +54,4 @@ function getReadMeAsHtml(req, res) {
 
 module.exports = {
     getReadMeAsHtml
-}
+};
