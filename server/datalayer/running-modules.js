@@ -106,12 +106,10 @@ function replaceRunningModules(con, runningMods, groupId) {
 }
 
 function insertRunningModuleAtIndex(runningMods, targetMod, position) {
-    if (position === -1) {
-        runningMods.push(targetMod);
-    } else if (position >= 0 && position < runningMods.length) {
+    if (position >= 0 && position <= runningMods.length) {
         runningMods.splice(position, 0, targetMod);
     } else {
-        throw new Error('invalid position: ' + position);
+        runningMods.push(targetMod);
     }
 }
 
