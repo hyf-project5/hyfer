@@ -1,8 +1,8 @@
 import angular from 'angular';
 
 import timelineModule from '../timeline.module';
-import addAndUpdateRunningModuleController from '../../modals/runningModules/addAndUpdateRunningModuleModalCtrl';
-import addRunningTemplate from '../../modals/runningModules/addRunningModuleModal.html';
+// import addAndUpdateRunningModuleController from '../../modals/runningModules/addAndUpdateRunningModuleModalCtrl';
+// import addRunningTemplate from '../../modals/runningModules/addRunningModuleModal.html';
 import template from './classBlockItem.component.html';
 
 class ClassBlockItemController {
@@ -16,23 +16,23 @@ class ClassBlockItemController {
         this.me = me;
     }
 
-    isTeacher() {
-        return this.me.role === 'teacher';
-    }
+    // isTeacher() {
+    //     return this.me.role === 'teacher';
+    // }
 
-    addRunningModuleModal(ev, className) {
-        this.$mdDialog.show({
-            locals: {
-                className,
-                selectedRunningModule: null
-            },
-            controller: addAndUpdateRunningModuleController,
-            controllerAs: '$ctrl',
-            template: addRunningTemplate,
-            targetEvent: ev,
-            clickOutsideToClose: true
-        });
-    }
+    // addRunningModuleModal(ev, className) {
+    //     this.$mdDialog.show({
+    //         locals: {
+    //             className,
+    //             selectedRunningModule: null
+    //         },
+    //         controller: addAndUpdateRunningModuleController,
+    //         controllerAs: '$ctrl',
+    //         template: addRunningTemplate,
+    //         targetEvent: ev,
+    //         clickOutsideToClose: true
+    //     });
+    // }
 
 }
 
