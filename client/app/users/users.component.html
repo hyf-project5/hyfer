@@ -35,7 +35,7 @@
                 </span>
                 <span class="md-subhead" ng-if="user.freecodecamp_username">
                     <a href="https://www.freecodecamp.com/{{user.freecodecamp_username}}" target="_blank" title="{{user.full_name}}'s FreeCodeCamp portfolio">
-                        <i class="fa fa-fw fa-free-code-camp"></i> {{user.freecodecamp_username}}</a>
+                        <md-icon md-svg-src="{{$ctrl.freecodecamp}}" aria-label="freecodecamp"></md-icon> {{user.freecodecamp_username}}</a>
                 </span>
                 <span class="md-subhead" ng-if="user.username">
                     <a href="https://github.com/{{user.username}}" target="_blank" title="{{user.full_name}}'s github">

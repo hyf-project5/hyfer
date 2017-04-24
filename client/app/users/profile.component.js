@@ -4,6 +4,8 @@ import usersModule from './users.module';
 import backendService from '../services/backendService';
 import template from './profile.component.html';
 import toolbarService from '../toolbar/toolbar.service';
+import freecodecamp from '../../assets/images/freecodecamp.svg';
+
 class ProfileController{
 
     static get $inject() {
@@ -16,7 +18,7 @@ class ProfileController{
             title: 'Edit Profile',
             backState: 'users'
         });
-
+        this.freecodecamp =freecodecamp;
     }
 
 }

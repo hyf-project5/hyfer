@@ -20,7 +20,7 @@
                 <label>Class</label>
                 <md-icon class="fa-dimmed fa fa-fw fa-users"></md-icon>
                 <md-select ng-model="$ctrl.user" aria-label="class">
-                    <md-option ng-repeat="" value="Class">{{class.name}}</md-option>
+                    <md-option value="Class">{{class.name}}</md-option>
                 </md-select>
             </md-input-container>
 
@@ -38,7 +38,7 @@
 
             <md-input-container class="md-block">
                 <label>FreeCodeCamp username</label>
-                <md-icon class="fa-dimmed fa fa-fw fa-free-code-camp"></md-icon>
+                <md-icon class="fa-dimmed" md-svg-src="{{$ctrl.freecodecamp}}" aria-label="freecodecamp"></md-icon>
                 <input ng-model="$ctrl.user.freecodecamp_username" type="text">
             </md-input-container>
 

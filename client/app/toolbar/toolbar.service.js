@@ -13,7 +13,6 @@ class ToolbarService {
     }
     addListener(listener) {
         this.listeners.push(listener);
-        console.log(listener);
     }
 
     getTitle() {

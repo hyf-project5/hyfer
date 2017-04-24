@@ -6,6 +6,7 @@ import toastService from '../services/toastService';
 import template from './users.component.html';
 import './users.scss';
 import avatar from '../../assets/images/avatar.png';
+import freecodecamp from '../../assets/images/freecodecamp.svg';
 
 class UsersController {
 
@@ -20,6 +21,7 @@ class UsersController {
         this.$state = $state;
         this.toastService = toastService;
         this.avatar = avatar;
+        this.freecodecamp =freecodecamp;
 
     }
 
