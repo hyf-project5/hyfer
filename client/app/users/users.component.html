@@ -33,6 +33,10 @@
                     <a href="https://hackyourfuture.slack.com/messages/{{user.slack_username}}/" target="_blank" title="Direct message {{user.full_name}}">
                         <i class="fa-dimmed fa fa-fw fa-slack"></i> {{user.slack_username}}</a>
                 </span>
+                <span class="md-subhead" ng-if="user.freecodecamp_username">
+                    <a href="https://www.freecodecamp.com/{{user.freecodecamp_username}}" target="_blank" title="{{user.full_name}}'s FreeCodeCamp portfolio">
+                        <i class="fa fa-fw fa-free-code-camp"></i> {{user.freecodecamp_username}}</a>
+                </span>
                 <span class="md-subhead" ng-if="user.username">
                     <a href="https://github.com/{{user.username}}" target="_blank" title="{{user.full_name}}'s github">
                         <i class="fa-dimmed fa fa-fw fa-github"></i> {{user.username}}</a>
