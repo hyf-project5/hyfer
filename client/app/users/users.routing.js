@@ -18,8 +18,11 @@ function routing($stateProvider) {
             }
         })
         .state('profile',{
-            url: '/profile/:id',
+            url: '/profile',
             component: profileComponent,
+            params:{
+                id: null
+            },
             resolve:{
                 user: userResolver
             }
@@ -31,9 +34,15 @@ function usersResolver(backendService) {
     return backendService.getUsers();
 }
 
-userResolver.$inject = ['$stateParams',backendService];
-function userResolver($stateParams,backendService){
-    return backendService.getUserById($stateParams.id);
+userResolver.$inject = ['$state', '$stateParams', backendService];
+function userResolver($state, $stateParams, backendService){
+    let profileId = $stateParams.id;
+    if(profileId){
+        localStorage.setItem('profileId', profileId);
+    }else{
+        profileId = localStorage.getItem('profileId');
+    }
+    return backendService.getUserById(profileId);
 }
 angular.module(usersModule)
     .config(routing);
