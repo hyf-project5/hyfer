@@ -9,6 +9,7 @@ const modules = require('./api/modules');
 const runningModules = require('./api/running-modules');
 const groups = require('./api/groups');
 const history = require('./api/history');
+const states = require('/api/states');
 
 module.exports = function(app) {
 
@@ -39,6 +40,9 @@ module.exports = function(app) {
 
     app.patch('/api/history/:id', authService.isAuthenticated(), history.getHistory);
     app.post('/api/history',  authService.isAuthenticated(), history.saveAttendances);
+    
+    app.get('/api/studentsState/:groupId', states.getStudentsState);
+    // app.post('/api/studentsState', states.saveStudentsState);
 
     app.get('/auth/github', passport.authenticate('github'));
     app.get('/auth/github/callback', passport.authenticate('github', { session: false, failureRedirect: '/login' }),

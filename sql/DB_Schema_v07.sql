@@ -23,23 +23,17 @@
 # Dump of table group_students
 # ------------------------------------------------------------
 
+
 DROP TABLE IF EXISTS `group_students`;
 
 CREATE TABLE `group_students` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
   `group_id` int(8) NOT NULL,
-  `running_module_id` int(8) NOT NULL,
   `user_id` int(8) NOT NULL,
-  `dates` varchar(145) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_user_id` (`user_id`),
+  PRIMARY KEY (`user_id`,`group_id`),
   KEY `fk_group_id` (`group_id`),
-  KEY `fk_running_module_id` (`running_module_id`),
-  CONSTRAINT `fk_group_id` FOREIGN KEY (`group_id`) REFERENCES `students_history` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_running_module_id` FOREIGN KEY (`running_module_id`) REFERENCES `students_history` (`running_module_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `students_history` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_group_id` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 
 # Dump of table groups
