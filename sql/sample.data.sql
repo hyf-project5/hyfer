@@ -238,9 +238,13 @@ VALUES
 	(66,'','Mahmud Jabri',NULL,'student','2017-04-19 18:02:34','@mahmud','','m.jabri86@yahoo.com',NULL);
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+
+LOCK TABLES `group_students` WRITE;
+/*!40000 ALTER TABLE `group_students` DISABLE KEYS */;
+INSERT INTO `group_students` VALUES (44,47),(44,48),(44,49),(44,50),(44,51),(45,40),(45,41),(45,42),(45,43),(45,44),(46,30),(46,31),(46,32),(46,33),(46,34),(47,20),(47,21),(47,22),(47,23),(47,24),(47,25);
+/*!40000 ALTER TABLE `group_students` ENABLE KEYS */;
 UNLOCK TABLES;
-
-
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
