@@ -3,6 +3,8 @@ import angular from 'angular';
 import appModule from './app.module';
 import './app.config';
 import './toolbar/toolbar.component';
+import './toolbar/childToolbar.component';
+import './toolbar/toolbar.service';
 import backendService from './services/backendService';
 
 const defaultMe = {

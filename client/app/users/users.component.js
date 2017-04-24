@@ -10,7 +10,7 @@ import avatar from '../../assets/images/avatar.png';
 class UsersController {
 
     static get $inject() {
-        return ['$state', '$mdDialog', toastService, backendService, 'me'];
+        return ['$state', '$mdDialog', toastService, backendService, 'me', '$mdSidenav'];
     }
 
     constructor($state, $mdDialog, toastService, backendService, me) {
@@ -20,6 +20,7 @@ class UsersController {
         this.$state = $state;
         this.toastService = toastService;
         this.avatar = avatar;
+
     }
 
     $onInit() {
@@ -67,6 +68,9 @@ class UsersController {
         this.updateUserRole(userId, role);
     }
 
+    goToProfile(user) {
+        this.$state.go('profile', { id: user.id });
+    }
 }
 
 const componentName = 'hyfUsers';
