@@ -36,6 +36,7 @@ module.exports = function(app) {
     app.get('/api/user', authService.isAuthenticated(), users.getUser);
     app.get('/api/users', authService.isAuthenticated(), users.getUsers);
     app.patch('/api/user/:id', authService.hasRole('teacher'), users.updateRole);
+    app.get('/api/user/:id', users.getUserById);
 
     app.patch('/api/history/:id', authService.isAuthenticated(), history.getHistory);
     app.post('/api/history',  authService.isAuthenticated(), history.saveAttendances);

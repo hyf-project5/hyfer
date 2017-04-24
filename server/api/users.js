@@ -7,6 +7,12 @@ function getUser(req, res) {
         .then(result => res.json(result[0]));
 }
 
+function getUserById(req, res) {
+    getConnection(req, res)
+        .then(con => db.getUserById(con, req.params.id))
+        .then(result => res.json(result[0]));
+}
+
 function getUsers(req, res) {
     getConnection(req, res)
         .then(con => db.getUsers(con))
@@ -35,5 +41,6 @@ function getConnection(req, res) {
 module.exports = {
     getUser,
     getUsers,
-    updateRole
+    updateRole,
+    getUserById
 };

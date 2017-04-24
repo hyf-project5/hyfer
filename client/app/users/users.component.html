@@ -26,12 +26,16 @@
                 <span class="md-subhead"><i class="fa-dimmed fa fa-fw fa-graduation-cap"></i> {{user.role}}</span>
                 <span class="md-subhead"><i class="fa-dimmed fa fa-fw fa-clock-o"></i> {{user.register_date | date : 'mediumDate'}}</span>
                 <span class="md-subhead" ng-if="user.email">
-                    <a href="mailto:{{user.email}}" target="_blank" title="E-mail {{user.full_name}}">
+                    <a href="mailto:{{user.email}}" title="E-mail {{user.full_name}}">
                         <i class="fa-dimmed fa fa-fw fa-envelope"></i> {{user.email}}</a>
                 </span>
                 <span class="md-subhead" ng-if="user.slack_username">
                     <a href="https://hackyourfuture.slack.com/messages/{{user.slack_username}}/" target="_blank" title="Direct message {{user.full_name}}">
                         <i class="fa-dimmed fa fa-fw fa-slack"></i> {{user.slack_username}}</a>
+                </span>
+                <span class="md-subhead" ng-if="user.username">
+                    <a href="https://github.com/{{user.username}}" target="_blank" title="{{user.full_name}}'s github">
+                        <i class="fa-dimmed fa fa-fw fa-github"></i> {{user.username}}</a>
                 </span>
                 <span class="md-subhead" ng-if="user.mobile">
                     <i class="fa-dimmed fa fa-fw fa-mobile"></i> {{user.mobile}}
@@ -40,7 +44,7 @@
 
             <md-card-title-media ng-if="!user.username">
                 <div class="md-media-md card-media">
-                    <img class="md-whiteframe-4dp" ng-src="{{$ctrl.avatar}}" alt="user avatar">
+                    <img class="md-whiteframe-4dp" ng-src="https://api.adorable.io/avatars/200/{{user.full_name}}.png" alt="user avatar">
                 </div>
             </md-card-title-media>
 
@@ -53,7 +57,7 @@
             </md-card-title-media>
         </md-card-title>
         <md-card-actions layout="row" layout-align="end center">
-            <md-button ng-disabled="true" class="md-primary md-hue-1">Edit</md-button>
+            <md-button class="md-primary md-hue-1" ng-click="$ctrl.goToProfile(user)">Edit</md-button>
         </md-card-actions>
     </md-card>
 </div>

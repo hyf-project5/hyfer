@@ -65,7 +65,10 @@ class backendService {
         return this.$http.get('/api/users', this.getHttpConfig())
             .then(res => res.data);
     }
-
+    getUserById(id){
+        return this.$http.get('/api/user/'+id, this.getHttpConfig())
+            .then(res => res.data);
+    }
     updateUserRole(userId, role) {
         console.log(userId);
         return this.$http.patch('/api/user/' + userId, { "role": role }, this.getHttpConfig());
