@@ -9,7 +9,7 @@ const modules = require('./api/modules');
 const runningModules = require('./api/running-modules');
 const groups = require('./api/groups');
 const history = require('./api/history');
-const states = require('/api/states');
+const states = require('./api/states');
 
 module.exports = function(app) {
 

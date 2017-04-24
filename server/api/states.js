@@ -4,7 +4,7 @@ const db = require('../datalayer/states');
 function getStudentsState(req, res){
     getConnection(req, res)
         .then(con => db.getStudentsState(con, req.params.groupId))
-        .then(result => res.statusStatus(result.affectedRows > 0 ? 200 : 404));    
+        .then(result => res.status(result.affectedRows > 0 ? 200 : 404).json(result));    
 }
 
 // function saveStudentsState(req, res){
@@ -13,7 +13,7 @@ function getStudentsState(req, res){
 //         .then(result => res.statusStatus(result.affectedRows > 0 ? 200 : 404));
 // }
 
-module.exprots ={
+module.exports ={
   getStudentsState,
   // saveStudentsState
 };
