@@ -1,1 +1,57 @@
-{{$ctrl.user.full_name}}
+<md-content layout="row" layout-align="center">
+    <md-card layout-margin layout-padding flex="60">
+        <div>
+            <md-input-container class="md-block">
+                <label>Name</label>
+                <md-icon class="fa-dimmed fa fa-fw fa-user"></md-icon>
+                <input ng-model="$ctrl.user.full_name" type="text">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>{{$ctrl.user.role}}</label>
+                <md-icon class="fa-dimmed fa fa-fw fa-graduation-cap"></md-icon>
+                <md-select ng-model="$ctrl.user.role" aria-label="$ctrl.user.role">
+                    <md-option value="Teacher">Teacher</md-option>
+                    <md-option value="Student">Student</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Class</label>
+                <md-icon class="fa-dimmed fa fa-fw fa-users"></md-icon>
+                <md-select ng-model="$ctrl.user" aria-label="class">
+                    <md-option ng-repeat="" value="Class">{{class.name}}</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>E-mail</label>
+                <md-icon class="fa-dimmed fa fa-fw fa-envelope"></md-icon>
+                <input ng-model="$ctrl.user.email" type="email">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>Slack username</label>
+                <md-icon class="fa-dimmed fa fa-fw fa-slack"></md-icon>
+                <input ng-model="$ctrl.user.slack_username" type="text">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>FreeCodeCamp username</label>
+                <md-icon class="fa-dimmed fa fa-fw fa-free-code-camp"></md-icon>
+                <input ng-model="$ctrl.user.freecodecamp_username" type="text">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>Mobile</label>
+                <md-icon class="fa-dimmed fa fa-fw fa-mobile"></md-icon>
+                <input ng-model="$ctrl.user.mobile" type="text">
+            </md-input-container>
+        </div>
+        <div layout="row" layout-align="end center">
+            <md-button class="md-primary md-raised">
+                Save
+            </md-button>
+        </div>
+    </md-card>
+</md-content>
