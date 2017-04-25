@@ -11,7 +11,7 @@ function getUserById(con, id) {
 }
 
 function getUsers(con) {
-    return db.execQuery(con, `SELECT id, username, full_name, role, slack_username, freecodecamp_username, email, mobile, register_date FROM users`);
+    return db.execQuery(con, `SELECT * FROM users`);
 }
 
 function addUser(con, user) {
