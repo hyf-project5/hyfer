@@ -137,10 +137,21 @@ CREATE TABLE `users` (
   `freecodecamp_username` varchar(32) DEFAULT NULL,
   `email` varchar(32) DEFAULT NULL,
   `mobile` varchar(32) DEFAULT NULL,
+  `group_name` varchar(32) DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TRIGGER IF EXISTS `insert_group_name`;
 
+CREATE TRIGGER `insert_group_name` AFTER INSERT ON group_students FOR EACH ROW UPDATE users INNER JOIN groups ON NEW.group_id = groups.id SET users.group_name = groups.group_name WHERE users.id = NEW.user_id;
+
+DROP TRIGGER IF EXISTS `update_group_name`;
+
+CREATE TRIGGER `update_group_name` AFTER UPDATE ON group_students FOR EACH ROW UPDATE users INNER JOIN groups ON NEW.group_id = groups.id SET users.group_name = groups.group_name WHERE users.id = NEW.user_id;
+
+DROP TRIGGER IF EXISTS `delete_group_name`;
+
+CREATE TRIGGER `delete_group_name` BEFORE DELETE ON group_students FOR EACH ROW UPDATE users SET users.group_name = '' WHERE OLD.user_id = users.id;  
 
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
