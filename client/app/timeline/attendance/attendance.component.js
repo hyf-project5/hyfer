@@ -3,7 +3,7 @@ import angular from 'angular';
 import timelineModule from '../timeline.module';
 import backendService from '../../services/backendService';
 // import toastService from '../services/toastService';
-import template from './attendance.component.html';
+import template from './attendance2.component.html';
 import './attendance.scss';
 
 
