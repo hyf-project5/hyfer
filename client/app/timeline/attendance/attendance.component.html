@@ -2,7 +2,7 @@
     <h2>Attendance in {{$ctrl.historyobj.classname}} of {{$ctrl.historyobj.rmName}}</h2>
     <hr>
     <md-card>
-        <md-card-content layout="row">
+        <md-card-content layout="row" layout-align="center">
             <div>
                 <div class="weeks-block">Student:</div>
                 <md-divider></md-divider>
@@ -10,7 +10,7 @@
                     {{attendant[0].full_name}}
                 </p>
             </div>
-            <span flex></span>
+            <!--<span flex></span>-->
 
             <div class="check-box-block">
                 <div layout="row" class "weeks-block">
@@ -19,13 +19,16 @@
                 <md-divider></md-divider>
                 <div ng-repeat="attendant in $ctrl.attendants" layout="row">
                     <div ng-repeat="student in attendant">
-                        <div class="check-box" layout="row">
-                            <md-input-container>
-                                <md-checkbox ng-true-value="1" ng-false-value="0" ng-model="student.homework" aria-label="homework" ng-change="$ctrl.changeInStudentsHistory()">homework</md-checkbox>
+                        <div layout="row">
+                            <md-input-container class="check-box">
+                                <md-checkbox title="homework" ng-true-value="1" ng-false-value="0" ng-model="student.homework" aria-label="homework" ng-change="$ctrl.changeInStudentsHistory()">    </md-checkbox>
+                                <i class=" fa fa-fw fa-book" ></i>
                             </md-input-container>
 
-                            <md-input-container>
-                                <md-checkbox ng-true-value="1" ng-false-value="0" ng-model="student.attendance" aria-label="attendance" ng-change="$ctrl.changeInStudentsHistory()">attendance</md-checkbox>
+                                
+                            <md-input-container class="check-box">
+                                <md-checkbox title="attendance" ng-true-value="1" ng-false-value="0" ng-model="student.attendance" aria-label="attendance" ng-change="$ctrl.changeInStudentsHistory()">    </md-checkbox>
+                                <i class=" fa fa-fw fa-calendar" ></i>
                             </md-input-container>
                             <md-divider class="vert-divider" ng-if="!$last"></md-divider>
                             <md-tooltip style="font-size: 1em;" ng-if="$ctrl.dummyData" md-direction='top'>
