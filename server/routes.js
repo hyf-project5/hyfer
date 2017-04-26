@@ -36,12 +36,12 @@ module.exports = function(app) {
     app.get('/api/user', authService.isAuthenticated(), users.getUser);
     app.get('/api/users', authService.isAuthenticated(), users.getUsers);
     app.patch('/api/user/:id', authService.hasRole('teacher'), users.updateRole);
-    app.get('/api/user/:id', users.getUserById);
+    app.get('/api/user/:id', authService.hasRole('teacher'), users.getUserById);
 
     app.patch('/api/history/:id', authService.isAuthenticated(), history.getHistory);
     app.post('/api/history',  authService.isAuthenticated(), history.saveAttendances);
     
-    app.get('/api/studentsState/:groupId', states.getStudentsState);
+    app.get('/api/studentsState/:groupId', authService.hasRole('teacher'), states.getStudentsState);
     // app.post('/api/studentsState', states.saveStudentsState);
 
     app.get('/auth/github', passport.authenticate('github'));

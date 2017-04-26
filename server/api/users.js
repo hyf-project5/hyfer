@@ -16,7 +16,12 @@ function getUserById(req, res) {
 function getUsers(req, res) {
     getConnection(req, res)
         .then(con => db.getUsers(con))
-        .then(result => res.json(result));
+        .then(result => {
+            for(let user of result){
+                delete user.access_token;
+            }
+            return res.json(result);
+        });
 }
 
 function updateRole(req, res) {
