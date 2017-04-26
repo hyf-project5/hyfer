@@ -12,20 +12,18 @@
             <md-divider></md-divider>
             <div layout="row" layout-align="space-between center" ng-repeat="attendant in $ctrl.attendants">
                 <p class="md-body-1" style="width: 150px">{{attendant[0].full_name}}</p>
-                <div ng-repeat="student in attendant">
-                    <div layout="row">
-                        <div layout="row" layout-padding layout-align="center center">
-                            <md-checkbox ng-disabled="$ctrl.futureModule" style="margin-bottom: 0" title="homework" ng-true-value="1" ng-false-value="0"
-                                ng-model="student.homework" aria-label="homework" ng-change="$ctrl.changeInStudentsHistory()">
-                                <md-icon md-font-icon="fa-briefcase" class="fa fa-lg"></md-icon>
-                            </md-checkbox>
-                            <md-checkbox ng-disabled="$ctrl.futureModule" style="margin-bottom: 0" title="attendance" ng-true-value="1" ng-false-value="0"
-                                ng-model="student.attendance" aria-label="attendance" ng-change="$ctrl.changeInStudentsHistory()">
-                                <md-icon md-font-icon="fa-handshake-o" class="fa fa-lg"></md-icon>
-                            </md-checkbox>
-                        </div>
-                        <md-divider ng-if="!$last"></md-divider>
+                <div flex ng-repeat="student in attendant" layout="row">
+                    <div flex layout="row" layout-padding layout-align="center center">
+                        <md-checkbox ng-disabled="$ctrl.futureModule" style="margin-bottom: 0" title="homework" ng-true-value="1" ng-false-value="0"
+                            ng-model="student.homework" aria-label="homework" ng-change="$ctrl.changeInStudentsHistory()">
+                            <md-icon md-font-icon="fa-briefcase" class="fa fa-lg"></md-icon>
+                        </md-checkbox>
+                        <md-checkbox ng-disabled="$ctrl.futureModule" style="margin-bottom: 0" title="attendance" ng-true-value="1" ng-false-value="0"
+                            ng-model="student.attendance" aria-label="attendance" ng-change="$ctrl.changeInStudentsHistory()">
+                            <md-icon md-font-icon="fa-handshake-o" class="fa fa-lg"></md-icon>
+                        </md-checkbox>
                     </div>
+                    <md-divider ng-if="!$last"></md-divider>
                 </div>
             </div>
             <md-tooltip style="font-size: 1em;" ng-if="$ctrl.dummyData" md-direction='top'>
