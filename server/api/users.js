@@ -1,5 +1,6 @@
 'use strict';
 const db = require('../datalayer/users');
+const _ = require('lodash');
 
 function getUser(req, res) {
     getConnection(req, res)
@@ -16,10 +17,10 @@ function getUserById(req, res) {
 function getUsers(req, res) {
     getConnection(req, res)
         .then(con => db.getUsers(con))
-        .then(result => {
-            for(let user of result){
-                delete user.access_token;
-            }
+        .then(data => {
+            const result = _.map(data, user => {
+                return _.omit(user, 'access_token');
+            })
             return res.json(result);
         });
 }
