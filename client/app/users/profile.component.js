@@ -19,8 +19,23 @@ class ProfileController{
             backState: 'users'
         });
         this.freecodecamp =freecodecamp;
+        this.classes=[
+            {
+                name: 'class 5'
+            },{
+                name: 'class 6'
+            },{
+                name: 'class 7'
+            },{
+                name: 'class 8'
+            },{
+                name: 'class 9'
+            }
+        ];
     }
 
+
+    
 }
 
  const componentName = 'hyfProfile';

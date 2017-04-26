@@ -23,6 +23,7 @@
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">{{user.full_name}}</span>
+                <span class="md-subhead"><i class="fa-dimmed fa fa-fw fa-group" ng-if="user.group_name"></i> {{user.group_name}}</span>
                 <span class="md-subhead"><i class="fa-dimmed fa fa-fw fa-graduation-cap"></i> {{user.role}}</span>
                 <span class="md-subhead"><i class="fa-dimmed fa fa-fw fa-clock-o"></i> {{user.register_date | date : 'mediumDate'}}</span>
                 <span class="md-subhead" ng-if="user.email">
