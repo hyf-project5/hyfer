@@ -44,7 +44,15 @@ class AttendanceCardController {
             return;
         }
         this.selectedModule = changes.selectedModule.currentValue;
-        console.log(this.selectedModule)
+        const now = new Date().toJSON().split('T')[0];
+        const selectedModuleDate = new Date(this.selectedModule.startingDate).toJSON().split('T')[0];
+        if(selectedModuleDate > now){
+            this.futureModule =true;
+            console.log(this.futureModule)
+        }else{
+            this.futureModule =false;
+        }
+
         this.getHistory(this.selectedModule);
     }
 

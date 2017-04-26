@@ -30,7 +30,9 @@ module.exports = function(app) {
     app.post('/api/groups', authService.hasRole('teacher'), groups.addGroup);
     app.patch('/api/groups/:id', authService.hasRole('teacher'), groups.updateGroup);
     app.delete('/api/groups/:id', authService.hasRole('teacher'), groups.deleteGroup);
-
+    /**
+     * TODO: getGroups >> groupName, groupId( send group with these specific properties..)
+     */
     app.get('/api/github/readme/:owner/:repo', github.getReadMeAsHtml);
 
     app.get('/api/user', authService.isAuthenticated(), users.getUser);
@@ -42,7 +44,10 @@ module.exports = function(app) {
     app.post('/api/history',  authService.isAuthenticated(), history.saveAttendances);
     
     app.get('/api/studentsState/:groupId', authService.hasRole('teacher'), states.getStudentsState);
-    // app.post('/api/studentsState', states.saveStudentsState);
+    /**
+     * TODO: update the user(just think it's finish;) well almost..)
+     */
+    // app.patch('/api/studentsState', states.saveStudentsState);
 
     app.get('/auth/github', passport.authenticate('github'));
     app.get('/auth/github/callback', passport.authenticate('github', { session: false, failureRedirect: '/login' }),

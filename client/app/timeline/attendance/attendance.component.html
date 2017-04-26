@@ -21,13 +21,13 @@
                     <div ng-repeat="student in attendant">
                         <div layout="row">
                             <md-input-container class="check-box">
-                                <md-checkbox title="homework" ng-true-value="1" ng-false-value="0" ng-model="student.homework" aria-label="homework" ng-change="$ctrl.changeInStudentsHistory()">    </md-checkbox>
+                                <md-checkbox  ng-disabled="$ctrl.futureModule" title="homework" ng-true-value="1" ng-false-value="0" ng-model="student.homework" aria-label="homework" ng-change="$ctrl.changeInStudentsHistory()">    </md-checkbox>
                                 <i class=" fa fa-fw fa-book" ></i>
                             </md-input-container>
 
                                 
                             <md-input-container class="check-box">
-                                <md-checkbox title="attendance" ng-true-value="1" ng-false-value="0" ng-model="student.attendance" aria-label="attendance" ng-change="$ctrl.changeInStudentsHistory()">    </md-checkbox>
+                                <md-checkbox  ng-disabled="$ctrl.futureModule" title="attendance" ng-true-value="1" ng-false-value="0" ng-model="student.attendance" aria-label="attendance" ng-change="$ctrl.changeInStudentsHistory()">    </md-checkbox>
                                 <i class=" fa fa-fw fa-calendar" ></i>
                             </md-input-container>
                             <md-divider class="vert-divider" ng-if="!$last"></md-divider>
