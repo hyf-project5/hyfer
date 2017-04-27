@@ -6,19 +6,29 @@ const GET_CURRENT_STATE = `
   WHERE group_id=?
 `;
 
-// const SAVE_CURRENT_STATE =`
-  
-// `;
+const UPDATE_USER =`
+  UPDATE users SET ? WHERE id = ?
+ `;
+const ASSIGN_USER_TO_CLASS =`
+  REPLACE INTO group_students VALUES ?
+`;
+
 
 function getStudentsState(con, groupId){
   return db.execQuery(con, GET_CURRENT_STATE, groupId);
 }
 
-// function saveStudentsState(con, data){
-//   return db.execQuery(con, SAVE_CURRENT_STATE, [data]);
-// }
+function updateUser(con, user){
+  return db.execQuery(con, UPDATE_USER, [user, user.id]);
+}
+
+function assignToClass(con, userAndGroupIds){
+  console.log(userAndGroupIds)
+  return db.execQuery(con, ASSIGN_USER_TO_CLASS, [[userAndGroupIds]])
+}
 
 module.exports = {
   getStudentsState,
-  // saveStudentsState
+  updateUser,
+  assignToClass
 }

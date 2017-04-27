@@ -47,7 +47,7 @@ module.exports = function(app) {
     /**
      * TODO: update the user(just think it's finish;) well almost..)
      */
-    // app.patch('/api/studentsState', states.saveStudentsState);
+    app.patch('/api/studentsState', states.updateUser, states.assignToClass);
 
     app.get('/auth/github', passport.authenticate('github'));
     app.get('/auth/github/callback', passport.authenticate('github', { session: false, failureRedirect: '/login' }),
