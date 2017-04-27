@@ -8,8 +8,9 @@ function getStudentsState(req, res) {
 }
 
 
-function makeUserListToUpdate(user) {
-  return {
+function updateUser(req, res, next) {
+  const user = req.body;
+  const userListToUpdate = {
     id: user.id,
     username: user.username,
     full_name: user.full_name,
@@ -19,11 +20,8 @@ function makeUserListToUpdate(user) {
     email: user.email,
     mobile: user.mobile,
   }
-}
-
-function updateUser(req, res, next) {
   getConnection(req, res)
-    .then(con => db.updateUser(con, makeUserListToUpdate(req.body)))
+    .then(con => db.updateUser(con, userListToUpdate))
     .then(result => res.status(result.affectedRows > 0 ? next() : 404))
     .then(result => res.status(result.affectedRows))
 }
