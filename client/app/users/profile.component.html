@@ -18,7 +18,7 @@
 
             <md-input-container>
                 <md-icon class="fa-dimmed fa fa-fw fa-users"></md-icon>
-                <md-select placeholder="{{$ctrl.user.group_name}}" ng-model="group_name" md-on-open="$ctrl.getGroupsNameId()" aria-label="$ctrl.user.group_name">
+                <md-select placeholder="{{$ctrl.user.group_name}}" ng-model="class" md-on-open="$ctrl.getGroupsNameId()" aria-label="$ctrl.user.group_name">
                     <md-option  ng-repeat="class in $ctrl.classes" ng-value="class">{{class.name}}</md-option>
                 </md-select>
             </md-input-container>
@@ -48,7 +48,11 @@
             </md-input-container>
         </div>
         <div layout="row" layout-align="end center">
-            <md-button class="md-primary md-raised" ng-click="$ctrl.save(group_name)">
+            <md-button class="md-raised" ng-click="$ctrl.cancelChanges()">
+                undo
+            </md-button>
+            
+            <md-button class="md-primary md-raised" ng-click="$ctrl.save(class)">
                 Save
             </md-button>
         </div>

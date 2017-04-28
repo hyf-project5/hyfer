@@ -9,10 +9,10 @@ import freecodecamp from '../../assets/images/freecodecamp.svg';
 class ProfileController {
 
     static get $inject() {
-        return ['$timeout', toolbarService, backendService];
+        return ['$timeout', '$state', toolbarService, backendService];
     }
 
-    constructor($timeout, toolbarService, backendService) {
+    constructor($timeout, $state, toolbarService, backendService) {
         this.toolbarService = toolbarService;
         this.toolbarService.switchToChild({
             title: 'Edit Profile',
@@ -21,6 +21,7 @@ class ProfileController {
         this.backendService = backendService;
         this.$timeout = $timeout;
         this.freecodecamp = freecodecamp;
+        this.$state = $state;
     }
 
     getGroupsNameId() {
@@ -38,9 +39,22 @@ class ProfileController {
                     }, [])
                     console.log(this.classes)
                 })
-        }, 400)
+        }, 1000)
     }
 
+    save(assignedClass) {
+        if (assignedClass) {
+            this.user.group_name = assignedClass.name;
+            this.user.group_id = assignedClass.group_id;
+        }
+
+        this.backendService.updateState(this.user);
+
+    }
+    
+    cancelChanges() {
+        this.$state.reload();
+    }
 
 }
 
