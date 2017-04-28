@@ -46,11 +46,11 @@ class AttendanceCardController {
         this.selectedModule = changes.selectedModule.currentValue;
         const now = new Date().toJSON().split('T')[0];
         const selectedModuleDate = new Date(this.selectedModule.startingDate).toJSON().split('T')[0];
-        if(selectedModuleDate > now){
-            this.futureModule =true;
+        if (selectedModuleDate > now) {
+            this.futureModule = true;
             console.log(this.futureModule)
-        }else{
-            this.futureModule =false;
+        } else {
+            this.futureModule = false;
         }
 
         this.getHistory(this.selectedModule);
@@ -65,7 +65,7 @@ class AttendanceCardController {
 
 
     getHistory(module) {
-        this.moduleSundays = this.getSundays(module.starting_date, module.duration);
+        this.moduleSundays = this.getSundays(module.startingDate, module.duration);
         this.historyobj = {
             classname: module.group_name,
             rmName: module.module_name
