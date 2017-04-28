@@ -22,15 +22,22 @@ function updateUser(req, res, next) {
   }
   getConnection(req, res)
     .then(con => db.updateUser(con, userListToUpdate))
-    .then(result => res.status(result.affectedRows > 0 ? next() : 404))
-    .then(result => res.status(result.affectedRows))
+    .then(result => {
+      if(result.affectedRows > 0 ){
+        if(req.body.group_id) return next();
+        res.status(200);
+      }else{
+        res.status(404);
+      }
+    })
+    .then(result => res.status(200))
 }
 
 function assignToClass(req, res) {
   let userAndGroupIds = [req.body.group_id, req.body.id];
   getConnection(req, res)
     .then(con => db.assignToClass(con, userAndGroupIds))
-    .then(result => res.status(result.affectedRows > 0 ? 200 : 404).json(result))
+    .then(result => res.status(result.affectedRows > 0 ? 200 : 404))
     .catch(err => res.status(400).json(err))
 }
 
