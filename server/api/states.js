@@ -29,7 +29,7 @@ function updateUser(req, res, next) {
       }else{
         res.status(404);
       }
-    })
+    }) 
     .then(result => res.status(200))
 }
 
