@@ -44,7 +44,7 @@ class backendService {
     }
 
     saveHistory(history) {
-        return this.$http.post(`api/history`, history);
+        return this.$http.post(`api/history`, history, this.getHttpConfig());
     }
 
     addGroup(group) {

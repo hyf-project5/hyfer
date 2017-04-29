@@ -15,8 +15,8 @@ function structureStudents(data) {
     }, {});
 }
 
-function correctSundays(sundays, data) {
-    data.push(...generateStudents(sundays, data));
+function correctSundays(sundays, data, running_module_id) {
+    data.push(...generateStudents(sundays, data, running_module_id));
     const attendances = [];
     for (let attendance of data) {
         let datesAreInModules = sundays.some(date => date === attendance.date);
@@ -38,8 +38,8 @@ function getHistory(req, res) {
                 return connection.getConnection(req, res)
                     .then(con => states.getStudentsState(con, groupId))
                     .then(students => {
-                        students = correctSundays(sundays, students);
-                        const result= structureStudents(students);
+                        students = correctSundays(sundays, students, running_module_id);
+                        const result = structureStudents(students);
                         res.json(result);
                     })
             }
@@ -83,13 +83,14 @@ function saveAttendances(req, res) {
         });
 }
 
-function generateStudents(dates, attendances) {
+function generateStudents(dates, attendances, running_module_id) {
+    console.log(running_module_id)
     const studentsList = [];
     for (let attendance of attendances) {
         for (let date of dates) {
             if (date !== attendance.date) {
                 const newAttendance = Object.assign({}, attendance);
-                [newAttendance.attendance, newAttendance.homework, newAttendance.date] = [0, 0, date];
+                [newAttendance.attendance, newAttendance.homework, newAttendance.date, newAttendance.running_module_id] = [0, 0, date, running_module_id || attendance.running_module_id];
                 studentsList.push(newAttendance);
             }
         }

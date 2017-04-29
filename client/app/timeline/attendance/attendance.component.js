@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import timelineModule from '../timeline.module';
 import backendService from '../../services/backendService';
-// import toastService from '../services/toastService';
+import toastService from '../../services/toastService';
 import template from './attendance.component.html';
 import './attendance.scss';
 
@@ -10,13 +10,13 @@ import './attendance.scss';
 class AttendanceCardController {
 
     static get $inject() {
-        return ['$state', 'me', backendService];
+        return ['me', backendService, toastService];
     }
 
-    constructor($state, me, backendService) {
+    constructor(me, backendService, toastService) {
         this.backendService = backendService;
         this.me = me;
-        this.$state = $state;
+        this.toastService = toastService;
     }
 
 
@@ -98,15 +98,15 @@ class AttendanceCardController {
 
     saveHistory() {
         this.backendService.saveHistory(this.attendants)
-            .then(res => console.log(res))
+            .then(res => this.toastService.displayToast(true, 'Your changes have been saved'))
             .catch(err => console.log(err));
+        this.toggle = false;
     }
 
     cancelChanges() {
-        console.log(this.attendants)
         for (let key in this.attendants) {
             for (let attend of this.attendants[key]) {
-                this._students.forEach(_student =>{
+                this._students.forEach(_student => {
                     if (_student._full_name === attend.full_name && _student._date === attend.date) {
                         attend.homework = _student._homework;
                         attend.attendance = _student._attendance;
