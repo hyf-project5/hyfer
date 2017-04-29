@@ -29,10 +29,6 @@ class AttendanceCardController {
         const selectedModuleDate = new Date(this.selectedModule.startingDate).toJSON().split('T')[0];
         if (selectedModuleDate > now) {
             this.futureModule = true;
-<<<<<<< HEAD
-            console.log(this.futureModule)
-=======
->>>>>>> hasan
         } else {
             this.futureModule = false;
         }
