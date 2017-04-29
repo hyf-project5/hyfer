@@ -3,39 +3,20 @@ import angular from 'angular';
 import timelineModule from '../timeline.module';
 import backendService from '../../services/backendService';
 // import toastService from '../services/toastService';
-import template from './attendance2.component.html';
+import template from './attendance.component.html';
 import './attendance.scss';
 
 
 class AttendanceCardController {
 
     static get $inject() {
-        return ['me', backendService];
+        return ['$state', 'me', backendService];
     }
 
-    constructor(me, backendService) {
+    constructor($state, me, backendService) {
         this.backendService = backendService;
         this.me = me;
-        this.attendances = {
-            Malek: [{ full_name: "malek kanaan", date: "2017-04-9", user_id: 12, attendance: 1, homework: 1 },
-            { full_name: "malek", date: "2017-04-16", user_id: 12, attendance: 1, homework: 1 },
-            { full_name: "malek", date: "2017-04-23", user_id: 12, attendance: 0, homework: 0 }],
-            Hasan: [{ full_name: "hasan", date: "2017-04-9", user_id: 12, attendance: 0, homework: 0 },
-            { full_name: "hasan", date: "2017-04-16", user_id: 12, attendance: 0, homework: 0 },
-            { full_name: "hasan", date: "2017-04-23", user_id: 12, attendance: 0, homework: 0 }],
-            jack: [{ full_name: "jack", date: "2017-04-9", user_id: 12, attendance: 1, homework: 0 },
-            { full_name: "jack", date: "2017-04-16", user_id: 12, attendance: 1, homework: 0 },
-            { full_name: "jack", date: "2017-04-23", user_id: 12, attendance: 1, homework: 0 }],
-            ahmed: [{ full_name: "ahmed", date: "2017-04-9", user_id: 12, attendance: 1, homework: 1 },
-            { full_name: "ahmed", date: "2017-04-16", user_id: 12, attendance: 1, homework: 1 },
-            { full_name: "ahmed", date: "2017-04-23", user_id: 12, attendance: 1, homework: 1 }],
-            jim: [{ full_name: "jim", date: "2017-04-9", user_id: 12, attendance: 0, homework: 0 },
-            { full_name: "jim", date: "2017-04-16", user_id: 12, attendance: 0, homework: 0 },
-            { full_name: "jim", date: "2017-04-23", user_id: 12, attendance: 0, homework: 0 }],
-            Sam: [{ full_name: "Sam", date: "2017-04-9", user_id: 12, attendance: 1, homework: 0 },
-            { full_name: "Sam", date: "2017-04-16", user_id: 12, attendance: 1, homework: 0 },
-            { full_name: "Sam", date: "2017-04-23", user_id: 12, attendance: 1, homework: 0 }]
-        };
+        this.$state = $state;
     }
 
 
@@ -48,7 +29,10 @@ class AttendanceCardController {
         const selectedModuleDate = new Date(this.selectedModule.startingDate).toJSON().split('T')[0];
         if (selectedModuleDate > now) {
             this.futureModule = true;
+<<<<<<< HEAD
             console.log(this.futureModule)
+=======
+>>>>>>> hasan
         } else {
             this.futureModule = false;
         }
@@ -70,16 +54,22 @@ class AttendanceCardController {
             classname: module.group_name,
             rmName: module.module_name
         };
-        this.backendService.getHistory(module.running_module_id, this.moduleSundays)
+        this.backendService.getHistory(module.running_module_id, module.id, this.moduleSundays)
             .then(res => {
-                console.log(res.data);
-                if (!res.data) {
-                    this.attendants = this.attendances;
-                    this.dummyData = true;
-                } else {
-                    this.attendants = res.data;
-                    this.dummyData = false;
+                const keys = Object.keys(res.data).sort()
+                this._students = [];
+                for (let student of keys) {
+                    for (let val of res.data[student]) {
+                        let obj = {
+                            _full_name: val.full_name,
+                            _date: val.date,
+                            _attendance: val.attendance,
+                            _homework: val.homework
+                        }
+                        this._students.push(obj)
+                    }
                 }
+                this.attendants = res.data;
             })
             .catch(err => console.log(err));
     }
@@ -96,10 +86,18 @@ class AttendanceCardController {
         return sundays;
     }
 
-    changeInStudentsHistory() {
-        if (this.dummyData) return;
-        this.toggleCancel = true;
-        this.toggleSave = true;
+    changeInStudentsHistory(studentChanged) {
+        let doesUserChanged = [];
+        for (let key in this.attendants) {
+            for (let attend of this.attendants[key]) {
+                doesUserChanged.push(this._students.some(_student => _student._homework !== attend.homework || _student._attendance !== attend.attendance))
+            }
+        }
+        if (doesUserChanged.some(check => check === true)) {
+            this.toggle = true;
+        } else {
+            this.toggle = false;
+        }
     }
 
     saveHistory() {
@@ -109,7 +107,18 @@ class AttendanceCardController {
     }
 
     cancelChanges() {
-        // this.$state.reload();
+        console.log(this.attendants)
+        for (let key in this.attendants) {
+            for (let attend of this.attendants[key]) {
+                this._students.forEach(_student =>{
+                    if (_student._full_name === attend.full_name && _student._date === attend.date) {
+                        attend.homework = _student._homework;
+                        attend.attendance = _student._attendance;
+                    }
+                })
+            }
+        }
+        this.toggle = false;
     }
 
 }

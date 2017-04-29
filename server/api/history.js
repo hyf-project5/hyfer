@@ -2,33 +2,51 @@
 const _ = require('lodash');
 const db = require('../datalayer/history');
 const connection = require('./connection');
+const states = require('../datalayer/states');
+
+function structureStudents(data) {
+    return data.reduce((acc, cur) => {
+        if (acc.hasOwnProperty(cur.full_name)) {
+            acc[cur.full_name].push(cur);
+        } else {
+            acc[cur.full_name] = [cur];
+        }
+        return acc;
+    }, {});
+}
+
+function correctSundays(sundays, data) {
+    data.push(...generateStudents(sundays, data));
+    const attendances = [];
+    for (let attendance of data) {
+        let datesAreInModules = sundays.some(date => date === attendance.date);
+        if (datesAreInModules) {
+            attendances.push(attendance);
+        }
+    }
+    return attendances;
+}
 
 function getHistory(req, res) {
-    const running_module_id = req.params.id;
+    const running_module_id = req.params.moduleId;
+    const groupId = req.params.groupId;
     const sundays = req.body.sundays;
     connection.getConnection(req, res)
         .then(con => db.getHistory(con, running_module_id))
         .then(data => {
-            if (data.length < 1) return res.status(204).json(data);
-            if (sundays) {
-                data.push(...generateStudents(sundays, data));
-                const attendances=[];
-                for (let attendance of data) {
-                    let datesAreInModules = sundays.some(date => date === attendance.date);
-                    if(datesAreInModules){
-                        attendances.push(attendance);
-                    }
-                }
-                data = attendances;
+            if (data.length < 1) {
+                return connection.getConnection(req, res)
+                    .then(con => states.getStudentsState(con, groupId))
+                    .then(students => {
+                        students = correctSundays(sundays, students);
+                        const result= structureStudents(students);
+                        res.json(result);
+                    })
             }
-            const result = data.reduce((acc, cur) => {
-                if (acc.hasOwnProperty(cur.full_name)) {
-                    acc[cur.full_name].push(cur);
-                } else {
-                    acc[cur.full_name] = [cur];
-                }
-                return acc;
-            }, {});
+            if (sundays) {
+                data = correctSundays(sundays, data);
+            }
+            const result = structureStudents(data);
             res.json(result);
         })
         .catch(err => console.error(err));

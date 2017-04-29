@@ -39,8 +39,8 @@ class backendService {
             .then(res => res.data);
     }
 
-    getHistory(runningModuleId, sundays) {
-        return this.$http.patch(`api/history/${runningModuleId}`, {"sundays": sundays}, this.getHttpConfig());
+    getHistory(runningModuleId, groupId, sundays) {
+        return this.$http.patch(`api/history/${runningModuleId}/${groupId}`, {"sundays": sundays}, this.getHttpConfig());
     }
 
     saveHistory(history) {

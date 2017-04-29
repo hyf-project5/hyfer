@@ -38,7 +38,7 @@ module.exports = function(app) {
     app.patch('/api/user/:id', authService.hasRole('teacher'), users.updateRole);
     app.get('/api/user/:id', authService.hasRole('teacher'), users.getUserById);
 
-    app.patch('/api/history/:id', authService.isAuthenticated(), history.getHistory);
+    app.patch('/api/history/:moduleId/:groupId', authService.isAuthenticated(), history.getHistory);
     app.post('/api/history',  authService.isAuthenticated(), history.saveAttendances);
     
     app.get('/api/studentsState/:groupId', authService.hasRole('teacher'), states.getStudentsState);
