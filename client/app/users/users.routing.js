@@ -21,7 +21,8 @@ function routing($stateProvider) {
             url: '/profile',
             component: profileComponent,
             params:{
-                id: null
+                id: null,
+                position: null
             },
             resolve:{
                 user: userResolver

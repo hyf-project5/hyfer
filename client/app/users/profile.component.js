@@ -9,14 +9,15 @@ import freecodecamp from '../../assets/images/freecodecamp.svg';
 class ProfileController {
 
     static get $inject() {
-        return ['$timeout', '$state', toolbarService, backendService];
+        return ['$timeout', '$state', '$stateParams', toolbarService, backendService];
     }
 
-    constructor($timeout, $state, toolbarService, backendService) {
+    constructor($timeout, $state, $stateParams, toolbarService, backendService) {
         this.toolbarService = toolbarService;
         this.toolbarService.switchToChild({
             title: 'Edit Profile',
-            backState: 'users'
+            backState: 'users',
+            position: $stateParams.position
         });
         this.backendService = backendService;
         this.$timeout = $timeout;

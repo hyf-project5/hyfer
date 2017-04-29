@@ -19,14 +19,19 @@ class ToolbarService {
         return this.title;
     }
 
+    getPosition(){
+        return this.position;
+    }
+
     switchToMain() {
-        this.$state.go(this.backState);
+        this.$state.go(this.backState, {'position': this.position});
         this.listeners.forEach(listener => listener('main'));
     }
 
     switchToChild(info) {
         this.title = info.title;
         this.backState = info.backState;
+        this.position = info.position;
         this.listeners.forEach(listener => listener('child'));
     }
 }
