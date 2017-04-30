@@ -3,7 +3,7 @@ const db = require('./database');
 
 // Users functions
 function getUser(con, username) {
-    return db.execQuery(con, `SELECT id, username, full_name, role, slack_username, freecodecamp_username, email, mobile, register_date FROM users WHERE username=?`, username);
+    return db.execQuery(con, `SELECT id, username, full_name, role, slack_username, freecodecamp_username, email, mobile, register_date, group_name FROM users WHERE username=?`, username);
 }
 
 function getUserById(con, id) {

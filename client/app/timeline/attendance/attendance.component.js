@@ -52,19 +52,21 @@ class AttendanceCardController {
         };
         this.backendService.getHistory(module.running_module_id, module.id, this.moduleSundays)
             .then(res => {
-                const keys = Object.keys(res.data).sort()
-                this._students = [];
+                const keys = Object.keys(res.data);
+                this._students = {};
                 for (let student of keys) {
                     for (let val of res.data[student]) {
                         let obj = {
                             _full_name: val.full_name,
                             _date: val.date,
                             _attendance: val.attendance,
-                            _homework: val.homework
+                            _homework: val.homework 
                         }
-                        this._students.push(obj)
+                        this._students[val.full_name + "_" + val.date] = obj
                     }
                 }
+                                console.log(this._students)
+
                 this.attendants = res.data;
             })
             .catch(err => console.log(err));
@@ -83,17 +85,8 @@ class AttendanceCardController {
     }
 
     changeInStudentsHistory(studentChanged) {
-        let doesUserChanged = [];
-        for (let key in this.attendants) {
-            for (let attend of this.attendants[key]) {
-                doesUserChanged.push(this._students.some(_student => _student._homework !== attend.homework || _student._attendance !== attend.attendance))
-            }
-        }
-        if (doesUserChanged.some(check => check === true)) {
-            this.toggle = true;
-        } else {
-            this.toggle = false;
-        }
+
+        this.toggle = true
     }
 
     saveHistory() {
@@ -106,12 +99,9 @@ class AttendanceCardController {
     cancelChanges() {
         for (let key in this.attendants) {
             for (let attend of this.attendants[key]) {
-                this._students.forEach(_student => {
-                    if (_student._full_name === attend.full_name && _student._date === attend.date) {
-                        attend.homework = _student._homework;
-                        attend.attendance = _student._attendance;
-                    }
-                })
+                let old = this._students[attend.full_name + "_" + attend.date]
+                attend.homework = old._homework
+                attend.attendance = old._attendance
             }
         }
         this.toggle = false;

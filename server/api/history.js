@@ -4,50 +4,47 @@ const db = require('../datalayer/history');
 const connection = require('./connection');
 const states = require('../datalayer/states');
 
-function structureStudents(data) {
-    return data.reduce((acc, cur) => {
-        if (acc.hasOwnProperty(cur.full_name)) {
-            acc[cur.full_name].push(cur);
-        } else {
-            acc[cur.full_name] = [cur];
-        }
-        return acc;
-    }, {});
-}
-
-function correctSundays(sundays, data, running_module_id) {
-    data.push(...generateStudents(sundays, data, running_module_id));
-    const attendances = [];
-    for (let attendance of data) {
-        let datesAreInModules = sundays.some(date => date === attendance.date);
-        if (datesAreInModules) {
-            attendances.push(attendance);
-        }
-    }
-    return attendances;
-}
 
 function getHistory(req, res) {
     const running_module_id = req.params.moduleId;
     const groupId = req.params.groupId;
     const sundays = req.body.sundays;
-    connection.getConnection(req, res)
+    return connection.getConnection(req, res)
         .then(con => db.getHistory(con, running_module_id))
-        .then(data => {
-            if (data.length < 1) {
-                return connection.getConnection(req, res)
-                    .then(con => states.getStudentsState(con, groupId))
-                    .then(students => {
-                        students = correctSundays(sundays, students, running_module_id);
-                        const result = structureStudents(students);
-                        res.json(result);
-                    })
-            }
-            if (sundays) {
-                data = correctSundays(sundays, data);
-            }
-            const result = structureStudents(data);
-            res.json(result);
+        .then(history => {
+            return connection.getConnection(req, res)
+                .then(con => states.getStudentsState(con, groupId))
+                .then(students => {
+                    let lookup = {}
+                    let out = {}
+                    for (let student of students) {
+                        for (let date of sundays) {
+                            let att = {
+                                attehdance: 0,
+                                homework: 0,
+                                group_id: student.group_id,
+                                full_name: student.full_name,
+                                user_id: student.user_id,
+                                username: student.username,
+                                running_module_id: running_module_id,
+                                date: date
+                            }
+  
+                            lookup[date + "_" + student.user_id] = att;
+                            let grouped = out[student.full_name] || (out[student.full_name] = [])
+                            grouped.push(att)
+                        }
+                    }
+                    for (let h of history) {
+                        let att = lookup[h.date + "_" + h.user_id]
+                        if (att) {
+                            att.attendance = h.attendance
+                            att.homework = h.homework
+                        }
+                    }
+
+                    res.json(out);
+                })
         })
         .catch(err => console.error(err));
 }
@@ -84,7 +81,6 @@ function saveAttendances(req, res) {
 }
 
 function generateStudents(dates, attendances, running_module_id) {
-    console.log(running_module_id)
     const studentsList = [];
     for (let attendance of attendances) {
         for (let date of dates) {
