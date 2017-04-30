@@ -20,7 +20,7 @@ function getHistory(req, res) {
                     for (let student of students) {
                         for (let date of sundays) {
                             let att = {
-                                attehdance: 0,
+                                attendance: 0,
                                 homework: 0,
                                 group_id: student.group_id,
                                 full_name: student.full_name,
@@ -29,7 +29,6 @@ function getHistory(req, res) {
                                 running_module_id: running_module_id,
                                 date: date
                             }
-  
                             lookup[date + "_" + student.user_id] = att;
                             let grouped = out[student.full_name] || (out[student.full_name] = [])
                             grouped.push(att)
@@ -42,7 +41,6 @@ function getHistory(req, res) {
                             att.homework = h.homework
                         }
                     }
-
                     res.json(out);
                 })
         })

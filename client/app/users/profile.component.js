@@ -5,14 +5,16 @@ import backendService from '../services/backendService';
 import template from './profile.component.html';
 import toolbarService from '../toolbar/toolbar.service';
 import freecodecamp from '../../assets/images/freecodecamp.svg';
+import toastService from '../services/toastService';
+
 
 class ProfileController {
 
     static get $inject() {
-        return ['$timeout', '$state', '$stateParams', toolbarService, backendService];
+        return ['$timeout', '$state', '$stateParams', toastService, toolbarService, backendService];
     }
 
-    constructor($timeout, $state, $stateParams, toolbarService, backendService) {
+    constructor($timeout, $state, $stateParams, toastService, toolbarService, backendService) {
         this.toolbarService = toolbarService;
         this.toolbarService.switchToChild({
             title: 'Edit Profile',
@@ -23,6 +25,7 @@ class ProfileController {
         this.$timeout = $timeout;
         this.freecodecamp = freecodecamp;
         this.$state = $state;
+        this.toastService = toastService;
     }
 
     getGroupsNameId() {
@@ -40,18 +43,20 @@ class ProfileController {
                     }, [])
                     console.log(this.classes)
                 })
-        }, 1000)
+        }, 400)
     }
 
-    save(assignedClass) {
-        if (assignedClass) {
-            this.user.group_name = assignedClass.name;
-            this.user.group_id = assignedClass.group_id;
+    save(user) {
+        console.log(this.user)
+        for(let key in user){
+            if(user[key]){
+                this.user[key] = user[key] || this.user[key];
+            }
         }
-
-        this.backendService.updateState(this.user);
-
-    }
+        this.backendService.updateState(this.user)
+            .then(res => this.toastService.displayToast(true, "Changes have been saved"))
+            
+    }   
     
     cancelChanges() {
         this.$state.reload();

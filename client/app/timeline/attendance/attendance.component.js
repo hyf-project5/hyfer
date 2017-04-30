@@ -65,8 +65,6 @@ class AttendanceCardController {
                         this._students[val.full_name + "_" + val.date] = obj
                     }
                 }
-                                console.log(this._students)
-
                 this.attendants = res.data;
             })
             .catch(err => console.log(err));
