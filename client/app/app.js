@@ -28,7 +28,8 @@ function run($cookies, backendService, me) {
             .then(profile => {
                 me.username = profile.username;
                 me.full_name = profile.full_name,
-                me.role = profile.role;
+                me.role = profile.role,
+                me.group_name = profile.group_name;
             })
             .catch(err => {
                 window.localStorage.removeItem(token);

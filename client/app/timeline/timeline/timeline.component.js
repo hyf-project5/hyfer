@@ -40,8 +40,20 @@ class TimelineController {
 
     composeTimeline() {
         this.classNames = Object.keys(this.timeline);
-        this.selectedModule = this.timeline[this.classNames[0]][0];
         this.height = (this.classNames.length * 60) + 40;
+        if (this.me.group_name) {
+            const now = new Date();
+            const afterTwintyDays = new Date(new Date(now).setDate(now.getDate() + 20)).getTime();
+            setTimeout(() => {
+                for (let group of this.timeline[this.me.group_name]) {
+                    const group_date = new Date(group.startingDate).getTime();
+                    if (group_date >= now.getTime() - 8.64e+7 && group_date <= afterTwintyDays) {
+                         this.selectedModule = group;
+                    }
+                }
+            }, 200)
+        }
+        this.selectedModule = this.timeline[this.classNames[0]][0];
     }
 
     onClick(module) {
