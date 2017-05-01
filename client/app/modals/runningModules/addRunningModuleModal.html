@@ -1,55 +1,55 @@
 <md-dialog aria-label="Adding Module." flex='60'>
-    <form ng-cloak>
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>Adding Running Module..</h2>
-                <span flex></span>
-                <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
-                    <md-icon md-font-set="material-icons">close</md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Adding Running Module..</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
+          <md-icon md-font-set="material-icons">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
 
-        <md-dialog-content aria-label="Adding Module.">
-            <div class="md-dialog-content">
-                <md-input-container class="md-block">
-                    <label>Select Module</label>
-                    <md-select aria-label="module name" ng-model="id">
-                        <md-option ng-repeat="module in $ctrl.modules[0]" ng-value="module.id">{{module.module_name}}</md-option>
-                    </md-select>
-                </md-input-container>
+    <md-dialog-content aria-label="Adding Module.">
+      <div class="md-dialog-content">
+        <md-input-container class="md-block">
+          <label>Select Module</label>
+          <md-select aria-label="module name" ng-model="id">
+            <md-option ng-repeat="module in $ctrl.modules[0]" ng-value="module.id">{{module.module_name}}</md-option>
+          </md-select>
+        </md-input-container>
 
-                <md-input-container class="md-block">
-                    <label>After Module</label>
-                    <md-select aria-label="after module" ng-model="afterModuleIndex">
-                        <md-option ng-repeat="module in $ctrl.runningModules" ng-value="$index">{{module.module_name}}</md-option>
-                    </md-select>
-                </md-input-container>
+        <md-input-container class="md-block">
+          <label>After Module</label>
+          <md-select aria-label="after module" ng-model="afterModuleIndex">
+            <md-option ng-repeat="module in $ctrl.runningModules" ng-value="$index">{{module.module_name}}</md-option>
+          </md-select>
+        </md-input-container>
 
-                <md-input-container class="md-block">
-                    <label>{{teacher1 || 'Teacher 1'}}</label>
-                    <md-select aria-label="user role" ng-model="teacher1">
-                        <md-option ng-repeat="user in $ctrl.users">{{user.username}}</md-option>
-                    </md-select>
-                </md-input-container>
+        <md-input-container class="md-block">
+          <label>{{teacher1 || 'Teacher 1'}}</label>
+          <md-select aria-label="user role" ng-model="teacher1">
+            <md-option ng-repeat="user in $ctrl.users">{{user.username}}</md-option>
+          </md-select>
+        </md-input-container>
 
-                <md-input-container class="md-block">
-                    <label>{{teacher2 || 'Teacher 2'}}</label>
-                    <md-select aria-label="user role" ng-model="teacher2">
-                        <md-option ng-repeat="user in $ctrl.users">{{user.username}}</md-option>
-                    </md-select>
-                </md-input-container>
-            </div>
-        </md-dialog-content>
+        <md-input-container class="md-block">
+          <label>{{teacher2 || 'Teacher 2'}}</label>
+          <md-select aria-label="user role" ng-model="teacher2">
+            <md-option ng-repeat="user in $ctrl.users">{{user.username}}</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+    </md-dialog-content>
 
-        <md-dialog-actions layout="row">
-            <md-button class="md-raised md-warn" ng-click="$ctrl.cancel()">
-                Cancel
-            </md-button>
-            <span flex></span>
-            <md-button class="md-primary" ng-disabled="!id && !afterModuleIndex" ng-click="$ctrl.add({id, afterModuleIndex, teacher1, teacher2})">
-                Add
-            </md-button>
-        </md-dialog-actions>
-    </form>
+    <md-dialog-actions layout="row">
+      <md-button class="md-raised md-warn" ng-click="$ctrl.cancel()">
+        Cancel
+      </md-button>
+      <span flex></span>
+      <md-button class="md-primary" ng-disabled="!id && !afterModuleIndex" ng-click="$ctrl.add({id, afterModuleIndex, teacher1, teacher2})">
+        Add
+      </md-button>
+    </md-dialog-actions>
+  </form>
 </md-dialog>

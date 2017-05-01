@@ -1,11 +1,11 @@
-import angular from 'angular';
-import timelineModule from '../timeline.module';
+import angular from 'angular'
+import timelineModule from '../timeline.module'
 
-const componentName = 'hyfTimelineRow';
+const componentName = 'hyfTimelineRow'
 
 angular.module(timelineModule)
-    .component(componentName, {
-        template: `
+  .component(componentName, {
+    template: `
             <hyf-running-module
                 ng-repeat="module in $ctrl.modules"
                 module="module"
@@ -13,11 +13,11 @@ angular.module(timelineModule)
                 modules="$ctrl.modules"
                 ng-click="$ctrl.onClick({module})">
             </hyf-running-module>`,
-        bindings: {
-            modules: '<',
-            selectedModule: '<',
-            onClick: '&'
-        }
-    });
+    bindings: {
+      modules: '<',
+      selectedModule: '<',
+      onClick: '&'
+    }
+  })
 
-export default componentName;
+export default componentName

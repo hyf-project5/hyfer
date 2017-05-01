@@ -1,20 +1,20 @@
-import angular from 'angular';
+import angular from 'angular'
 
-import appModule from './app.module';
-import './timeline/timeline.routing';
-import './modules/modules.routing';
-import './users/users.routing';
+import appModule from './app.module'
+import './timeline/timeline.routing'
+import './modules/modules.routing'
+import './users/users.routing'
 
-config.$inject = ['$urlRouterProvider', '$locationProvider'];
+config.$inject = ['$urlRouterProvider', '$locationProvider']
 
 function config($urlRouterProvider, $locationProvider) {
-    $urlRouterProvider.otherwise('/timeline');
+  $urlRouterProvider.otherwise('/timeline')
 
-    $locationProvider.html5Mode({
-        enabled: true,
-        requireBase: false
-    });
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+  })
 }
 
 angular.module(appModule)
-    .config(config);
+  .config(config)

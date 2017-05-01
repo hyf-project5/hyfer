@@ -1,19 +1,19 @@
 <div layout="row" layout-align="space-between start">
-    <div layout="column">
-        <h3 class="md-headline"> {{$ctrl.selectedModule.module_name}} Module</h2>
-        <h4 class="md-subhead">{{$ctrl.selectedModule.startingDate}} — {{$ctrl.selectedModule.endingDate}}</h4>
-    </div>
-    <span flex></span>
-    <md-button class="md-primary" ng-href="{{$ctrl.gitUrl}}" target='_blank' aria-label="Visit repository">
-        <md-icon class="githubIcon" md-svg-src="{{$ctrl.githubIcon}}"></md-icon>
-        Visit Repository
-    </md-button>
+  <div layout="column">
+    <h3 class="md-headline"> {{$ctrl.selectedModule.module_name}} Module</h2>
+      <h4 class="md-subhead">{{$ctrl.selectedModule.startingDate}} — {{$ctrl.selectedModule.endingDate}}</h4>
+  </div>
+  <span flex></span>
+  <md-button class="md-primary" ng-href="{{$ctrl.gitUrl}}" target='_blank' aria-label="Visit repository">
+    <md-icon class="githubIcon" md-svg-src="{{$ctrl.githubIcon}}"></md-icon>
+    Visit Repository
+  </md-button>
 </div>
 
 <hr>
 
 <div layout="row" class="readme-container">
-    <div class="md-whiteframe-2dp" style="width: 100%">
-        <div class="markdown-body" ng-bind-html="$ctrl.content"></div>
-    </div>
+  <div class="md-whiteframe-2dp" style="width: 100%">
+    <div class="markdown-body" ng-bind-html="$ctrl.content"></div>
+  </div>
 </div>

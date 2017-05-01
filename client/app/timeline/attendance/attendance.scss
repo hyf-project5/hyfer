@@ -7,17 +7,17 @@
     margin-bottom: 0px;
     text-align: left;
     line-height: 59px;
-    white-space:nowrap;
+    white-space: nowrap;
 }
-.check-box{
+
+.check-box {
     height: 30px;
     width: 80px;
     padding: 15px;
-    margin:auto;
-    
+    margin: auto;
 }
 
-.check-box::after{
+.check-box::after {
     content: '';
     width: 0%;
     height: 2px;
@@ -26,24 +26,27 @@
     transition: width 1s ease-in-out;
 }
 
-.border::after{
+.border::after {
     width: 100%;
 }
 
-.check-box-block{
-    overflow-x:auto;
+.check-box-block {
+    overflow-x: auto;
 }
-.weeks-block{
-    overflow-x:auto;
-    margin-left:10;
+
+.weeks-block {
+    overflow-x: auto;
+    margin-left: 10;
     text-align: center;
 }
-.week{
+
+.week {
     position: relative;
-    white-space:nowrap;
+    white-space: nowrap;
     min-width: 220px;
     text-align: center;
 }
+
 
 /**
 TODO: add border: solid saddlebrown 2px; when the check boxes have been checkd..

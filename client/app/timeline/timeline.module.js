@@ -1,5 +1,5 @@
-import angular from 'angular';
+import angular from 'angular'
 
-import footerModule from '../footer/footer.module';
+import footerModule from '../footer/footer.module'
 
-export default angular.module('hyferApp.timeline', [footerModule]).name;
+export default angular.module('hyferApp.timeline', [footerModule]).name

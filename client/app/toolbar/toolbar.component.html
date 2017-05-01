@@ -1,44 +1,45 @@
 <md-toolbar layout="row" class="md-whiteframe-2dp" ng-show="$ctrl.show">
-    <div class="md-toolbar-tools" layout='row' layout-align='space-between center' flex-offset-gt-sm='10' flex-gt-sm='80'>
-        <div>
+  <div class="md-toolbar-tools" layout='row' layout-align='space-between center' flex-offset-gt-sm='10' flex-gt-sm='80'>
+    <div>
 
-            <responsive-menu-component></responsive-menu-component>
+      <responsive-menu-component></responsive-menu-component>
 
-            <div class="toolbar-menu">
-                <img ng-src="{{$ctrl.logoIcon}}" alt="hyfLogo" height="40">
-                <md-nav-bar nav-bar-aria-label="navigation links">
-                    <md-nav-item ui-sref-active='active' md-nav-click="$ctrl.goto('timeline')" name="timeline">Timeline</md-nav-item>
-                    <md-nav-item ui-sref-active='active' ng-show="$ctrl.isTeacher()" md-nav-click="$ctrl.goto('modules')" name="modules">Modules</md-nav-item>
-                    <md-nav-item ui-sref-active='active' ng-show="$ctrl.isTeacher()" md-nav-click="$ctrl.goto('users')" name="users">Users</md-nav-item>
-                </md-nav-bar>
-            </div>
-        </div>
-
-        <div layout='row'>
-            <div class="user-name">
-                {{$ctrl.me.full_name}}
-            </div>
-            <md-button class="md-raised" ng-click="$ctrl.signin()" ng-show="!$ctrl.isUser()">
-                Sign in
-            </md-button>
-            <md-menu ng-if="$ctrl.isUser()" md-position-mode="target-right target">
-                <md-icon class="md-toolbar-tools">
-                    <img class="avatar-image" ng-src="https://avatars.githubusercontent.com/{{$ctrl.me.username}}" ng-click="$mdMenu.open($event)" aria-label="Open user's' menu">
-                    <md-tooltip>
-                        User
-                    </md-tooltip>
-                </md-icon>
-                <md-menu-content>
-                    <md-menu-item>
-                        <md-button>Role {{$ctrl.me.role}}</md-button>
-                    </md-menu-item>
-                    <md-menu-divider></md-menu-divider>
-
-                    <md-menu-item>
-                        <md-button ng-click="$ctrl.signout()">Sign out</md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-        </div>
+      <div class="toolbar-menu">
+        <img ng-src="{{$ctrl.logoIcon}}" alt="hyfLogo" height="40">
+        <md-nav-bar nav-bar-aria-label="navigation links">
+          <md-nav-item ui-sref-active='active' md-nav-click="$ctrl.goto('timeline')" name="timeline">Timeline</md-nav-item>
+          <md-nav-item ui-sref-active='active' ng-show="$ctrl.isTeacher()" md-nav-click="$ctrl.goto('modules')" name="modules">Modules</md-nav-item>
+          <md-nav-item ui-sref-active='active' ng-show="$ctrl.isTeacher()" md-nav-click="$ctrl.goto('users')" name="users">Users</md-nav-item>
+        </md-nav-bar>
+      </div>
     </div>
+
+    <div layout='row'>
+      <div class="user-name">
+        {{$ctrl.me.full_name}}
+      </div>
+      <md-button class="md-raised" ng-click="$ctrl.signin()" ng-show="!$ctrl.isUser()">
+        Sign in
+      </md-button>
+      <md-menu ng-if="$ctrl.isUser()" md-position-mode="target-right target">
+        <md-icon class="md-toolbar-tools">
+          <img class="avatar-image" ng-src="https://avatars.githubusercontent.com/{{$ctrl.me.username}}" ng-click="$mdMenu.open($event)"
+            aria-label="Open user's' menu">
+          <md-tooltip>
+            User
+          </md-tooltip>
+        </md-icon>
+        <md-menu-content>
+          <md-menu-item>
+            <md-button>Role {{$ctrl.me.role}}</md-button>
+          </md-menu-item>
+          <md-menu-divider></md-menu-divider>
+
+          <md-menu-item>
+            <md-button ng-click="$ctrl.signout()">Sign out</md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+  </div>
 </md-toolbar>
