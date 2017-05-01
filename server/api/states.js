@@ -29,11 +29,11 @@ function updateUser(req, res, next) {
         res.status(404)
       }
     })
-    .then(result => res.status(200))
+    .then(() => res.status(200))
 }
 
 function assignToClass(req, res) {
-  let userAndGroupIds = [req.body.group_id, req.body.id]
+  const userAndGroupIds = [req.body.group_id, req.body.id]
   getConnection(req, res)
     .then(con => db.assignToClass(con, userAndGroupIds))
     .then(result => res.status(result.affectedRows > 0 ? 200 : 404))

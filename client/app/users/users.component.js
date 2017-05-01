@@ -23,7 +23,7 @@ class UsersController {
     this.avatar = avatar
     this.freecodecamp = freecodecamp
     this.toolbarService = toolbarService
-    let content = document.getElementById('content')
+    const content = document.getElementById('content')
     content.addEventListener('scroll', (e) => {
       this.position = e.target.scrollTop
     })

@@ -49,9 +49,9 @@ class AttendanceCardController {
       .then(res => {
         const keys = Object.keys(res.data)
         this._students = {}
-        for (let student of keys) {
-          for (let val of res.data[student]) {
-            let obj = {
+        for (const student of keys) {
+          for (const val of res.data[student]) {
+            const obj = {
               _full_name: val.full_name,
               _date: val.date,
               _attendance: val.attendance,
@@ -83,15 +83,15 @@ class AttendanceCardController {
 
   saveHistory() {
     this.backendService.saveHistory(this.attendants)
-      .then(res => this.toastService.displayToast(true, 'Your changes have been saved'))
+      .then(() => this.toastService.displayToast(true, 'Your changes have been saved'))
       .catch(err => console.log(err))
     this.toggle = false
   }
 
   cancelChanges() {
-    for (let key in this.attendants) {
-      for (let attend of this.attendants[key]) {
-        let old = this._students[attend.full_name + '_' + attend.date]
+    for (const key in this.attendants) {
+      for (const attend of this.attendants[key]) {
+        const old = this._students[attend.full_name + '_' + attend.date]
         attend.homework = old._homework
         attend.attendance = old._attendance
       }

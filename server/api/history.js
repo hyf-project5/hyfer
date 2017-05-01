@@ -1,5 +1,4 @@
 'use strict'
-const _ = require('lodash')
 const db = require('../datalayer/history')
 const connection = require('./connection')
 const states = require('../datalayer/states')
@@ -14,11 +13,11 @@ function getHistory(req, res) {
       return connection.getConnection(req, res)
         .then(con => states.getStudentsState(con, groupId))
         .then(students => {
-          let lookup = {}
-          let out = {}
-          for (let student of students) {
-            for (let date of sundays) {
-              let att = {
+          const lookup = {}
+          const out = {}
+          for (const student of students) {
+            for (const date of sundays) {
+              const att = {
                 attendance: 0,
                 homework: 0,
                 group_id: student.group_id,
@@ -29,12 +28,12 @@ function getHistory(req, res) {
                 date: date
               }
               lookup[date + '_' + student.user_id] = att
-              let grouped = out[student.full_name] || (out[student.full_name] = [])
+              const grouped = out[student.full_name] || (out[student.full_name] = [])
               grouped.push(att)
             }
           }
-          for (let h of history) {
-            let att = lookup[h.date + '_' + h.user_id]
+          for (const h of history) {
+            const att = lookup[h.date + '_' + h.user_id]
             if (att) {
               att.attendance = h.attendance
               att.homework = h.homework
@@ -74,21 +73,6 @@ function saveAttendances(req, res) {
       console.log('err: ', err)
       res.status(400).json(err)
     })
-}
-
-function generateStudents(dates, attendances, running_module_id) {
-  const studentsList = []
-  for (let attendance of attendances) {
-    for (let date of dates) {
-      if (date !== attendance.date) {
-        const newAttendance = Object.assign({}, attendance);
-        [newAttendance.attendance, newAttendance.homework, newAttendance.date, newAttendance.running_module_id] = [0, 0, date, running_module_id || attendance.running_module_id]
-        studentsList.push(newAttendance)
-      }
-    }
-  }
-  // TODO: Chaneg username to full_name when merged to master
-  return studentsList
 }
 
 module.exports = {

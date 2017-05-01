@@ -30,9 +30,9 @@ class ProfileController {
     return this.$timeout(() => {
       this.backendService.getTimeline()
         .then(res => {
-          let classesName = Object.entries(res)
+          const classesName = Object.entries(res)
           this.classes = classesName.reduce((acc, curr) => {
-            let classNameAndId = {
+            const classNameAndId = {
               name: curr[0],
               group_id: curr[1][0].id
             }
@@ -46,13 +46,13 @@ class ProfileController {
 
   save(user) {
     console.log(this.user)
-    for (let key in user) {
+    for (const key in user) {
       if (user[key]) {
         this.user[key] = user[key] || this.user[key]
       }
     }
     this.backendService.updateState(this.user)
-      .then(res => this.toastService.displayToast(true, 'Changes have been saved'))
+      .then(() => this.toastService.displayToast(true, 'Changes have been saved'))
   }
 
   cancelChanges() {
