@@ -69,6 +69,10 @@ function hasRole(role) {
     })
 }
 
+function isTeacher() {
+  return hasRole('teacher')
+}
+
 function getConnection(req, res) {
   return new Promise((resolve, reject) => {
     req.getConnection((err, con) => {
@@ -99,5 +103,6 @@ module.exports = {
   gitHubCallback,
   setTokenCookie,
   isAuthenticated,
-  hasRole
+  hasRole,
+  isTeacher
 }

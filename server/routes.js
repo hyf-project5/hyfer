@@ -1,51 +1,58 @@
 'use strict'
 const passport = require('passport')
-require('./auth/github-auth')
-const authService = require('./auth/auth-service')
+require('./auth/githubAuth')
+const auth = require('./auth/authService')
 const github = require('./api/github')
 const users = require('./api/users')
 
 const modules = require('./api/modules')
-const runningModules = require('./api/running-modules')
+const running = require('./api/runningModules')
 const groups = require('./api/groups')
 const history = require('./api/history')
 const states = require('./api/states')
 
 module.exports = function (app) {
-  app.get('/api/modules', authService.hasRole('teacher'), modules.getModules)
-  app.post('/api/modules', authService.hasRole('teacher'), modules.addModule)
-  app.patch('/api/modules', authService.hasRole('teacher'), modules.updateModules)
-  app.patch('/api/modules/:id', authService.hasRole('teacher'), modules.updateModule)
-  app.delete('/api/modules/:id', authService.hasRole('teacher'), modules.deleteModule)
 
-  app.get('/api/running/:groupId', authService.hasRole('teacher'), runningModules.getRunningModules)
-  app.patch('/api/running/update/:groupId/:position', authService.hasRole('teacher'), runningModules.updateRunningModule)
-  app.patch('/api/running/split/:groupId/:position', authService.hasRole('teacher'), runningModules.splitRunningModule)
-  app.patch('/api/running/add/:moduleId/:groupId/:position', authService.hasRole('teacher'), runningModules.addModuleToRunningModules)
-  app.delete('/api/running/:groupId/:position', authService.hasRole('teacher'), runningModules.deleteRunningModule)
+  app.route('/api/modules')
+    .get(auth.isTeacher(), modules.getModules)
+    .post(auth.isTeacher(), modules.addModule)
+    .patch(auth.isTeacher(), modules.updateModules)
 
-  app.get('/api/groups', groups.getTimelineForAllGroups)
-  app.get('/api/groups/:id', groups.getTimelineForAGroup)
-  app.post('/api/groups', authService.hasRole('teacher'), groups.addGroup)
-  app.patch('/api/groups/:id', authService.hasRole('teacher'), groups.updateGroup)
-  app.delete('/api/groups/:id', authService.hasRole('teacher'), groups.deleteGroup)
+  app.route('/api/modules/:id')
+    .patch(auth.isTeacher(), modules.updateModule)
+    .delete(auth.isTeacher(), modules.deleteModule)
+
+  app.get('/api/running/:groupId', auth.isTeacher(), running.getRunningModules)
+  app.patch('/api/running/update/:groupId/:position', auth.isTeacher(), running.updateRunningModule)
+  app.patch('/api/running/split/:groupId/:position', auth.isTeacher(), running.splitRunningModule)
+  app.patch('/api/running/add/:moduleId/:groupId/:position', auth.isTeacher(), running.addModuleToRunningModules)
+  app.delete('/api/running/:groupId/:position', auth.isTeacher(), running.deleteRunningModule)
+
+  app.route('/api/groups')
+    .get(groups.getTimelineForAllGroups)
+    .post(auth.isTeacher(), groups.addGroup)
+
+  app.route('/api/groups/:id')
+    .get(groups.getTimelineForAGroup)
+    .patch(auth.isTeacher(), groups.updateGroup)
+    .delete(auth.isTeacher(), groups.deleteGroup)
 
   app.get('/api/github/readme/:owner/:repo', github.getReadMeAsHtml)
 
-  app.get('/api/user', authService.isAuthenticated(), users.getUser)
-  app.get('/api/users', authService.isAuthenticated(), users.getUsers)
-  app.patch('/api/user/:id', authService.hasRole('teacher'), users.updateRole)
-  app.get('/api/user/:id', authService.hasRole('teacher'), users.getUserById)
+  app.get('/api/user', auth.isAuthenticated(), users.getUser)
+  app.get('/api/users', auth.isAuthenticated(), users.getUsers)
+  app.patch('/api/user/:id', auth.isTeacher(), users.updateRole)
+  app.get('/api/user/:id', auth.isTeacher(), users.getUserById)
 
-  app.patch('/api/history/:moduleId/:groupId', authService.isAuthenticated(), history.getHistory)
-  app.post('/api/history', authService.isAuthenticated(), history.saveAttendances)
+  app.patch('/api/history/:moduleId/:groupId', auth.isAuthenticated(), history.getHistory)
+  app.post('/api/history', auth.isAuthenticated(), history.saveAttendances)
 
-  app.get('/api/studentsState/:groupId', authService.hasRole('teacher'), states.getStudentsState)
-  app.patch('/api/studentsState', authService.hasRole('teacher'), states.updateUser, states.assignToClass)
+  app.get('/api/studentsState/:groupId', auth.isTeacher(), states.getStudentsState)
+  app.patch('/api/studentsState', auth.isTeacher(), states.updateUser, states.assignToClass)
 
   app.get('/auth/github', passport.authenticate('github'))
   app.get('/auth/github/callback', passport.authenticate('github', { session: false, failureRedirect: '/login' }),
-    authService.gitHubCallback, authService.setTokenCookie)
+    auth.gitHubCallback, auth.setTokenCookie)
 
   app.route('/*')
     .get((req, res) => res.sendFile('index.html', { root: app.get('docRoot') }))
