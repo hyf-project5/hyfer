@@ -111,3 +111,18 @@ a:active {
         font-size: .8em;
     }
 }
+
+button.md-button.md-ink-ripple{
+    border-radius: 2px 17px;
+    transition: border-radius .34s ease-in-out .44ms;
+}
+
+.md-button.md-default-theme:not([disabled]).md-focused, .md-button:not([disabled]).md-focused, .md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover{
+    background-color:rgba(48, 27, 27, 0.2);
+    box-shadow:7px 3px 4px rgba(0, 0, 0, 0.38);
+    border-radius: 17px 2px ;
+}
+
+.md-toolbar-tools > .md-button:last-child{
+    margin-right: 8px;
+}

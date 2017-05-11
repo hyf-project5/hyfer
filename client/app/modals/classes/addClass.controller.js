@@ -17,9 +17,9 @@ class AddClassModalController {
 
     cancel() {
         this.$mdDialog.cancel();
-        setTimeout(() => {
-            this.toastService.displayToast(false);
-        }, 10);
+        // setTimeout(() => {
+        //     this.toastService.displayToast(false);
+        // }, 10);
     }
 
     add(group) {

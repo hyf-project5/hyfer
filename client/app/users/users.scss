@@ -1,0 +1,8 @@
+.md-whiteframe-4dp{
+    transition: box-shadow 0.3s ease-in .09s,
+                border-radius .24s ease-out
+}
+.md-whiteframe-4dp:hover{
+    box-shadow: 3px 4px 4px rgba(57, 15, 15, 0.81);
+    border-radius: 15px 22px
+}

@@ -79,7 +79,6 @@ class TimelineController {
                     this.timelineService.notifyChanged();
                 });
         }).catch(err => {
-            console.log(err);
             this.toastService.displayToast(false);
         });
     }
