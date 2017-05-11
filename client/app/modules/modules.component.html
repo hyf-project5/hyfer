@@ -1,11 +1,11 @@
 <div class="container">
-    <div flex-offset-gt-sm='10' flex-gt-sm='80'>
-        <div id="modulesContainer">
-            <hyf-modules-header></hyf-modules-header>
-            <hyf-module-list modules="$ctrl.modules" on-changed="$ctrl.onChanged(modules)" week-width="$ctrl.weekWidth"></hyf-module-list>
-            <hyf-modules-buttons is-dirty="$ctrl.isDirty" on-save="$ctrl.save()" on-undo-changes="$ctrl.undoChanges()" on-add-module="$ctrl.addModule(event)"></hyf-modules-buttons>
-        </div>
+  <div flex-offset-gt-sm='10' flex-gt-sm='80'>
+    <div id="modulesContainer">
+      <hyf-modules-header></hyf-modules-header>
+      <hyf-module-list modules="$ctrl.modules" on-changed="$ctrl.onChanged(modules)" week-width="$ctrl.weekWidth"></hyf-module-list>
+      <hyf-modules-buttons is-dirty="$ctrl.isDirty" on-save="$ctrl.save()" on-undo-changes="$ctrl.undoChanges()" on-add-module="$ctrl.addModule(event)"></hyf-modules-buttons>
     </div>
+  </div>
 </div>
 
 <hyf-footer></hyf-footer>

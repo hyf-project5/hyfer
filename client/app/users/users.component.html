@@ -1,71 +1,71 @@
 <div layout="row" layout-xs="column" layout-align="center" layout-wrap>
 
-    <div flex flex-gt-xs="90" flex-lg="90" flex-gt-lg="80" layout="row">
-        <md-input-container>
-            <label>lookup someone</label>
-            <input type="search" ng-model="query">
-        </md-input-container>
-        <md-input-container>
-            <label>Order By</label>
-            <md-select ng-model="order">
-                <md-option value="full_name">Name</md-option>
-                <md-option value="group_name">Class</md-option>
-                <md-option value="-role">Role</md-option>
-                <md-option value="register_date">Date joined</md-option>
-                <md-option value="slack_username">Slack Username</md-option>
-            </md-select>
-        </md-input-container>
-        <md-button ng-show="(query || order)" ng-click="query = null ; order = null">
-            <md-icon class="matirial-icon">clear</md-icon>
-        </md-button>
-    </div>
+  <div flex flex-gt-xs="90" flex-lg="90" flex-gt-lg="80" layout="row">
+    <md-input-container>
+      <label>lookup someone</label>
+      <input type="search" ng-model="query">
+    </md-input-container>
+    <md-input-container>
+      <label>Order By</label>
+      <md-select ng-model="order">
+        <md-option value="full_name">Name</md-option>
+        <md-option value="group_name">Class</md-option>
+        <md-option value="-role">Role</md-option>
+        <md-option value="register_date">Date joined</md-option>
+        <md-option value="slack_username">Slack Username</md-option>
+      </md-select>
+    </md-input-container>
+    <md-button ng-show="(query || order)" ng-click="query = null ; order = null">
+      <md-icon class="matirial-icon">clear</md-icon>
+    </md-button>
+  </div>
 
-    <md-card flex flex-gt-xs="45" flex-lg="30" flex-gt-lg="20" ng-repeat="user in $ctrl.users | filter: query | orderBy: order">
-        <md-card-title>
-            <md-card-title-text>
-                <span class="md-headline">{{user.full_name}}</span>
-                <span class="md-subhead"><i class="fa-dimmed fa fa-fw fa-group" ng-if="user.group_name"></i> {{user.group_name}}</span>
-                <span class="md-subhead"><i class="fa-dimmed fa fa-fw fa-graduation-cap"></i> {{user.role}}</span>
-                <span class="md-subhead"><i class="fa-dimmed fa fa-fw fa-clock-o"></i> {{user.register_date | date : 'mediumDate'}}</span>
-                <span class="md-subhead" ng-if="user.email">
-                    <a href="mailto:{{user.email}}" title="E-mail {{user.full_name}}">
-                        <i class="fa-dimmed fa fa-fw fa-envelope"></i> {{user.email}}</a>
-                </span>
-                <span class="md-subhead" ng-if="user.slack_username">
-                    <a href="https://hackyourfuture.slack.com/messages/{{user.slack_username}}/" target="_blank" title="Direct message {{user.full_name}}">
-                        <i class="fa-dimmed fa fa-fw fa-slack"></i> {{user.slack_username}}</a>
-                </span>
-                <span class="md-subhead" ng-if="user.freecodecamp_username">
-                    <a href="https://www.freecodecamp.com/{{user.freecodecamp_username}}" target="_blank" title="{{user.full_name}}'s FreeCodeCamp portfolio">
-                        <i class="fa-dimmedfa-dimmed fa fa-fw fa-free-code-camp" aria-label="freecodecamp"></i> {{user.freecodecamp_username}}</a>
-                </span>
-                <span class="md-subhead" ng-if="user.username">
-                    <a href="https://github.com/{{user.username}}" target="_blank" title="{{user.full_name}}'s github">
-                        <i class="fa-dimmed fa fa-fw fa-github"></i> {{user.username}}</a>
-                </span>
-                <span class="md-subhead" ng-if="user.mobile">
-                    <i class="fa-dimmed fa fa-fw fa-mobile"></i> {{user.mobile}}
-                </span>
-            </md-card-title-text>
+  <md-card flex flex-gt-xs="45" flex-lg="30" flex-gt-lg="20" ng-repeat="user in $ctrl.users | filter: query | orderBy: order">
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">{{user.full_name}}</span>
+        <span class="md-subhead"><i class="fa-dimmed fa fa-fw fa-group" ng-if="user.group_name"></i> {{user.group_name}}</span>
+        <span class="md-subhead"><i class="fa-dimmed fa fa-fw fa-graduation-cap"></i> {{user.role}}</span>
+        <span class="md-subhead"><i class="fa-dimmed fa fa-fw fa-clock-o"></i> {{user.register_date | date : 'mediumDate'}}</span>
+        <span class="md-subhead" ng-if="user.email">
+          <a href="mailto:{{user.email}}" title="E-mail {{user.full_name}}">
+          <i class="fa-dimmed fa fa-fw fa-envelope"></i> {{user.email}}</a>
+        </span>
+        <span class="md-subhead" ng-if="user.slack_username">
+          <a href="https://hackyourfuture.slack.com/messages/{{user.slack_username}}/" target="_blank" title="Direct message {{user.full_name}}">
+          <i class="fa-dimmed fa fa-fw fa-slack"></i> {{user.slack_username}}</a>
+        </span>
+        <span class="md-subhead" ng-if="user.freecodecamp_username">
+          <a href="https://www.freecodecamp.com/{{user.freecodecamp_username}}" target="_blank" title="{{user.full_name}}'s FreeCodeCamp portfolio">
+            <i class="fa-dimmedfa-dimmed fa fa-fw fa-free-code-camp" aria-label="freecodecamp"></i> {{user.freecodecamp_username}}</a>
+        </span>
+        <span class="md-subhead" ng-if="user.username">
+          <a href="https://github.com/{{user.username}}" target="_blank" title="{{user.full_name}}'s github">
+          <i class="fa-dimmed fa fa-fw fa-github"></i> {{user.username}}</a>
+        </span>
+        <span class="md-subhead" ng-if="user.mobile">
+          <i class="fa-dimmed fa fa-fw fa-mobile"></i> {{user.mobile}}
+        </span>
+      </md-card-title-text>
 
-            <md-card-title-media ng-if="!user.username">
-                <div class="md-media-md card-media">
-                    <img class="md-whiteframe-4dp" ng-src="https://api.adorable.io/avatars/200/{{user.full_name}}.png" alt="user avatar">
-                </div>
-            </md-card-title-media>
+      <md-card-title-media ng-if="!user.username">
+        <div class="md-media-md card-media">
+          <img class="md-whiteframe-4dp" ng-src="https://api.adorable.io/avatars/200/{{user.full_name}}.png" alt="user avatar">
+        </div>
+      </md-card-title-media>
 
-            <md-card-title-media ng-if="user.username">
-                <div class="md-media-md card-media">
-                    <a href="https://github.com/{{user.username}}" target="_blank">
-                        <img class="md-whiteframe-4dp" src="https://avatars.githubusercontent.com/{{user.username}}" alt="user avatar">
-                    </a>
-                </div>
-            </md-card-title-media>
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-primary md-hue-1" ng-click="$ctrl.goToProfile(user)">Edit</md-button>
-        </md-card-actions>
-    </md-card>
+      <md-card-title-media ng-if="user.username">
+        <div class="md-media-md card-media">
+          <a href="https://github.com/{{user.username}}" target="_blank">
+            <img class="md-whiteframe-4dp" src="https://avatars.githubusercontent.com/{{user.username}}" alt="user avatar">
+          </a>
+        </div>
+      </md-card-title-media>
+    </md-card-title>
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button class="md-primary md-hue-1" ng-click="$ctrl.goToProfile(user)">Edit</md-button>
+    </md-card-actions>
+  </md-card>
 </div>
 
 <hyf-footer></hyf-footer>

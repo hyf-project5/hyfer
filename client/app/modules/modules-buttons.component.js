@@ -1,19 +1,19 @@
-import angular from 'angular';
-import modulesModule from './modules.module';
+import angular from 'angular'
+import modulesModule from './modules.module'
 
-import template from './modules-buttons.component.html';
+import template from './modules-buttons.component.html'
 
-const componentName = 'hyfModulesButtons';
+const componentName = 'hyfModulesButtons'
 
 angular.module(modulesModule)
-    .component(componentName, {
-        template,
-        bindings: {
-            isDirty: '<',
-            onSave: '&',
-            onUndoChanges: '&',
-            onAddModule: '&'
-        }
-    });
+  .component(componentName, {
+    template,
+    bindings: {
+      isDirty: '<',
+      onSave: '&',
+      onUndoChanges: '&',
+      onAddModule: '&'
+    }
+  })
 
-export default componentName;
+export default componentName

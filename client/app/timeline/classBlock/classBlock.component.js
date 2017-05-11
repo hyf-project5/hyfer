@@ -1,17 +1,17 @@
-import angular from 'angular';
+import angular from 'angular'
 
-import timelineModule from '../timeline.module';
-import template from './classBlock.component.html';
-import './classBlock.scss';
+import timelineModule from '../timeline.module'
+import template from './classBlock.component.html'
+import './classBlock.scss'
 
-const componentName = 'hyfClassBlock';
+const componentName = 'hyfClassBlock'
 
 angular.module(timelineModule)
-    .component(componentName, {
-        template,
-        bindings: {
-            classNames: '<'
-        }
-    });
+  .component(componentName, {
+    template,
+    bindings: {
+      classNames: '<'
+    }
+  })
 
-export default componentName;
+export default componentName

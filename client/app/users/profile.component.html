@@ -1,60 +1,60 @@
 <md-content layout="row" layout-align="center">
-    <md-card layout-margin layout-padding flex="60">
-        <div>
-            <md-input-container class="md-block">
-                <label>Name</label>
-                <md-icon class="fa-dimmed fa fa-fw fa-user"></md-icon>
-                <input placeholder="{{$ctrl.user.full_name}}" ng-model="full_name" type="text">
-            </md-input-container>
+  <md-card layout-margin layout-padding flex="60">
+    <div>
+      <md-input-container class="md-block">
+        <label>Name</label>
+        <md-icon class="fa-dimmed fa fa-fw fa-user"></md-icon>
+        <input placeholder="{{$ctrl.user.full_name}}" ng-model="full_name" type="text">
+      </md-input-container>
 
-            <md-input-container>
-                <label>{{$ctrl.user.role}}</label>
-                <md-icon class="fa-dimmed fa fa-fw fa-graduation-cap"></md-icon>
-                <md-select ng-model="role" aria-label="$ctrl.user.role">
-                    <md-option value="Teacher">Teacher</md-option>
-                    <md-option value="Student">Student</md-option>
-                </md-select>
-            </md-input-container>
+      <md-input-container>
+        <label>{{$ctrl.user.role}}</label>
+        <md-icon class="fa-dimmed fa fa-fw fa-graduation-cap"></md-icon>
+        <md-select ng-model="role" aria-label="$ctrl.user.role">
+          <md-option value="Teacher">Teacher</md-option>
+          <md-option value="Student">Student</md-option>
+        </md-select>
+      </md-input-container>
 
-            <md-input-container>
-                <md-icon class="fa-dimmed fa fa-fw fa-users"></md-icon>
-                <md-select placeholder="{{$ctrl.user.group_name}}" ng-model="group_id" md-on-open="$ctrl.getGroupsNameId()" aria-label="$ctrl.user.group_name">
-                    <md-option  ng-repeat="class in $ctrl.classes" ng-value="class.group_id">{{class.name}}</md-option>
-                </md-select>
-            </md-input-container>
+      <md-input-container>
+        <md-icon class="fa-dimmed fa fa-fw fa-users"></md-icon>
+        <md-select placeholder="{{$ctrl.user.group_name}}" ng-model="group_id" md-on-open="$ctrl.getGroupsNameId()" aria-label="$ctrl.user.group_name">
+          <md-option ng-repeat="class in $ctrl.classes" ng-value="class.group_id">{{class.name}}</md-option>
+        </md-select>
+      </md-input-container>
 
-            <md-input-container class="md-block">
-                <label>E-mail</label>
-                <md-icon class="fa-dimmed fa fa-fw fa-envelope"></md-icon>
-                <input placeholder="{{$ctrl.user.email}}" ng-model="email" type="email">
-            </md-input-container>
+      <md-input-container class="md-block">
+        <label>E-mail</label>
+        <md-icon class="fa-dimmed fa fa-fw fa-envelope"></md-icon>
+        <input placeholder="{{$ctrl.user.email}}" ng-model="email" type="email">
+      </md-input-container>
 
-            <md-input-container class="md-block">
-                <label>Slack username</label>
-                <md-icon class="fa-dimmed fa fa-fw fa-slack"></md-icon>
-                <input placeholder="{{$ctrl.user.slack_username}}" ng-model="slack_username" type="text">
-            </md-input-container>
+      <md-input-container class="md-block">
+        <label>Slack username</label>
+        <md-icon class="fa-dimmed fa fa-fw fa-slack"></md-icon>
+        <input placeholder="{{$ctrl.user.slack_username}}" ng-model="slack_username" type="text">
+      </md-input-container>
 
-            <md-input-container class="md-block">
-                <label>FreeCodeCamp username</label>
-                <md-icon class="fa-dimmed fa fa-fw fa-free-code-camp"></md-icon>
-                <input placeholder="{{$ctrl.user.freecodecamp_username}}" ng-model="freecodecamp_username" type="text">
-            </md-input-container>
+      <md-input-container class="md-block">
+        <label>FreeCodeCamp username</label>
+        <md-icon class="fa-dimmed fa fa-fw fa-free-code-camp"></md-icon>
+        <input placeholder="{{$ctrl.user.freecodecamp_username}}" ng-model="freecodecamp_username" type="text">
+      </md-input-container>
 
-            <md-input-container class="md-block">
-                <label>Mobile</label>
-                <md-icon class="fa-dimmed fa fa-fw fa-mobile"></md-icon>
-                <input placeholder="{{$ctrl.user.mobile}}" ng-model="mobile" type="text">
-            </md-input-container>
-        </div>
-        <div layout="row" layout-align="end center">
-            <md-button class="md-raised" ng-click="$ctrl.cancelChanges()">
-                undo
-            </md-button>
-            
-            <md-button class="md-primary md-raised" ng-click="$ctrl.save({role, full_name, group_id, email, slack_username, freecodecamp_username, mobile })">
-                Save
-            </md-button>
-        </div>
-    </md-card>
+      <md-input-container class="md-block">
+        <label>Mobile</label>
+        <md-icon class="fa-dimmed fa fa-fw fa-mobile"></md-icon>
+        <input placeholder="{{$ctrl.user.mobile}}" ng-model="mobile" type="text">
+      </md-input-container>
+    </div>
+    <div layout="row" layout-align="end center">
+      <md-button class="md-raised" ng-click="$ctrl.cancelChanges()">
+        undo
+      </md-button>
+
+      <md-button class="md-primary md-raised" ng-click="$ctrl.save({role, full_name, group_id, email, slack_username, freecodecamp_username, mobile })">
+        Save
+      </md-button>
+    </div>
+  </md-card>
 </md-content>

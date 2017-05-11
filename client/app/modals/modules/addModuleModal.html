@@ -1,46 +1,47 @@
 <md-dialog aria-label="Adding Module." flex='60'>
-    <form ng-cloak>
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>Adding Module..</h2>
-                <span flex></span>
-                <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
-                    <md-icon md-font-set="material-icons">close</md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Adding Module..</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
+          <md-icon md-font-set="material-icons">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
 
-        <md-dialog-content aria-label="Adding Module.">
-            <div class="md-dialog-content">
-                <md-input-container class="md-block">
-                    <input type="text" ng-model="$ctrl.newModule.module_name" placeholder="Module name..">
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <input ng-model="$ctrl.newModule.git_repo" type="text" placeholder="Repo name..">
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <input ng-model="$ctrl.newModule.git_url" type="url" placeholder="Repo URL..">
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <input ng-model="$ctrl.newModule.default_duration" type="number" min="1" max="6" placeholder="Duration..">
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <input colorpicker="hex" type="text" ng-model="$ctrl.newModule.color" placeholder="Color.." />
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <md-checkbox ng-model="$ctrl.newModule.optional" aria-label="Optional">Optional</md-checkbox>
-                </md-input-container>
-            </div>
-        </md-dialog-content>
+    <md-dialog-content aria-label="Adding Module.">
+      <div class="md-dialog-content">
+        <md-input-container class="md-block">
+          <input type="text" ng-model="$ctrl.newModule.module_name" placeholder="Module name..">
+        </md-input-container>
+        <md-input-container class="md-block">
+          <input ng-model="$ctrl.newModule.git_repo" type="text" placeholder="Repo name..">
+        </md-input-container>
+        <md-input-container class="md-block">
+          <input ng-model="$ctrl.newModule.git_url" type="url" placeholder="Repo URL..">
+        </md-input-container>
+        <md-input-container class="md-block">
+          <input ng-model="$ctrl.newModule.default_duration" type="number" min="1" max="6" placeholder="Duration..">
+        </md-input-container>
+        <md-input-container class="md-block">
+          <input colorpicker="hex" type="text" ng-model="$ctrl.newModule.color" placeholder="Color.." />
+        </md-input-container>
+        <md-input-container class="md-block">
+          <md-checkbox ng-model="$ctrl.newModule.optional" aria-label="Optional">Optional</md-checkbox>
+        </md-input-container>
+      </div>
+    </md-dialog-content>
 
-        <md-dialog-actions layout="row">
-            <md-button class="md-raised md-warn" ng-click="$ctrl.cancel()">
-                Cancel
-            </md-button>
-            <span flex></span>
-            <md-button class="md-primary" type='submit' ng-disabled="!$ctrl.newModule.module_name || !$ctrl.newModule.default_duration" ng-click="$ctrl.add()">
-                Add
-            </md-button>
-        </md-dialog-actions>
-    </form>
+    <md-dialog-actions layout="row">
+      <md-button class="md-raised md-warn" ng-click="$ctrl.cancel()">
+        Cancel
+      </md-button>
+      <span flex></span>
+      <md-button class="md-primary" type='submit' ng-disabled="!$ctrl.newModule.module_name || !$ctrl.newModule.default_duration"
+        ng-click="$ctrl.add()">
+        Add
+      </md-button>
+    </md-dialog-actions>
+  </form>
 </md-dialog>

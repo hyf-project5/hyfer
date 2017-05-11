@@ -1,35 +1,35 @@
 <md-dialog aria-label="Running module dialog">
-    <md-dialog-content>
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>{{$ctrl.module.module_name}} Module Options</h2>
-                <span flex></span>
-                <md-button class="md-icon-button" ng-click="$ctrl.closeDialog()">
-                    <md-icon md-font-set="material-icons">close</md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
-        <div layout="column" layout-padding>
-            <md-input-container>
-                <label>New Module To Add</label>
-                <md-select aria-label="Insert module" ng-model="$ctrl.selectedModule">
-                    <md-option ng-repeat="module in $ctrl.modules" ng-value="module">{{module.module_name}}</md-option>
-                </md-select>
-            </md-input-container>
-            <md-button class="md-primary" ng-click="$ctrl.addModule()">
-                Add New Module After {{$ctrl.module.module_name}}
-            </md-button>
-            <md-button class="md-primary" ng-click="$ctrl.splitModule()">
-                Split Module
-            </md-button>
-            <md-button class="md-warn" ng-click="$ctrl.deleteModule()">
-                Delete Module
-            </md-button>
-        </div>
-    </md-dialog-content>
-    <md-dialog-actions layout="row">
-        <md-button class="md-primary" ng-click="$ctrl.closeDialog()">
-            Close Dialog
+  <md-dialog-content>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{$ctrl.module.module_name}} Module Options</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="$ctrl.closeDialog()">
+          <md-icon md-font-set="material-icons">close</md-icon>
         </md-button>
-    </md-dialog-actions>
+      </div>
+    </md-toolbar>
+    <div layout="column" layout-padding>
+      <md-input-container>
+        <label>New Module To Add</label>
+        <md-select aria-label="Insert module" ng-model="$ctrl.selectedModule">
+          <md-option ng-repeat="module in $ctrl.modules" ng-value="module">{{module.module_name}}</md-option>
+        </md-select>
+      </md-input-container>
+      <md-button class="md-primary" ng-click="$ctrl.addModule()">
+        Add New Module After {{$ctrl.module.module_name}}
+      </md-button>
+      <md-button class="md-primary" ng-click="$ctrl.splitModule()">
+        Split Module
+      </md-button>
+      <md-button class="md-warn" ng-click="$ctrl.deleteModule()">
+        Delete Module
+      </md-button>
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <md-button class="md-primary" ng-click="$ctrl.closeDialog()">
+      Close Dialog
+    </md-button>
+  </md-dialog-actions>
 </md-dialog>

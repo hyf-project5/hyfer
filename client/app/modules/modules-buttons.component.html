@@ -1,16 +1,16 @@
 <div layout='row'>
-    <md-button ng-disabled="!$ctrl.isDirty" class="module-add md-raised md-fab" ng-click="$ctrl.onUndoChanges()">
-        <md-icon md-font-set="material-icons">undo</md-icon>
-        <md-tooltip md-direction='top'>Undo Changes</md-tooltip>
-    </md-button>
-    <span flex></span>
-    <md-button ng-disabled="!$ctrl.isDirty" class="module-add md-raised md-fab md-primary" ng-click="$ctrl.onSave()">
-        <md-icon md-font-set="material-icons">save</md-icon>
-        <md-tooltip md-direction='top'>save</md-tooltip>
-    </md-button>
-    <md-button class="module-add md-raised md-fab md-primary" ng-click="$ctrl.onAddModule({event: $event})">
-        <md-icon md-font-set="material-icons">add<md-icon>
-        <md-tooltip md-direction='top'>Add module<md-tooltip>
-    </md-button>
+  <md-button ng-disabled="!$ctrl.isDirty" class="module-add md-raised md-fab" ng-click="$ctrl.onUndoChanges()">
+    <md-icon md-font-set="material-icons">undo</md-icon>
+    <md-tooltip md-direction='top'>Undo Changes</md-tooltip>
+  </md-button>
+  <span flex></span>
+  <md-button ng-disabled="!$ctrl.isDirty" class="module-add md-raised md-fab md-primary" ng-click="$ctrl.onSave()">
+    <md-icon md-font-set="material-icons">save</md-icon>
+    <md-tooltip md-direction='top'>save</md-tooltip>
+  </md-button>
+  <md-button class="module-add md-raised md-fab md-primary" ng-click="$ctrl.onAddModule({event: $event})">
+    <md-icon md-font-set="material-icons">add</md-icon>
+    <md-tooltip md-direction='top'>Add module</md-tooltip>
+  </md-button>
 </div>
 <br>

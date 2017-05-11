@@ -1,45 +1,45 @@
 <div>
-    <h2>Attendance in {{$ctrl.historyobj.classname}} of {{$ctrl.historyobj.rmName}}</h2>
-    <hr>
-    <md-card>
-        <md-card-content layout="column">
-            <div layout="row">
-                <h4 class="md-subhead" style="width: 150px">Student</h4>
-                <div flex layout="row">
-                    <h4 class="md-subhead" flex style="text-align: center" ng-repeat="date in $ctrl.moduleSundays">Sunday, {{date}}</h4>
-                </div>
-            </div>
-            <md-divider></md-divider>
-            <div layout="row" layout-align="space-between center" ng-repeat="attendant in $ctrl.attendants">
-                <p class="md-body-1" style="width: 150px">{{attendant[0].full_name}}</p>
-                <div flex ng-repeat="student in attendant" layout="row">
-                    <div flex layout="row" layout-padding layout-align="center center">
-                        <md-checkbox ng-disabled="$ctrl.futureModule" style="margin-bottom: 0" title="homework" ng-true-value="1" ng-false-value="0"
-                            ng-model="student.homework" aria-label="homework" ng-change="$ctrl.changeInStudentsHistory()">
-                            <md-icon md-font-icon="fa-briefcase" class="fa fa-lg"></md-icon>
-                        </md-checkbox>
-                        <md-checkbox ng-disabled="$ctrl.futureModule" style="margin-bottom: 0" title="attendance" ng-true-value="1" ng-false-value="0"
-                            ng-model="student.attendance" aria-label="attendance" ng-change="$ctrl.changeInStudentsHistory()">
-                            <md-icon md-font-icon="fa-handshake-o" class="fa fa-lg"></md-icon>
-                        </md-checkbox>
-                    </div>
-                    <md-divider ng-if="!$last"></md-divider>
-                </div>
-            </div>
-            <md-tooltip style="font-size: 1em;" ng-if="$ctrl.dummyData" md-direction='top'>
-                Nothing will changes, it's dummy data
-            </md-tooltip>
-        </md-card-content>
-        <div layout="row">
-            <span flex="" class="flex"></span>
-            <md-button ng-disabled="!$ctrl.toggleCancel" class="module-add md-raised md-fab" ng-click="$ctrl.cancelChanges()">
-                <md-icon md-font-set="material-icons">undo</md-icon>
-                <md-tooltip md-direction='top'>Undo Changes</md-tooltip>
-            </md-button>
-            <md-button ng-disabled="!$ctrl.toggleSave" ng-click="$ctrl.saveHistory()" class="module-add md-raised md-fab" type='submit'>
-                <md-icon md-font-set="material-icons">save</md-icon>
-                <md-tooltip md-direction='top'>save Changes</md-tooltip>
-            </md-button>
+  <h2>Attendance in {{$ctrl.historyobj.classname}} of {{$ctrl.historyobj.rmName}}</h2>
+  <hr>
+  <md-card>
+    <md-card-content layout="column">
+      <div layout="row">
+        <h4 class="md-subhead" style="width: 150px">Student</h4>
+        <div flex layout="row">
+          <h4 class="md-subhead" flex style="text-align: center" ng-repeat="date in $ctrl.moduleSundays">Sunday, {{date}}</h4>
         </div>
-    </md-card>
+      </div>
+      <md-divider></md-divider>
+      <div layout="row" layout-align="space-between center" ng-repeat="attendant in $ctrl.attendants">
+        <p class="md-body-1" style="width: 150px">{{attendant[0].full_name}}</p>
+        <div flex ng-repeat="student in attendant" layout="row">
+          <div flex layout="row" layout-padding layout-align="center center">
+            <md-checkbox ng-disabled="$ctrl.futureModule" style="margin-bottom: 0" title="homework" ng-true-value="1" ng-false-value="0"
+              ng-model="student.homework" aria-label="homework" ng-change="$ctrl.changeInStudentsHistory()">
+              <md-icon md-font-icon="fa-briefcase" class="fa fa-lg"></md-icon>
+            </md-checkbox>
+            <md-checkbox ng-disabled="$ctrl.futureModule" style="margin-bottom: 0" title="attendance" ng-true-value="1" ng-false-value="0"
+              ng-model="student.attendance" aria-label="attendance" ng-change="$ctrl.changeInStudentsHistory()">
+              <md-icon md-font-icon="fa-handshake-o" class="fa fa-lg"></md-icon>
+            </md-checkbox>
+          </div>
+          <md-divider ng-if="!$last"></md-divider>
+        </div>
+      </div>
+      <md-tooltip style="font-size: 1em;" ng-if="$ctrl.dummyData" md-direction='top'>
+        Nothing will changes, it's dummy data
+      </md-tooltip>
+    </md-card-content>
+    <div layout="row">
+      <span flex="" class="flex"></span>
+      <md-button ng-disabled="!$ctrl.toggleCancel" class="module-add md-raised md-fab" ng-click="$ctrl.cancelChanges()">
+        <md-icon md-font-set="material-icons">undo</md-icon>
+        <md-tooltip md-direction='top'>Undo Changes</md-tooltip>
+      </md-button>
+      <md-button ng-disabled="!$ctrl.toggleSave" ng-click="$ctrl.saveHistory()" class="module-add md-raised md-fab" type='submit'>
+        <md-icon md-font-set="material-icons">save</md-icon>
+        <md-tooltip md-direction='top'>save Changes</md-tooltip>
+      </md-button>
+    </div>
+  </md-card>
 </div>

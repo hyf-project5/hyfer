@@ -1,3 +1,3 @@
-import angular from 'angular';
+import angular from 'angular'
 
-export default angular.module('hyferApp.footer', []).name;
+export default angular.module('hyferApp.footer', []).name

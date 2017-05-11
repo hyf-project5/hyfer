@@ -1,35 +1,35 @@
 <md-dialog aria-label="Module teachers">
-    <md-dialog-content>
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>{{$ctrl.module.module_name}} Module Teachers</h2>
-                <span flex></span>
-                <md-button class="md-icon-button" ng-click="$ctrl.closeDialog()">
-                    <md-icon md-font-set="material-icons">close</md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
-        <div layout="column" layout-padding>
-            <md-input-container>
-                <label>First Teacher</label>
-                <md-select aria-label="First teacher" ng-model="$ctrl.firstTeacher">
-                    <md-option ng-repeat="teacher in $ctrl.teachers" ng-value="teacher">{{teacher.full_name}}</md-option>
-                </md-select>
-            </md-input-container>
-            <md-input-container>
-                <label>Second Teacher</label>
-                <md-select aria-label="Second teacher" ng-model="$ctrl.secondTeacher">
-                    <md-option ng-repeat="teacher in $ctrl.teachers" ng-value="teacher">{{teacher.full_name}}</md-option>
-                </md-select>
-            </md-input-container>
-        </div>
-    </md-dialog-content>
-    <md-dialog-actions layout="row">
-        <md-button class="md-primary" ng-disabled="!$ctrl.firstTeacher && !$ctrl.secondTeacher" ng-click="$ctrl.save()">
-            Save
+  <md-dialog-content>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{$ctrl.module.module_name}} Module Teachers</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="$ctrl.closeDialog()">
+          <md-icon md-font-set="material-icons">close</md-icon>
         </md-button>
-        <md-button class="md-primary" ng-click="$ctrl.closeDialog()">
-            Close Dialog
-        </md-button>
-    </md-dialog-actions>
+      </div>
+    </md-toolbar>
+    <div layout="column" layout-padding>
+      <md-input-container>
+        <label>First Teacher</label>
+        <md-select aria-label="First teacher" ng-model="$ctrl.firstTeacher">
+          <md-option ng-repeat="teacher in $ctrl.teachers" ng-value="teacher">{{teacher.full_name}}</md-option>
+        </md-select>
+      </md-input-container>
+      <md-input-container>
+        <label>Second Teacher</label>
+        <md-select aria-label="Second teacher" ng-model="$ctrl.secondTeacher">
+          <md-option ng-repeat="teacher in $ctrl.teachers" ng-value="teacher">{{teacher.full_name}}</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <md-button class="md-primary" ng-disabled="!$ctrl.firstTeacher && !$ctrl.secondTeacher" ng-click="$ctrl.save()">
+      Save
+    </md-button>
+    <md-button class="md-primary" ng-click="$ctrl.closeDialog()">
+      Close Dialog
+    </md-button>
+  </md-dialog-actions>
 </md-dialog>

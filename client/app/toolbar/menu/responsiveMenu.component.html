@@ -1,20 +1,20 @@
 <md-menu class="toolbar-menu-responsive">
-    <img class="avatar-image" src="../../../assets/images/menuicon.svg" ng-click="$mdMenu.open($event)">
-    <md-menu-content>
-        <md-menu-item>
-            <md-button ui-sref='timeline'>
-                Timeline
-            </md-button>
-        </md-menu-item>
-        <md-menu-item ng-show="$ctrl.isTeacher()">
-            <md-button ui-sref='modules' ng-show="$ctrl.isTeacher()">
-                Modules
-            </md-button>
-        </md-menu-item>
-        <md-menu-item ng-show="$ctrl.isTeacher()">
-            <md-button ui-sref='users' ng-show="$ctrl.isTeacher()">
-                Users
-            </md-button>
-        </md-menu-item>
-    </md-menu-content>
+  <img class="avatar-image" src="../../../assets/images/menuicon.svg" ng-click="$mdMenu.open($event)">
+  <md-menu-content>
+    <md-menu-item>
+      <md-button ui-sref='timeline'>
+        Timeline
+      </md-button>
+    </md-menu-item>
+    <md-menu-item ng-show="$ctrl.isTeacher()">
+      <md-button ui-sref='modules' ng-show="$ctrl.isTeacher()">
+        Modules
+      </md-button>
+    </md-menu-item>
+    <md-menu-item ng-show="$ctrl.isTeacher()">
+      <md-button ui-sref='users' ng-show="$ctrl.isTeacher()">
+        Users
+      </md-button>
+    </md-menu-item>
+  </md-menu-content>
 </md-menu>

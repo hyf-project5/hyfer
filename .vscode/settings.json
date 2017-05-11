@@ -2,5 +2,7 @@
     "search.exclude": {
     "**/build": true,
     "**/.idea": true
-  }
+  },
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false
 }

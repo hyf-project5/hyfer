@@ -1,27 +1,26 @@
-import angular from 'angular';
+import angular from 'angular'
 
-import footerModule from './footer.module';
-import template from './footer.component.html';
-import logoIcon from '../../assets/images/logo.png';
-import './footer.scss';
+import footerModule from './footer.module'
+import template from './footer.component.html'
+import logoIcon from '../../assets/images/logo.png'
+import './footer.scss'
 
 class FooterController {
+  static get $inject() {
+    return []
+  }
 
-    static get $inject() {
-        return [];
-    }
-
-    constructor() {
-        this.logoIcon = logoIcon;
-    }
+  constructor() {
+    this.logoIcon = logoIcon
+  }
 }
 
-const componentName = 'hyfFooter';
+const componentName = 'hyfFooter'
 
 angular.module(footerModule)
-    .component(componentName, {
-        template,
-        controller: FooterController
-    });
+  .component(componentName, {
+    template,
+    controller: FooterController
+  })
 
-export default componentName;
+export default componentName

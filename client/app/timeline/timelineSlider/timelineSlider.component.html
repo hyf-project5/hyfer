@@ -1,11 +1,11 @@
 <div id="timeline-slider" class="slider-fade-in slider-hide">
 
-    <hyf-timeline-indicator timeline="$ctrl.timeline"></hyf-timeline-indicator>
+  <hyf-timeline-indicator timeline="$ctrl.timeline"></hyf-timeline-indicator>
 
-    <div class="modules-container">
-        <div ng-repeat="className in $ctrl.classNames">
-            <hyf-timeline-row modules="$ctrl.timeline[className]" selected-module="$ctrl.selectedModule" on-click="$ctrl.clicked(module)"></hyf-timeline-row>
-        </div>
+  <div class="modules-container">
+    <div ng-repeat="className in $ctrl.classNames">
+      <hyf-timeline-row modules="$ctrl.timeline[className]" selected-module="$ctrl.selectedModule" on-click="$ctrl.clicked(module)"></hyf-timeline-row>
     </div>
+  </div>
 
 </div>
