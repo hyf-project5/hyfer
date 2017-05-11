@@ -1,8 +1,8 @@
 'use strict'
-
 const mysql = require('mysql')
 const connection = require('express-myconnection')
-const config = require('./config.js')
+const config = require('../config/config.js')
+
 module.exports = function (app) {
   app.use(connection(mysql, {
     host: config.host,

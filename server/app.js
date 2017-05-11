@@ -13,7 +13,12 @@ const passport = require('passport')
 const app = express()
 
 app.set('port', process.env.PORT || 3002)
-app.set('docRoot', path.resolve(__dirname, '../build'))
+
+if (app.get('env') === 'development') {
+  app.set('docRoot', path.resolve(__dirname, '../build'))
+} else {
+  app.set('docRoot', path.resolve(__dirname, '../public'))
+}
 
 app.use(compression())
 app.use(morgan('dev'))
@@ -28,7 +33,7 @@ if (app.get('env') === 'development') {
   app.use(errorHandler())
 }
 
-require('./config/db')(app)
+require('./datalayer/db')(app)
 require('./routes')(app)
 
 http.createServer(app).listen(app.get('port'), function () {
