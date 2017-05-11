@@ -62,7 +62,7 @@
         </div>
       </md-card-title-media>
     </md-card-title>
-    <md-card-actions layout="row" layout-align="end center">
+    <md-card-actions layout="row" layout-align="end center" ng-if="ctrl.canEdit(user)">
       <md-button class="md-primary md-hue-1" ng-click="$ctrl.goToProfile(user)">Edit</md-button>
     </md-card-actions>
   </md-card>

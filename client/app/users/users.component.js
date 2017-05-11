@@ -76,6 +76,10 @@ class UsersController {
     this.updateUserRole(userId, role)
   }
 
+  canEdit(user) {
+    return this.me.role === 'teacher'
+  }
+
   goToProfile(user) {
     this.$state.go('profile', { id: user.id, position: this.position })
   }
