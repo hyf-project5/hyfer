@@ -36,6 +36,10 @@ node_modules
 .tmp
 .idea
 
+# dist
+dist
+
 server/config/config.js
+server/config/config.prod.js
 
 .vscode
