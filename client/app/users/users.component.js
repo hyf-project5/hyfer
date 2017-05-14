@@ -27,7 +27,6 @@ class UsersController {
     content.addEventListener('scroll', (e) => {
       this.position = e.target.scrollTop
     })
-    console.log(this.me)
   }
 
   $onInit() {
