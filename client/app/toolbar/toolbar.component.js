@@ -44,8 +44,8 @@ class ToolbarController {
   signout() {
     window.localStorage.removeItem('token')
     this.$cookies.remove('token')
-    location.reload()
     this.$state.go('timeline')
+      .then(() => location.reload())
   }
 
   onNotification(toolbarName) {
