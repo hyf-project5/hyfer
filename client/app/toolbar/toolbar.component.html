@@ -9,7 +9,7 @@
         <md-nav-bar nav-bar-aria-label="navigation links">
           <md-nav-item ui-sref-active='active' md-nav-click="$ctrl.goto('timeline')" name="timeline">Timeline</md-nav-item>
           <md-nav-item ui-sref-active='active' ng-show="$ctrl.isTeacher()" md-nav-click="$ctrl.goto('modules')" name="modules">Modules</md-nav-item>
-          <md-nav-item ui-sref-active='active' ng-show="$ctrl.isUser()" md-nav-click="$ctrl.goto('users')" name="users">Users</md-nav-item>
+          <md-nav-item ui-sref-active='active' ng-show="$ctrl.isStudent() || $ctrl.isTeacher()" md-nav-click="$ctrl.goto('users')" name="users">Users</md-nav-item>
         </md-nav-bar>
       </div>
     </div>

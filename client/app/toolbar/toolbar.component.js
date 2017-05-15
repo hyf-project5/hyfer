@@ -29,6 +29,10 @@ class ToolbarController {
     return this.me.role === 'teacher'
   }
 
+  isStudent() {
+    return this.me.role === 'student'
+  }
+
   isUser() {
     return this.me.role !== 'visitor'
   }

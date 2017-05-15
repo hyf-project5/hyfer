@@ -57,15 +57,17 @@ function isAuthenticated() {
 /**
  * Checks if the user role meets the minimum requirements of the route
  */
-function hasRole(role) {
+function hasRole(param) {
   return compose()
     .use(isAuthenticated())
     .use((req, res, next) => {
-      if (role === req.user.role) {
-        next()
-      } else {
-        res.sendStatus(403)
+      const _hasRole = Array.isArray(param)
+        ? param.indexOf(req.user.role) !== -1
+        : param === req.user.role
+      if (!_hasRole) {
+        return res.sendStatus(403)
       }
+      next()
     })
 }
 

@@ -33,7 +33,7 @@ module.exports = function (app) {
   app.get('/api/github/readme/:owner/:repo', github.getReadMeAsHtml)
 
   app.get('/api/user', authService.isAuthenticated(), users.getUser)
-  app.get('/api/users', authService.isAuthenticated(), users.getUsers)
+  app.get('/api/users', authService.hasRole(['student', 'teacher']), users.getUsers)
   app.patch('/api/user/:id', authService.hasRole('teacher'), users.updateRole)
   app.get('/api/user/:id', authService.hasRole('teacher'), users.getUserById)
 
