@@ -20,7 +20,7 @@ gulp.task('webpack', ['clean'], (cb) => {
 
 gulp.task('copy-index', ['clean'], () => {
   return gulp.src(['client/index.html'])
-    .pipe(gulp.dest(DIST_DIR + '/public'))
+    .pipe(gulp.dest(DIST_DIR + '/build'))
 })
 
 gulp.task('copy-server', ['clean'], () => {

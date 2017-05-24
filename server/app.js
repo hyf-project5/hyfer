@@ -12,7 +12,7 @@ const path = require('path')
 const passport = require('passport')
 const app = express()
 
-app.set('port', process.env.PORT || 3002)
+app.set('port', process.env.PORT || 3005)
 
 if (app.get('env') === 'development') {
   app.set('docRoot', path.resolve(__dirname, '../build'))
