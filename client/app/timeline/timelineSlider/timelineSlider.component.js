@@ -23,6 +23,7 @@ class TimelineSliderController {
     this.backendService = backendService
     this.toastService = toastService
     this.githubIcon = githubIcon
+    this.activeClasses = []
   }
 
   $onChanges(changes) {
