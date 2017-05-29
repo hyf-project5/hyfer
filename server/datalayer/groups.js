@@ -32,6 +32,10 @@ function getTimelineForAllGroups(con) {
   return db.execQuery(con, TIME_LINE_FOR_ALL_GROUPS_QUERY)
 }
 
+function getGroups(con) {
+  return db.execQuery(con, 'SELECT id, group_name, starting_date FROM groups ORDER BY starting_date')
+}
+
 function updateGroup(con, module, id) {
   return db.execQuery(con, UPDATE_GROUP_QUERY, [module, id])
 }
@@ -100,6 +104,7 @@ function makeValueList(runningModules) {
 
 module.exports = {
   getTimelineForAllGroups,
+  getGroups,
   addGroup,
   updateGroup,
   deleteGroup

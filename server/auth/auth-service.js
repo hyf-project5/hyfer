@@ -4,6 +4,7 @@ const expressJwt = require('express-jwt')
 const compose = require('composable-middleware')
 const config = require('../config/config')
 const users = require('../datalayer/users')
+const { getConnection } = require('../api/connection')
 
 const validateJwt = expressJwt({ secret: config.jwtSecret })
 const EXPIRES_IN_SECONDS = 30 * 24 * 60 * 60 // 30 days
@@ -11,7 +12,7 @@ const EXPIRES_IN_SECONDS = 30 * 24 * 60 * 60 // 30 days
 function gitHubCallback(req, res, next) {
   getConnection(req, res)
     .then(con => {
-      return users.getUser(con, req.user.username)
+      return users.getUserByUsername(con, req.user.username)
         .then(rows => {
           if (rows.length === 0) {
             const newUser = {
@@ -30,17 +31,13 @@ function gitHubCallback(req, res, next) {
     .catch(err => console.log('Error from gitHubCallback: ' + err))
 }
 
-/**
- * Attaches the user object to the request if authenticated
- * Otherwise returns 403
- */
 function isAuthenticated() {
   return compose()
     .use((req, res, next) => validateJwt(req, res, next))
     .use((req, res, next) => {
       getConnection(req, res)
         .then(con => {
-          return users.getUser(con, req.user.username)
+          return users.getUserByUsername(con, req.user.username)
             .then(rows => {
               if (rows.length > 0) {
                 req.user = rows[0]
@@ -54,34 +51,16 @@ function isAuthenticated() {
     })
 }
 
-/**
- * Checks if the user role meets the minimum requirements of the route
- */
-function hasRole(param) {
+function hasRole(params) {
+  const roles = params.split('|')
   return compose()
     .use(isAuthenticated())
     .use((req, res, next) => {
-      const _hasRole = Array.isArray(param)
-        ? param.indexOf(req.user.role) !== -1
-        : param === req.user.role
-      if (!_hasRole) {
+      if (roles.indexOf(req.user.role) === -1) {
         return res.sendStatus(403)
       }
       next()
     })
-}
-
-function getConnection(req, res) {
-  return new Promise((resolve, reject) => {
-    req.getConnection((err, con) => {
-      if (err) {
-        res.sendStatus(500)
-        reject(err)
-      } else {
-        resolve(con)
-      }
-    })
-  })
 }
 
 function signToken(username) {

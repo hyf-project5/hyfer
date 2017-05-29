@@ -1,52 +1,50 @@
 'use strict'
 const db = require('../datalayer/users')
-const _ = require('lodash')
+const { getConnection } = require('./connection')
 
-function getUser(req, res) {
+function getCurrentUser(req, res) {
   getConnection(req, res)
-    .then(con => db.getUser(con, req.user.username))
+    .then(con => db.getUserByUsername(con, req.user.username))
     .then(result => res.json(result[0]))
-}
-
-function getUserById(req, res) {
-  getConnection(req, res)
-    .then(con => db.getUserById(con, req.params.id))
-    .then(result => res.json(result[0]))
+    .catch(err => {
+      console.log(err)
+      res.sendStatus(500)
+    })
 }
 
 function getUsers(req, res) {
   getConnection(req, res)
     .then(con => db.getUsers(con))
-    .then(data => {
-      const result = _.map(data, user => {
-        return _.omit(user, 'access_token')
-      })
-      return res.json(result)
-    })
-}
-
-function updateRole(req, res) {
-  getConnection(req, res)
-    .then(con => db.updateRole(con, req.params.id, req.body.role))
     .then(result => res.json(result))
+    .catch(err => {
+      console.log(err)
+      res.sendStatus(500)
+    })
 }
 
-function getConnection(req, res) {
-  return new Promise((resolve, reject) => {
-    req.getConnection((err, con) => {
-      if (err) {
-        res.sendStatus(500)
-        reject(err)
-      } else {
-        resolve(con)
-      }
+function getUserById(req, res) {
+  getConnection(req, res)
+    .then(con => db.getUserById(con, +req.params.id))
+    .then(result => res.json(result[0]))
+    .catch(err => {
+      console.log(err)
+      res.sendStatus(500)
     })
-  })
+}
+
+function updateUser(req, res) {
+  getConnection(req, res)
+    .then(con => db.updateUser(con, +req.params.id, req.body))
+    .then(() => res.sendStatus(204))
+    .catch(err => {
+      console.log(err)
+      res.sendStatus(500)
+    })
 }
 
 module.exports = {
-  getUser,
+  getCurrentUser,
   getUsers,
-  updateRole,
-  getUserById
+  getUserById,
+  updateUser
 }

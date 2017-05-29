@@ -35,7 +35,7 @@ class backendService {
   }
 
   getTimeline() {
-    return this.$http.get('/api/groups')
+    return this.$http.get('/api/timeline')
       .then(res => res.data)
   }
 
@@ -65,18 +65,23 @@ class backendService {
     return this.$http.get('/api/users', this.getHttpConfig())
       .then(res => res.data)
   }
-  getUserById(id) {
+
+  getUserProfile(id) {
     return this.$http.get('/api/user/' + id, this.getHttpConfig())
       .then(res => res.data)
+  }
+
+  updateUserProfile(user) {
+    return this.$http.patch(`/api/user/${user.id}`, user, this.getHttpConfig())
   }
 
   updateState(profile) {
     return this.$http.patch(`/api/studentsState`, profile, this.getHttpConfig())
   }
 
-  updateUserRole(userId, role) {
-    console.log(userId)
-    return this.$http.patch('/api/user/' + userId, { 'role': role }, this.getHttpConfig())
+  getGroups() {
+    return this.$http.get('/api/groups', this.getHttpConfig())
+      .then(res => res.data)
   }
 
   getHttpConfig() {

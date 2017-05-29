@@ -13,7 +13,7 @@ function routing($stateProvider) {
       url: '/users',
       component: usersComponent,
       resolve: {
-        users: usersResolver
+        users: allUserProfilesResolver
       }
     })
     .state('profile', {
@@ -24,25 +24,26 @@ function routing($stateProvider) {
         position: null
       },
       resolve: {
-        user: userResolver
+        user: userProfileResolver,
+        groups: groupsResolver
       }
     })
 }
-usersResolver.$inject = [backendService]
 
-function usersResolver(backendService) {
+allUserProfilesResolver.$inject = [backendService]
+function allUserProfilesResolver(backendService) {
   return backendService.getUsers()
 }
 
-userResolver.$inject = ['$state', '$stateParams', backendService]
-function userResolver($state, $stateParams, backendService) {
-  let profileId = $stateParams.id
-  if (profileId) {
-    localStorage.setItem('profileId', profileId)
-  } else {
-    profileId = localStorage.getItem('profileId')
-  }
-  return backendService.getUserById(profileId)
+userProfileResolver.$inject = ['$stateParams', backendService]
+function userProfileResolver($stateParams, backendService) {
+  return backendService.getUserProfile($stateParams.id)
 }
+
+groupsResolver.$inject = [backendService]
+function groupsResolver(backendService) {
+  return backendService.getGroups()
+}
+
 angular.module(usersModule)
   .config(routing)

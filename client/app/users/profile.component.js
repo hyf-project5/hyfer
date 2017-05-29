@@ -4,7 +4,6 @@ import usersModule from './users.module'
 import backendService from '../services/backendService'
 import template from './profile.component.html'
 import toolbarService from '../toolbar/toolbar.service'
-import freecodecamp from '../../assets/images/freecodecamp.svg'
 import toastService from '../services/toastService'
 
 class ProfileController {
@@ -21,42 +20,33 @@ class ProfileController {
     })
     this.backendService = backendService
     this.$timeout = $timeout
-    this.freecodecamp = freecodecamp
     this.$state = $state
     this.toastService = toastService
+    this.model = {}
+    this.isDirty = false
   }
 
-  getGroupsNameId() {
-    return this.$timeout(() => {
-      this.backendService.getTimeline()
-        .then(res => {
-          const classesName = Object.entries(res)
-          this.classes = classesName.reduce((acc, curr) => {
-            const classNameAndId = {
-              name: curr[0],
-              group_id: curr[1][0].id
-            }
-            acc.push(classNameAndId)
-            return acc
-          }, [])
-          console.log(this.classes)
-        })
-    }, 400)
+  $onInit() {
+   Object.assign(this.model, this.user)
   }
 
-  save(user) {
-    console.log(this.user)
-    for (const key in user) {
-      if (user[key]) {
-        this.user[key] = user[key] || this.user[key]
-      }
-    }
-    this.backendService.updateState(this.user)
-      .then(() => this.toastService.displayToast(true, 'Changes have been saved'))
+  save() {
+    this.user = this.model
+    this.backendService.updateUserProfile(this.user)
+      .then(() => {
+        this.isDirty = false
+        this.toastService.displayToast(true, 'Changes have been saved')
+      })
+      .catch(err => console.log(err))
   }
 
-  cancelChanges() {
-    this.$state.reload()
+  setDirty() {
+    this.isDirty = true
+  }
+
+  reset() {
+    Object.assign(this.model, this.user)
+    this.isDirty = false
   }
 }
 
@@ -68,7 +58,8 @@ angular
     template,
     controller: ProfileController,
     bindings: {
-      user: '<'
+      user: '<',
+      groups: '<'
     }
   })
 
