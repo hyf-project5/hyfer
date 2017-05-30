@@ -3,10 +3,7 @@
 
   <div class="module-item">
     <hyf-module-list-item-menu module="$ctrl.module" on-changed="$ctrl.onChanged(module)" on-delete="$ctrl.onDelete(module)"></hyf-module-list-item-menu>
-    {{$ctrl.module.module_name}}
-    <!--<md-tooltip md-direction='right'>
-            {{ $ctrl.module.description}}
-        <md-tooltip>-->
+   {{ $ctrl.module.module_name }}<span ng-if="$ctrl.module.optional">*</span>
   </div>
   <div style="flex: 1"></div>
   <hyf-resizer unit-width="$ctrl.weekWidth" on-resized="$ctrl.onResized(width)"></hyf-resizer>
