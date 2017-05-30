@@ -8,10 +8,10 @@ import toastService from '../services/toastService'
 
 class ProfileController {
   static get $inject() {
-    return ['$timeout', '$state', '$stateParams', toastService, toolbarService, backendService]
+    return ['$timeout', '$state', '$stateParams', toolbarService, backendService]
   }
 
-  constructor($timeout, $state, $stateParams, toastService, toolbarService, backendService) {
+  constructor($timeout, $state, $stateParams, toolbarService, backendService) {
     this.toolbarService = toolbarService
     this.toolbarService.switchToChild({
       title: 'Edit Profile',
@@ -21,7 +21,6 @@ class ProfileController {
     this.backendService = backendService
     this.$timeout = $timeout
     this.$state = $state
-    this.toastService = toastService
     this.model = {}
     this.isDirty = false
   }
@@ -33,10 +32,7 @@ class ProfileController {
   save() {
     this.user = this.model
     this.backendService.updateUserProfile(this.user)
-      .then(() => {
-        this.isDirty = false
-        this.toastService.displayToast(true, 'Changes have been saved')
-      })
+      .then(() =>this.$state.go('users'))
       .catch(err => console.log(err))
   }
 
