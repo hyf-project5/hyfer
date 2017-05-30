@@ -10,22 +10,22 @@
       </div>
     </md-toolbar>
 
-    <md-dialog-content aria-label="Adding Module.">
+    <md-dialog-content aria-label="Add Module">
       <div class="md-dialog-content">
         <md-input-container class="md-block">
-          <input type="text" ng-model="$ctrl.newModule.module_name" placeholder="Module name..">
+          <input type="text" ng-model="$ctrl.newModule.module_name" placeholder="Module Name">
         </md-input-container>
         <md-input-container class="md-block">
-          <input ng-model="$ctrl.newModule.git_repo" type="text" placeholder="Repo name..">
+          <input ng-model="$ctrl.newModule.git_repo" type="text" placeholder="Repo Name">
         </md-input-container>
         <md-input-container class="md-block">
-          <input ng-model="$ctrl.newModule.git_url" type="url" placeholder="Repo URL..">
+          <input ng-model="$ctrl.newModule.git_url" type="url" placeholder="Repo URL">
         </md-input-container>
         <md-input-container class="md-block">
           <input ng-model="$ctrl.newModule.default_duration" type="number" min="1" max="6" placeholder="Duration..">
         </md-input-container>
         <md-input-container class="md-block">
-          <input colorpicker="hex" type="text" ng-model="$ctrl.newModule.color" placeholder="Color.." />
+          <input colorpicker="hex" type="text" ng-model="$ctrl.newModule.color" placeholder="Color" />
         </md-input-container>
         <md-input-container class="md-block">
           <md-checkbox ng-model="$ctrl.newModule.optional" aria-label="Optional">Optional</md-checkbox>
