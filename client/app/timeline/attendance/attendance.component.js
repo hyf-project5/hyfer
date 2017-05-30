@@ -6,6 +6,8 @@ import toastService from '../../services/toastService'
 import template from './attendance.component.html'
 import './attendance.scss'
 
+const MSECS_PER_WEEK = 1000 * 60 * 60 * 24 * 7
+
 class AttendanceCardController {
   static get $inject() {
     return ['me', backendService, toastService]
@@ -22,25 +24,13 @@ class AttendanceCardController {
       return
     }
     this.selectedModule = changes.selectedModule.currentValue
-    const now = new Date().toJSON().split('T')[0]
-    const selectedModuleDate = new Date(this.selectedModule.startingDate).toJSON().split('T')[0]
-    if (selectedModuleDate > now) {
-      this.futureModule = true
-    } else {
-      this.futureModule = false
-    }
-
+    const selectedModuleDate = new Date(this.selectedModule.startingDate).getTime()
+    this.futureModule = selectedModuleDate > Date.now()
     this.getHistory(this.selectedModule)
   }
 
-  computedMilliseconds(date) {
-    const getDate = new Date(date)
-    const milliseconds = getDate.getTime()
-    return milliseconds
-  }
-
   getHistory(module) {
-    this.moduleSundays = this.getSundays(module.startingDate, module.duration)
+    this.moduleSundays = this._getSundayDates(module.startingDate, module.duration)
     this.historyobj = {
       classname: module.group_name,
       rmName: module.module_name
@@ -65,18 +55,6 @@ class AttendanceCardController {
       .catch(err => console.log(err))
   }
 
-  getSundays(moduleStartingDate, duration) {
-    const week = 1000 * 60 * 60 * 24 * 7
-    const sunday = new Date(moduleStartingDate)
-    const sunInMilliseconds = sunday.getTime()
-    const sundays = []
-    for (let i = 0; i < duration; i++) {
-      const getNextSundayDate = new Date(sunInMilliseconds + week * i).toJSON()
-      sundays.push(getNextSundayDate.split('T')[0])
-    }
-    return sundays
-  }
-
   changeInStudentsHistory() {
     this.toggle = true
   }
@@ -97,6 +75,16 @@ class AttendanceCardController {
       }
     }
     this.toggle = false
+  }
+
+  _getSundayDates(startingDate, duration) {
+    const startingSundayMsecs = new Date(startingDate).getTime()
+    const sundayDates = []
+    for (let i = 0; i < duration; i++) {
+      const sundayDate = new Date(startingSundayMsecs + MSECS_PER_WEEK * i)
+      sundayDates.push(sundayDate)
+    }
+    return sundayDates
   }
 }
 
