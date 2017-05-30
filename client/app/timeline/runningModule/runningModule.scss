@@ -11,6 +11,7 @@
     border-radius: .5em;
     transition: background 300ms ease-in-out;
     cursor: pointer;
+    font-size: 15px;
     &:hover {
         background-color: rgba(222, 33, 122, 0.8);
         .edit-module {
@@ -22,13 +23,14 @@
         font-size: .8em;
     }
     .md-icon-button {
-        width: 30px;
-        margin: 0 6px 0 0;
+        padding: 0;
+        margin: 0;
+        width: 24px;
     }
 }
 
 .selected-module {
-    font-size: 1.1em;
+    // font-size: 1.1em;
     font-weight: bold;
     color: yellow;
 }
@@ -44,4 +46,10 @@
     &:hover {
         opacity: 0.5;
     }
+}
+
+.module-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 4px;
 }
