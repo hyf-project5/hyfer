@@ -23,7 +23,6 @@ class TimelineSliderController {
     this.backendService = backendService
     this.toastService = toastService
     this.githubIcon = githubIcon
-    this.activeClasses = []
   }
 
   $onChanges(changes) {
@@ -52,13 +51,13 @@ class TimelineSliderController {
       let startDateInMsecs = this.timelineService.getDateOfPastSunday(startDate).getTime()
       const leftPosition = (startDateInMsecs - zeroPoint) / MSECS_PER_DAY * 9 + 125
 
-      this.timeline[className].forEach(runningModule => {
+      runningModules.forEach(runningModule => {
         const durationInMsecs = runningModule.duration * DAYS_PER_WEEK * MSECS_PER_DAY
         const extras = {
           blockWidth: (runningModule.duration * DAYS_PER_WEEK * 9) - 6,
           leftPosition,
-          startingDate: this.timelineService.getFormattedDateString(new Date(startDateInMsecs)),
-          endingDate: this.timelineService.getFormattedDateString(new Date(startDateInMsecs + durationInMsecs))
+          startingDate: new Date(startDateInMsecs),
+          endingDate: new Date(startDateInMsecs + durationInMsecs)
         }
         Object.assign(runningModule, extras)
         startDateInMsecs += durationInMsecs

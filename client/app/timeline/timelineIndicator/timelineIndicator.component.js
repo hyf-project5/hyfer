@@ -10,19 +10,27 @@ const MSECS_PER_DAY = 1000 * 60 * 60 * 24
 const INDICATOR_OFFSET = 250
 
 class TimelineIndicatorController {
+
   static get $inject() {
-    return [timelineService, backendService]
+    return ['$rootScope', timelineService, backendService]
   }
 
-  constructor(timelineService, backendService) {
+  constructor($rootScope, timelineService, backendService) {
     this.timelineService = timelineService
     this.backendService = backendService
+
+    $rootScope.$on('scrollToToday', () => {
+      this._scrollToToday()
+    })
   }
 
   $postLink() {
-    const today = new Date()
-    this.currentDate = this.timelineService.getFormattedDateString(today)
-    this.todayPosition = today.getTime()
+    this._scrollToToday()
+  }
+
+  _scrollToToday() {
+    this.currentDate = new Date()
+    this.todayPosition = this.currentDate.getTime()
     const classNames = Object.keys(this.timeline)
     const firstClassName = classNames[0]
     const firstRunningModule = this.timeline[firstClassName][0]
@@ -40,6 +48,7 @@ class TimelineIndicatorController {
       slider.scrollLeft = scrollToLeft
       slider.classList.remove('slider-hide')
     })
+
   }
 }
 

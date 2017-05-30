@@ -1,5 +1,8 @@
 <div flex-offset-gt-sm="10" flex-gt-sm="80">
   <div class="timeline-buttons" layout="row">
+    <md-button class="md-raised" ng-click="$ctrl.scrollToToday()">
+      TODAY
+    </md-button>
     <span flex></span>
     <md-button ng-show="$ctrl.isTeacher()" class="module-add md-raised md-mini md-primary" ng-click="$ctrl.addClassModal($event)">
       <md-icon md-font-set="material-icons">add</md-icon>
