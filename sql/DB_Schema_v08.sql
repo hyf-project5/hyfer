@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.7.16)
 # Database: hyfer
-# Generation Time: 2017-04-20 11:58:10 +0000
+# Generation Time: 2017-05-30 11:28:37 +0000
 # ************************************************************
 
 
@@ -23,7 +23,6 @@
 # Dump of table group_students
 # ------------------------------------------------------------
 
-
 DROP TABLE IF EXISTS `group_students`;
 
 CREATE TABLE `group_students` (
@@ -36,6 +35,7 @@ CREATE TABLE `group_students` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+
 # Dump of table groups
 # ------------------------------------------------------------
 
@@ -45,6 +45,7 @@ CREATE TABLE `groups` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `group_name` varchar(50) DEFAULT NULL,
   `starting_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `archived` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -58,7 +59,7 @@ DROP TABLE IF EXISTS `modules`;
 CREATE TABLE `modules` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `module_name` varchar(50) NOT NULL DEFAULT '',
-  `description` varchar(255) DEFAULT NULL,
+  `display_name` varchar(50) DEFAULT NULL,
   `added_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `default_duration` int(2) NOT NULL DEFAULT '3',
   `sort_order` int(4) DEFAULT NULL,
@@ -79,7 +80,6 @@ DROP TABLE IF EXISTS `running_modules`;
 
 CREATE TABLE `running_modules` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
-  `description` varchar(255) DEFAULT NULL,
   `module_id` int(8) NOT NULL,
   `group_id` int(8) NOT NULL,
   `duration` int(8) DEFAULT '3',
@@ -137,21 +137,10 @@ CREATE TABLE `users` (
   `freecodecamp_username` varchar(32) DEFAULT NULL,
   `email` varchar(32) DEFAULT NULL,
   `mobile` varchar(32) DEFAULT NULL,
-  `group_name` varchar(32) DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TRIGGER IF EXISTS `insert_group_name`;
 
-CREATE TRIGGER `insert_group_name` AFTER INSERT ON group_students FOR EACH ROW UPDATE users INNER JOIN groups ON NEW.group_id = groups.id SET users.group_name = groups.group_name WHERE users.id = NEW.user_id;
-
-DROP TRIGGER IF EXISTS `update_group_name`;
-
-CREATE TRIGGER `update_group_name` AFTER UPDATE ON group_students FOR EACH ROW UPDATE users INNER JOIN groups ON NEW.group_id = groups.id SET users.group_name = groups.group_name WHERE users.id = NEW.user_id;
-
-DROP TRIGGER IF EXISTS `delete_group_name`;
-
-CREATE TRIGGER `delete_group_name` BEFORE DELETE ON group_students FOR EACH ROW UPDATE users SET users.group_name = '' WHERE OLD.user_id = users.id;  
 
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
