@@ -5,7 +5,7 @@ const { getConnection } = require('./connection')
 
 function getTimeline(req, res) {
   getConnection(req, res)
-    .then(con => db.getTimelineForAllGroups(con))
+    .then(con => db.getTimeline(con))
     .then(result => {
       const groupedModules = _.groupBy(result, module => module.group_name)
       res.json(groupedModules)

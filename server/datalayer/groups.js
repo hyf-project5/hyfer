@@ -2,15 +2,15 @@
 const db = require('./database')
 const modules = require('./modules')
 
-const TIME_LINE_FOR_ALL_GROUPS_QUERY =
+const GET_TIME_LINE_QUERY =
   `SELECT groups.id,
         groups.group_name,
         groups.starting_date,
-        running_modules.description,
         running_modules.duration,
         running_modules.id AS running_module_id,
         running_modules.position,
         modules.module_name,
+        modules.display_name,
         modules.color,
         modules.git_url,
         modules.git_repo,
@@ -18,6 +18,7 @@ const TIME_LINE_FOR_ALL_GROUPS_QUERY =
     FROM groups
     INNER JOIN running_modules ON running_modules.group_id = groups.id
     INNER JOIN modules ON running_modules.module_id = modules.id
+    WHERE groups.archived=0
     ORDER BY groups.starting_date, running_modules.position`
 
 const ADD_GROUP_QUERY = `INSERT INTO groups SET ?`
@@ -27,9 +28,8 @@ const DELETE_GROUP_QUERY = `DELETE FROM groups WHERE id = ?`
 const ADD_RUNNING_MODULES_QUERY =
   `INSERT INTO running_modules (description, module_id, group_id, duration, position) VALUES`
 
-// user story / User ➜ 1)
-function getTimelineForAllGroups(con) {
-  return db.execQuery(con, TIME_LINE_FOR_ALL_GROUPS_QUERY)
+function getTimeline(con) {
+  return db.execQuery(con, GET_TIME_LINE_QUERY)
 }
 
 function getGroups(con) {
@@ -103,7 +103,7 @@ function makeValueList(runningModules) {
 }
 
 module.exports = {
-  getTimelineForAllGroups,
+  getTimeline,
   getGroups,
   addGroup,
   updateGroup,
