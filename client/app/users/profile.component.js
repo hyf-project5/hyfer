@@ -4,7 +4,6 @@ import usersModule from './users.module'
 import backendService from '../services/backendService'
 import template from './profile.component.html'
 import toolbarService from '../toolbar/toolbar.service'
-import toastService from '../services/toastService'
 
 class ProfileController {
   static get $inject() {
