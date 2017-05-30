@@ -15,7 +15,7 @@
 
       <div class="check-box-block">
         <div layout="row" class="weeks-block">
-          <div class="week" ng-repeat="date in $ctrl.moduleSundays">sun, {{date}}</div>
+          <div class="week" ng-repeat="date in $ctrl.moduleSundays">{{date | date:'d MMMM yyyy'}}</div>
         </div>
         <md-divider></md-divider>
         <div ng-repeat="attendant in $ctrl.attendants" layout="row">
@@ -23,12 +23,14 @@
             <div layout="row">
               <md-input-container class="check-box" ng-class="{border: student.homework}">
                 <md-checkbox ng-disabled="$ctrl.futureModule" title="homework" ng-true-value="1" ng-false-value="0" ng-model="student.homework"
-                  aria-label="homework" ng-change="$ctrl.changeInStudentsHistory(student)"> </md-checkbox>
+                  aria-label="homework" ng-change="$ctrl.changeInStudentsHistory(student)">
+                </md-checkbox>
                 <i class=" fa fa-fw fa-book"></i>
               </md-input-container>
               <md-input-container class="check-box" ng-class="{border: student.attendance}">
                 <md-checkbox ng-disabled="$ctrl.futureModule" title="attendance" ng-true-value="1" ng-false-value="0" ng-model="student.attendance"
-                  aria-label="attendance" ng-change="$ctrl.changeInStudentsHistory(student)"> </md-checkbox>
+                  aria-label="attendance" ng-change="$ctrl.changeInStudentsHistory(student)">
+                </md-checkbox>
                 <i class=" fa fa-fw fa-calendar"></i>
               </md-input-container>
               <md-divider class="vert-divider divider" ng-if="!$last"></md-divider>
