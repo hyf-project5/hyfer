@@ -61,7 +61,7 @@ class RunningModuleController {
     const position = this.module.position - 1
     this.backendService.updateRunningModule(this.module.id, this.module.position, { position })
       .then(() => {
-        this.timelineService.notifyChanged()
+        this.timelineService.notifyTimelineChanged()
       })
       .catch(err => console.log(err))
   }
@@ -70,7 +70,7 @@ class RunningModuleController {
     const position = this.module.position + 1
     this.backendService.updateRunningModule(this.module.id, this.module.position, { position })
       .then(() => {
-        this.timelineService.notifyChanged()
+        this.timelineService.notifyTimelineChanged()
       })
       .catch(err => console.log(err))
   }
@@ -79,7 +79,7 @@ class RunningModuleController {
     const duration = this.module.duration - 1
     this.backendService.updateRunningModule(this.module.id, this.module.position, { duration })
       .then(() => {
-        this.timelineService.notifyChanged()
+        this.timelineService.notifyTimelineChanged()
       })
       .catch(err => console.log(err))
   }
@@ -88,7 +88,7 @@ class RunningModuleController {
     const duration = this.module.duration + 1
     this.backendService.updateRunningModule(this.module.id, this.module.position, { duration })
       .then(() => {
-        this.timelineService.notifyChanged()
+        this.timelineService.notifyTimelineChanged()
       })
       .catch(err => console.log(err))
   }

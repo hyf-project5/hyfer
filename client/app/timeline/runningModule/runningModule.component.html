@@ -1,8 +1,9 @@
 <div class="running-module-block" ng-class="{'selected-module': $ctrl.module === $ctrl.selectedModule}" ng-style="$ctrl.style">
   <div layout="row" layout-align="space-between center">
-    <div></div>
-
-    <div flex layout="row" layout-align="center center">{{$ctrl.module.module_name}}</div>
+    <div flex layout="row" layout-align="center center">
+      <span ng-if="$ctrl.module.duration > 1">{{$ctrl.module.display_name || $ctrl.module.module_name}}</span>
+    </div>
+    <md-tooltip ng-if="$ctrl.module.duration === 1 || $ctrl.module.display_name">{{$ctrl.module.module_name}}</md-tooltip>
 
     <md-menu ng-if="$ctrl.isTeacher()">
       <md-button class="md-icon-button" ng-click="$mdMenu.open($event)" aria-label="Open user's' menu">
