@@ -2,11 +2,11 @@
 const db = require('./database')
 const modules = require('./modules')
 
-const GET_RUNNING_MODULES_QUERY = `SELECT description, duration, teacher1_id, teacher2_id FROM running_modules`
+const GET_RUNNING_MODULES_QUERY = `SELECT duration, teacher1_id, teacher2_id FROM running_modules`
 const GET_ALL_FROM_RUNNING_MODULES_QUERY = `SELECT * FROM running_modules`
 const DELETE_ALL_RUNNING_MODULES_QUERY = `DELETE FROM running_modules WHERE group_id=?`
 const INSERT_RUNNING_MODULES_QUERY =
-  `INSERT INTO running_modules (description, module_id, group_id, duration, position, teacher1_id, teacher2_id) VALUES ?`
+  `INSERT INTO running_modules (module_id, group_id, duration, position, teacher1_id, teacher2_id) VALUES ?`
 
 function getRunningModules(con, groupId) {
   const sql = GET_RUNNING_MODULES_QUERY + ` WHERE group_id=? ORDER BY position`
@@ -120,7 +120,7 @@ function resequenceRunningModules(runningMods) {
 
 function makeValueList(runningModules) {
   return runningModules.reduce((values, mod) => {
-    values.push([mod.description, mod.module_id, mod.group_id, mod.duration, mod.position, mod.teacher1_id, mod.teacher2_id])
+    values.push([mod.module_id, mod.group_id, mod.duration, mod.position, mod.teacher1_id, mod.teacher2_id])
     return values
   }, [])
 }
