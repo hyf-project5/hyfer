@@ -36,7 +36,13 @@ function updateUser(con, id, user) {
       }
       db.execQuery(con, UPDATE_USER_QUERY, [user.full_name, user.role, user.slack_username, user.freecodecamp_username, user.email, user.mobile, id])
         .then(() => db.execQuery(con, `DELETE FROM group_students WHERE user_id=?`, [id]))
-        .then(() => db.execQuery(con, `INSERT INTO group_students (user_id, group_id) VALUES(?,?)`, [id, user.group_id]))
+        .then(() => {
+          if (user.group_id) {
+            return db.execQuery(con, `INSERT INTO group_students (user_id, group_id) VALUES(?,?)`, [id, user.group_id])
+          } else {
+            return Promise.resolve()
+          }
+        })
         .then(() => {
           con.commit(err => {
             if (err) {
