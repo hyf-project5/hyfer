@@ -25,7 +25,6 @@
           <input ng-model="$ctrl.currentModule.git_url" type="url">
         </md-input-container>
         <md-input-container class="md-block">
-
           <label>Duration</label>
           <input ng-model="$ctrl.currentModule.default_duration" type="number" min="1">
         </md-input-container>
@@ -33,13 +32,8 @@
           <label>Color</label>
           <input colorpicker="hex" type="text" ng-model="$ctrl.currentModule.color" />
         </md-input-container>
-
         <md-input-container class="md-block">
-          <label>Description</label>
-          <textarea ng-model="$ctrl.currentModule.description" md-maxlength="150" maxlength="150" rows="3" md-select-on-focus></textarea>
-        </md-input-container>
-        <md-input-container class="md-block">
-          <md-checkbox disabled ng-true-value="1" ng-model="$ctrl.currentModule.optional" aria-label="Optional">Optional</md-checkbox>
+          <md-checkbox ng-true-value="1" ng-model="$ctrl.currentModule.optional" aria-label="Optional">Optional</md-checkbox>
         </md-input-container>
       </div>
     </md-dialog-content>
