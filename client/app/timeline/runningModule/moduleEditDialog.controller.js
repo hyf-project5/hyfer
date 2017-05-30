@@ -29,7 +29,7 @@ class ModuleEditDialogController {
     const groupId = this.module.id
     this.$mdDialog.hide()
       .then(() => this.backendService.addRunningModule(this.selectedModule.id, groupId, this.module.position + 1))
-      .then(() => this.timelineService.notifyChanged())
+      .then(() => this.timelineService.notifyTimelineChanged())
       .catch(err => {
         if (err) console.log(err)
       })
@@ -45,7 +45,7 @@ class ModuleEditDialogController {
     this.$mdDialog.hide()
       .then(() => this.$mdDialog.show(confirm))
       .then(() => this.backendService.deleteRunningModule(this.module.id, this.module.position))
-      .then(() => this.timelineService.notifyChanged())
+      .then(() => this.timelineService.notifyTimelineChanged())
       .catch(err => {
         if (err) console.log(err)
       })
@@ -54,7 +54,7 @@ class ModuleEditDialogController {
   splitModule() {
     this.$mdDialog.hide()
       .then(() => this.backendService.splitRunningModule(this.module.id, this.module.position))
-      .then(() => this.timelineService.notifyChanged())
+      .then(() => this.timelineService.notifyTimelineChanged())
       .catch(err => {
         if (err) console.log(err)
       })

@@ -1,22 +1,17 @@
 import angular from 'angular'
 
 import timelineModule from './timeline.module'
-import backendService from '../services/backendService'
-
-const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
 class TimeLineService {
-  static get $inject () {
-    return [backendService]
+  static get $inject() {
+    return ['$rootScope']
   }
 
-  constructor (backendService) {
-    this.backendService = backendService
-    this._notificationCallback = null
+  constructor($rootScope) {
+    this.$rootScope = $rootScope
   }
 
-  getDateOfPastSunday (date) {
+  getDateOfPastSunday(date) {
     const newDate = new Date(date)
     newDate.setHours(0, 0, 0, 0)
     const daysPastSunday = newDate.getDay()
@@ -25,26 +20,14 @@ class TimeLineService {
     return newDate
   }
 
-  getFormattedDateString (date) {
-    return `${DAY_NAMES[date.getDay()]}, ${date.getDate()} ${MONTH_NAMES[date.getMonth()]} ${date.getFullYear()}`
-  }
-
-  setCallback (notificationCallback) {
-    this._notificationCallback = notificationCallback
-  }
-
-  notifyChanged () {
-    if (this._notificationCallback) {
-      this.backendService.getTimeline()
-                .then(timeline => this._notificationCallback(timeline))
-                .catch(err => console.log(err))
-    }
+  notifyTimelineChanged() {
+    this.$rootScope.$broadcast('timelineChanged')
   }
 }
 
 const serviceName = 'timeLineService'
 
 angular.module(timelineModule)
-    .service(serviceName, TimeLineService)
+  .service(serviceName, TimeLineService)
 
 export default serviceName

@@ -11,20 +11,24 @@ import './timeline.scss'
 
 class TimelineController {
   static get $inject() {
-    return ['$sce', '$mdDialog', '$state', 'me', timelineService, backendService, toastService]
+    return ['$rootScope', '$mdDialog', 'me', timelineService, backendService, toastService]
   }
 
-  constructor($sce, $mdDialog, $state, me, timelineService, backendService, toastService) {
-    this.me = me
+  constructor($rootScope, $mdDialog, me, timelineService, backendService, toastService) {
+    this.$rootScope = $rootScope
     this.$mdDialog = $mdDialog
-    this.$state = $state
+    this.me = me
     this.timelineService = timelineService
     this.backendService = backendService
     this.toastService = toastService
 
-    this.timelineService.setCallback(timeline => {
-      this.timeline = timeline
-      this.composeTimeline()
+    this.$rootScope.$on('timelineChanged', () => {
+      this.backendService.getTimeline()
+        .then(timeline => {
+          this.timeline = timeline
+          this._composeTimeline()
+        })
+        .catch(err => console.log(err))
     })
 
     setTimeout(() => {
@@ -34,25 +38,11 @@ class TimelineController {
 
   $onInit() {
     document.getElementById('content').scrollTop = 0
-    this.composeTimeline()
+    this._composeTimeline()
   }
 
-  composeTimeline() {
-    this.classNames = Object.keys(this.timeline)
-    this.height = (this.classNames.length * 60) + 40
-    if (this.me.group_name) {
-      const now = new Date()
-      const afterTwintyDays = new Date(new Date(now).setDate(now.getDate() + 20)).getTime()
-      setTimeout(() => {
-        for (const group of this.timeline[this.me.group_name]) {
-          const group_date = new Date(group.startingDate).getTime()
-          if (group_date >= now.getTime() - 8.64e+7 && group_date <= afterTwintyDays) {
-            this.selectedModule = group
-          }
-        }
-      }, 200)
-    }
-    this.selectedModule = this.timeline[this.classNames[0]][0]
+  scrollToToday() {
+    this.$rootScope.$broadcast('scrollToToday')
   }
 
   onClick(module) {
@@ -75,7 +65,7 @@ class TimelineController {
       this.backendService.addGroup(classInfo)
         .then(() => {
           this.toastService.displayToast(true, `${classInfo.group_name} has been added`)
-          this.timelineService.notifyChanged()
+          this.timelineService.notifyTimelineChanged()
         })
     }).catch(() => {
       this.toastService.displayToast(false)
@@ -84,6 +74,24 @@ class TimelineController {
 
   isTeacher() {
     return this.me.role === 'teacher'
+  }
+
+  _composeTimeline() {
+    this.classNames = Object.keys(this.timeline)
+    this.height = (this.classNames.length * 60) + 40
+    if (this.me.group_name) {
+      const now = new Date()
+      const afterTwintyDays = new Date(new Date(now).setDate(now.getDate() + 20)).getTime()
+      setTimeout(() => {
+        for (const group of this.timeline[this.me.group_name]) {
+          const group_date = new Date(group.startingDate).getTime()
+          if (group_date >= now.getTime() - 8.64e+7 && group_date <= afterTwintyDays) {
+            this.selectedModule = group
+          }
+        }
+      }, 200)
+    }
+    this.selectedModule = this.timeline[this.classNames[0]][0]
   }
 }
 
