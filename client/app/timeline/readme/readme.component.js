@@ -17,6 +17,7 @@ class ReadmeController {
     this.toastService = toastService
     this.backendService = backendService
     this.githubIcon = githubIcon
+    this.content = null
   }
 
   $onChanges(changes) {
@@ -26,12 +27,13 @@ class ReadmeController {
 
       if (!this.selectedModule.git_repo) {
         this.toastService.displayToast(true, 'This selected module has no repository available.')
+        this.content = null
         return
       }
 
       this.backendService.getReadme(this.selectedModule.git_repo)
         .then(res => this.content = this.$sce.trustAsHtml(res))
-        .catch(err => console.log(err))
+        .catch(err => console.log(err.statusText))
     }
   }
 }
