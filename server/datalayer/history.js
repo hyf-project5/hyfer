@@ -1,7 +1,7 @@
 const db = require('./database')
 
 const GET_STUDENTS_BY_RUNNING_MODULE_ID = `
-    SELECT group_id, running_module_id, user_id, DATE_FORMAT(date, "%Y-%m-%d") as date, attendance, homework, username, full_name
+    SELECT group_id, running_module_id, user_id, DATE_FORMAT(date, "%Y/%m/%d") as date, attendance, homework, username, full_name
     FROM students_history sh 
     JOIN users u ON sh.user_id=u.id WHERE running_module_id=?
 `
