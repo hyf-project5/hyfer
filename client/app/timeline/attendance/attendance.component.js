@@ -17,6 +17,7 @@ class AttendanceCardController {
     this.backendService = backendService
     this.me = me
     this.toastService = toastService
+    this.stack = [];
   }
 
   $onChanges(changes) {
@@ -35,7 +36,12 @@ class AttendanceCardController {
       classname: module.group_name,
       rmName: module.module_name
     }
-    this.backendService.getHistory(module.running_module_id, module.id, this.moduleSundays)
+    // Make a copy with the corresponding date to mysql to save
+    let sundays = this.moduleSundays.slice(0);
+    sundays = sundays.map(date => {
+      return date.getFullYear() + "/0" + (date.getMonth()+1) + "/" + date.getDate();
+    })
+    this.backendService.getHistory(module.running_module_id, module.id, sundays)
       .then(res => {
         const keys = Object.keys(res.data)
         this._students = {}
@@ -55,7 +61,9 @@ class AttendanceCardController {
       .catch(err => console.log(err))
   }
 
-  changeInStudentsHistory() {
+  changeInStudentsHistory(student, whichToUndo) {
+    this.stack.push(student);
+    this.stack.push(whichToUndo)
     this.toggle = true
   }
 
@@ -74,7 +82,25 @@ class AttendanceCardController {
         attend.attendance = old._attendance
       }
     }
-    this.toggle = false
+    this.toggle = false;
+  }
+
+  undo() {
+    const whichToUndo = this.stack.pop(); 
+    const last = this.stack.pop();
+    const old = this._students[last.full_name + '_' + last.date]
+    this.attendants[last.full_name].forEach(student => {
+      if (student.date === last.date) {
+        if (student.homework !== old._homework && whichToUndo === 'homework'){
+          student.homework = old._homework;          
+        }else if(student.attendance !== old._attendance && whichToUndo === 'attendance'){
+          student.attendance = old._attendance;          
+        }
+      }
+    });
+    if (this.stack.length < 1) {
+      this.toggle = false
+    }
   }
 
   _getSundayDates(startingDate, duration) {
