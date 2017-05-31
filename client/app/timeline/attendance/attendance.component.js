@@ -10,14 +10,15 @@ const MSECS_PER_WEEK = 1000 * 60 * 60 * 24 * 7
 
 class AttendanceCardController {
   static get $inject() {
-    return ['me', backendService, toastService]
+      return ['$filter', 'me', backendService, toastService]
   }
 
-  constructor(me, backendService, toastService) {
+    constructor($filter, me, backendService, toastService) {
     this.backendService = backendService
     this.me = me
     this.toastService = toastService
-    this.stack = [];
+        this.stack = []
+        this.$filter = $filter
   }
 
   $onChanges(changes) {
@@ -37,9 +38,9 @@ class AttendanceCardController {
       rmName: module.module_name
     }
     // Make a copy with the corresponding date to mysql to save
-    let sundays = this.moduleSundays.slice(0);
+      let sundays = this.moduleSundays.slice(0)
     sundays = sundays.map(date => {
-      return date.getFullYear() + "/0" + (date.getMonth()+1) + "/" + date.getDate();
+        return this.$filter('date')(date, 'yyyy/MM/dd')
     })
     this.backendService.getHistory(module.running_module_id, module.id, sundays)
       .then(res => {
@@ -62,16 +63,19 @@ class AttendanceCardController {
   }
 
   changeInStudentsHistory(student, whichToUndo) {
-    this.stack.push(student);
+      this.stack.push(student)
     this.stack.push(whichToUndo)
     this.toggle = true
   }
 
   saveHistory() {
     this.backendService.saveHistory(this.attendants)
-      .then(() => this.toastService.displayToast(true, 'Your changes have been saved'))
+        .then(() => {
+            this.toggle = false
+            this.stack = []
+            this.toastService.displayToast(true, 'Your changes have been saved')
+        })
       .catch(err => console.log(err))
-    this.toggle = false
   }
 
   cancelChanges() {
@@ -82,19 +86,19 @@ class AttendanceCardController {
         attend.attendance = old._attendance
       }
     }
-    this.toggle = false;
+      this.toggle = false
   }
 
   undo() {
-    const whichToUndo = this.stack.pop(); 
-    const last = this.stack.pop();
+      const whichToUndo = this.stack.pop()
+      const last = this.stack.pop()
     const old = this._students[last.full_name + '_' + last.date]
     this.attendants[last.full_name].forEach(student => {
       if (student.date === last.date) {
         if (student.homework !== old._homework && whichToUndo === 'homework'){
-          student.homework = old._homework;          
+            student.homework = old._homework
         }else if(student.attendance !== old._attendance && whichToUndo === 'attendance'){
-          student.attendance = old._attendance;          
+            student.attendance = old._attendance
         }
       }
     });
