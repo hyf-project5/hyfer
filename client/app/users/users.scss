@@ -6,3 +6,14 @@
     box-shadow: 3px 4px 4px rgba(57, 15, 15, 0.81);
     border-radius: 15px 22px
 }
+
+.md-subhead > a{
+    transition: font-size .4s ease-in-out,
+                text-shadow .2s ease-in;
+    vertical-align: top;
+}
+
+.md-subhead > a:hover {
+    font-size: 20px;
+    text-shadow: 0 2px 3px rgba(45, 8, 8, 0.57);
+}
