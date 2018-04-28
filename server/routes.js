@@ -44,9 +44,12 @@ module.exports = function (app) {
   app.get('/api/studentsState/:groupId', auth.hasRole('teacher'), states.getStudentsState)
   app.patch('/api/studentsState', auth.hasRole('teacher'), states.updateUser, states.assignToClass)
 
-  app.get('/auth/github', passport.authenticate('github'))
+  app.get('/auth/github', passport.authenticate('github', { scope: ['read:org', 'read:user'] }))
   app.get('/auth/github/callback', passport.authenticate('github', { session: false, failureRedirect: '/login' }),
     auth.gitHubCallback, auth.setTokenCookie)
+
+  app.get('/api/teams', github.getTeams)
+  app.get('/api/teams/:id', github.getTeamMembers)
 
   app.route('/*')
     .get((req, res) => res.sendFile('index.html', { root: app.get('docRoot') }))
